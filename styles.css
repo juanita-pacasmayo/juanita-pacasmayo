@@ -1,5 +1,6 @@
 :root {
   --pink: #c83b6a;
+  --pink-dark: #aa2f59;
   --gold: #d99c2c;
   --ink: #30272b;
   --paper: #fffafa;
@@ -21,23 +22,22 @@ body {
   font-family: "DM Sans", Arial, sans-serif;
 }
 
+/* ENCABEZADO */
+
 .site-header {
-  min-height: 101px;
+  min-height: 100px;
   display: flex;
   align-items: center;
-  gap: 32px;
-  padding: 16px clamp(28px, 8vw, 164px);
-  background: rgba(255, 255, 255, 0.96);
+  gap: 30px;
+  padding: 15px 9%;
+  background: white;
   border-bottom: 1px solid var(--line);
-  position: sticky;
-  top: 0;
-  z-index: 10;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  width: 212px;
+  width: 210px;
 }
 
 .brand img {
@@ -48,18 +48,17 @@ body {
 }
 
 .main-nav {
+  flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: clamp(25px, 3vw, 40px);
-  flex: 1;
+  gap: 38px;
 }
 
 .main-nav a {
   color: var(--ink);
-  text-decoration: none;
   font-size: 16px;
   font-weight: 700;
+  text-decoration: none;
 }
 
 .main-nav a:hover {
@@ -71,9 +70,9 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 54px;
+  min-height: 52px;
   padding: 0 27px;
-  border-radius: 40px;
+  border-radius: 30px;
   font-weight: 700;
   text-decoration: none;
   transition: 0.2s;
@@ -87,53 +86,55 @@ body {
 
 .contact-button:hover,
 .button.primary:hover {
-  background: #ad2c5a;
+  background: var(--pink-dark);
   transform: translateY(-2px);
 }
+
+/* PORTADA PRINCIPAL */
 
 .hero {
   max-width: 1530px;
   min-height: 570px;
   display: grid;
-  grid-template-columns: 1.02fr 0.98fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: clamp(40px, 7vw, 120px);
+  gap: clamp(45px, 7vw, 110px);
   margin: auto;
-  padding: clamp(55px, 7vw, 81px) clamp(28px, 8vw, 164px);
+  padding: 80px 9%;
+  background: var(--paper);
 }
 
 .eyebrow,
 .section-kicker {
-  margin: 0 0 12px;
+  margin: 0 0 14px;
   color: var(--gold);
-  text-transform: uppercase;
-  letter-spacing: 4px;
   font-size: 14px;
   font-weight: 700;
-}
-
-.eyebrow span {
-  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
 }
 
 h1 {
   margin: 0;
   color: var(--pink);
-  font: italic 700 clamp(64px, 7vw, 102px) / 0.9 "Playfair Display", Georgia, serif;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(65px, 7vw, 105px);
+  font-style: italic;
+  line-height: 0.9;
   letter-spacing: -4px;
 }
 
 .location {
   margin: 22px 0;
-  font-size: 29px;
-  letter-spacing: 13px;
+  font-size: 27px;
+  letter-spacing: 12px;
 }
 
 .intro {
-  max-width: 675px;
-  margin: 0 0 25px;
-  color: #50444a;
-  font-size: 21px;
+  max-width: 620px;
+  margin: 0 0 28px;
+  color: #594b51;
+  font-size: 20px;
   line-height: 1.6;
 }
 
@@ -146,40 +147,30 @@ h1 {
 .button.secondary {
   color: var(--pink);
   background: white;
-  border: 1px solid #ebcbd6;
+  border: 1px solid #eac8d4;
 }
 
 .button.secondary:hover {
-  background: #fff3f7;
+  background: #fff1f6;
   transform: translateY(-2px);
-}
-
-.hero-art {
-  position: relative;
-  isolation: isolate;
-}
-
-.art-glow {
-  position: absolute;
-  inset: 4% -2%;
-  z-index: -1;
-  background: radial-gradient(circle, #fadbd8 0, #fff5f4 51%, transparent 72%);
 }
 
 .hero-art img {
   display: block;
   width: 100%;
   aspect-ratio: 1.62 / 1;
-  border-radius: 29px;
   object-fit: cover;
   object-position: center;
-  box-shadow: 15px 25px 45px rgba(89, 35, 50, 0.13);
+  border-radius: 28px;
+  box-shadow: 15px 25px 45px rgba(89, 35, 50, 0.15);
 }
+
+/* PRODUCTOS Y SERVICIOS */
 
 .content-section,
 .visit,
 .gallery {
-  padding: 86px clamp(28px, 8vw, 164px);
+  padding: 80px 9%;
   text-align: center;
 }
 
@@ -188,12 +179,13 @@ h1 {
 .gallery h2 {
   margin: 0;
   color: var(--pink);
-  font: 700 clamp(30px, 4vw, 44px) / 1.1 "Playfair Display", Georgia, serif;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(31px, 4vw, 44px);
 }
 
 .section-kicker {
-  letter-spacing: 3px;
   font-size: 12px;
+  letter-spacing: 3px;
 }
 
 .section-lead,
@@ -214,7 +206,7 @@ h1 {
 
 .card-grid article {
   min-height: 190px;
-  padding: 32px 22px;
+  padding: 30px 22px;
   background: white;
   border-radius: 20px;
   box-shadow: 0 12px 30px rgba(89, 35, 50, 0.08);
@@ -245,7 +237,7 @@ h1 {
 }
 
 .services {
-  background: #fff2f6;
+  background: #fff1f5;
 }
 
 .visit {
@@ -256,6 +248,8 @@ h1 {
   padding-block: 65px;
 }
 
+/* PIE DE PÁGINA */
+
 footer {
   padding: 24px;
   color: white;
@@ -264,26 +258,15 @@ footer {
   font-size: 14px;
 }
 
-.menu-toggle {
-  display: none;
-  margin-left: auto;
-  border: 0;
-  background: none;
-}
-
-.menu-toggle span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  margin: 5px;
-  background: var(--pink);
-}
+/* CELULAR */
 
 @media (max-width: 850px) {
   .site-header {
-    min-height: 75px;
-    padding: 12px 24px;
+    min-height: auto;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 15px;
+    padding: 15px 24px;
   }
 
   .brand {
@@ -291,28 +274,14 @@ footer {
   }
 
   .brand img {
-    width: 155px;
-    max-height: 50px;
-  }
-
-  .menu-toggle {
-    display: block;
+    width: 170px;
   }
 
   .main-nav {
-    display: none;
-    position: absolute;
-    top: 74px;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    padding: 20px;
-    background: white;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .main-nav.open {
-    display: flex;
+    order: 3;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 15px 25px;
   }
 
   .contact-button {
@@ -321,8 +290,8 @@ footer {
 
   .hero {
     grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 60px 28px 52px;
+    gap: 35px;
+    padding: 48px 28px;
   }
 
   .hero-copy {
@@ -334,11 +303,11 @@ footer {
   }
 
   h1 {
-    font-size: 76px;
+    font-size: 75px;
   }
 
   .location {
-    font-size: 22px;
+    font-size: 21px;
     letter-spacing: 9px;
   }
 
@@ -358,10 +327,6 @@ footer {
 }
 
 @media (max-width: 430px) {
-  .brand img {
-    width: 140px;
-  }
-
   .hero {
     padding-inline: 22px;
   }
@@ -374,12 +339,7 @@ footer {
     width: 100%;
   }
 
-  .card-grid {
-    gap: 12px;
-  }
-
-  .card-grid article {
-    min-height: 0;
-    padding: 23px 18px;
+  .main-nav {
+    font-size: 14px;
   }
 }
