@@ -32,6 +32,9 @@ body {
   padding: 15px 9%;
   background: white;
   border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .brand {
@@ -90,7 +93,25 @@ body {
   transform: translateY(-2px);
 }
 
-/* PORTADA PRINCIPAL */
+/* BOTÓN DE MENÚ: OCULTO EN COMPUTADORA */
+
+.menu-toggle {
+  display: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px 0;
+  border-radius: 10px;
+  background: var(--pink);
+}
+
+/* PORTADA */
 
 .hero {
   max-width: 1530px;
@@ -118,14 +139,13 @@ h1 {
   margin: 0;
   color: var(--pink);
   font-family: "Great Vibes", cursive;
-  font-size: clamp(82px, 9vw, 135px);
+  font-size: clamp(85px, 9vw, 138px);
   font-weight: 400;
   line-height: 0.8;
-  letter-spacing: 0;
 }
 
 .location {
-  margin: 26px 0 22px;
+  margin: 30px 0 22px;
   color: #4b313b;
   font-family: "Montserrat", Arial, sans-serif;
   font-size: 22px;
@@ -182,8 +202,8 @@ h1 {
 .gallery h2 {
   margin: 0;
   color: var(--pink);
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(31px, 4vw, 44px);
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: clamp(29px, 4vw, 42px);
 }
 
 .section-kicker {
@@ -265,11 +285,10 @@ footer {
 
 @media (max-width: 850px) {
   .site-header {
-    min-height: auto;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    padding: 15px 24px;
+    min-height: 75px;
+    padding: 12px 24px;
+    gap: 10px;
+    position: relative;
   }
 
   .brand {
@@ -277,14 +296,34 @@ footer {
   }
 
   .brand img {
-    width: 170px;
+    width: 155px;
+    max-height: 50px;
+  }
+
+  .menu-toggle {
+    display: block;
+    margin-left: auto;
+    padding: 8px;
   }
 
   .main-nav {
-    order: 3;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 200;
     width: 100%;
-    flex-wrap: wrap;
-    gap: 15px 25px;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    background: white;
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 12px 20px rgba(89, 35, 50, 0.1);
+  }
+
+  .main-nav.open {
+    display: flex;
   }
 
   .contact-button {
@@ -306,12 +345,13 @@ footer {
   }
 
   h1 {
-    font-size: 75px;
+    font-size: 95px;
   }
 
   .location {
-    font-size: 21px;
-    letter-spacing: 9px;
+    margin-top: 25px;
+    font-size: 19px;
+    letter-spacing: 8px;
   }
 
   .intro {
