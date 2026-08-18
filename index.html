@@ -1,141 +1,150 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Juanita Pacasmayo — belleza que inspira." />
+  <title>Juanita Pacasmayo | Belleza que inspira</title>
 
-    <title>Juanita Pacasmayo | Belleza que inspira</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,700&display=swap" rel="stylesheet" />
 
-    <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
+  <header class="site-header">
+    <a class="brand" href="#inicio">
+      <img src="images/Logo.png" alt="Logo Juanita Pacasmayo" />
+    </a>
 
-    <!-- ENCABEZADO -->
-    <header>
-        <div class="logo">
-            <img src="images/Logo.png" alt="Logo Juanita Pacasmayo">
-        </div>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
-        <nav>
-            <a href="#inicio">Inicio</a>
-            <a href="#productos">Productos</a>
-            <a href="#servicios">Servicios</a>
-            <a href="#contacto">Contacto</a>
-        </nav>
-    </header>
+    <nav class="main-nav">
+      <a href="#servicios">Servicios</a>
+      <a href="#productos">Productos</a>
+      <a href="#puntos">Puntos</a>
+      <a href="#galeria">Galería</a>
+    </nav>
 
+    <a class="contact-button" href="https://wa.me/51960684125" target="_blank">
+      Contáctanos
+    </a>
+  </header>
 
-   <!-- PORTADA -->
-<section id="inicio" class="hero">
+  <main id="inicio">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Belleza que inspira <span>✦</span></p>
 
-    <img 
-        src="images/Portada.png" 
-        alt="Juanita Pacasmayo - Belleza que inspira"
-        class="portada-imagen"
-    >
+        <h1>Juanita</h1>
 
-</section>
+        <p class="location">PACASMAYO</p>
 
-
-    <!-- PRODUCTOS -->
-    <section id="productos" class="productos">
-
-        <h2>Productos</h2>
-
-        <p>
-            Encuentra productos seleccionados para cuidar y realzar tu belleza.
+        <p class="intro">
+          Productos de belleza y servicios pensados para realzar tu estilo:
+          <strong>laceados, uñas y pestañas.</strong>
         </p>
 
-        <div class="categorias">
-
-            <div class="categoria">
-                <h3>💄 Maquillaje</h3>
-                <p>
-                    Productos de maquillaje para cada ocasión.
-                </p>
-            </div>
-
-            <div class="categoria">
-                <h3>🧴 Cuidado capilar</h3>
-                <p>
-                    Productos para cuidar, hidratar y fortalecer tu cabello.
-                </p>
-            </div>
-
-            <div class="categoria">
-                <h3>🌸 Perfumes</h3>
-                <p>
-                    Fragancias para expresar tu estilo y personalidad.
-                </p>
-            </div>
-
+        <div class="hero-actions">
+          <a class="button primary" href="#servicios">Ver servicios</a>
+          <a class="button secondary" href="#puntos">Conoce tus puntos</a>
         </div>
+      </div>
 
+      <div class="hero-art">
+        <div class="art-glow"></div>
+
+        <img
+          src="images/Portada.png"
+          alt="Juanita Pacasmayo - Belleza que inspira"
+        />
+      </div>
     </section>
 
+    <section class="content-section products" id="productos">
+      <p class="section-kicker">Para ti</p>
+      <h2>Productos seleccionados</h2>
 
-    <!-- SERVICIOS -->
-    <section id="servicios" class="servicios">
+      <p class="section-lead">
+        Encuentra productos elegidos para cuidar y realzar tu belleza todos los días.
+      </p>
 
-        <h2>Nuestros servicios</h2>
+      <div class="card-grid">
+        <article>
+          <span>💄</span>
+          <h3>Maquillaje</h3>
+          <p>Productos para cada ocasión.</p>
+        </article>
 
-        <div class="servicios-contenedor">
+        <article>
+          <span>🧴</span>
+          <h3>Cuidado capilar</h3>
+          <p>Hidratación y cuidado para tu cabello.</p>
+        </article>
 
-            <div class="servicio">
-                <h3>💇 Laceado</h3>
-                <p>
-                    Dale a tu cabello un acabado hermoso, suave y elegante.
-                </p>
-            </div>
-
-            <div class="servicio">
-                <h3>💅 Uñas</h3>
-                <p>
-                    Diseños y cuidados para lucir unas manos increíbles.
-                </p>
-            </div>
-
-            <div class="servicio">
-                <h3>👁️ Pestañas</h3>
-                <p>
-                    Realza tu mirada con nuestros servicios de pestañas.
-                </p>
-            </div>
-
-        </div>
-
+        <article>
+          <span>🌸</span>
+          <h3>Perfumes</h3>
+          <p>Fragancias para expresar tu estilo.</p>
+        </article>
+      </div>
     </section>
 
+    <section class="content-section services" id="servicios">
+      <p class="section-kicker">Tu momento</p>
+      <h2>Nuestros servicios</h2>
 
-    <!-- CONTACTO -->
-    <section id="contacto" class="contacto">
+      <div class="card-grid">
+        <article>
+          <span>〰</span>
+          <h3>Laceado</h3>
+          <p>Un acabado suave, brillante y elegante.</p>
+        </article>
 
-        <h2>Reserva tu cita</h2>
+        <article>
+          <span>💅</span>
+          <h3>Uñas</h3>
+          <p>Diseños y cuidados para manos increíbles.</p>
+        </article>
 
-        <p>
-            ¿Lista para darle un toque especial a tu belleza?
-        </p>
-
-        <a href="#" class="boton">
-            Contactar por WhatsApp
-        </a>
-
+        <article>
+          <span>◒</span>
+          <h3>Pestañas</h3>
+          <p>Una mirada con más expresión.</p>
+        </article>
+      </div>
     </section>
 
+    <section class="visit" id="puntos">
+      <p class="section-kicker">Estamos cerca</p>
+      <h2>Visítanos en Pacasmayo</h2>
 
-    <!-- PIE DE PÁGINA -->
-    <footer>
+      <p>
+        Escríbenos para consultar nuestros productos, servicios y disponibilidad.
+      </p>
 
-        <p>
-            © 2026 Juanita Pacasmayo - Belleza que inspira
-        </p>
+      <a class="button primary" href="https://wa.me/51960684125" target="_blank">
+        Contactar por WhatsApp
+      </a>
+    </section>
 
-    </footer>
+    <section class="gallery" id="galeria">
+      <p class="section-kicker">Inspírate</p>
+      <h2>Galería</h2>
+      <p>Muy pronto encontrarás nuestros trabajos y novedades aquí.</p>
+    </section>
+  </main>
 
+  <footer>
+    © 2026 Juanita Pacasmayo · Belleza que inspira
+  </footer>
 
-    <script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
-
