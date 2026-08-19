@@ -419,3 +419,20 @@ footer {
   }
 }
 
+.mobile-contact {
+  display: none;
+}
+
+@media (max-width: 850px) {
+  .mobile-contact {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+    padding: 12px 22px;
+    border-radius: 25px;
+    color: white !important;
+    background: #c83b6a;
+    font-weight: 700;
+  }
+}
