@@ -285,9 +285,12 @@ footer {
 
 @media (max-width: 850px) {
   .site-header {
-    min-height: 75px;
-    padding: 12px 24px;
-    gap: 10px;
+    min-height: 145px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 42px;
     position: relative;
   }
 
@@ -296,14 +299,27 @@ footer {
   }
 
   .brand img {
-    width: 155px;
-    max-height: 50px;
+    width: 215px;
+    max-height: 100px;
+    object-fit: contain;
   }
 
   .menu-toggle {
     display: block;
     margin-left: auto;
     padding: 8px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .menu-toggle span {
+    display: block;
+    width: 46px;
+    height: 5px;
+    margin: 7px 0;
+    border-radius: 10px;
+    background: #c83b6a;
   }
 
   .main-nav {
@@ -313,17 +329,23 @@ footer {
     left: 0;
     z-index: 200;
     width: 100%;
-    padding: 20px;
+    padding: 25px;
     flex-direction: column;
     align-items: center;
-    gap: 18px;
+    gap: 20px;
     background: white;
-    border-bottom: 1px solid var(--line);
-    box-shadow: 0 12px 20px rgba(89, 35, 50, 0.1);
+    border-top: 1px solid #f0d5df;
+    border-bottom: 1px solid #f0d5df;
+    box-shadow: 0 12px 20px rgba(89, 35, 50, 0.12);
   }
 
   .main-nav.open {
     display: flex;
+  }
+
+  .main-nav a {
+    color: #30272b;
+    font-size: 18px;
   }
 
   .contact-button {
@@ -333,7 +355,7 @@ footer {
   .hero {
     grid-template-columns: 1fr;
     gap: 35px;
-    padding: 48px 28px;
+    padding: 110px 42px 50px;
   }
 
   .hero-copy {
@@ -345,11 +367,10 @@ footer {
   }
 
   h1 {
-    font-size: 95px;
+    font-size: 105px;
   }
 
   .location {
-    margin-top: 25px;
     font-size: 19px;
     letter-spacing: 8px;
   }
@@ -370,8 +391,23 @@ footer {
 }
 
 @media (max-width: 430px) {
+  .site-header {
+    min-height: 120px;
+    padding: 20px 28px;
+  }
+
+  .brand img {
+    width: 180px;
+  }
+
+  .menu-toggle span {
+    width: 38px;
+    height: 4px;
+    margin: 6px 0;
+  }
+
   .hero {
-    padding-inline: 22px;
+    padding: 85px 42px 45px;
   }
 
   .hero-art img {
@@ -381,8 +417,5 @@ footer {
   .button {
     width: 100%;
   }
-
-  .main-nav {
-    font-size: 14px;
-  }
 }
+
