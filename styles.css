@@ -436,3 +436,32 @@ footer {
     font-weight: 700;
   }
 }
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 130px;
+  padding: 12px 20px;
+  border: 1px solid #e6b9ca;
+  border-radius: 25px;
+  color: #c83b6a;
+  background: white;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.social-links a:hover {
+  color: white;
+  background: #c83b6a;
+  transform: translateY(-2px);
+}
