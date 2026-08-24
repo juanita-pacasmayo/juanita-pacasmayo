@@ -14,3 +14,19 @@ document.querySelectorAll(".main-nav a").forEach((enlace) => {
     menuToggle.setAttribute("aria-expanded", "false");
   });
 });
+
+
+// ==========================================
+// CONEXIÓN CON APPS SCRIPT
+// ==========================================
+
+const URL_APPS_SCRIPT = "AQUI_VA_TU_URL";
+
+fetch(URL_APPS_SCRIPT)
+  .then(response => response.json())
+  .then(data => {
+    console.log("Respuesta de Apps Script:", data);
+  })
+  .catch(error => {
+    console.error("Error conectando con Apps Script:", error);
+  });
