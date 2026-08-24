@@ -20,13 +20,20 @@ document.querySelectorAll(".main-nav a").forEach((enlace) => {
 // CONEXIÓN CON APPS SCRIPT
 // ==========================================
 
-const URL_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbxZW06LP3ctRtIZXBBlo3paILCjcBjQVDMCuOLmNnqU4BuZpbMz3b8jh82V8ZNki1U/exec";
+const URL_APPS_SCRIPT =
+"https://script.google.com/macros/s/AKfycbxZW06LP3ctRtIZXBBlo3paILCjcBjQVDMCuOLmNnqU4BuZpbMz3b8jh82V8ZNki1U/exec";
 
 fetch(URL_APPS_SCRIPT)
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("HTTP " + response.status);
+    }
+
+    return response.json();
+  })
   .then(data => {
-    console.log("Respuesta de Apps Script:", data);
+    console.log("✅ Respuesta de Apps Script:", data);
   })
   .catch(error => {
-    console.error("Error conectando con Apps Script:", error);
+    console.error("❌ Error conectando con Apps Script:", error);
   });
