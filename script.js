@@ -20,7 +20,7 @@ document.querySelectorAll(".main-nav a").forEach((enlace) => {
 // CONEXIÓN CON APPS SCRIPT
 // ==========================================
 
-const URL_APPS_SCRIPT = "AQUI_VA_TU_URL";
+const URL_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbxZW06LP3ctRtIZXBBlo3paILCjcBjQVDMCuOLmNnqU4BuZpbMz3b8jh82V8ZNki1U/exec";
 
 fetch(URL_APPS_SCRIPT)
   .then(response => response.json())
