@@ -128,9 +128,20 @@ const cantidadPuntos =
 
 if (btnConsultarPuntos) {
 
-  btnConsultarPuntos.addEventListener(
-    "click",
-    consultarPuntosWeb
+  console.log("✅ Botón de puntos encontrado");
+
+  btnConsultarPuntos.addEventListener("click", function () {
+
+    console.log("🟢 BOTÓN CONSULTAR FUE PRESIONADO");
+
+    consultarPuntosWeb();
+
+  });
+
+} else {
+
+  console.error(
+    "❌ NO SE ENCONTRÓ EL BOTÓN btnConsultarPuntos"
   );
 
 }
@@ -141,6 +152,7 @@ if (btnConsultarPuntos) {
 // ==========================================
 
 function consultarPuntosWeb() {
+console.log("🚀 Se ejecutó consultarPuntosWeb()");
 
   // ==========================================
   // OBTENER CÓDIGO
