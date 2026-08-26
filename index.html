@@ -127,47 +127,118 @@
       </div>
     </section>
 
-    <section class="visit" id="puntos">
-      <p class="section-kicker">Estamos cerca</p>
-      <h2>Visítanos en Pacasmayo</h2>
+    <section class="visit points-section" id="puntos">
 
-      <p>
-        Escríbenos para consultar nuestros productos, servicios y disponibilidad.
+  <p class="section-kicker">Tu recompensa</p>
+
+  <h2>Consulta tus puntos</h2>
+
+  <p class="points-intro">
+    Ingresa tu código de cliente para conocer tus puntos acumulados
+    y los premios que puedes obtener.
+  </p>
+
+  <div class="points-box">
+
+    <div class="points-form">
+
+      <label for="codigoCliente">
+        Código de cliente
+      </label>
+
+      <input
+        type="text"
+        id="codigoCliente"
+        placeholder="Ejemplo: JP0001"
+        autocomplete="off"
+      >
+
+      <button
+        type="button"
+        class="button primary"
+        id="btnConsultarPuntos"
+      >
+        Consultar mis puntos
+      </button>
+
+    </div>
+
+    <div
+      id="mensajePuntos"
+      class="points-message"
+    ></div>
+
+    <div
+      id="resultadoPuntos"
+      class="points-result"
+      style="display: none;"
+    >
+
+      <p class="cliente-saludo">
+        ¡Hola, <strong id="nombreCliente"></strong>!
       </p>
 
-      <a class="button primary" href="https://wa.me/51960684125" target="_blank">
-        Contactar por WhatsApp
-      </a>
+      <div class="points-number">
 
-    <div class="social-links">
-  <a
-    class="social-icon-link facebook"
-    href="https://www.facebook.com/share/1E4epRuiMp/"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Facebook de Juanita Pacasmayo"
-  >
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M14 8h3V4h-3c-3.1 0-5 1.9-5 5v3H6v4h3v8h4v-8h3.2l.8-4H13V9c0-.7.3-1 1-1z"/>
-    </svg>
-  </a>
+        <span>⭐</span>
 
-  <a
-    class="social-icon-link instagram"
-    href="https://www.instagram.com/TU-USUARIO/"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Instagram de Juanita Pacasmayo"
-  >
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="3" y="3" width="18" height="18" rx="5"/>
-      <circle cx="12" cy="12" r="4"/>
-      <circle cx="17.5" cy="6.5" r="1"/>
-    </svg>
-  </a>
-</div>
-      
-    </section>
+        <strong id="cantidadPuntos">
+          0
+        </strong>
+
+        <small>
+          puntos acumulados
+        </small>
+
+      </div>
+
+      <div class="premios-info">
+
+        <h3>🎁 Premios</h3>
+
+        <div class="premios-lista">
+
+          <div class="premio">
+            <span>💄</span>
+            <div>
+              <strong>150 puntos</strong>
+              <p>Regalos cosméticos</p>
+            </div>
+          </div>
+
+          <div class="premio">
+            <span>🕶️</span>
+            <div>
+              <strong>200 puntos</strong>
+              <p>Lentes de sol</p>
+            </div>
+          </div>
+
+          <div class="premio">
+            <span>👁️</span>
+            <div>
+              <strong>300 puntos</strong>
+              <p>Pestañas 1x1 gratis</p>
+            </div>
+          </div>
+
+          <div class="premio">
+            <span>🧢</span>
+            <div>
+              <strong>350 puntos</strong>
+              <p>Gorra o billetera</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
     <section class="gallery" id="galeria">
       <p class="section-kicker">Inspírate</p>
