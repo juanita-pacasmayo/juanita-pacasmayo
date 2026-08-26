@@ -8,35 +8,29 @@ const mainNav = document.querySelector(".main-nav");
 
 if (menuToggle && mainNav) {
 
-  menuToggle.addEventListener("click", () => {
+  menuToggle.addEventListener("click", function () {
 
     mainNav.classList.toggle("open");
 
-    const abierto =
-      mainNav.classList.contains("open");
+    const abierto = mainNav.classList.contains("open");
 
-    menuToggle.setAttribute(
-      "aria-expanded",
-      abierto
-    );
+    menuToggle.setAttribute("aria-expanded", abierto);
+
   });
 
 }
 
 
-document.querySelectorAll(".main-nav a").forEach((enlace) => {
+document.querySelectorAll(".main-nav a").forEach(function (enlace) {
 
-  enlace.addEventListener("click", () => {
+  enlace.addEventListener("click", function () {
 
     if (mainNav) {
       mainNav.classList.remove("open");
     }
 
     if (menuToggle) {
-      menuToggle.setAttribute(
-        "aria-expanded",
-        "false"
-      );
+      menuToggle.setAttribute("aria-expanded", "false");
     }
 
   });
@@ -53,86 +47,61 @@ const URL_APPS_SCRIPT =
 
 
 fetch(URL_APPS_SCRIPT)
-
-  .then(response => {
+  .then(function (response) {
 
     if (!response.ok) {
-
-      throw new Error(
-        "HTTP " + response.status
-      );
-
+      throw new Error("HTTP " + response.status);
     }
 
     return response.json();
 
   })
+  .then(function (data) {
 
-  .then(data => {
-
-    console.log(
-      "✅ Respuesta de Apps Script:",
-      data
-    );
+    console.log("Conexion Apps Script:", data);
 
   })
+  .catch(function (error) {
 
-  .catch(error => {
-
-    console.error(
-      "❌ Error conectando con Apps Script:",
-      error
-    );
+    console.error("Error Apps Script:", error);
 
   });
 
 
 // ==========================================
-// ELEMENTOS DE CONSULTA DE PUNTOS
+// ELEMENTOS DEL SISTEMA DE PUNTOS
 // ==========================================
 
 const btnConsultarPuntos =
-  document.getElementById(
-    "btnConsultarPuntos"
-  );
+  document.getElementById("btnConsultarPuntos");
 
 const codigoClienteInput =
-  document.getElementById(
-    "codigoCliente"
-  );
+  document.getElementById("codigoCliente");
 
 const mensajePuntos =
-  document.getElementById(
-    "mensajePuntos"
-  );
+  document.getElementById("mensajePuntos");
 
 const resultadoPuntos =
-  document.getElementById(
-    "resultadoPuntos"
-  );
+  document.getElementById("resultadoPuntos");
 
 const nombreCliente =
-  document.getElementById(
-    "nombreCliente"
-  );
+  document.getElementById("nombreCliente");
 
 const cantidadPuntos =
-  document.getElementById(
-    "cantidadPuntos"
-  );
+  document.getElementById("cantidadPuntos");
 
 
 // ==========================================
-// BOTÓN CONSULTAR
+// BOTON CONSULTAR
 // ==========================================
 
 if (btnConsultarPuntos) {
 
-  console.log("✅ Botón de puntos encontrado");
+  console.log("Boton de puntos encontrado");
 
   btnConsultarPuntos.addEventListener("click", function () {
 
-    console.log("🟢 BOTÓN CONSULTAR FUE PRESIONADO");
+    console.log("Boton CONSULTAR presionado");
 
     consultarPuntosWeb();
 
@@ -140,85 +109,71 @@ if (btnConsultarPuntos) {
 
 } else {
 
-  console.error(
-    "❌ NO SE ENCONTRÓ EL BOTÓN btnConsultarPuntos"
-  );
+  console.error("No se encontro btnConsultarPuntos");
 
 }
 
 
 // ==========================================
-// CONSULTAR PUNTOS Y PREMIOS
+// FUNCION CONSULTAR PUNTOS
 // ==========================================
 
 function consultarPuntosWeb() {
-console.log("🚀 Se ejecutó consultarPuntosWeb()");
 
-  // ==========================================
-  // OBTENER CÓDIGO
-  // ==========================================
+  console.log("Ejecutando consultarPuntosWeb");
 
   const codigo =
-    codigoClienteInput.value
-      .trim()
-      .toUpperCase();
+    codigoClienteInput.value.trim().toUpperCase();
 
 
-  // ==========================================
-  // LIMPIAR RESULTADOS ANTERIORES
-  // ==========================================
+  // Limpiar resultado anterior
 
   mensajePuntos.textContent = "";
 
-  resultadoPuntos.style.display =
-    "none";
+  resultadoPuntos.style.display = "none";
 
 
-  // ==========================================
-  // VALIDAR CÓDIGO
-  // ==========================================
+  // Validar codigo
 
   if (!codigo) {
 
     mensajePuntos.textContent =
-      "Por favor, ingresa tu código de cliente.";
+      "Por favor, ingresa tu codigo de cliente.";
 
     return;
 
   }
 
 
-  // ==========================================
-  // MENSAJE DE CARGA
-  // ==========================================
+  // Mostrar mensaje
 
   mensajePuntos.textContent =
     "Consultando tus puntos...";
 
 
-  // ==========================================
-  // URL PARA CONSULTAR PUNTOS
-  // ==========================================
+  // Crear URL
 
-  const urlPuntos =
+  const url =
     URL_APPS_SCRIPT +
     "?accion=consultarPuntos&codigo=" +
     encodeURIComponent(codigo);
 
 
+  console.log("Consultando URL:", url);
+
+
   // ==========================================
-  // CONSULTAR PUNTOS
+  // CONSULTAR APPS SCRIPT
   // ==========================================
 
-  fetch(urlPuntos)
+  fetch(url)
 
-    .then(response => {
+    .then(function (response) {
 
       if (!response.ok) {
 
         throw new Error(
-          "Error HTTP: " +
-          response.status
+          "Error HTTP: " + response.status
         );
 
       }
@@ -227,18 +182,12 @@ console.log("🚀 Se ejecutó consultarPuntosWeb()");
 
     })
 
+    .then(function (data) {
 
-    .then(data => {
-
-      console.log(
-        "✅ Resultado consulta puntos:",
-        data
-      );
+      console.log("Respuesta puntos:", data);
 
 
-      // ==========================================
-      // COMPROBAR RESPUESTA
-      // ==========================================
+      // Comprobar respuesta
 
       if (!data.correcto) {
 
@@ -251,61 +200,69 @@ console.log("🚀 Se ejecutó consultarPuntosWeb()");
       }
 
 
-      // ==========================================
-      // MOSTRAR NOMBRE
-      // ==========================================
+      // Mostrar nombre
 
       nombreCliente.textContent =
         data.cliente;
 
 
-      // ==========================================
-      // MOSTRAR PUNTOS
-      // ==========================================
+      // Mostrar puntos
 
       cantidadPuntos.textContent =
         data.puntos;
 
 
-      // ==========================================
-      // MOSTRAR RESULTADO
-      // ==========================================
+      // Mostrar resultado
 
       resultadoPuntos.style.display =
         "block";
+
+
+      mensajePuntos.textContent =
+        "Puntos consultados correctamente.";
 
 
       // ==========================================
       // CONSULTAR PREMIOS
       // ==========================================
 
-      mensajePuntos.textContent =
-        "Consultando premios...";
-
-
-      const urlPremios =
-        URL_APPS_SCRIPT +
-        "?accion=premiosDisponibles&codigo=" +
-        encodeURIComponent(codigo);
-
-
-      return fetch(urlPremios);
+      consultarPremios(codigo);
 
     })
 
+    .catch(function (error) {
 
-    // ==========================================
-    // RESPUESTA DE PREMIOS
-    // ==========================================
+      console.error(
+        "Error consultando puntos:",
+        error
+      );
 
-    .then(response => {
+      mensajePuntos.textContent =
+        "No se pudo conectar con el sistema de puntos.";
 
-      if (!response) {
+    });
 
-        return null;
+}
 
-      }
 
+// ==========================================
+// CONSULTAR PREMIOS
+// ==========================================
+
+function consultarPremios(codigo) {
+
+  console.log("Consultando premios...");
+
+
+  const url =
+    URL_APPS_SCRIPT +
+    "?accion=premiosDisponibles&codigo=" +
+    encodeURIComponent(codigo);
+
+
+  fetch(url)
+
+    .then(function (response) {
 
       if (!response.ok) {
 
@@ -316,60 +273,20 @@ console.log("🚀 Se ejecutó consultarPuntosWeb()");
 
       }
 
-
       return response.json();
 
     })
 
+    .then(function (data) {
 
-    // ==========================================
-    // PROCESAR PREMIOS
-    // ==========================================
-
-    .then(dataPremios => {
-
-      if (!dataPremios) {
-
-        return;
-
-      }
+      console.log("Respuesta premios:", data);
 
 
-      console.log(
-        "🎁 Resultado premios:",
-        dataPremios
-      );
-
-
-      // ==========================================
-      // COMPROBAR RESPUESTA
-      // ==========================================
-
-      if (!dataPremios.correcto) {
-
-        mensajePuntos.textContent =
-          dataPremios.mensaje ||
-          "No se pudieron consultar los premios.";
-
-        return;
-
-      }
-
-
-      // ==========================================
-      // BUSCAR LISTA DE PREMIOS EN HTML
-      // ==========================================
-
-      const listaPremios =
-        document.querySelector(
-          ".premios-lista"
-        );
-
-
-      if (!listaPremios) {
+      if (!data.correcto) {
 
         console.error(
-          "❌ No se encontró .premios-lista en el HTML."
+          "Error premios:",
+          data.mensaje
         );
 
         return;
@@ -377,152 +294,127 @@ console.log("🚀 Se ejecutó consultarPuntosWeb()");
       }
 
 
-      // ==========================================
-      // BORRAR PREMIOS ANTERIORES
-      // ==========================================
-
-      listaPremios.innerHTML = "";
-
-
-      // ==========================================
-      // PREMIOS DISPONIBLES
-      // ==========================================
-
-      if (
-        dataPremios.disponibles &&
-        dataPremios.disponibles.length > 0
-      ) {
-
-        dataPremios.disponibles.forEach(
-          function(premio) {
-
-            const elemento =
-              document.createElement(
-                "div"
-              );
-
-
-            elemento.className =
-              "premio premio-disponible";
-
-
-            elemento.innerHTML = `
-
-              <span>🎁</span>
-
-              <div>
-
-                <strong>
-                  ${premio.puntos} puntos
-                </strong>
-
-                <p>
-                  ${premio.nombre}
-                </p>
-
-                <small>
-                  ✅ ¡Premio disponible!
-                </small>
-
-              </div>
-
-            `;
-
-
-            listaPremios.appendChild(
-              elemento
-            );
-
-          }
-        );
-
-      }
-
-
-      // ==========================================
-      // PREMIOS BLOQUEADOS
-      // ==========================================
-
-      if (
-        dataPremios.bloqueados &&
-        dataPremios.bloqueados.length > 0
-      ) {
-
-        dataPremios.bloqueados.forEach(
-          function(premio) {
-
-            const elemento =
-              document.createElement(
-                "div"
-              );
-
-
-            elemento.className =
-              "premio premio-bloqueado";
-
-
-            elemento.innerHTML = `
-
-              <span>🔒</span>
-
-              <div>
-
-                <strong>
-                  ${premio.puntos} puntos
-                </strong>
-
-                <p>
-                  ${premio.nombre}
-                </p>
-
-                <small>
-                  Te faltan
-                  <strong>
-                    ${premio.puntosFaltantes}
-                  </strong>
-                  puntos
-                </small>
-
-              </div>
-
-            `;
-
-
-            listaPremios.appendChild(
-              elemento
-            );
-
-          }
-        );
-
-      }
-
-
-      // ==========================================
-      // LIMPIAR MENSAJE
-      // ==========================================
-
-      mensajePuntos.textContent = "";
+      mostrarPremios(data);
 
     })
 
-
-    // ==========================================
-    // MANEJO DE ERRORES
-    // ==========================================
-
-    .catch(error => {
+    .catch(function (error) {
 
       console.error(
-        "❌ Error consultando puntos o premios:",
+        "Error consultando premios:",
         error
       );
 
+    });
 
-      mensajePuntos.textContent =
-        "No se pudo conectar con el sistema de puntos. Inténtalo nuevamente.";
+}
+
+
+// ==========================================
+// MOSTRAR PREMIOS
+// ==========================================
+
+function mostrarPremios(data) {
+
+  const listaPremios =
+    document.querySelector(".premios-lista");
+
+
+  if (!listaPremios) {
+
+    console.error(
+      "No existe .premios-lista en el HTML"
+    );
+
+    return;
+
+  }
+
+
+  // Limpiar premios
+
+  listaPremios.innerHTML = "";
+
+
+  // ==========================================
+  // PREMIOS DISPONIBLES
+  // ==========================================
+
+  if (
+    data.disponibles &&
+    data.disponibles.length > 0
+  ) {
+
+    data.disponibles.forEach(function (premio) {
+
+      const elemento =
+        document.createElement("div");
+
+      elemento.className =
+        "premio premio-disponible";
+
+
+      elemento.innerHTML =
+        "<span>🎁</span>" +
+        "<div>" +
+        "<strong>" +
+        premio.puntos +
+        " puntos</strong>" +
+        "<p>" +
+        premio.nombre +
+        "</p>" +
+        "<small>Premio disponible</small>" +
+        "</div>";
+
+
+      listaPremios.appendChild(elemento);
 
     });
+
+  }
+
+
+  // ==========================================
+  // PREMIOS BLOQUEADOS
+  // ==========================================
+
+  if (
+    data.bloqueados &&
+    data.bloqueados.length > 0
+  ) {
+
+    data.bloqueados.forEach(function (premio) {
+
+      const elemento =
+        document.createElement("div");
+
+      elemento.className =
+        "premio premio-bloqueado";
+
+
+      elemento.innerHTML =
+        "<span>🔒</span>" +
+        "<div>" +
+        "<strong>" +
+        premio.puntos +
+        " puntos</strong>" +
+        "<p>" +
+        premio.nombre +
+        "</p>" +
+        "<small>Te faltan " +
+        premio.puntosFaltantes +
+        " puntos</small>" +
+        "</div>";
+
+
+      listaPremios.appendChild(elemento);
+
+    });
+
+  }
+
+
+  mensajePuntos.textContent = "";
 
 }
 ```
