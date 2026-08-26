@@ -1,12 +1,12 @@
 // =====================================================
 // JUANITA PACASMAYO
-// SCRIPT.JS COMPLETO
-// CONSULTA DE PUNTOS Y PREMIOS
+// SCRIPT.JS
+// CONSULTA DE PUNTOS
 // =====================================================
 
 
 // =====================================================
-// URL DE TU WEB APP DE GOOGLE APPS SCRIPT
+// URL DE GOOGLE APPS SCRIPT
 // =====================================================
 
 const URL_APPS_SCRIPT =
@@ -14,7 +14,7 @@ const URL_APPS_SCRIPT =
 
 
 // =====================================================
-// INICIAR CUANDO CARGUE LA PÁGINA
+// CUANDO CARGA LA PÁGINA
 // =====================================================
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // ---------------------------------------------------
-  // ELEMENTOS DE LA PÁGINA
+  // ELEMENTOS
   // ---------------------------------------------------
 
   const btnConsultarPuntos =
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!btnConsultarPuntos) {
 
     console.error(
-      "No se encontró el botón #btnConsultarPuntos"
+      "No se encontró btnConsultarPuntos"
     );
 
     return;
@@ -60,17 +60,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // ===================================================
-  // BOTÓN CONSULTAR MIS PUNTOS
+  // BOTÓN CONSULTAR
   // ===================================================
 
   btnConsultarPuntos.addEventListener(
     "click",
-    consultarCliente
+    consultarPuntos
   );
 
 
   // ===================================================
-  // PERMITIR CONSULTAR PRESIONANDO ENTER
+  // ENTER EN EL CAMPO DE CÓDIGO
   // ===================================================
 
   if (codigoCliente) {
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           event.preventDefault();
 
-          consultarCliente();
+          consultarPuntos();
 
         }
 
@@ -94,10 +94,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // ===================================================
-  // FUNCIÓN PRINCIPAL
+  // CONSULTAR CLIENTE
   // ===================================================
 
-  async function consultarCliente() {
+  async function consultarPuntos() {
 
     const codigo =
       codigoCliente
@@ -106,16 +106,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // -------------------------------------------------
-    // LIMPIAR RESULTADOS ANTERIORES
+    // LIMPIAR
     // -------------------------------------------------
 
     ocultarMensaje();
 
-    ocultarResultado();
-
 
     // -------------------------------------------------
-    // VALIDAR CÓDIGO
+    // VALIDAR
     // -------------------------------------------------
 
     if (!codigo) {
@@ -125,22 +123,18 @@ document.addEventListener("DOMContentLoaded", function () {
         "error"
       );
 
-      if (codigoCliente) {
-        codigoCliente.focus();
-      }
-
       return;
     }
 
 
     // -------------------------------------------------
-    // BOTÓN EN ESTADO CARGANDO
+    // BOTÓN CARGANDO
     // -------------------------------------------------
-
-    btnConsultarPuntos.disabled = true;
 
     const textoOriginal =
       btnConsultarPuntos.textContent;
+
+    btnConsultarPuntos.disabled = true;
 
     btnConsultarPuntos.textContent =
       "Consultando...";
@@ -149,42 +143,46 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
 
       // ===============================================
-      // CONSULTAR CLIENTE
+      // URL
       // ===============================================
 
-      const urlCliente =
+      const url =
         URL_APPS_SCRIPT +
         "?accion=consultarPuntos&codigo=" +
         encodeURIComponent(codigo);
 
 
       console.log(
-        "Consultando cliente:",
-        urlCliente
+        "Consultando:",
+        url
       );
 
 
-      const respuestaCliente =
-        await fetch(urlCliente);
+      // ===============================================
+      // FETCH
+      // ===============================================
+
+      const respuesta =
+        await fetch(url);
 
 
-      if (!respuestaCliente.ok) {
+      if (!respuesta.ok) {
 
         throw new Error(
           "Error HTTP: " +
-          respuestaCliente.status
+          respuesta.status
         );
 
       }
 
 
-      const datosCliente =
-        await respuestaCliente.json();
+      const datos =
+        await respuesta.json();
 
 
       console.log(
-        "Respuesta cliente:",
-        datosCliente
+        "Respuesta:",
+        datos
       );
 
 
@@ -192,10 +190,10 @@ document.addEventListener("DOMContentLoaded", function () {
       // COMPROBAR RESPUESTA
       // ===============================================
 
-      if (!datosCliente.correcto) {
+      if (!datos.correcto) {
 
         throw new Error(
-          datosCliente.mensaje ||
+          datos.mensaje ||
           "No se encontró el cliente."
         );
 
@@ -203,33 +201,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
       // ===============================================
-      // MOSTRAR NOMBRE
-      //
-      // IMPORTANTE:
-      // Tu Código.gs devuelve:
-      //
-      // cliente: resultado.nombre
-      //
-      // NO devuelve:
-      //
-      // nombre: resultado.nombre
+      // NOMBRE DEL CLIENTE
       // ===============================================
 
       if (nombreCliente) {
 
         nombreCliente.textContent =
-          datosCliente.cliente ||
+          datos.cliente ||
           "Cliente";
 
       }
 
 
       // ===============================================
-      // MOSTRAR PUNTOS
+      // PUNTOS
       // ===============================================
 
       const puntos =
-        Number(datosCliente.puntos) || 0;
+        Number(datos.puntos) || 0;
 
 
       if (cantidadPuntos) {
@@ -241,7 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
       // ===============================================
-      // MOSTRAR RESULTADO PRINCIPAL
+      // MOSTRAR RESULTADO
       // ===============================================
 
       if (resultadoPuntos) {
@@ -253,14 +242,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
       // ===============================================
-      // CONSULTAR PREMIOS
+      // ACTUALIZAR PREMIOS DEL HTML
       // ===============================================
 
-      await cargarPremios(codigo, puntos);
+      actualizarPremios(puntos);
 
 
       // ===============================================
-      // MENSAJE DE ÉXITO
+      // MENSAJE
       // ===============================================
 
       mostrarMensaje(
@@ -272,12 +261,17 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (error) {
 
       console.error(
-        "Error al consultar puntos:",
+        "Error:",
         error
       );
 
 
-      ocultarResultado();
+      if (resultadoPuntos) {
+
+        resultadoPuntos.style.display =
+          "none";
+
+      }
 
 
       mostrarMensaje(
@@ -302,116 +296,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // ===================================================
-  // CARGAR PREMIOS
+  // ACTUALIZAR PREMIOS
   // ===================================================
 
-  async function cargarPremios(
-    codigo,
-    puntosCliente
-  ) {
+  function actualizarPremios(puntosCliente) {
 
-    try {
-
-      const urlPremios =
-        URL_APPS_SCRIPT +
-        "?accion=premiosDisponibles&codigo=" +
-        encodeURIComponent(codigo);
+    const lista =
+      document.querySelector(".premios-lista");
 
 
-      console.log(
-        "Consultando premios:",
-        urlPremios
-      );
-
-
-      const respuestaPremios =
-        await fetch(urlPremios);
-
-
-      if (!respuestaPremios.ok) {
-
-        throw new Error(
-          "No se pudieron consultar los premios."
-        );
-
-      }
-
-
-      const datosPremios =
-        await respuestaPremios.json();
-
-
-      console.log(
-        "Respuesta premios:",
-        datosPremios
-      );
-
-
-      if (!datosPremios.correcto) {
-
-        console.warn(
-          "No se pudieron cargar los premios:",
-          datosPremios.mensaje
-        );
-
-        mostrarPremiosPorDefecto(
-          puntosCliente
-        );
-
-        return;
-
-      }
-
-
-      // ===============================================
-      // MOSTRAR PREMIOS
-      // ===============================================
-
-      mostrarPremios(
-        datosPremios.disponibles || [],
-        datosPremios.bloqueados || [],
-        puntosCliente
-      );
-
-
-    } catch (error) {
-
-      console.error(
-        "Error al cargar premios:",
-        error
-      );
-
-
-      // Si falla la consulta de premios,
-      // mantenemos la página funcionando.
-
-      mostrarPremiosPorDefecto(
-        puntosCliente
-      );
-
-    }
-
-  }
-
-
-  // ===================================================
-  // MOSTRAR PREMIOS
-  // ===================================================
-
-  function mostrarPremios(
-    disponibles,
-    bloqueados,
-    puntosCliente
-  ) {
-
-    const contenedor =
-      obtenerContenedorPremios();
-
-
-    if (!contenedor) {
+    if (!lista) {
 
       console.warn(
-        "No se encontró un contenedor para los premios."
+        "No se encontró .premios-lista"
       );
 
       return;
@@ -419,380 +316,129 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    let html = "";
+    const premios =
+      lista.querySelectorAll(".premio");
 
 
-    // ===============================================
-    // TÍTULO
-    // ===============================================
+    premios.forEach(function (premio) {
 
-    html += `
-      <div class="titulo-premios">
-        🎁 <strong>Premios</strong>
-      </div>
-    `;
+      const strong =
+        premio.querySelector("strong");
 
 
-    // ===============================================
-    // PREMIOS DISPONIBLES
-    // ===============================================
+      const descripcion =
+        premio.querySelector("p");
 
-    if (disponibles.length > 0) {
 
-      html += `
-        <div class="premios-disponibles">
-          <h3>🏆 Premios disponibles</h3>
-      `;
-
-
-      disponibles.forEach(function (premio) {
-
-        html += `
-          <div class="premio disponible">
-
-            <div class="premio-icono">
-              ${obtenerIconoPremio(premio.nombre)}
-            </div>
-
-            <div class="premio-info">
-
-              <strong>
-                ${escaparHTML(premio.puntos)}
-                puntos
-              </strong>
-
-              <span>
-                ${escaparHTML(premio.nombre)}
-              </span>
-
-              ${
-                premio.descripcion
-                  ? `
-                    <small>
-                      ${escaparHTML(
-                        premio.descripcion
-                      )}
-                    </small>
-                  `
-                  : ""
-              }
-
-              <b>
-                🎉 ¡Puedes reclamar este premio!
-              </b>
-
-            </div>
-
-          </div>
-        `;
-
-      });
-
-
-      html += `
-        </div>
-      `;
-
-    }
-
-
-    // ===============================================
-    // PREMIOS QUE FALTAN
-    // ===============================================
-
-    if (bloqueados.length > 0) {
-
-      html += `
-        <div class="premios-pendientes">
-          <h3>🎁 Próximos premios</h3>
-      `;
-
-
-      bloqueados.forEach(function (premio) {
-
-        const faltan =
-          Number(premio.puntosFaltantes) ||
-          Math.max(
-            0,
-            Number(premio.puntos) -
-            Number(puntosCliente)
-          );
-
-
-        html += `
-          <div class="premio pendiente">
-
-            <div class="premio-icono">
-              ${obtenerIconoPremio(premio.nombre)}
-            </div>
-
-            <div class="premio-info">
-
-              <strong>
-                ${escaparHTML(premio.puntos)}
-                puntos
-              </strong>
-
-              <span>
-                ${escaparHTML(premio.nombre)}
-              </span>
-
-              ${
-                premio.descripcion
-                  ? `
-                    <small>
-                      ${escaparHTML(
-                        premio.descripcion
-                      )}
-                    </small>
-                  `
-                  : ""
-              }
-
-              <small>
-                Te faltan
-                <strong>
-                  ${escaparHTML(faltan)}
-                puntos
-                </strong>
-              </small>
-
-            </div>
-
-          </div>
-        `;
-
-      });
-
-
-      html += `
-        </div>
-      `;
-
-    }
-
-
-    // ===============================================
-    // SI NO HAY PREMIOS
-    // ===============================================
-
-    if (
-      disponibles.length === 0 &&
-      bloqueados.length === 0
-    ) {
-
-      html += `
-        <p>
-          Actualmente no hay premios disponibles.
-        </p>
-      `;
-
-    }
-
-
-    contenedor.innerHTML =
-      html;
-
-  }
-
-
-  // ===================================================
-  // CONTENEDOR DE PREMIOS
-  // ===================================================
-
-  function obtenerContenedorPremios() {
-
-    // Primero intenta encontrar un contenedor
-    // que ya exista en tu HTML.
-
-    let contenedor =
-      document.getElementById(
-        "premiosResultado"
-      );
-
-
-    if (contenedor) {
-      return contenedor;
-    }
-
-
-    contenedor =
-      document.getElementById(
-        "listaPremios"
-      );
-
-
-    if (contenedor) {
-      return contenedor;
-    }
-
-
-    contenedor =
-      document.getElementById(
-        "premios"
-      );
-
-
-    if (contenedor) {
-      return contenedor;
-    }
-
-
-    // Si no existe ninguno, lo crea automáticamente.
-
-    if (resultadoPuntos) {
-
-      contenedor =
-        document.createElement("div");
-
-      contenedor.id =
-        "premiosResultado";
-
-      contenedor.className =
-        "premios-resultado";
-
-
-      resultadoPuntos.appendChild(
-        contenedor
-      );
-
-
-      return contenedor;
-
-    }
-
-
-    return null;
-
-  }
-
-
-  // ===================================================
-  // PREMIOS POR DEFECTO
-  // ===================================================
-
-  function mostrarPremiosPorDefecto(
-    puntosCliente
-  ) {
-
-    const premios = [
-
-      {
-        puntos: 150,
-        nombre: "Regalos cosméticos"
-      },
-
-      {
-        puntos: 200,
-        nombre: "Lentes de sol"
-      },
-
-      {
-        puntos: 300,
-        nombre: "Pestañas 1x1 gratis"
-      },
-
-      {
-        puntos: 350,
-        nombre: "Gorra o billetera"
+      if (!strong) {
+        return;
       }
 
-    ];
+
+      // -----------------------------------------------
+      // OBTENER PUNTOS DEL PREMIO
+      // -----------------------------------------------
+
+      const textoPuntos =
+        strong.textContent;
 
 
-    const disponibles =
-      premios.filter(function (premio) {
-
-        return puntosCliente >= premio.puntos;
-
-      });
-
-
-    const bloqueados =
-      premios
-        .filter(function (premio) {
-
-          return puntosCliente < premio.puntos;
-
-        })
-        .map(function (premio) {
-
-          return {
-
-            ...premio,
-
-            puntosFaltantes:
-              premio.puntos -
-              puntosCliente
-
-          };
-
-        });
+      const puntosPremio =
+        parseInt(
+          textoPuntos.replace(/\D/g, ""),
+          10
+        );
 
 
-    mostrarPremios(
-      disponibles,
-      bloqueados,
-      puntosCliente
-    );
-
-  }
+      if (!puntosPremio) {
+        return;
+      }
 
 
-  // ===================================================
-  // ICONOS DE PREMIOS
-  // ===================================================
+      // -----------------------------------------------
+      // ELIMINAR MENSAJE ANTERIOR
+      // -----------------------------------------------
 
-  function obtenerIconoPremio(
-    nombre
-  ) {
-
-    const texto =
-      String(nombre || "")
-        .toLowerCase();
+      const mensajeAnterior =
+        premio.querySelector(
+          ".estado-premio"
+        );
 
 
-    if (
-      texto.includes("cosmét") ||
-      texto.includes("cosmet")
-    ) {
+      if (mensajeAnterior) {
 
-      return "💄";
+        mensajeAnterior.remove();
 
-    }
+      }
 
 
-    if (
-      texto.includes("lente") ||
-      texto.includes("sol")
-    ) {
+      // -----------------------------------------------
+      // PREMIO DISPONIBLE
+      // -----------------------------------------------
 
-      return "🕶️";
+      if (puntosCliente >= puntosPremio) {
 
-    }
-
-
-    if (
-      texto.includes("pestaña") ||
-      texto.includes("pestana")
-    ) {
-
-      return "👁️";
-
-    }
+        premio.classList.add(
+          "premio-disponible"
+        );
 
 
-    if (
-      texto.includes("gorra") ||
-      texto.includes("billetera")
-    ) {
-
-      return "🧢";
-
-    }
+        const mensaje =
+          document.createElement("div");
 
 
-    return "🎁";
+        mensaje.className =
+          "estado-premio";
+
+
+        mensaje.textContent =
+          "🎉 ¡Premio disponible!";
+
+
+        premio.appendChild(
+          mensaje
+        );
+
+
+      }
+
+      // -----------------------------------------------
+      // PREMIO BLOQUEADO
+      // -----------------------------------------------
+
+      else {
+
+        premio.classList.remove(
+          "premio-disponible"
+        );
+
+
+        const faltan =
+          puntosPremio -
+          puntosCliente;
+
+
+        const mensaje =
+          document.createElement("div");
+
+
+        mensaje.className =
+          "estado-premio";
+
+
+        mensaje.textContent =
+          "Te faltan " +
+          faltan +
+          " puntos";
+
+
+        premio.appendChild(
+          mensaje
+        );
+
+      }
+
+    });
 
   }
 
@@ -851,41 +497,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     mensajePuntos.style.display =
       "none";
-
-  }
-
-
-  // ===================================================
-  // OCULTAR RESULTADO
-  // ===================================================
-
-  function ocultarResultado() {
-
-    if (resultadoPuntos) {
-
-      resultadoPuntos.style.display =
-        "none";
-
-    }
-
-  }
-
-
-  // ===================================================
-  // SEGURIDAD: ESCAPAR HTML
-  // ===================================================
-
-  function escaparHTML(valor) {
-
-    const div =
-      document.createElement("div");
-
-
-    div.textContent =
-      String(valor ?? "");
-
-
-    return div.innerHTML;
 
   }
 
