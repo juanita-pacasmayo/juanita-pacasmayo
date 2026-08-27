@@ -745,3 +745,262 @@ function escaparHTML(valor) {
     .replace(/'/g, "&#039;");
 
 }
+
+// ======================================================
+// CARGAR HISTORIAL DEL CLIENTE
+// ======================================================
+
+async function cargarHistorial(codigo) {
+
+  const historialCliente =
+    document.getElementById(
+      "historialCliente"
+    );
+
+  const listaHistorial =
+    document.getElementById(
+      "listaHistorial"
+    );
+
+  const totalMovimientos =
+    document.getElementById(
+      "totalMovimientos"
+    );
+
+
+  if (!historialCliente) {
+    return;
+  }
+
+
+  historialCliente.style.display =
+    "block";
+
+
+  listaHistorial.innerHTML = `
+    <div class="historial-cargando">
+      ⏳ Cargando historial...
+    </div>
+  `;
+
+
+  try {
+
+    const url =
+      URL_APPS_SCRIPT +
+      "?accion=historialCliente" +
+      "&codigo=" +
+      encodeURIComponent(codigo);
+
+
+    console.log(
+      "Historial:",
+      url
+    );
+
+
+    const respuesta =
+      await fetch(url);
+
+
+    const datos =
+      await respuesta.json();
+
+
+    console.log(
+      "Respuesta historial:",
+      datos
+    );
+
+
+    if (!datos.correcto) {
+
+      listaHistorial.innerHTML = `
+        <div class="historial-vacio">
+          ❌ ${escaparHTML(
+            datos.mensaje ||
+            "No se pudo obtener el historial."
+          )}
+        </div>
+      `;
+
+      return;
+
+    }
+
+
+    const historial =
+      datos.historial || [];
+
+
+    totalMovimientos.textContent =
+      historial.length +
+      (
+        historial.length === 1
+          ? " movimiento"
+          : " movimientos"
+      );
+
+
+    // --------------------------------------------------
+    // SIN MOVIMIENTOS
+    // --------------------------------------------------
+
+    if (historial.length === 0) {
+
+      listaHistorial.innerHTML = `
+
+        <div class="historial-vacio">
+
+          <div>
+            📋
+          </div>
+
+          <strong>
+            Aún no hay movimientos
+          </strong>
+
+          <p>
+            Este cliente todavía no tiene
+            compras o servicios registrados.
+          </p>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    // --------------------------------------------------
+    // CREAR TARJETAS
+    // --------------------------------------------------
+
+    listaHistorial.innerHTML =
+      historial.map(
+        function (movimiento) {
+
+          const monto =
+            Number(
+              movimiento.monto || 0
+            ).toFixed(2);
+
+
+          const puntos =
+            Number(
+              movimiento.puntos || 0
+            );
+
+
+          let icono = "🧾";
+
+
+          const concepto =
+            String(
+              movimiento.concepto || ""
+            ).toLowerCase();
+
+
+          if (
+            concepto.includes("laceado")
+          ) {
+
+            icono = "💇";
+
+          } else if (
+            concepto.includes("uña")
+          ) {
+
+            icono = "💅";
+
+          } else if (
+            concepto.includes("pestaña")
+          ) {
+
+            icono = "👁️";
+
+          } else if (
+            concepto.includes("producto")
+          ) {
+
+            icono = "🛍️";
+
+          }
+
+
+          return `
+
+            <div class="movimiento-card">
+
+              <div class="movimiento-icono">
+                ${icono}
+              </div>
+
+
+              <div class="movimiento-info">
+
+                <strong>
+                  ${escaparHTML(
+                    movimiento.concepto
+                  )}
+                </strong>
+
+                <span>
+                  ${escaparHTML(
+                    movimiento.tipo
+                  )}
+                </span>
+
+                <small>
+                  📅 ${escaparHTML(
+                    movimiento.fecha
+                  )}
+                </small>
+
+              </div>
+
+
+              <div class="movimiento-datos">
+
+                <strong>
+                  S/ ${monto}
+                </strong>
+
+                <span>
+                  ⭐ +${puntos} puntos
+                </span>
+
+              </div>
+
+            </div>
+
+          `;
+
+        }
+      ).join("");
+
+
+  } catch (error) {
+
+    console.error(
+      "Error historial:",
+      error
+    );
+
+
+    listaHistorial.innerHTML = `
+
+      <div class="historial-vacio">
+
+        ❌ No se pudo cargar
+        el historial del cliente.
+
+      </div>
+
+    `;
+
+  }
+
+}
