@@ -1001,6 +1001,165 @@ async function cargarHistorial(codigo) {
 
     `;
 
+    /* ==========================================================
+   HISTORIAL DE MOVIMIENTOS - ADMINISTRACIÓN
+   ========================================================== */
+
+.historial-admin {
+  width: 100%;
+  max-width: 900px;
+  margin: 35px auto 0;
+  padding: 30px;
+  background: #ffffff;
+  border: 1px solid #f0d5df;
+  border-radius: 24px;
+  box-shadow: 0 12px 35px rgba(89, 35, 50, 0.08);
+  text-align: left;
+}
+
+.historial-titulo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #f0d5df;
+}
+
+.historial-titulo > span {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  background: #fff1f5;
+  font-size: 25px;
+}
+
+.historial-titulo h3 {
+  margin: 0;
+  color: var(--pink);
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 22px;
+}
+
+.historial-titulo p {
+  margin: 5px 0 0;
+  color: #806d74;
+  font-size: 14px;
+}
+
+.lista-historial-admin {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.historial-item {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  align-items: center;
+  gap: 18px;
+  padding: 18px;
+  background: #fffafa;
+  border: 1px solid #f1dce3;
+  border-radius: 18px;
+  transition: 0.2s;
+}
+
+.historial-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(89, 35, 50, 0.08);
+}
+
+.historial-icono {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: #fff1f5;
+  font-size: 27px;
+}
+
+.historial-info strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #30272b;
+  font-size: 17px;
+}
+
+.historial-info span {
+  display: block;
+  color: #806d74;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.historial-monto {
+  text-align: right;
+}
+
+.historial-monto strong {
+  display: block;
+  color: var(--pink);
+  font-size: 18px;
+}
+
+.historial-monto span {
+  display: block;
+  margin-top: 5px;
+  color: #b17b1e;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.historial-vacio {
+  margin: 0;
+  padding: 25px;
+  color: #806d74;
+  background: #fffafa;
+  border: 1px dashed #e6c5d1;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.historial-cargando {
+  padding: 25px;
+  color: var(--pink);
+  text-align: center;
+  font-weight: 700;
+}
+
+/* CELULAR */
+
+@media (max-width: 650px) {
+
+  .historial-admin {
+    padding: 20px;
+    margin-top: 25px;
+  }
+
+  .historial-item {
+    grid-template-columns: 55px 1fr;
+    gap: 12px;
+  }
+
+  .historial-icono {
+    width: 50px;
+    height: 50px;
+    font-size: 23px;
+  }
+
+  .historial-monto {
+    grid-column: 2;
+    text-align: left;
+    padding-top: 5px;
+    border-top: 1px solid #f0d5df;
+  }
+
+}
+
   }
 
 }
