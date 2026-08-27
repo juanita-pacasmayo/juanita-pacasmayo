@@ -1310,3 +1310,219 @@ footer {
   }
 
 }
+
+
+/* ======================================================
+   HISTORIAL DEL CLIENTE
+   ====================================================== */
+
+.historial-cliente {
+  max-width: 900px;
+  margin: 35px auto 0;
+  padding: 30px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: 0 12px 35px rgba(89, 35, 50, 0.08);
+  text-align: left;
+}
+
+
+.historial-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+
+.historial-header .section-kicker {
+  margin-bottom: 5px;
+}
+
+
+.historial-header h3 {
+  margin: 0;
+  color: var(--pink);
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 25px;
+}
+
+
+.total-movimientos {
+  padding: 9px 16px;
+  color: var(--pink);
+  background: #fff1f5;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* ======================================================
+   TARJETA DE MOVIMIENTO
+   ====================================================== */
+
+.lista-historial {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+.movimiento-card {
+  display: grid;
+  grid-template-columns: 55px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 17px 20px;
+  background: #fffafa;
+  border: 1px solid #f1e0e5;
+  border-radius: 17px;
+  transition: 0.2s ease;
+}
+
+
+.movimiento-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(89, 35, 50, 0.08);
+}
+
+
+/* ICONO */
+
+.movimiento-icono {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  background: #fff1f5;
+  border-radius: 15px;
+  font-size: 25px;
+}
+
+
+/* INFORMACIÓN */
+
+.movimiento-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+
+.movimiento-info strong {
+  color: var(--ink);
+  font-size: 16px;
+}
+
+
+.movimiento-info span {
+  color: var(--pink);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+.movimiento-info small {
+  color: #806f76;
+  font-size: 12px;
+}
+
+
+/* MONTO Y PUNTOS */
+
+.movimiento-datos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+
+.movimiento-datos strong {
+  color: var(--ink);
+  font-size: 17px;
+}
+
+
+.movimiento-datos span {
+  color: #c78a22;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* ======================================================
+   CARGANDO / VACÍO
+   ====================================================== */
+
+.historial-cargando,
+.historial-vacio {
+  padding: 35px 20px;
+  color: #806f76;
+  text-align: center;
+}
+
+
+.historial-vacio div {
+  margin-bottom: 10px;
+  font-size: 35px;
+}
+
+
+.historial-vacio strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--ink);
+  font-size: 17px;
+}
+
+
+.historial-vacio p {
+  margin: 0;
+  font-size: 14px;
+}
+
+
+/* ======================================================
+   CELULAR
+   ====================================================== */
+
+@media (max-width: 650px) {
+
+  .historial-cliente {
+    padding: 20px 15px;
+    border-radius: 20px;
+  }
+
+
+  .historial-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+
+  .movimiento-card {
+    grid-template-columns: 48px 1fr;
+    gap: 12px;
+    padding: 15px;
+  }
+
+
+  .movimiento-icono {
+    width: 45px;
+    height: 45px;
+    font-size: 22px;
+  }
+
+
+  .movimiento-datos {
+    grid-column: 2;
+    align-items: flex-start;
+    padding-top: 3px;
+  }
+
+}
