@@ -925,3 +925,388 @@ footer {
       #f77737
     );
 }
+
+
+/* =====================================================
+   PANEL DE ADMINISTRACIÓN - DISEÑO CORREGIDO
+   ===================================================== */
+
+.admin-section {
+  width: 100%;
+  padding: 75px 25px 85px;
+  background: #fffafa;
+}
+
+
+.admin-container {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+.admin-container .section-kicker {
+  margin-bottom: 12px;
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+
+.admin-container h2 {
+  margin: 0;
+  color: var(--pink);
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: clamp(30px, 4vw, 42px);
+  line-height: 1.2;
+}
+
+
+.admin-container .section-lead {
+  max-width: 650px;
+  margin: 15px auto 32px;
+  color: #695b60;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+
+/* =====================================================
+   FORMULARIO
+   ===================================================== */
+
+.admin-form {
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 32px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: 0 15px 40px rgba(89, 35, 50, 0.10);
+  text-align: left;
+}
+
+
+/* =====================================================
+   GRUPOS
+   ===================================================== */
+
+.form-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   INPUTS Y SELECT
+   ===================================================== */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  color: var(--ink);
+  background: #fffafa;
+  border: 1px solid #e4ccd5;
+  border-radius: 12px;
+  outline: none;
+  font-family: "DM Sans", Arial, sans-serif;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--pink);
+  box-shadow: 0 0 0 3px rgba(200, 59, 106, 0.10);
+}
+
+
+.form-group textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+
+/* =====================================================
+   BUSCAR CLIENTE
+   ===================================================== */
+
+.campo-con-boton {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+}
+
+
+.campo-con-boton input {
+  flex: 1;
+  min-width: 0;
+}
+
+
+.campo-con-boton .button {
+  flex-shrink: 0;
+  min-height: 48px;
+  padding: 0 20px;
+}
+
+
+/* =====================================================
+   INFORMACIÓN DEL CLIENTE
+   ===================================================== */
+
+.cliente-registro {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  margin: 0 0 22px;
+  padding: 16px;
+  background: #fff4f7;
+  border: 1px solid #f0d5df;
+  border-radius: 16px;
+}
+
+
+.cliente-icono {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: #ffffff;
+  border-radius: 50%;
+  font-size: 25px;
+}
+
+
+.cliente-registro span {
+  display: block;
+  margin-bottom: 3px;
+  color: #806f76;
+  font-size: 12px;
+}
+
+
+.cliente-registro strong {
+  display: block;
+  color: var(--pink);
+  font-size: 17px;
+}
+
+
+.cliente-registro small {
+  display: block;
+  margin-top: 4px;
+  color: #66575d;
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   MONTO
+   ===================================================== */
+
+.monto-input {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 48px;
+  overflow: hidden;
+  background: #fffafa;
+  border: 1px solid #e4ccd5;
+  border-radius: 12px;
+}
+
+
+.monto-input span {
+  padding-left: 15px;
+  color: var(--pink);
+  font-weight: 800;
+}
+
+
+.monto-input input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+
+.monto-input input:focus {
+  border: none;
+  box-shadow: none;
+}
+
+
+/* =====================================================
+   BOTÓN REGISTRAR
+   ===================================================== */
+
+#btnRegistrarMovimiento {
+  width: 100%;
+  min-height: 54px;
+  margin-top: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+
+#btnRegistrarMovimiento:hover {
+  transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   MENSAJES
+   ===================================================== */
+
+.mensaje-registro {
+  width: 100%;
+  margin-top: 18px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   RESULTADO
+   ===================================================== */
+
+.resultado-registro {
+  width: 100%;
+  margin-top: 22px;
+  padding: 22px;
+  text-align: center;
+  background: #fffaf0;
+  border: 1px solid #ead49b;
+  border-radius: 17px;
+}
+
+
+.resultado-icono {
+  font-size: 35px;
+}
+
+
+.resultado-registro h3 {
+  margin: 8px 0;
+  color: #a87313;
+  font-family: "Montserrat", Arial, sans-serif;
+}
+
+
+.resultado-registro p {
+  margin: 0;
+  color: #66575d;
+  line-height: 1.6;
+}
+
+
+/* =====================================================
+   TEXTO OPCIONAL
+   ===================================================== */
+
+.opcional {
+  color: #9a8c92;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+
+/* =====================================================
+   ADMINISTRACIÓN EN CELULAR
+   ===================================================== */
+
+@media (max-width: 700px) {
+
+  .admin-section {
+    padding: 55px 20px 65px;
+  }
+
+
+  .admin-container {
+    max-width: 100%;
+  }
+
+
+  .admin-container h2 {
+    font-size: 30px;
+  }
+
+
+  .admin-container .section-lead {
+    font-size: 15px;
+  }
+
+
+  .admin-form {
+    padding: 22px 18px;
+    border-radius: 19px;
+  }
+
+
+  .campo-con-boton {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+
+  .campo-con-boton .button {
+    width: 100%;
+  }
+
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 16px;
+  }
+
+}
+
+
+/* =====================================================
+   CELULAR PEQUEÑO
+   ===================================================== */
+
+@media (max-width: 430px) {
+
+  .admin-section {
+    padding: 45px 15px 55px;
+  }
+
+
+  .admin-form {
+    padding: 20px 15px;
+  }
+
+
+  .admin-container h2 {
+    font-size: 27px;
+  }
+
+}
