@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -12,7 +12,10 @@
 
   <title>Administración | Juanita Pacasmayo</title>
 
-  <!-- Google Fonts -->
+  <!-- =====================================================
+       GOOGLE FONTS
+       ===================================================== -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +25,10 @@
     rel="stylesheet"
   >
 
-  <!-- CSS PRINCIPAL -->
+  <!-- =====================================================
+       CSS PRINCIPAL
+       ===================================================== -->
+
   <link rel="stylesheet" href="styles.css">
 
 </head>
@@ -39,7 +45,6 @@
 
     <a href="index.html" class="brand">
 
-      <!-- Si tu logo tiene otro nombre, cambia esta ruta -->
       <img
         src="images/Logo.png"
         alt="Juanita Pacasmayo"
@@ -81,10 +86,15 @@
 
 
   <!-- =====================================================
-       ADMINISTRACIÓN
+       CONTENIDO PRINCIPAL
        ===================================================== -->
 
   <main>
+
+
+    <!-- ===================================================
+         SECCIÓN ADMINISTRACIÓN
+         =================================================== -->
 
     <section class="admin-section">
 
@@ -192,7 +202,7 @@
 
 
           <!-- =================================================
-               TIPO
+               TIPO DE MOVIMIENTO
                ================================================= -->
 
           <div class="form-group">
@@ -296,10 +306,13 @@
           <div class="form-group">
 
             <label for="observacionRegistro">
+
               Observación
+
               <span class="opcional">
                 (opcional)
               </span>
+
             </label>
 
 
@@ -341,7 +354,7 @@
 
 
           <!-- =================================================
-               RESULTADO
+               RESULTADO DEL REGISTRO
                ================================================= -->
 
           <div
@@ -369,9 +382,133 @@
 
         </div>
 
+
+        <!-- =================================================
+             HISTORIAL DEL CLIENTE
+             ================================================= -->
+
+        <section
+          id="historialRegistro"
+          class="historial-registro"
+          style="display: none;"
+        >
+
+
+          <div class="historial-header">
+
+            <div>
+
+              <p class="section-kicker">
+                HISTORIAL
+              </p>
+
+              <h3>
+                Movimientos del cliente
+              </h3>
+
+            </div>
+
+
+            <div
+              id="totalMovimientos"
+              class="total-movimientos"
+            >
+              0 movimientos
+            </div>
+
+          </div>
+
+
+
+          <!-- =================================================
+               TABLA
+               ================================================= -->
+
+          <div class="historial-tabla-container">
+
+            <table class="historial-tabla">
+
+              <thead>
+
+                <tr>
+
+                  <th>
+                    Fecha
+                  </th>
+
+                  <th>
+                    Tipo
+                  </th>
+
+                  <th>
+                    Concepto
+                  </th>
+
+                  <th>
+                    Monto
+                  </th>
+
+                  <th>
+                    Puntos
+                  </th>
+
+                  <th>
+                    Observación
+                  </th>
+
+                </tr>
+
+              </thead>
+
+
+              <tbody id="historialBody">
+
+                <!--
+                  Los movimientos se cargarán
+                  automáticamente desde Google Sheets.
+                -->
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+
+
+          <!-- =================================================
+               MENSAJE SIN MOVIMIENTOS
+               ================================================= -->
+
+          <div
+            id="historialVacio"
+            class="historial-vacio"
+            style="display: none;"
+          >
+
+            <div>
+              📋
+            </div>
+
+            <h4>
+              No hay movimientos registrados
+            </h4>
+
+            <p>
+              Este cliente todavía no tiene compras
+              o servicios registrados.
+            </p>
+
+          </div>
+
+
+        </section>
+
+
       </div>
 
     </section>
+
 
   </main>
 
@@ -395,8 +532,8 @@
        JAVASCRIPT
        ===================================================== -->
 
-<script src="admin.js"></script>
-  -->
+  <script src="admin.js"></script>
+
 
 </body>
 
