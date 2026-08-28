@@ -1,182 +1,127 @@
-// ======================================================
+// ==========================================================
 // JUANITA PACASMAYO
-// ADMINISTRACIÓN - SISTEMA DE PUNTOS
-// ======================================================
+// ADMIN.JS
+// REGISTRO DE COMPRAS / SERVICIOS + HISTORIAL
+// ==========================================================
 
 
-// ======================================================
+// ==========================================================
 // URL DE GOOGLE APPS SCRIPT
-// ======================================================
+// ==========================================================
 
 const URL_APPS_SCRIPT =
-  "https://script.google.com/macros/s/AKfycbxZW06LP3ctRtIZXBBlo3paILCjcBjQVDMCuOLmNnqU4BuZpbMz3b8jh82V8ZNki1U/exec";
+  "PEGA_AQUI_TU_URL_DE_APPS_SCRIPT";
 
 
-// ======================================================
-// ESPERAR A QUE CARGUE LA PÁGINA
-// ======================================================
+// ==========================================================
+// ELEMENTOS DEL HTML
+// ==========================================================
 
-document.addEventListener("DOMContentLoaded", function () {
+const codigoRegistro =
+  document.getElementById("codigoRegistro");
 
-  console.log("=================================");
-  console.log("✅ ADMIN.JS CARGADO");
-  console.log("=================================");
+const btnBuscarCliente =
+  document.getElementById("btnBuscarCliente");
+
+const clienteRegistro =
+  document.getElementById("clienteRegistro");
+
+const nombreRegistro =
+  document.getElementById("nombreRegistro");
+
+const puntosRegistro =
+  document.getElementById("puntosRegistro");
+
+const tipoRegistro =
+  document.getElementById("tipoRegistro");
+
+const conceptoRegistro =
+  document.getElementById("conceptoRegistro");
+
+const montoRegistro =
+  document.getElementById("montoRegistro");
+
+const observacionRegistro =
+  document.getElementById("observacionRegistro");
+
+const btnRegistrarMovimiento =
+  document.getElementById("btnRegistrarMovimiento");
+
+const mensajeRegistro =
+  document.getElementById("mensajeRegistro");
+
+const resultadoRegistro =
+  document.getElementById("resultadoRegistro");
+
+const detalleRegistro =
+  document.getElementById("detalleRegistro");
 
 
-  // --------------------------------------------------
-  // BOTÓN BUSCAR CLIENTE
-  // --------------------------------------------------
+// ==========================================================
+// VARIABLE DEL CLIENTE ACTUAL
+// ==========================================================
 
-  const btnBuscarCliente =
-    document.getElementById("btnBuscarCliente");
+let clienteActual = null;
 
 
-  if (btnBuscarCliente) {
+// ==========================================================
+// MENSAJES
+// ==========================================================
 
-    btnBuscarCliente.addEventListener(
-      "click",
-      buscarCliente
-    );
+function mostrarMensaje(texto, tipo = "info") {
 
-  } else {
-
-    console.error(
-      "❌ No se encontró btnBuscarCliente"
-    );
-
+  if (!mensajeRegistro) {
+    return;
   }
 
+  mensajeRegistro.textContent = texto;
 
-  // --------------------------------------------------
-  // BOTÓN REGISTRAR MOVIMIENTO
-  // --------------------------------------------------
+  mensajeRegistro.className =
+    "mensaje-registro " + tipo;
 
-  const btnRegistrarMovimiento =
-    document.getElementById(
-      "btnRegistrarMovimiento"
-    );
+}
 
 
-  if (btnRegistrarMovimiento) {
+// ==========================================================
+// ESCAPAR HTML
+// ==========================================================
 
-    btnRegistrarMovimiento.addEventListener(
-      "click",
-      registrarMovimiento
-    );
+function escaparHTML(texto) {
 
-  } else {
+  return String(texto ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 
-    console.error(
-      "❌ No se encontró btnRegistrarMovimiento"
-    );
-
-  }
-
-
-  // --------------------------------------------------
-  // ENTER EN EL CÓDIGO
-  // --------------------------------------------------
-
-  const codigoRegistro =
-    document.getElementById(
-      "codigoRegistro"
-    );
+}
 
 
-  if (codigoRegistro) {
-
-    codigoRegistro.addEventListener(
-      "keydown",
-      function (event) {
-
-        if (event.key === "Enter") {
-
-          event.preventDefault();
-
-          buscarCliente();
-
-        }
-
-      }
-    );
-
-  }
-
-});
-
-
-// ======================================================
+// ==========================================================
 // BUSCAR CLIENTE
-// ======================================================
+// ==========================================================
 
 async function buscarCliente() {
 
-  const codigoInput =
-    document.getElementById(
-      "codigoRegistro"
-    );
-
-
-  const clienteRegistro =
-    document.getElementById(
-      "clienteRegistro"
-    );
-
-
-  const nombreRegistro =
-    document.getElementById(
-      "nombreRegistro"
-    );
-
-
-  const puntosRegistro =
-    document.getElementById(
-      "puntosRegistro"
-    );
-
-
-  const mensajeRegistro =
-    document.getElementById(
-      "mensajeRegistro"
-    );
-
-
-  // --------------------------------------------------
-  // OBTENER CÓDIGO
-  // --------------------------------------------------
-
   const codigo =
-    codigoInput.value.trim();
+    codigoRegistro.value.trim();
 
-
-  console.log(
-    "Código ingresado:",
-    codigo
-  );
-
-
-  // --------------------------------------------------
-  // VALIDAR
-  // --------------------------------------------------
 
   if (!codigo) {
 
     mostrarMensaje(
-      "⚠️ Escribe el código del cliente.",
+      "Escribe el código del cliente.",
       "error"
     );
 
-    clienteRegistro.style.display =
-      "none";
+    clienteRegistro.style.display = "none";
+
+    clienteActual = null;
 
     return;
-
   }
 
-
-  // --------------------------------------------------
-  // MOSTRAR BUSCANDO
-  // --------------------------------------------------
 
   mostrarMensaje(
     "🔎 Buscando cliente...",
@@ -184,15 +129,10 @@ async function buscarCliente() {
   );
 
 
-  clienteRegistro.style.display =
-    "none";
+  btnBuscarCliente.disabled = true;
 
 
   try {
-
-    // ------------------------------------------------
-    // CREAR URL
-    // ------------------------------------------------
 
     const url =
       URL_APPS_SCRIPT +
@@ -201,24 +141,8 @@ async function buscarCliente() {
       encodeURIComponent(codigo);
 
 
-    console.log(
-      "URL consulta:",
-      url
-    );
-
-
-    // ------------------------------------------------
-    // CONSULTAR APPS SCRIPT
-    // ------------------------------------------------
-
     const respuesta =
       await fetch(url);
-
-
-    console.log(
-      "Estado HTTP:",
-      respuesta.status
-    );
 
 
     const datos =
@@ -226,37 +150,34 @@ async function buscarCliente() {
 
 
     console.log(
-      "Respuesta Apps Script:",
+      "Respuesta buscar cliente:",
       datos
     );
 
 
-    // ------------------------------------------------
-    // COMPROBAR RESPUESTA
-    // ------------------------------------------------
-
     if (!datos.correcto) {
 
-      mostrarMensaje(
-        "❌ " +
-        (
-          datos.mensaje ||
-          "No se encontró el cliente."
-        ),
-        "error"
+      throw new Error(
+        datos.mensaje ||
+        "No se encontró el cliente."
       );
-
-      return;
 
     }
 
 
-    // ------------------------------------------------
-    // MOSTRAR CLIENTE
-    // ------------------------------------------------
+    // ------------------------------------------------------
+    // GUARDAR CLIENTE
+    // ------------------------------------------------------
+
+    clienteActual = datos;
+
+
+    // ------------------------------------------------------
+    // MOSTRAR INFORMACIÓN
+    // ------------------------------------------------------
 
     nombreRegistro.textContent =
-      datos.cliente;
+      datos.cliente || "Cliente";
 
 
     puntosRegistro.textContent =
@@ -269,146 +190,66 @@ async function buscarCliente() {
       "flex";
 
 
-    // ------------------------------------------------
-    // GUARDAR CÓDIGO CONFIRMADO
-    // ------------------------------------------------
-
-    codigoInput.dataset.clienteEncontrado =
-      datos.codigoCliente;
-
-
-    // ------------------------------------------------
-    // MENSAJE
-    // ------------------------------------------------
-
     mostrarMensaje(
       "✅ Cliente encontrado correctamente.",
       "success"
     );
 
 
+    // Ocultar resultado anterior
+    resultadoRegistro.style.display =
+      "none";
+
+
   } catch (error) {
 
     console.error(
-      "❌ Error:",
+      "Error al buscar cliente:",
       error
     );
 
 
+    clienteActual = null;
+
+
+    clienteRegistro.style.display =
+      "none";
+
+
     mostrarMensaje(
-      "❌ No se pudo conectar con Google Apps Script.",
+      "❌ " + error.message,
       "error"
     );
+
+
+  } finally {
+
+    btnBuscarCliente.disabled =
+      false;
 
   }
 
 }
 
 
-// ======================================================
-// REGISTRAR COMPRA O SERVICIO
-// ======================================================
+// ==========================================================
+// REGISTRAR MOVIMIENTO
+// ==========================================================
 
 async function registrarMovimiento() {
 
-  const codigoInput =
-    document.getElementById(
-      "codigoRegistro"
-    );
-
-
-  const tipoInput =
-    document.getElementById(
-      "tipoRegistro"
-    );
-
-
-  const conceptoInput =
-    document.getElementById(
-      "conceptoRegistro"
-    );
-
-
-  const montoInput =
-    document.getElementById(
-      "montoRegistro"
-    );
-
-
-  const observacionInput =
-    document.getElementById(
-      "observacionRegistro"
-    );
-
-
-  const mensajeRegistro =
-    document.getElementById(
-      "mensajeRegistro"
-    );
-
-
-  const resultadoRegistro =
-    document.getElementById(
-      "resultadoRegistro"
-    );
-
-
-  const detalleRegistro =
-    document.getElementById(
-      "detalleRegistro"
-    );
-
-
-  const clienteRegistro =
-    document.getElementById(
-      "clienteRegistro"
-    );
-
-
-  const puntosRegistro =
-    document.getElementById(
-      "puntosRegistro"
-    );
-
-
-  const btnRegistrar =
-    document.getElementById(
-      "btnRegistrarMovimiento"
-    );
-
-
-  // --------------------------------------------------
-  // OBTENER DATOS
-  // --------------------------------------------------
+  // --------------------------------------------------------
+  // VALIDAR CLIENTE
+  // --------------------------------------------------------
 
   const codigo =
-    codigoInput.value.trim();
+    codigoRegistro.value.trim();
 
-
-  const tipo =
-    tipoInput.value;
-
-
-  const concepto =
-    conceptoInput.value;
-
-
-  const monto =
-    Number(montoInput.value);
-
-
-  const observacion =
-    observacionInput.value.trim();
-
-
-  // --------------------------------------------------
-  // VALIDAR CLIENTE
-  // --------------------------------------------------
 
   if (!codigo) {
 
     mostrarMensaje(
-      "⚠️ Ingresa el código del cliente.",
+      "Primero escribe el código del cliente.",
       "error"
     );
 
@@ -417,117 +258,120 @@ async function registrarMovimiento() {
   }
 
 
-  // --------------------------------------------------
-  // COMPROBAR QUE SE HAYA BUSCADO
-  // --------------------------------------------------
+  // --------------------------------------------------------
+  // SI TODAVÍA NO SE BUSCÓ EL CLIENTE
+  // --------------------------------------------------------
 
   if (
-    codigoInput.dataset.clienteEncontrado !==
-    codigo
+    !clienteActual ||
+    String(clienteActual.codigoCliente).trim() !== codigo
   ) {
 
-    mostrarMensaje(
-      "⚠️ Primero pulsa Buscar y verifica el cliente.",
-      "error"
-    );
+    await buscarCliente();
 
-    return;
+
+    if (!clienteActual) {
+
+      return;
+
+    }
 
   }
 
 
-  // --------------------------------------------------
+  // --------------------------------------------------------
+  // DATOS DEL FORMULARIO
+  // --------------------------------------------------------
+
+  const tipo =
+    tipoRegistro.value;
+
+
+  const concepto =
+    conceptoRegistro.value;
+
+
+  const monto =
+    Number(montoRegistro.value);
+
+
+  const observacion =
+    observacionRegistro.value.trim();
+
+
+  // --------------------------------------------------------
   // VALIDAR MONTO
-  // --------------------------------------------------
+  // --------------------------------------------------------
 
   if (
-    !monto ||
+    isNaN(monto) ||
     monto <= 0
   ) {
 
     mostrarMensaje(
-      "⚠️ Ingresa un monto válido.",
+      "Ingresa un monto válido mayor que cero.",
       "error"
     );
 
-    montoInput.focus();
+    montoRegistro.focus();
 
     return;
 
   }
 
 
-  // --------------------------------------------------
-  // DESACTIVAR BOTÓN
-  // --------------------------------------------------
+  // --------------------------------------------------------
+  // PREPARAR BOTÓN
+  // --------------------------------------------------------
 
-  btnRegistrar.disabled =
+  btnRegistrarMovimiento.disabled =
     true;
 
 
-  const textoOriginal =
-    btnRegistrar.innerHTML;
-
-
-  btnRegistrar.innerHTML =
+  btnRegistrarMovimiento.textContent =
     "⏳ Registrando...";
 
 
   mostrarMensaje(
-    "⏳ Registrando compra o servicio...",
+    "Registrando compra o servicio...",
     "info"
   );
 
 
+  // Ocultar resultado anterior
+  resultadoRegistro.style.display =
+    "none";
+
+
   try {
 
-    // ------------------------------------------------
-    // CREAR PARÁMETROS
-    // ------------------------------------------------
+    // ------------------------------------------------------
+    // CREAR URL
+    // ------------------------------------------------------
 
     const parametros =
-      new URLSearchParams();
+      new URLSearchParams({
 
+        accion:
+          "registrarMovimiento",
 
-    parametros.append(
-      "accion",
-      "registrarMovimiento"
-    );
+        codigo:
+          codigo,
 
+        tipo:
+          tipo,
 
-    parametros.append(
-      "codigo",
-      codigo
-    );
+        concepto:
+          concepto,
 
+        monto:
+          monto,
 
-    parametros.append(
-      "tipo",
-      tipo
-    );
+        observacion:
+          observacion
 
+      });
 
-    parametros.append(
-      "concepto",
-      concepto
-    );
-
-
-    parametros.append(
-      "monto",
-      monto
-    );
-
-
-    parametros.append(
-      "observacion",
-      observacion
-    );
-
-
-    // ------------------------------------------------
-    // CREAR URL
-    // ------------------------------------------------
 
     const url =
       URL_APPS_SCRIPT +
@@ -541,9 +385,9 @@ async function registrarMovimiento() {
     );
 
 
-    // ------------------------------------------------
-    // ENVIAR
-    // ------------------------------------------------
+    // ------------------------------------------------------
+    // ENVIAR A APPS SCRIPT
+    // ------------------------------------------------------
 
     const respuesta =
       await fetch(url);
@@ -554,34 +398,28 @@ async function registrarMovimiento() {
 
 
     console.log(
-      "Respuesta registro:",
+      "Respuesta registrar:",
       datos
     );
 
 
-    // ------------------------------------------------
+    // ------------------------------------------------------
     // ERROR
-    // ------------------------------------------------
+    // ------------------------------------------------------
 
     if (!datos.correcto) {
 
-      mostrarMensaje(
-        "❌ " +
-        (
-          datos.mensaje ||
-          "No se pudo registrar."
-        ),
-        "error"
+      throw new Error(
+        datos.mensaje ||
+        "No se pudo registrar el movimiento."
       );
-
-      return;
 
     }
 
 
-    // ------------------------------------------------
-    // REGISTRO CORRECTO
-    // ------------------------------------------------
+    // ------------------------------------------------------
+    // MOSTRAR MENSAJE
+    // ------------------------------------------------------
 
     mostrarMensaje(
       "✅ Movimiento registrado correctamente.",
@@ -589,9 +427,13 @@ async function registrarMovimiento() {
     );
 
 
-    // ------------------------------------------------
+    // ------------------------------------------------------
     // MOSTRAR RESULTADO
-    // ------------------------------------------------
+    // ------------------------------------------------------
+
+    resultadoRegistro.style.display =
+      "block";
+
 
     detalleRegistro.innerHTML = `
 
@@ -599,188 +441,125 @@ async function registrarMovimiento() {
         ${escaparHTML(datos.cliente)}
       </strong>
 
-      <br><br>
+      <br>
 
       Código:
-      ${escaparHTML(datos.codigoCliente)}
+      <strong>
+        ${escaparHTML(datos.codigoCliente)}
+      </strong>
 
-      <br>
+      <br><br>
 
       💰 Monto:
       <strong>
-        S/ ${Number(datos.monto).toFixed(2)}
+        S/ ${Number(datos.monto || 0).toFixed(2)}
       </strong>
 
       <br>
 
       ⭐ Puntos ganados:
       <strong>
-        ${Number(datos.puntosGanados)}
+        ${Number(datos.puntosGanados || 0)}
       </strong>
 
       <br>
 
       ⭐ Puntos acumulados:
       <strong>
-        ${Number(datos.puntosTotales)}
+        ${Number(datos.puntosTotales || 0)}
       </strong>
 
     `;
 
 
-    resultadoRegistro.style.display =
-      "block";
-
-
-    // ------------------------------------------------
-    // ACTUALIZAR PUNTOS EN PANTALLA
-    // ------------------------------------------------
+    // ------------------------------------------------------
+    // ACTUALIZAR PUNTOS DEL CLIENTE
+    // ------------------------------------------------------
 
     puntosRegistro.textContent =
       "⭐ " +
-      Number(datos.puntosTotales) +
+      Number(datos.puntosTotales || 0) +
       " puntos";
 
 
-    clienteRegistro.style.display =
-      "flex";
+    // Actualizar cliente actual
+    clienteActual.puntos =
+      Number(datos.puntosTotales || 0);
 
 
-    // ------------------------------------------------
-    // LIMPIAR MONTO
-    // ------------------------------------------------
+    // ------------------------------------------------------
+    // LIMPIAR FORMULARIO
+    // ------------------------------------------------------
 
-    montoInput.value =
-      "";
+    montoRegistro.value = "";
+
+    observacionRegistro.value = "";
 
 
-    observacionInput.value =
-      "";
+    // ------------------------------------------------------
+    // ACTUALIZAR HISTORIAL
+    // ------------------------------------------------------
+
+    await cargarHistorial(codigo);
 
 
   } catch (error) {
 
     console.error(
-      "❌ Error registrando:",
+      "Error al registrar:",
       error
     );
 
 
     mostrarMensaje(
-      "❌ Error de conexión con Google Apps Script.",
+      "❌ " + error.message,
       "error"
     );
 
 
   } finally {
 
-    btnRegistrar.disabled =
+    btnRegistrarMovimiento.disabled =
       false;
 
 
-    btnRegistrar.innerHTML =
-      textoOriginal;
+    btnRegistrarMovimiento.textContent =
+      "🧾 Registrar compra / servicio";
 
   }
 
 }
 
 
-// ======================================================
-// MOSTRAR MENSAJES
-// ======================================================
-
-function mostrarMensaje(
-  mensaje,
-  tipo
-) {
-
-  const elemento =
-    document.getElementById(
-      "mensajeRegistro"
-    );
-
-
-  if (!elemento) {
-
-    console.error(
-      mensaje
-    );
-
-    return;
-
-  }
-
-
-  elemento.textContent =
-    mensaje;
-
-
-  elemento.className =
-    "mensaje-registro";
-
-
-  if (tipo) {
-
-    elemento.classList.add(
-      "mensaje-" + tipo
-    );
-
-  }
-
-}
-
-
-// ======================================================
-// SEGURIDAD
-// ======================================================
-
-function escaparHTML(valor) {
-
-  return String(valor || "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-
-}
-
-// ======================================================
-// CARGAR HISTORIAL DEL CLIENTE
-// ======================================================
+// ==========================================================
+// CARGAR HISTORIAL
+// ==========================================================
 
 async function cargarHistorial(codigo) {
 
-  const historialCliente =
+  const historialContenedor =
     document.getElementById(
-      "historialCliente"
-    );
-
-  const listaHistorial =
-    document.getElementById(
-      "listaHistorial"
-    );
-
-  const totalMovimientos =
-    document.getElementById(
-      "totalMovimientos"
+      "historialRegistro"
     );
 
 
-  if (!historialCliente) {
+  if (!historialContenedor) {
+
+    console.warn(
+      "No existe el elemento #historialRegistro en admin.html"
+    );
+
     return;
+
   }
 
 
-  historialCliente.style.display =
-    "block";
+  historialContenedor.innerHTML = `
 
-
-  listaHistorial.innerHTML = `
     <div class="historial-cargando">
       ⏳ Cargando historial...
     </div>
+
   `;
 
 
@@ -791,12 +570,6 @@ async function cargarHistorial(codigo) {
       "?accion=historialCliente" +
       "&codigo=" +
       encodeURIComponent(codigo);
-
-
-    console.log(
-      "Historial:",
-      url
-    );
 
 
     const respuesta =
@@ -815,171 +588,17 @@ async function cargarHistorial(codigo) {
 
     if (!datos.correcto) {
 
-      listaHistorial.innerHTML = `
-        <div class="historial-vacio">
-          ❌ ${escaparHTML(
-            datos.mensaje ||
-            "No se pudo obtener el historial."
-          )}
-        </div>
-      `;
-
-      return;
-
-    }
-
-
-    const historial =
-      datos.historial || [];
-
-
-    totalMovimientos.textContent =
-      historial.length +
-      (
-        historial.length === 1
-          ? " movimiento"
-          : " movimientos"
+      throw new Error(
+        datos.mensaje ||
+        "No se pudo obtener el historial."
       );
 
-
-    // --------------------------------------------------
-    // SIN MOVIMIENTOS
-    // --------------------------------------------------
-
-    if (historial.length === 0) {
-
-      listaHistorial.innerHTML = `
-
-        <div class="historial-vacio">
-
-          <div>
-            📋
-          </div>
-
-          <strong>
-            Aún no hay movimientos
-          </strong>
-
-          <p>
-            Este cliente todavía no tiene
-            compras o servicios registrados.
-          </p>
-
-        </div>
-
-      `;
-
-      return;
-
     }
 
 
-    // --------------------------------------------------
-    // CREAR TARJETAS
-    // --------------------------------------------------
-
-    listaHistorial.innerHTML =
-      historial.map(
-        function (movimiento) {
-
-          const monto =
-            Number(
-              movimiento.monto || 0
-            ).toFixed(2);
-
-
-          const puntos =
-            Number(
-              movimiento.puntos || 0
-            );
-
-
-          let icono = "🧾";
-
-
-          const concepto =
-            String(
-              movimiento.concepto || ""
-            ).toLowerCase();
-
-
-          if (
-            concepto.includes("laceado")
-          ) {
-
-            icono = "💇";
-
-          } else if (
-            concepto.includes("uña")
-          ) {
-
-            icono = "💅";
-
-          } else if (
-            concepto.includes("pestaña")
-          ) {
-
-            icono = "👁️";
-
-          } else if (
-            concepto.includes("producto")
-          ) {
-
-            icono = "🛍️";
-
-          }
-
-
-          return `
-
-            <div class="movimiento-card">
-
-              <div class="movimiento-icono">
-                ${icono}
-              </div>
-
-
-              <div class="movimiento-info">
-
-                <strong>
-                  ${escaparHTML(
-                    movimiento.concepto
-                  )}
-                </strong>
-
-                <span>
-                  ${escaparHTML(
-                    movimiento.tipo
-                  )}
-                </span>
-
-                <small>
-                  📅 ${escaparHTML(
-                    movimiento.fecha
-                  )}
-                </small>
-
-              </div>
-
-
-              <div class="movimiento-datos">
-
-                <strong>
-                  S/ ${monto}
-                </strong>
-
-                <span>
-                  ⭐ +${puntos} puntos
-                </span>
-
-              </div>
-
-            </div>
-
-          `;
-
-        }
-      ).join("");
+    mostrarHistorial(
+      datos.historial || []
+    );
 
 
   } catch (error) {
@@ -990,176 +609,267 @@ async function cargarHistorial(codigo) {
     );
 
 
-    listaHistorial.innerHTML = `
+    historialContenedor.innerHTML = `
 
-      <div class="historial-vacio">
+      <div class="historial-error">
 
-        ❌ No se pudo cargar
-        el historial del cliente.
+        ❌ No se pudo cargar el historial.
+
+        <br>
+
+        <small>
+          ${escaparHTML(error.message)}
+        </small>
 
       </div>
 
     `;
 
-    /* ==========================================================
-   HISTORIAL DE MOVIMIENTOS - ADMINISTRACIÓN
-   ========================================================== */
-
-.historial-admin {
-  width: 100%;
-  max-width: 900px;
-  margin: 35px auto 0;
-  padding: 30px;
-  background: #ffffff;
-  border: 1px solid #f0d5df;
-  border-radius: 24px;
-  box-shadow: 0 12px 35px rgba(89, 35, 50, 0.08);
-  text-align: left;
-}
-
-.historial-titulo {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 25px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid #f0d5df;
-}
-
-.historial-titulo > span {
-  width: 50px;
-  height: 50px;
-  display: grid;
-  place-items: center;
-  border-radius: 15px;
-  background: #fff1f5;
-  font-size: 25px;
-}
-
-.historial-titulo h3 {
-  margin: 0;
-  color: var(--pink);
-  font-family: "Montserrat", Arial, sans-serif;
-  font-size: 22px;
-}
-
-.historial-titulo p {
-  margin: 5px 0 0;
-  color: #806d74;
-  font-size: 14px;
-}
-
-.lista-historial-admin {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.historial-item {
-  display: grid;
-  grid-template-columns: 80px 1fr auto;
-  align-items: center;
-  gap: 18px;
-  padding: 18px;
-  background: #fffafa;
-  border: 1px solid #f1dce3;
-  border-radius: 18px;
-  transition: 0.2s;
-}
-
-.historial-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(89, 35, 50, 0.08);
-}
-
-.historial-icono {
-  width: 58px;
-  height: 58px;
-  display: grid;
-  place-items: center;
-  border-radius: 16px;
-  background: #fff1f5;
-  font-size: 27px;
-}
-
-.historial-info strong {
-  display: block;
-  margin-bottom: 5px;
-  color: #30272b;
-  font-size: 17px;
-}
-
-.historial-info span {
-  display: block;
-  color: #806d74;
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.historial-monto {
-  text-align: right;
-}
-
-.historial-monto strong {
-  display: block;
-  color: var(--pink);
-  font-size: 18px;
-}
-
-.historial-monto span {
-  display: block;
-  margin-top: 5px;
-  color: #b17b1e;
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.historial-vacio {
-  margin: 0;
-  padding: 25px;
-  color: #806d74;
-  background: #fffafa;
-  border: 1px dashed #e6c5d1;
-  border-radius: 15px;
-  text-align: center;
-}
-
-.historial-cargando {
-  padding: 25px;
-  color: var(--pink);
-  text-align: center;
-  font-weight: 700;
-}
-
-/* CELULAR */
-
-@media (max-width: 650px) {
-
-  .historial-admin {
-    padding: 20px;
-    margin-top: 25px;
-  }
-
-  .historial-item {
-    grid-template-columns: 55px 1fr;
-    gap: 12px;
-  }
-
-  .historial-icono {
-    width: 50px;
-    height: 50px;
-    font-size: 23px;
-  }
-
-  .historial-monto {
-    grid-column: 2;
-    text-align: left;
-    padding-top: 5px;
-    border-top: 1px solid #f0d5df;
   }
 
 }
 
+
+// ==========================================================
+// MOSTRAR HISTORIAL
+// ==========================================================
+
+function mostrarHistorial(historial) {
+
+  const contenedor =
+    document.getElementById(
+      "historialRegistro"
+    );
+
+
+  if (!contenedor) {
+
+    return;
+
+  }
+
+
+  // --------------------------------------------------------
+  // SIN MOVIMIENTOS
+  // --------------------------------------------------------
+
+  if (!historial.length) {
+
+    contenedor.innerHTML = `
+
+      <div class="historial-vacio">
+
+        <div class="historial-vacio-icono">
+          📋
+        </div>
+
+        <strong>
+          Aún no hay movimientos
+        </strong>
+
+        <p>
+          Los registros de compras y servicios
+          aparecerán aquí.
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  // --------------------------------------------------------
+  // CREAR TARJETAS
+  // --------------------------------------------------------
+
+  let html = "";
+
+
+  historial.forEach(function(movimiento) {
+
+    const monto =
+      Number(movimiento.monto || 0);
+
+
+    const puntos =
+      Number(movimiento.puntos || 0);
+
+
+    const tipo =
+      movimiento.tipo || "Movimiento";
+
+
+    const concepto =
+      movimiento.concepto || "Sin concepto";
+
+
+    const fecha =
+      movimiento.fecha || "";
+
+
+    const observacion =
+      movimiento.observacion || "";
+
+
+    html += `
+
+      <div class="historial-item">
+
+        <div class="historial-icono">
+
+          ${
+            tipo.toLowerCase() === "compra"
+              ? "🛍️"
+              : "💇"
+          }
+
+        </div>
+
+
+        <div class="historial-info">
+
+          <div class="historial-titulo">
+
+            <strong>
+              ${escaparHTML(concepto)}
+            </strong>
+
+            <span class="historial-tipo">
+              ${escaparHTML(tipo)}
+            </span>
+
+          </div>
+
+
+          <div class="historial-fecha">
+
+            📅 ${escaparHTML(fecha)}
+
+          </div>
+
+
+          ${
+            observacion
+              ? `
+                <div class="historial-observacion">
+                  ${escaparHTML(observacion)}
+                </div>
+              `
+              : ""
+          }
+
+        </div>
+
+
+        <div class="historial-datos">
+
+          <strong>
+            S/ ${monto.toFixed(2)}
+          </strong>
+
+          <span>
+            +${puntos} puntos
+          </span>
+
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+
+  contenedor.innerHTML =
+    html;
+
+}
+
+
+// ==========================================================
+// EVENTO: BOTÓN BUSCAR
+// ==========================================================
+
+if (btnBuscarCliente) {
+
+  btnBuscarCliente.addEventListener(
+    "click",
+    buscarCliente
+  );
+
+}
+
+
+// ==========================================================
+// EVENTO: BOTÓN REGISTRAR
+// ==========================================================
+
+if (btnRegistrarMovimiento) {
+
+  btnRegistrarMovimiento.addEventListener(
+    "click",
+    registrarMovimiento
+  );
+
+}
+
+
+// ==========================================================
+// BUSCAR CON ENTER
+// ==========================================================
+
+if (codigoRegistro) {
+
+  codigoRegistro.addEventListener(
+    "keydown",
+    function(evento) {
+
+      if (
+        evento.key === "Enter"
+      ) {
+
+        evento.preventDefault();
+
+        buscarCliente();
+
+      }
+
+    }
+  );
+
+}
+
+
+// ==========================================================
+// CARGAR HISTORIAL AL ENCONTRAR CLIENTE
+// ==========================================================
+
+async function cargarClienteEHistorial() {
+
+  await buscarCliente();
+
+
+  if (
+    clienteActual &&
+    clienteActual.codigoCliente
+  ) {
+
+    await cargarHistorial(
+      clienteActual.codigoCliente
+    );
+
   }
 
 }
+
+
+// ==========================================================
+// FIN
+// ==========================================================
+
+console.log(
+  "✅ admin.js cargado correctamente"
+);
