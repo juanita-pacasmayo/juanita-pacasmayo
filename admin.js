@@ -9,7 +9,7 @@
 // ==========================================================
 
 const URL_APPS_SCRIPT =
-  "PEGA_AQUI_TU_URL_DE_APPS_SCRIPT";
+  "https://script.google.com/macros/s/AKfycbxZW06LP3ctRtIZXBBlo3paILCjcBjQVDMCuOLmNnqU4BuZpbMz3b8jh82V8ZNki1U/exec";
 
 
 // ==========================================================
