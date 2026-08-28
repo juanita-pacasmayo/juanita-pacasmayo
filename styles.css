@@ -2193,3 +2193,102 @@ footer {
   }
 
 }
+/* =====================================================
+   MENÚ MÓVIL - MENÚ VERTICAL
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+  .main-nav {
+    position: absolute;
+
+    top: 100%;
+    right: 12px;
+
+    width: 210px;
+
+    display: none;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    padding: 10px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--line);
+
+    border-radius: 18px;
+
+    box-shadow: 0 12px 30px rgba(89, 35, 50, 0.15);
+
+    z-index: 9999;
+  }
+
+
+  /* Cuando el menú está abierto */
+
+  .main-nav.menu-abierto {
+    display: flex;
+  }
+
+
+  /* Opciones */
+
+  .main-nav a {
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 13px 15px;
+
+    color: var(--ink);
+
+    text-decoration: none;
+
+    font-family: "DM Sans", Arial, sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    border-radius: 12px;
+
+    transition: 0.2s ease;
+  }
+
+
+  .main-nav a:hover {
+    background: #fff1f5;
+
+    color: var(--pink);
+  }
+
+
+  /* WhatsApp */
+
+  .main-nav .mobile-contact {
+    margin-top: 5px;
+
+    justify-content: center;
+
+    background: var(--pink);
+
+    color: white;
+
+    text-align: center;
+  }
+
+
+  .main-nav .mobile-contact:hover {
+    background: var(--pink-dark);
+
+    color: white;
+  }
+
+}
