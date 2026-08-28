@@ -18,7 +18,11 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
 
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Great+Vibes&family=Montserrat:wght@500;600;700;800&display=swap"
@@ -43,7 +47,12 @@
 
   <header class="site-header">
 
-    <a href="index.html" class="brand">
+    <!-- LOGO -->
+
+    <a
+      href="index.html"
+      class="brand"
+    >
 
       <img
         src="images/Logo.png"
@@ -52,6 +61,8 @@
 
     </a>
 
+
+    <!-- MENÚ -->
 
     <nav class="main-nav">
 
@@ -73,6 +84,8 @@
 
     </nav>
 
+
+    <!-- BOTÓN VOLVER -->
 
     <a
       href="index.html"
@@ -101,7 +114,9 @@
       <div class="admin-container">
 
 
-        <!-- ENCABEZADO -->
+        <!-- =================================================
+             ENCABEZADO
+             ================================================= -->
 
         <p class="section-kicker">
           ADMINISTRACIÓN
@@ -109,24 +124,215 @@
 
 
         <h2>
-          Registrar compra o servicio
+          Panel de administración
         </h2>
 
 
         <p class="section-lead">
 
-          Registra una compra o servicio y el sistema
-          calculará automáticamente los puntos del cliente.
+          Gestiona clientes, compras, servicios y puntos
+          desde un solo lugar.
 
         </p>
 
 
 
         <!-- =================================================
-             FORMULARIO
+             REGISTRAR CLIENTE
              ================================================= -->
 
         <div class="admin-form">
+
+
+          <div class="admin-form-header">
+
+            <div class="admin-form-icono">
+              👤
+            </div>
+
+
+            <div>
+
+              <p class="section-kicker">
+                CLIENTES
+              </p>
+
+              <h3>
+                Registrar nuevo cliente
+              </h3>
+
+              <p>
+                Crea un nuevo cliente en el sistema de puntos.
+              </p>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- NOMBRE -->
+
+          <div class="form-group">
+
+            <label for="nombreCliente">
+              Nombre completo
+            </label>
+
+
+            <input
+              type="text"
+              id="nombreCliente"
+              placeholder="Ejemplo: María López"
+              autocomplete="name"
+            >
+
+          </div>
+
+
+
+          <!-- TELÉFONO -->
+
+          <div class="form-group">
+
+            <label for="telefonoCliente">
+              Teléfono
+            </label>
+
+
+            <input
+              type="tel"
+              id="telefonoCliente"
+              placeholder="Ejemplo: 960684125"
+              autocomplete="tel"
+            >
+
+          </div>
+
+
+
+          <!-- PIN -->
+
+          <div class="form-group">
+
+            <label for="pinCliente">
+              PIN del cliente
+            </label>
+
+
+            <input
+              type="password"
+              id="pinCliente"
+              placeholder="Ingresa un PIN"
+              inputmode="numeric"
+              autocomplete="off"
+            >
+
+
+            <small class="campo-ayuda">
+
+              El PIN será utilizado para identificar
+              al cliente cuando corresponda.
+
+            </small>
+
+          </div>
+
+
+
+          <!-- BOTÓN -->
+
+          <button
+            type="button"
+            id="btnRegistrarCliente"
+            class="button primary"
+          >
+
+            👤 Registrar cliente
+
+          </button>
+
+
+
+          <!-- MENSAJE -->
+
+          <div
+            id="mensajeCliente"
+            class="mensaje-registro"
+          ></div>
+
+
+
+          <!-- RESULTADO -->
+
+          <div
+            id="resultadoCliente"
+            class="resultado-registro"
+            style="display: none;"
+          >
+
+            <div class="resultado-icono">
+              🎉
+            </div>
+
+
+            <h3>
+              Cliente registrado
+            </h3>
+
+
+            <p id="detalleCliente">
+              -
+            </p>
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             SEPARADOR
+             ================================================= -->
+
+        <div class="admin-separador"></div>
+
+
+
+        <!-- =================================================
+             REGISTRAR COMPRA / SERVICIO
+             ================================================= -->
+
+        <div class="admin-form">
+
+
+          <div class="admin-form-header">
+
+            <div class="admin-form-icono">
+              🧾
+            </div>
+
+
+            <div>
+
+              <p class="section-kicker">
+                MOVIMIENTOS
+              </p>
+
+              <h3>
+                Registrar compra o servicio
+              </h3>
+
+              <p>
+                Registra una compra o servicio y el sistema
+                calculará automáticamente los puntos.
+              </p>
+
+            </div>
+
+          </div>
+
 
 
           <!-- =================================================
@@ -155,7 +361,9 @@
                 id="btnBuscarCliente"
                 class="button secondary"
               >
+
                 🔎 Buscar
+
               </button>
 
             </div>
@@ -202,7 +410,7 @@
 
 
           <!-- =================================================
-               TIPO DE MOVIMIENTO
+               TIPO
                ================================================= -->
 
           <div class="form-group">
@@ -354,7 +562,7 @@
 
 
           <!-- =================================================
-               RESULTADO DEL REGISTRO
+               RESULTADO
                ================================================= -->
 
           <div
@@ -367,53 +575,7 @@
               🎉
             </div>
 
-<!-- =================================================
-     HISTORIAL DEL CLIENTE
-     ================================================= -->
 
-<div class="historial-seccion">
-
-  <div class="historial-encabezado">
-
-    <div>
-
-      <p class="section-kicker">
-        MOVIMIENTOS
-      </p>
-
-      <h3>
-        📋 Historial del cliente
-      </h3>
-
-    </div>
-
-  </div>
-
-
-  <div
-    id="historialRegistro"
-    class="historial-lista"
-  >
-
-    <div class="historial-vacio">
-
-      <div class="historial-vacio-icono">
-        📋
-      </div>
-
-      <strong>
-        Busca un cliente para ver su historial
-      </strong>
-
-      <p>
-        Aquí aparecerán sus compras y servicios registrados.
-      </p>
-
-    </div>
-
-  </div>
-
-</div>
             <h3>
               Movimiento registrado
             </h3>
@@ -425,8 +587,8 @@
 
           </div>
 
-
         </div>
+
 
 
         <!-- =================================================
@@ -435,31 +597,31 @@
 
         <section
           id="historialRegistro"
-          class="historial-registro"
+          class="historial-admin"
           style="display: none;"
         >
 
 
-          <div class="historial-header">
+          <!-- ENCABEZADO -->
+
+          <div class="historial-titulo">
+
+            <span>
+              📋
+            </span>
+
 
             <div>
 
-              <p class="section-kicker">
-                HISTORIAL
-              </p>
-
               <h3>
-                Movimientos del cliente
+                Historial del cliente
               </h3>
 
-            </div>
 
+              <p>
+                Compras y servicios registrados
+              </p>
 
-            <div
-              id="totalMovimientos"
-              class="total-movimientos"
-            >
-              0 movimientos
             </div>
 
           </div>
@@ -467,63 +629,25 @@
 
 
           <!-- =================================================
-               TABLA
+               LISTA DEL HISTORIAL
                ================================================= -->
 
-          <div class="historial-tabla-container">
+          <div
+            id="historialBody"
+            class="lista-historial-admin"
+          >
 
-            <table class="historial-tabla">
-
-              <thead>
-
-                <tr>
-
-                  <th>
-                    Fecha
-                  </th>
-
-                  <th>
-                    Tipo
-                  </th>
-
-                  <th>
-                    Concepto
-                  </th>
-
-                  <th>
-                    Monto
-                  </th>
-
-                  <th>
-                    Puntos
-                  </th>
-
-                  <th>
-                    Observación
-                  </th>
-
-                </tr>
-
-              </thead>
-
-
-              <tbody id="historialBody">
-
-                <!--
-                  Los movimientos se cargarán
-                  automáticamente desde Google Sheets.
-                -->
-
-              </tbody>
-
-            </table>
+            <!--
+              Los movimientos serán cargados
+              automáticamente desde Google Sheets.
+            -->
 
           </div>
 
 
 
           <!-- =================================================
-               MENSAJE SIN MOVIMIENTOS
+               HISTORIAL VACÍO
                ================================================= -->
 
           <div
@@ -536,14 +660,31 @@
               📋
             </div>
 
-            <h4>
+
+            <strong>
               No hay movimientos registrados
-            </h4>
+            </strong>
+
 
             <p>
               Este cliente todavía no tiene compras
               o servicios registrados.
             </p>
+
+          </div>
+
+
+
+          <!-- =================================================
+               CANTIDAD DE MOVIMIENTOS
+               ================================================= -->
+
+          <div
+            id="totalMovimientos"
+            class="total-movimientos"
+          >
+
+            0 movimientos
 
           </div>
 
