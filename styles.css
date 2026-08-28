@@ -22,78 +22,126 @@ body {
   font-family: "DM Sans", Arial, sans-serif;
 }
 
+
 /* =====================================================
    ENCABEZADO
    ===================================================== */
 
 .site-header {
   min-height: 100px;
+
   display: flex;
   align-items: center;
+
   gap: 30px;
+
   padding: 15px 9%;
+
   background: white;
+
   border-bottom: 1px solid var(--line);
+
   position: sticky;
   top: 0;
+
   z-index: 100;
 }
+
+
+/* =====================================================
+   LOGO
+   ===================================================== */
 
 .brand {
   display: flex;
   align-items: center;
+
   width: 210px;
+
+  text-decoration: none;
 }
 
 .brand img {
+  display: block;
+
   width: 195px;
   max-height: 70px;
+
   object-fit: contain;
   object-position: left center;
 }
 
+
+/* =====================================================
+   MENÚ PRINCIPAL
+   ===================================================== */
+
 .main-nav {
   flex: 1;
+
   display: flex;
+
   justify-content: center;
+
   gap: 38px;
 }
 
 .main-nav a {
   color: var(--ink);
+
   font-size: 16px;
   font-weight: 700;
+
   text-decoration: none;
+
+  transition: 0.2s ease;
 }
 
 .main-nav a:hover {
   color: var(--pink);
 }
 
+
+/* =====================================================
+   BOTÓN CONTACTO
+   ===================================================== */
+
 .contact-button,
 .button {
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
+
   min-height: 52px;
+
   padding: 0 27px;
+
   border-radius: 30px;
+
   font-weight: 700;
+
   text-decoration: none;
-  transition: 0.2s;
+
+  transition: 0.2s ease;
 }
+
 
 .contact-button,
 .button.primary {
   color: white;
+
   background: var(--pink);
 }
+
 
 .contact-button:hover,
 .button.primary:hover {
   background: var(--pink-dark);
+
   transform: translateY(-2px);
 }
+
 
 /* =====================================================
    BOTÓN DE MENÚ
@@ -101,19 +149,40 @@ body {
 
 .menu-toggle {
   display: none;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 5px;
+
   border: none;
+
   background: transparent;
+
   cursor: pointer;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
 }
+
 
 .menu-toggle span {
   display: block;
-  width: 25px;
+
+  width: 28px;
   height: 3px;
-  margin: 5px 0;
+
+  margin: 0;
+
   border-radius: 10px;
+
   background: var(--pink);
 }
+
 
 /* =====================================================
    PORTADA
@@ -121,78 +190,131 @@ body {
 
 .hero {
   max-width: 1530px;
+
   min-height: 570px;
+
   display: grid;
+
   grid-template-columns: 1fr 1fr;
+
   align-items: center;
+
   gap: clamp(45px, 7vw, 110px);
+
   margin: auto;
+
   padding: 80px 9%;
+
   background: var(--paper);
 }
+
+
+.hero-copy {
+  min-width: 0;
+}
+
 
 .eyebrow,
 .section-kicker {
   margin: 0 0 14px;
+
   color: var(--gold);
+
   font-size: 14px;
+
   font-weight: 700;
+
   text-transform: uppercase;
+
   letter-spacing: 4px;
 }
 
+
 h1 {
   margin: 0;
+
   color: var(--pink);
+
   font-family: "Great Vibes", cursive;
+
   font-size: clamp(85px, 9vw, 138px);
+
   font-weight: 400;
+
   line-height: 0.8;
 }
 
+
 .location {
   margin: 30px 0 22px;
+
   color: #4b313b;
+
   font-family: "Montserrat", Arial, sans-serif;
+
   font-size: 22px;
+
   font-weight: 500;
+
   letter-spacing: 11px;
 }
 
+
 .intro {
   max-width: 620px;
+
   margin: 0 0 28px;
+
   color: #594b51;
+
   font-size: 20px;
+
   line-height: 1.6;
 }
 
+
 .hero-actions {
   display: flex;
+
   flex-wrap: wrap;
+
   gap: 14px;
 }
 
+
 .button.secondary {
   color: var(--pink);
+
   background: white;
+
   border: 1px solid #eac8d4;
 }
 
+
 .button.secondary:hover {
   background: #fff1f6;
+
   transform: translateY(-2px);
 }
 
+
 .hero-art img {
   display: block;
+
   width: 100%;
+
   aspect-ratio: 1.62 / 1;
+
   object-fit: cover;
+
   object-position: center;
+
   border-radius: 28px;
-  box-shadow: 15px 25px 45px rgba(89, 35, 50, 0.15);
+
+  box-shadow:
+    15px 25px 45px rgba(89, 35, 50, 0.15);
 }
+
 
 /* =====================================================
    PRODUCTOS Y SERVICIOS
@@ -202,82 +324,125 @@ h1 {
 .visit,
 .gallery {
   padding: 80px 9%;
+
   text-align: center;
 }
+
 
 .content-section h2,
 .visit h2,
 .gallery h2 {
   margin: 0;
+
   color: var(--pink);
+
   font-family: "Montserrat", Arial, sans-serif;
+
   font-size: clamp(29px, 4vw, 42px);
 }
 
+
 .section-kicker {
   font-size: 12px;
+
   letter-spacing: 3px;
 }
+
 
 .section-lead,
 .visit > p:not(.section-kicker),
 .gallery > p:not(.section-kicker) {
   max-width: 600px;
+
   margin: 16px auto 35px;
+
   color: #695b60;
 }
 
+
 .card-grid {
   max-width: 1100px;
+
   display: grid;
+
   grid-template-columns: repeat(3, 1fr);
+
   gap: 22px;
+
   margin: 35px auto 0;
 }
 
+
 .card-grid article {
   min-height: 190px;
+
   padding: 30px 22px;
+
   background: white;
+
   border-radius: 20px;
-  box-shadow: 0 12px 30px rgba(89, 35, 50, 0.08);
-  transition: 0.2s;
+
+  box-shadow:
+    0 12px 30px rgba(89, 35, 50, 0.08);
+
+  transition: 0.2s ease;
 }
+
 
 .card-grid article:hover {
   transform: translateY(-6px);
-  box-shadow: 0 18px 38px rgba(89, 35, 50, 0.13);
+
+  box-shadow:
+    0 18px 38px rgba(89, 35, 50, 0.13);
 }
+
 
 .card-grid span {
   display: block;
+
   margin-bottom: 10px;
+
   font-size: 31px;
 }
 
+
 .card-grid h3 {
   margin: 0 0 8px;
+
   color: var(--pink);
+
   font-size: 20px;
 }
 
+
 .card-grid p {
   margin: 0;
+
   color: #715f66;
+
   line-height: 1.5;
 }
+
 
 .services {
   background: #fff1f5;
 }
 
+
 .visit {
-  background: linear-gradient(110deg, #fff5f6, #fffdf9);
+  background:
+    linear-gradient(
+      110deg,
+      #fff5f6,
+      #fffdf9
+    );
 }
+
 
 .gallery {
   padding-block: 65px;
 }
+
 
 /* =====================================================
    SISTEMA DE PUNTOS
@@ -285,10 +450,16 @@ h1 {
 
 .premios-lista {
   max-width: 900px;
+
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
   gap: 20px;
+
   margin: 25px auto 0;
+
   text-align: left;
 }
 
@@ -301,7 +472,9 @@ h1 {
   position: relative;
 
   display: flex;
+
   align-items: flex-start;
+
   gap: 17px;
 
   min-height: 135px;
@@ -324,10 +497,6 @@ h1 {
 }
 
 
-/* =====================================================
-   EFECTO HOVER
-   ===================================================== */
-
 .premio:hover {
   transform: translateY(-4px);
 
@@ -339,7 +508,7 @@ h1 {
 
 
 /* =====================================================
-   ICONO
+   ICONO PREMIO
    ===================================================== */
 
 .premio > span {
@@ -349,6 +518,7 @@ h1 {
   height: 58px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -366,18 +536,15 @@ h1 {
 
 
 /* =====================================================
-   CONTENIDO
+   CONTENIDO PREMIO
    ===================================================== */
 
 .premio > div {
   flex: 1;
+
   min-width: 0;
 }
 
-
-/* =====================================================
-   PUNTOS
-   ===================================================== */
 
 .premio strong {
   display: block;
@@ -394,10 +561,6 @@ h1 {
 }
 
 
-/* =====================================================
-   DESCRIPCIÓN
-   ===================================================== */
-
 .premio p {
   margin: 0;
 
@@ -410,7 +573,7 @@ h1 {
 
 
 /* =====================================================
-   MENSAJE "TE FALTAN"
+   ESTADO PREMIO
    ===================================================== */
 
 .premio .estado-premio {
@@ -439,11 +602,12 @@ h1 {
    ===================================================== */
 
 .premio.premio-disponible {
-  background: linear-gradient(
-    135deg,
-    #fffdf7,
-    #fff8e8
-  );
+  background:
+    linear-gradient(
+      135deg,
+      #fffdf7,
+      #fff8e8
+    );
 
   border: 2px solid var(--gold);
 
@@ -472,11 +636,12 @@ h1 {
 
 
 /* =====================================================
-   TÍTULO DE PREMIOS
+   TÍTULO PREMIOS
    ===================================================== */
 
 #resultadoPuntos h3 {
   margin-top: 30px;
+
   margin-bottom: 8px;
 
   color: var(--pink);
@@ -490,7 +655,7 @@ h1 {
 
 
 /* =====================================================
-   BLOQUE DE RESULTADO DE PUNTOS
+   RESULTADO PUNTOS
    ===================================================== */
 
 #resultadoPuntos {
@@ -499,7 +664,7 @@ h1 {
 
 
 /* =====================================================
-   MENSAJE DE CONSULTA
+   MENSAJE PUNTOS
    ===================================================== */
 
 #mensajePuntos {
@@ -529,322 +694,11 @@ footer {
 
 
 /* =====================================================
-   CELULAR
-   ===================================================== */
-
-@media (max-width: 850px) {
-
-  .site-header {
-    min-height: 145px;
-
-    display: flex;
-    flex-wrap: nowrap;
-
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 25px 42px;
-
-    position: relative;
-  }
-
-
-  .brand {
-    width: auto;
-  }
-
-
-  .brand img {
-    width: 215px;
-    max-height: 100px;
-
-    object-fit: contain;
-  }
-
-
-  .menu-toggle {
-    display: block;
-
-    margin-left: auto;
-
-    padding: 8px;
-
-    border: none;
-
-    background: transparent;
-
-    cursor: pointer;
-  }
-
-
-  .menu-toggle span {
-    display: block;
-
-    width: 46px;
-    height: 5px;
-
-    margin: 7px 0;
-
-    border-radius: 10px;
-
-    background: #c83b6a;
-  }
-
-
-  .main-nav {
-    display: none;
-
-    position: absolute;
-
-    top: 100%;
-    left: 0;
-
-    z-index: 200;
-
-    width: 100%;
-
-    padding: 25px;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    gap: 20px;
-
-    background: white;
-
-    border-top: 1px solid #f0d5df;
-
-    border-bottom: 1px solid #f0d5df;
-
-    box-shadow:
-      0 12px 20px rgba(89, 35, 50, 0.12);
-  }
-
-
-  .main-nav.open {
-    display: flex;
-  }
-
-
-  .main-nav a {
-    color: #30272b;
-
-    font-size: 18px;
-  }
-
-
-  .contact-button {
-    display: none;
-  }
-
-
-  .hero {
-    grid-template-columns: 1fr;
-
-    gap: 35px;
-
-    padding: 110px 42px 50px;
-  }
-
-
-  .hero-copy {
-    order: 2;
-  }
-
-
-  .hero-art {
-    order: 1;
-  }
-
-
-  h1 {
-    font-size: 105px;
-  }
-
-
-  .location {
-    font-size: 19px;
-
-    letter-spacing: 8px;
-  }
-
-
-  .intro {
-    font-size: 18px;
-  }
-
-
-  .card-grid {
-    grid-template-columns: 1fr;
-  }
-
-
-  .content-section,
-  .visit,
-  .gallery {
-    padding: 60px 28px;
-  }
-
-
-  /* PREMIOS EN CELULAR */
-
-  .premios-lista {
-    grid-template-columns: 1fr;
-
-    gap: 15px;
-
-    margin-top: 20px;
-  }
-
-
-  .premio {
-    min-height: auto;
-
-    padding: 17px;
-
-    gap: 14px;
-
-    border-radius: 17px;
-  }
-
-
-  .premio > span {
-    flex: 0 0 52px;
-
-    width: 52px;
-    height: 52px;
-
-    font-size: 27px;
-  }
-
-
-  .premio strong {
-    font-size: 17px;
-  }
-
-
-  .premio p {
-    font-size: 14px;
-  }
-
-
-  .premio .estado-premio {
-    margin-top: 10px;
-
-    font-size: 12px;
-  }
-
-}
-
-
-/* =====================================================
-   CELULARES PEQUEÑOS
-   ===================================================== */
-
-@media (max-width: 430px) {
-
-  .site-header {
-    min-height: 120px;
-
-    padding: 20px 28px;
-  }
-
-
-  .brand img {
-    width: 180px;
-  }
-
-
-  .menu-toggle span {
-    width: 38px;
-
-    height: 4px;
-
-    margin: 6px 0;
-  }
-
-
-  .hero {
-    padding: 85px 42px 45px;
-  }
-
-
-  .hero-art img {
-    border-radius: 20px;
-  }
-
-
-  .button {
-    width: 100%;
-  }
-
-
-  /* PREMIOS */
-
-  .premio {
-    padding: 15px;
-
-    gap: 12px;
-  }
-
-
-  .premio > span {
-    flex-basis: 47px;
-
-    width: 47px;
-    height: 47px;
-
-    font-size: 24px;
-
-    border-radius: 13px;
-  }
-
-
-  .premio strong {
-    font-size: 16px;
-
-    margin-bottom: 5px;
-  }
-
-
-  .premio p {
-    font-size: 13px;
-  }
-
-}
-
-
-/* =====================================================
    BOTÓN CONTACTO MÓVIL
    ===================================================== */
 
 .mobile-contact {
   display: none;
-}
-
-
-@media (max-width: 850px) {
-
-  .mobile-contact {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    margin-top: 8px;
-
-    padding: 12px 22px;
-
-    border-radius: 25px;
-
-    color: white !important;
-
-    background: #c83b6a;
-
-    font-weight: 700;
-  }
-
 }
 
 
@@ -869,6 +723,7 @@ footer {
   height: 54px;
 
   display: grid;
+
   place-items: center;
 
   border-radius: 50%;
@@ -928,105 +783,198 @@ footer {
 
 
 /* =====================================================
-   PANEL DE ADMINISTRACIÓN - DISEÑO CORREGIDO
+   BOTONES DEL ENCABEZADO
+   ===================================================== */
+
+.header-buttons {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+
+/* =====================================================
+   BOTÓN ADMINISTRACIÓN
+   ===================================================== */
+
+.admin-button {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 12px 18px;
+
+  border-radius: 25px;
+
+  background: #fff;
+
+  color: var(--pink);
+
+  border: 1px solid var(--pink);
+
+  text-decoration: none;
+
+  font-family: "DM Sans", Arial, sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  transition: all 0.25s ease;
+}
+
+
+.admin-button:hover {
+  background: var(--pink);
+
+  color: white;
+
+  transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   ADMINISTRACIÓN
    ===================================================== */
 
 .admin-section {
   width: 100%;
+
   padding: 75px 25px 85px;
+
   background: #fffafa;
 }
 
 
 .admin-container {
   width: 100%;
+
   max-width: 850px;
+
   margin: 0 auto;
+
   text-align: center;
 }
 
 
 .admin-container .section-kicker {
   margin-bottom: 12px;
+
   color: var(--gold);
+
   font-size: 13px;
+
   font-weight: 800;
+
   letter-spacing: 4px;
+
   text-transform: uppercase;
 }
 
 
 .admin-container h2 {
   margin: 0;
+
   color: var(--pink);
+
   font-family: "Montserrat", Arial, sans-serif;
+
   font-size: clamp(30px, 4vw, 42px);
+
   line-height: 1.2;
 }
 
 
 .admin-container .section-lead {
   max-width: 650px;
+
   margin: 15px auto 32px;
+
   color: #695b60;
+
   font-size: 16px;
+
   line-height: 1.6;
 }
 
 
 /* =====================================================
-   FORMULARIO
+   FORMULARIO ADMINISTRACIÓN
    ===================================================== */
 
 .admin-form {
   width: 100%;
+
   max-width: 650px;
+
   margin: 0 auto;
+
   padding: 32px;
+
   background: #ffffff;
+
   border: 1px solid var(--line);
+
   border-radius: 24px;
-  box-shadow: 0 15px 40px rgba(89, 35, 50, 0.10);
+
+  box-shadow:
+    0 15px 40px rgba(89, 35, 50, 0.10);
+
   text-align: left;
 }
 
 
-/* =====================================================
-   GRUPOS
-   ===================================================== */
-
 .form-group {
   width: 100%;
+
   margin-bottom: 20px;
 }
 
 
 .form-group label {
   display: block;
+
   margin-bottom: 8px;
+
   color: var(--ink);
+
   font-size: 14px;
+
   font-weight: 700;
 }
 
 
 /* =====================================================
-   INPUTS Y SELECT
+   INPUTS
    ===================================================== */
 
 .form-group input,
 .form-group select,
 .form-group textarea {
   width: 100%;
+
   min-height: 48px;
+
   padding: 12px 14px;
+
   color: var(--ink);
+
   background: #fffafa;
+
   border: 1px solid #e4ccd5;
+
   border-radius: 12px;
+
   outline: none;
+
   font-family: "DM Sans", Arial, sans-serif;
+
   font-size: 15px;
+
   transition: 0.2s;
 }
 
@@ -1035,12 +983,15 @@ footer {
 .form-group select:focus,
 .form-group textarea:focus {
   border-color: var(--pink);
-  box-shadow: 0 0 0 3px rgba(200, 59, 106, 0.10);
+
+  box-shadow:
+    0 0 0 3px rgba(200, 59, 106, 0.10);
 }
 
 
 .form-group textarea {
   min-height: 90px;
+
   resize: vertical;
 }
 
@@ -1051,38 +1002,52 @@ footer {
 
 .campo-con-boton {
   display: flex;
+
   align-items: stretch;
+
   gap: 10px;
+
   width: 100%;
 }
 
 
 .campo-con-boton input {
   flex: 1;
+
   min-width: 0;
 }
 
 
 .campo-con-boton .button {
   flex-shrink: 0;
+
   min-height: 48px;
+
   padding: 0 20px;
 }
 
 
 /* =====================================================
-   INFORMACIÓN DEL CLIENTE
+   INFORMACIÓN CLIENTE
    ===================================================== */
 
 .cliente-registro {
   display: flex;
+
   align-items: center;
+
   gap: 15px;
+
   width: 100%;
+
   margin: 0 0 22px;
+
   padding: 16px;
+
   background: #fff4f7;
+
   border: 1px solid #f0d5df;
+
   border-radius: 16px;
 }
 
@@ -1090,34 +1055,48 @@ footer {
 .cliente-icono {
   width: 52px;
   height: 52px;
+
   display: grid;
+
   place-items: center;
+
   flex-shrink: 0;
+
   background: #ffffff;
+
   border-radius: 50%;
+
   font-size: 25px;
 }
 
 
 .cliente-registro span {
   display: block;
+
   margin-bottom: 3px;
+
   color: #806f76;
+
   font-size: 12px;
 }
 
 
 .cliente-registro strong {
   display: block;
+
   color: var(--pink);
+
   font-size: 17px;
 }
 
 
 .cliente-registro small {
   display: block;
+
   margin-top: 4px;
+
   color: #66575d;
+
   font-weight: 700;
 }
 
@@ -1128,34 +1107,48 @@ footer {
 
 .monto-input {
   display: flex;
+
   align-items: center;
+
   width: 100%;
+
   min-height: 48px;
+
   overflow: hidden;
+
   background: #fffafa;
+
   border: 1px solid #e4ccd5;
+
   border-radius: 12px;
 }
 
 
 .monto-input span {
   padding-left: 15px;
+
   color: var(--pink);
+
   font-weight: 800;
 }
 
 
 .monto-input input {
   flex: 1;
+
   min-width: 0;
+
   border: none;
+
   background: transparent;
+
   box-shadow: none;
 }
 
 
 .monto-input input:focus {
   border: none;
+
   box-shadow: none;
 }
 
@@ -1166,10 +1159,15 @@ footer {
 
 #btnRegistrarMovimiento {
   width: 100%;
+
   min-height: 54px;
+
   margin-top: 5px;
+
   border: none;
+
   cursor: pointer;
+
   font-size: 15px;
 }
 
@@ -1180,29 +1178,39 @@ footer {
 
 
 /* =====================================================
-   MENSAJES
+   MENSAJES ADMIN
    ===================================================== */
 
 .mensaje-registro {
   width: 100%;
+
   margin-top: 18px;
+
   text-align: center;
+
   font-size: 14px;
+
   font-weight: 700;
 }
 
 
 /* =====================================================
-   RESULTADO
+   RESULTADO ADMIN
    ===================================================== */
 
 .resultado-registro {
   width: 100%;
+
   margin-top: 22px;
+
   padding: 22px;
+
   text-align: center;
+
   background: #fffaf0;
+
   border: 1px solid #ead49b;
+
   border-radius: 17px;
 }
 
@@ -1214,125 +1222,64 @@ footer {
 
 .resultado-registro h3 {
   margin: 8px 0;
+
   color: #a87313;
+
   font-family: "Montserrat", Arial, sans-serif;
 }
 
 
 .resultado-registro p {
   margin: 0;
+
   color: #66575d;
+
   line-height: 1.6;
 }
 
 
-/* =====================================================
-   TEXTO OPCIONAL
-   ===================================================== */
-
 .opcional {
   color: #9a8c92;
+
   font-size: 12px;
+
   font-weight: 400;
 }
 
 
 /* =====================================================
-   ADMINISTRACIÓN EN CELULAR
+   HISTORIAL
    ===================================================== */
-
-@media (max-width: 700px) {
-
-  .admin-section {
-    padding: 55px 20px 65px;
-  }
-
-
-  .admin-container {
-    max-width: 100%;
-  }
-
-
-  .admin-container h2 {
-    font-size: 30px;
-  }
-
-
-  .admin-container .section-lead {
-    font-size: 15px;
-  }
-
-
-  .admin-form {
-    padding: 22px 18px;
-    border-radius: 19px;
-  }
-
-
-  .campo-con-boton {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-
-  .campo-con-boton .button {
-    width: 100%;
-  }
-
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    font-size: 16px;
-  }
-
-}
-
-
-/* =====================================================
-   CELULAR PEQUEÑO
-   ===================================================== */
-
-@media (max-width: 430px) {
-
-  .admin-section {
-    padding: 45px 15px 55px;
-  }
-
-
-  .admin-form {
-    padding: 20px 15px;
-  }
-
-
-  .admin-container h2 {
-    font-size: 27px;
-  }
-
-}
-
-
-/* ======================================================
-   HISTORIAL DEL CLIENTE
-   ====================================================== */
 
 .historial-cliente {
   max-width: 900px;
+
   margin: 35px auto 0;
+
   padding: 30px;
+
   background: white;
+
   border: 1px solid var(--line);
+
   border-radius: 24px;
-  box-shadow: 0 12px 35px rgba(89, 35, 50, 0.08);
+
+  box-shadow:
+    0 12px 35px rgba(89, 35, 50, 0.08);
+
   text-align: left;
 }
 
 
 .historial-header {
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
   gap: 20px;
+
   margin-bottom: 22px;
 }
 
@@ -1344,47 +1291,63 @@ footer {
 
 .historial-header h3 {
   margin: 0;
+
   color: var(--pink);
+
   font-family: "Montserrat", Arial, sans-serif;
+
   font-size: 25px;
 }
 
 
 .total-movimientos {
   padding: 9px 16px;
+
   color: var(--pink);
+
   background: #fff1f5;
+
   border: 1px solid var(--line);
+
   border-radius: 20px;
+
   font-size: 13px;
+
   font-weight: 700;
 }
 
 
-/* ======================================================
-   FILAS DEL HISTORIAL
-   ====================================================== */
+/* =====================================================
+   LISTA HISTORIAL
+   ===================================================== */
 
-.historial-lista {
+.historial-lista,
+.lista-historial,
+.lista-historial-admin {
   display: flex;
+
   flex-direction: column;
+
   gap: 14px;
 }
 
 
 .historial-item {
   display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr 0.8fr;
+
+  grid-template-columns: 80px 1fr auto;
+
   align-items: center;
+
   gap: 18px;
 
-  padding: 18px 20px;
+  padding: 18px;
 
   background: #fffafa;
 
-  border: 1px solid var(--line);
+  border: 1px solid #f1dce3;
 
-  border-radius: 16px;
+  border-radius: 18px;
 
   transition: 0.2s;
 }
@@ -1398,134 +1361,314 @@ footer {
 }
 
 
-/* ======================================================
-   FECHA
-   ====================================================== */
+.historial-icono {
+  width: 58px;
+  height: 58px;
 
-.historial-fecha {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 16px;
+
+  background: #fff1f5;
+
+  font-size: 27px;
 }
 
 
-.historial-fecha strong {
-  color: var(--ink);
-  font-size: 14px;
+.historial-info strong {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #30272b;
+
+  font-size: 17px;
 }
 
 
-.historial-fecha small {
-  color: #806e75;
-  font-size: 12px;
+.historial-info span {
+  display: block;
+
+  color: #806d74;
+
+  font-size: 13px;
+
+  line-height: 1.6;
 }
 
-
-/* ======================================================
-   TIPO Y CONCEPTO
-   ====================================================== */
-
-.historial-concepto {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-
-.historial-concepto strong {
-  color: var(--pink);
-  font-size: 15px;
-}
-
-
-.historial-concepto small {
-  color: #806e75;
-  font-size: 12px;
-}
-
-
-/* ======================================================
-   MONTO
-   ====================================================== */
 
 .historial-monto {
-  text-align: center;
-}
-
-
-.historial-monto strong {
-  color: var(--ink);
-  font-size: 16px;
-}
-
-
-/* ======================================================
-   PUNTOS
-   ====================================================== */
-
-.historial-puntos {
   text-align: right;
 }
 
 
-.historial-puntos strong {
-  display: inline-block;
+.historial-monto strong {
+  display: block;
 
-  padding: 7px 12px;
+  color: var(--pink);
 
-  color: #8a5a00;
-
-  background: #fff7df;
-
-  border: 1px solid #f1dfad;
-
-  border-radius: 20px;
-
-  font-size: 13px;
+  font-size: 18px;
 }
 
 
-/* ======================================================
-   OBSERVACIÓN
-   ====================================================== */
+.historial-monto span {
+  display: block;
 
-.historial-observacion {
-  grid-column: 1 / -1;
+  margin-top: 5px;
 
-  padding-top: 10px;
+  color: #b17b1e;
 
-  border-top: 1px dashed var(--line);
+  font-weight: 700;
 
-  color: #806e75;
-
-  font-size: 13px;
-
-  line-height: 1.5;
+  font-size: 14px;
 }
 
 
-/* ======================================================
-   HISTORIAL VACÍO
-   ====================================================== */
+/* =====================================================
+   TARJETA DE MOVIMIENTO
+   ===================================================== */
 
-.historial-vacio {
+.movimiento-card {
+  display: grid;
+
+  grid-template-columns: 55px 1fr auto;
+
+  align-items: center;
+
+  gap: 16px;
+
+  padding: 17px 20px;
+
+  background: #fffafa;
+
+  border: 1px solid #f1e0e5;
+
+  border-radius: 17px;
+
+  transition: 0.2s ease;
+}
+
+
+.movimiento-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 20px rgba(89, 35, 50, 0.08);
+}
+
+
+.movimiento-icono {
+  width: 50px;
+  height: 50px;
+
+  display: grid;
+
+  place-items: center;
+
+  background: #fff1f5;
+
+  border-radius: 15px;
+
+  font-size: 25px;
+}
+
+
+.movimiento-info {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+
+.movimiento-info strong {
+  color: var(--ink);
+
+  font-size: 16px;
+}
+
+
+.movimiento-info span {
+  color: var(--pink);
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+
+.movimiento-info small {
+  color: #806f76;
+
+  font-size: 12px;
+}
+
+
+.movimiento-datos {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-end;
+
+  gap: 5px;
+}
+
+
+.movimiento-datos strong {
+  color: var(--ink);
+
+  font-size: 17px;
+}
+
+
+.movimiento-datos span {
+  color: #c78a22;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   HISTORIAL VACÍO / CARGANDO
+   ===================================================== */
+
+.historial-vacio,
+.historial-cargando {
   padding: 30px 20px;
 
-  color: #806e75;
+  color: #806f76;
 
+  text-align: center;
+}
+
+
+.historial-vacio {
   background: #fffafa;
 
   border: 1px dashed var(--line);
 
   border-radius: 16px;
-
-  text-align: center;
 }
 
 
-/* ======================================================
-   BOTÓN ACTUALIZAR HISTORIAL
-   ====================================================== */
+.historial-vacio div {
+  margin-bottom: 10px;
+
+  font-size: 35px;
+}
+
+
+.historial-vacio strong {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: var(--ink);
+
+  font-size: 17px;
+}
+
+
+.historial-vacio p {
+  margin: 0;
+
+  font-size: 14px;
+}
+
+
+.historial-cargando {
+  color: var(--pink);
+
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   HISTORIAL ADMIN
+   ===================================================== */
+
+.historial-admin {
+  width: 100%;
+
+  max-width: 900px;
+
+  margin: 35px auto 0;
+
+  padding: 30px;
+
+  background: #ffffff;
+
+  border: 1px solid #f0d5df;
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 12px 35px rgba(89, 35, 50, 0.08);
+
+  text-align: left;
+}
+
+
+.historial-titulo {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 25px;
+
+  padding-bottom: 18px;
+
+  border-bottom: 1px solid #f0d5df;
+}
+
+
+.historial-titulo > span {
+  width: 50px;
+  height: 50px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 15px;
+
+  background: #fff1f5;
+
+  font-size: 25px;
+}
+
+
+.historial-titulo h3 {
+  margin: 0;
+
+  color: var(--pink);
+
+  font-family: "Montserrat", Arial, sans-serif;
+
+  font-size: 22px;
+}
+
+
+.historial-titulo p {
+  margin: 5px 0 0;
+
+  color: #806d74;
+
+  font-size: 14px;
+}
+
+
+/* =====================================================
+   BOTÓN HISTORIAL
+   ===================================================== */
 
 .btn-historial {
   display: inline-flex;
@@ -1561,11 +1704,460 @@ footer {
 }
 
 
-/* ======================================================
+/* =====================================================
+   =====================================================
    CELULAR
-   ====================================================== */
+   =====================================================
+   ===================================================== */
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
+
+
+  /* ===================================================
+     ENCABEZADO
+     =================================================== */
+
+  .site-header {
+    width: 100%;
+
+    min-height: 76px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 8px;
+
+    padding: 10px 12px;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+  }
+
+
+  /* ===================================================
+     LOGO
+     =================================================== */
+
+  .site-header .brand {
+    flex: 1 1 auto;
+
+    min-width: 0;
+
+    width: auto;
+
+    display: flex;
+
+    align-items: center;
+  }
+
+
+  .site-header .brand img {
+    display: block;
+
+    width: 100%;
+
+    max-width: 145px;
+
+    max-height: 55px;
+
+    height: auto;
+
+    object-fit: contain;
+  }
+
+
+  /* ===================================================
+     BOTÓN ADMINISTRACIÓN
+     =================================================== */
+
+  .header-buttons {
+    order: 2;
+
+    flex: 0 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 0;
+  }
+
+
+  .header-buttons .contact-button {
+    display: none;
+  }
+
+
+  .header-buttons .admin-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 40px;
+
+    width: auto;
+
+    padding: 7px 11px;
+
+    border-radius: 22px;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+  }
+
+
+  /* ===================================================
+     BOTÓN TRES RAYAS
+     =================================================== */
+
+  .menu-toggle {
+    order: 3;
+
+    flex: 0 0 42px;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    width: 42px !important;
+
+    height: 42px !important;
+
+    margin: 0 !important;
+
+    padding: 5px !important;
+
+    gap: 5px !important;
+
+    border: none !important;
+
+    background: transparent !important;
+  }
+
+
+  /* ===================================================
+     LAS TRES RAYAS
+     =================================================== */
+
+  .menu-toggle span {
+    display: block !important;
+
+    width: 28px !important;
+
+    height: 3px !important;
+
+    margin: 0 !important;
+
+    flex: 0 0 3px !important;
+
+    border-radius: 10px;
+
+    background: var(--pink) !important;
+  }
+
+
+  /* ===================================================
+     MENÚ DESPLEGABLE
+     =================================================== */
+
+  .main-nav {
+    position: absolute;
+
+    top: 100%;
+
+    right: 10px;
+
+    left: auto;
+
+    width: 220px;
+
+    max-width: calc(100vw - 20px);
+
+    display: none;
+
+    flex-direction: column !important;
+
+    align-items: stretch !important;
+
+    justify-content: flex-start !important;
+
+    gap: 4px !important;
+
+    padding: 10px;
+
+    margin: 0;
+
+    background: white;
+
+    border: 1px solid var(--line);
+
+    border-radius: 18px;
+
+    box-shadow:
+      0 12px 30px rgba(89, 35, 50, 0.15);
+
+    z-index: 9999;
+  }
+
+
+  /* ===================================================
+     MENÚ ABIERTO
+     =================================================== */
+
+  .main-nav.open,
+  .main-nav.menu-abierto {
+    display: flex !important;
+  }
+
+
+  /* ===================================================
+     OPCIONES DEL MENÚ
+     =================================================== */
+
+  .main-nav a {
+    display: flex !important;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    width: 100%;
+
+    min-height: 44px;
+
+    padding: 11px 14px;
+
+    color: var(--ink);
+
+    background: transparent;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    border-radius: 12px;
+
+    white-space: normal;
+  }
+
+
+  .main-nav a:hover {
+    color: var(--pink);
+
+    background: #fff1f5;
+  }
+
+
+  /* ===================================================
+     WHATSAPP DENTRO DEL MENÚ
+     =================================================== */
+
+  .main-nav .mobile-contact {
+    display: flex !important;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-top: 5px;
+
+    padding: 12px;
+
+    color: white !important;
+
+    background: var(--pink);
+
+    text-align: center;
+
+    border-radius: 12px;
+  }
+
+
+  .main-nav .mobile-contact:hover {
+    color: white !important;
+
+    background: var(--pink-dark);
+  }
+
+
+  /* ===================================================
+     PORTADA
+     =================================================== */
+
+  .hero {
+    grid-template-columns: 1fr;
+
+    gap: 35px;
+
+    padding: 70px 28px 50px;
+  }
+
+
+  .hero-copy {
+    order: 2;
+  }
+
+
+  .hero-art {
+    order: 1;
+  }
+
+
+  h1 {
+    font-size: 105px;
+  }
+
+
+  .location {
+    font-size: 19px;
+
+    letter-spacing: 8px;
+  }
+
+
+  .intro {
+    font-size: 18px;
+  }
+
+
+  /* ===================================================
+     TARJETAS
+     =================================================== */
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .content-section,
+  .visit,
+  .gallery {
+    padding: 60px 28px;
+  }
+
+
+  /* ===================================================
+     PREMIOS
+     =================================================== */
+
+  .premios-lista {
+    grid-template-columns: 1fr;
+
+    gap: 15px;
+
+    margin-top: 20px;
+  }
+
+
+  .premio {
+    min-height: auto;
+
+    padding: 17px;
+
+    gap: 14px;
+
+    border-radius: 17px;
+  }
+
+
+  .premio > span {
+    flex: 0 0 52px;
+
+    width: 52px;
+
+    height: 52px;
+
+    font-size: 27px;
+  }
+
+
+  .premio strong {
+    font-size: 17px;
+  }
+
+
+  .premio p {
+    font-size: 14px;
+  }
+
+
+  .premio .estado-premio {
+    margin-top: 10px;
+
+    font-size: 12px;
+  }
+
+
+  /* ===================================================
+     ADMINISTRACIÓN
+     =================================================== */
+
+  .admin-section {
+    padding: 55px 20px 65px;
+  }
+
+
+  .admin-container {
+    max-width: 100%;
+  }
+
+
+  .admin-container h2 {
+    font-size: 30px;
+  }
+
+
+  .admin-container .section-lead {
+    font-size: 15px;
+  }
+
+
+  .admin-form {
+    padding: 22px 18px;
+
+    border-radius: 19px;
+  }
+
+
+  .campo-con-boton {
+    flex-direction: column;
+
+    gap: 10px;
+  }
+
+
+  .campo-con-boton .button {
+    width: 100%;
+  }
+
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 16px;
+  }
+
+
+  /* ===================================================
+     HISTORIAL
+     =================================================== */
 
   .historial-cliente {
     margin: 25px 15px 0;
@@ -1591,36 +2183,195 @@ footer {
 
 
   .historial-item {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 55px 1fr;
 
-    gap: 14px;
+    gap: 12px;
 
     padding: 16px;
   }
 
 
   .historial-monto {
+    grid-column: 2;
+
     text-align: left;
+
+    padding-top: 5px;
+
+    border-top: 1px solid #f0d5df;
   }
 
 
-  .historial-puntos {
-    text-align: right;
+  .historial-icono {
+    width: 50px;
+
+    height: 50px;
+
+    font-size: 23px;
   }
 
 
-  .historial-observacion {
-    grid-column: 1 / -1;
+  .movimiento-card {
+    grid-template-columns: 48px 1fr;
+
+    gap: 12px;
+
+    padding: 15px;
+  }
+
+
+  .movimiento-icono {
+    width: 45px;
+
+    height: 45px;
+
+    font-size: 22px;
+  }
+
+
+  .movimiento-datos {
+    grid-column: 2;
+
+    align-items: flex-start;
+
+    padding-top: 3px;
   }
 
 }
 
 
-/* ======================================================
+/* =====================================================
    CELULARES PEQUEÑOS
-   ====================================================== */
+   ===================================================== */
 
 @media (max-width: 430px) {
+
+
+  .site-header {
+    min-height: 68px;
+
+    padding: 8px 9px;
+
+    gap: 5px;
+  }
+
+
+  .site-header .brand img {
+    max-width: 120px;
+
+    max-height: 48px;
+  }
+
+
+  .header-buttons .admin-button {
+    min-height: 38px;
+
+    padding: 6px 8px;
+
+    font-size: 10px;
+  }
+
+
+  .menu-toggle {
+    flex-basis: 40px !important;
+
+    width: 40px !important;
+
+    height: 40px !important;
+  }
+
+
+  .menu-toggle span {
+    width: 27px !important;
+
+    height: 3px !important;
+  }
+
+
+  .main-nav {
+    right: 8px;
+
+    width: 205px;
+  }
+
+
+  .main-nav a {
+    font-size: 14px;
+
+    min-height: 42px;
+  }
+
+
+  .hero {
+    padding: 60px 20px 45px;
+  }
+
+
+  .hero-art img {
+    border-radius: 20px;
+  }
+
+
+  .button {
+    width: 100%;
+  }
+
+
+  .content-section,
+  .visit,
+  .gallery {
+    padding-left: 20px;
+
+    padding-right: 20px;
+  }
+
+
+  .premio {
+    padding: 15px;
+
+    gap: 12px;
+  }
+
+
+  .premio > span {
+    flex-basis: 47px;
+
+    width: 47px;
+
+    height: 47px;
+
+    font-size: 24px;
+
+    border-radius: 13px;
+  }
+
+
+  .premio strong {
+    font-size: 16px;
+
+    margin-bottom: 5px;
+  }
+
+
+  .premio p {
+    font-size: 13px;
+  }
+
+
+  .admin-section {
+    padding: 45px 15px 55px;
+  }
+
+
+  .admin-form {
+    padding: 20px 15px;
+  }
+
+
+  .admin-container h2 {
+    font-size: 27px;
+  }
+
 
   .historial-cliente {
     margin-left: 10px;
@@ -1638,522 +2389,22 @@ footer {
   }
 
 
-  .historial-monto,
-  .historial-puntos {
+  .historial-monto {
+    grid-column: 1;
+
     text-align: left;
   }
 
 
-  .historial-observacion {
-    grid-column: 1;
-  }
-
-}
-
-/* ======================================================
-   TARJETA DE MOVIMIENTO
-   ====================================================== */
-
-.lista-historial {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-
-.movimiento-card {
-  display: grid;
-  grid-template-columns: 55px 1fr auto;
-  align-items: center;
-  gap: 16px;
-  padding: 17px 20px;
-  background: #fffafa;
-  border: 1px solid #f1e0e5;
-  border-radius: 17px;
-  transition: 0.2s ease;
-}
-
-
-.movimiento-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(89, 35, 50, 0.08);
-}
-
-
-/* ICONO */
-
-.movimiento-icono {
-  width: 50px;
-  height: 50px;
-  display: grid;
-  place-items: center;
-  background: #fff1f5;
-  border-radius: 15px;
-  font-size: 25px;
-}
-
-
-/* INFORMACIÓN */
-
-.movimiento-info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-
-.movimiento-info strong {
-  color: var(--ink);
-  font-size: 16px;
-}
-
-
-.movimiento-info span {
-  color: var(--pink);
-  font-size: 13px;
-  font-weight: 700;
-}
-
-
-.movimiento-info small {
-  color: #806f76;
-  font-size: 12px;
-}
-
-
-/* MONTO Y PUNTOS */
-
-.movimiento-datos {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 5px;
-}
-
-
-.movimiento-datos strong {
-  color: var(--ink);
-  font-size: 17px;
-}
-
-
-.movimiento-datos span {
-  color: #c78a22;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-
-/* ======================================================
-   CARGANDO / VACÍO
-   ====================================================== */
-
-.historial-cargando,
-.historial-vacio {
-  padding: 35px 20px;
-  color: #806f76;
-  text-align: center;
-}
-
-
-.historial-vacio div {
-  margin-bottom: 10px;
-  font-size: 35px;
-}
-
-
-.historial-vacio strong {
-  display: block;
-  margin-bottom: 6px;
-  color: var(--ink);
-  font-size: 17px;
-}
-
-
-.historial-vacio p {
-  margin: 0;
-  font-size: 14px;
-}
-
-
-/* ======================================================
-   CELULAR
-   ====================================================== */
-
-@media (max-width: 650px) {
-
-  .historial-cliente {
-    padding: 20px 15px;
-    border-radius: 20px;
-  }
-
-
-  .historial-header {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-
   .movimiento-card {
-    grid-template-columns: 48px 1fr;
-    gap: 12px;
-    padding: 15px;
-  }
+    grid-template-columns: 45px 1fr;
 
-
-  .movimiento-icono {
-    width: 45px;
-    height: 45px;
-    font-size: 22px;
+    padding: 14px;
   }
 
 
   .movimiento-datos {
     grid-column: 2;
-    align-items: flex-start;
-    padding-top: 3px;
-  }
-
-}
-
-/* ==========================================================
-   HISTORIAL DE MOVIMIENTOS - ADMINISTRACIÓN
-   ========================================================== */
-
-.historial-admin {
-  width: 100%;
-  max-width: 900px;
-  margin: 35px auto 0;
-  padding: 30px;
-  background: #ffffff;
-  border: 1px solid #f0d5df;
-  border-radius: 24px;
-  box-shadow: 0 12px 35px rgba(89, 35, 50, 0.08);
-  text-align: left;
-}
-
-.historial-titulo {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 25px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid #f0d5df;
-}
-
-.historial-titulo > span {
-  width: 50px;
-  height: 50px;
-  display: grid;
-  place-items: center;
-  border-radius: 15px;
-  background: #fff1f5;
-  font-size: 25px;
-}
-
-.historial-titulo h3 {
-  margin: 0;
-  color: var(--pink);
-  font-family: "Montserrat", Arial, sans-serif;
-  font-size: 22px;
-}
-
-.historial-titulo p {
-  margin: 5px 0 0;
-  color: #806d74;
-  font-size: 14px;
-}
-
-.lista-historial-admin {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.historial-item {
-  display: grid;
-  grid-template-columns: 80px 1fr auto;
-  align-items: center;
-  gap: 18px;
-  padding: 18px;
-  background: #fffafa;
-  border: 1px solid #f1dce3;
-  border-radius: 18px;
-  transition: 0.2s;
-}
-
-.historial-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(89, 35, 50, 0.08);
-}
-
-.historial-icono {
-  width: 58px;
-  height: 58px;
-  display: grid;
-  place-items: center;
-  border-radius: 16px;
-  background: #fff1f5;
-  font-size: 27px;
-}
-
-.historial-info strong {
-  display: block;
-  margin-bottom: 5px;
-  color: #30272b;
-  font-size: 17px;
-}
-
-.historial-info span {
-  display: block;
-  color: #806d74;
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.historial-monto {
-  text-align: right;
-}
-
-.historial-monto strong {
-  display: block;
-  color: var(--pink);
-  font-size: 18px;
-}
-
-.historial-monto span {
-  display: block;
-  margin-top: 5px;
-  color: #b17b1e;
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.historial-vacio {
-  margin: 0;
-  padding: 25px;
-  color: #806d74;
-  background: #fffafa;
-  border: 1px dashed #e6c5d1;
-  border-radius: 15px;
-  text-align: center;
-}
-
-.historial-cargando {
-  padding: 25px;
-  color: var(--pink);
-  text-align: center;
-  font-weight: 700;
-}
-
-/* CELULAR */
-
-@media (max-width: 650px) {
-
-  .historial-admin {
-    padding: 20px;
-    margin-top: 25px;
-  }
-
-  .historial-item {
-    grid-template-columns: 55px 1fr;
-    gap: 12px;
-  }
-
-  .historial-icono {
-    width: 50px;
-    height: 50px;
-    font-size: 23px;
-  }
-
-  .historial-monto {
-    grid-column: 2;
-    text-align: left;
-    padding-top: 5px;
-    border-top: 1px solid #f0d5df;
-  }
-
-}
-
-/* =====================================================
-   BOTONES DEL ENCABEZADO
-   ===================================================== */
-
-.header-buttons {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-
-/* BOTÓN ADMINISTRACIÓN */
-
-.admin-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 12px 18px;
-
-  border-radius: 25px;
-
-  background: #fff;
-  color: var(--pink);
-
-  border: 1px solid var(--pink);
-
-  text-decoration: none;
-
-  font-family: "DM Sans", Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-
-  transition: all 0.25s ease;
-}
-
-
-.admin-button:hover {
-  background: var(--pink);
-  color: white;
-  transform: translateY(-2px);
-}
-
-/* =====================================================
-   ENCABEZADO RESPONSIVE PARA CELULAR
-   Logo → Administración → Menú
-   ===================================================== */
-
-@media (max-width: 768px) {
-
-  .site-header {
-    width: 100%;
-    box-sizing: border-box;
-
-    display: flex;
-    align-items: center;
-
-    padding: 12px 14px;
-
-    gap: 8px;
-  }
-
-
-  /* =========================
-     LOGO
-     ========================= */
-
-  .site-header .brand {
-    flex: 1 1 auto;
-    min-width: 0;
-
-    display: flex;
-    align-items: center;
-  }
-
-  .site-header .brand img {
-    display: block;
-
-    width: 100%;
-    max-width: 145px;
-    height: auto;
-  }
-
-
-  /* =========================
-     BOTÓN ADMINISTRACIÓN
-     ========================= */
-
-  .header-buttons {
-    order: 2;
-
-    flex: 0 0 auto;
-
-    display: flex;
-    align-items: center;
-
-    margin: 0;
-  }
-
-  .header-buttons .contact-button {
-    display: none;
-  }
-
-  .header-buttons .admin-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: auto;
-
-    min-height: 42px;
-
-    padding: 8px 12px;
-
-    border-radius: 24px;
-
-    font-size: 12px;
-
-    white-space: nowrap;
-
-    box-sizing: border-box;
-  }
-
-
-  /* =========================
-     TRES RAYAS
-     ========================= */
-
-  .menu-toggle {
-    order: 3;
-
-    flex: 0 0 42px;
-
-    width: 42px;
-    height: 42px;
-
-    margin: 0;
-
-    padding: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-}
-
-
-/* =====================================================
-   CELULARES PEQUEÑOS
-   ===================================================== */
-
-@media (max-width: 430px) {
-
-  .site-header {
-    padding: 10px 10px;
-    gap: 6px;
-  }
-
-
-  .site-header .brand img {
-    max-width: 125px;
-  }
-
-
-  .header-buttons .admin-button {
-    min-height: 40px;
-
-    padding: 7px 9px;
-
-    font-size: 11px;
-  }
-
-
-  .menu-toggle {
-    flex-basis: 40px;
-
-    width: 40px;
-    height: 40px;
   }
 
 }
@@ -2166,129 +2417,37 @@ footer {
 @media (max-width: 360px) {
 
   .site-header {
-    padding: 8px;
-    gap: 5px;
+    padding: 7px;
+
+    gap: 4px;
   }
 
 
   .site-header .brand img {
-    max-width: 105px;
+    max-width: 100px;
   }
 
 
   .header-buttons .admin-button {
-    min-height: 38px;
+    min-height: 36px;
 
-    padding: 6px 8px;
+    padding: 5px 7px;
 
-    font-size: 10px;
+    font-size: 9px;
   }
 
 
   .menu-toggle {
-    flex-basis: 38px;
+    flex-basis: 38px !important;
 
-    width: 38px;
-    height: 38px;
-  }
+    width: 38px !important;
 
-}
-/* =====================================================
-   MENÚ MÓVIL - MENÚ VERTICAL
-   ===================================================== */
-
-@media (max-width: 768px) {
-
-  .main-nav {
-    position: absolute;
-
-    top: 100%;
-    right: 12px;
-
-    width: 210px;
-
-    display: none;
-
-    flex-direction: column;
-
-    align-items: stretch;
-
-    padding: 10px;
-
-    background: #ffffff;
-
-    border: 1px solid var(--line);
-
-    border-radius: 18px;
-
-    box-shadow: 0 12px 30px rgba(89, 35, 50, 0.15);
-
-    z-index: 9999;
+    height: 38px !important;
   }
 
 
-  /* Cuando el menú está abierto */
-
-  .main-nav.menu-abierto {
-    display: flex;
-  }
-
-
-  /* Opciones */
-
-  .main-nav a {
-    display: flex;
-
-    align-items: center;
-
-    width: 100%;
-
-    box-sizing: border-box;
-
-    padding: 13px 15px;
-
-    color: var(--ink);
-
-    text-decoration: none;
-
-    font-family: "DM Sans", Arial, sans-serif;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    border-radius: 12px;
-
-    transition: 0.2s ease;
-  }
-
-
-  .main-nav a:hover {
-    background: #fff1f5;
-
-    color: var(--pink);
-  }
-
-
-  /* WhatsApp */
-
-  .main-nav .mobile-contact {
-    margin-top: 5px;
-
-    justify-content: center;
-
-    background: var(--pink);
-
-    color: white;
-
-    text-align: center;
-  }
-
-
-  .main-nav .mobile-contact:hover {
-    background: var(--pink-dark);
-
-    color: white;
+  .menu-toggle span {
+    width: 25px !important;
   }
 
 }
