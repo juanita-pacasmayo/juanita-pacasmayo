@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Acceso administrativo | Juanita Pacasmayo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+
+<body class="login-page">
+
+
+  <main class="login-container">
+
+
+    <div class="login-card">
+
+
+      <img
+        src="images/Logo.png"
+        alt="Juanita Pacasmayo"
+        class="login-logo"
+      >
+
+
+      <p class="section-kicker">
+        ADMINISTRACIÓN
+      </p>
+
+
+      <h1>
+        Acceso administrativo
+      </h1>
+
+
+      <p class="login-description">
+        Ingresa tus datos para acceder al panel de administración.
+      </p>
+
+
+      <form id="loginForm">
+
+
+        <div class="login-field">
+
+          <label for="usuario">
+            Usuario
+          </label>
+
+          <input
+            type="text"
+            id="usuario"
+            placeholder="Ingresa tu usuario"
+            autocomplete="username"
+            required
+          >
+
+        </div>
+
+
+        <div class="login-field">
+
+          <label for="contrasena">
+            Contraseña
+          </label>
+
+          <input
+            type="password"
+            id="contrasena"
+            placeholder="Ingresa tu contraseña"
+            autocomplete="current-password"
+            required
+          >
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="button primary login-button"
+        >
+          🔐 Ingresar
+        </button>
+
+
+        <div
+          id="mensajeLogin"
+          class="mensaje-registro"
+        ></div>
+
+
+      </form>
+
+
+      <a
+        href="index.html"
+        class="volver-inicio"
+      >
+        ← Volver a la página principal
+      </a>
+
+
+    </div>
+
+  </main>
+
+
+  <script src="login.js"></script>
+
+</body>
+
+</html>
