@@ -501,3 +501,44 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 });
+
+/* =====================================================
+   MENÚ MÓVIL
+   ===================================================== */
+
+const menuToggle = document.querySelector(".menu-toggle");
+const mainNav = document.querySelector(".main-nav");
+
+if (menuToggle && mainNav) {
+
+  menuToggle.addEventListener("click", function () {
+
+    const abierto =
+      mainNav.classList.toggle("menu-abierto");
+
+    menuToggle.setAttribute(
+      "aria-expanded",
+      abierto ? "true" : "false"
+    );
+
+  });
+
+
+  /* Cerrar menú al seleccionar una opción */
+
+  mainNav.querySelectorAll("a").forEach(function (enlace) {
+
+    enlace.addEventListener("click", function () {
+
+      mainNav.classList.remove("menu-abierto");
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+    });
+
+  });
+
+}
