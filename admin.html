@@ -12,11 +12,15 @@
 
   <title>Administración | Juanita Pacasmayo</title>
 
+
   <!-- =====================================================
        GOOGLE FONTS
        ===================================================== -->
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
 
   <link
     rel="preconnect"
@@ -29,11 +33,15 @@
     rel="stylesheet"
   >
 
+
   <!-- =====================================================
-       CSS PRINCIPAL
+       CSS
        ===================================================== -->
 
-  <link rel="stylesheet" href="styles.css">
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  >
 
 </head>
 
@@ -47,8 +55,6 @@
 
   <header class="site-header">
 
-    <!-- LOGO -->
-
     <a
       href="index.html"
       class="brand"
@@ -61,8 +67,6 @@
 
     </a>
 
-
-    <!-- MENÚ -->
 
     <nav class="main-nav">
 
@@ -85,8 +89,6 @@
     </nav>
 
 
-    <!-- BOTÓN VOLVER -->
-
     <a
       href="index.html"
       class="contact-button"
@@ -99,15 +101,10 @@
 
 
   <!-- =====================================================
-       CONTENIDO PRINCIPAL
+       CONTENIDO
        ===================================================== -->
 
   <main>
-
-
-    <!-- ===================================================
-         SECCIÓN ADMINISTRACIÓN
-         =================================================== -->
 
     <section class="admin-section">
 
@@ -162,7 +159,8 @@
               </h3>
 
               <p>
-                Crea un nuevo cliente en el sistema de puntos.
+                Registra al cliente y genera automáticamente
+                su código.
               </p>
 
             </div>
@@ -171,7 +169,9 @@
 
 
 
-          <!-- NOMBRE -->
+          <!-- =================================================
+               NOMBRE
+               ================================================= -->
 
           <div class="form-group">
 
@@ -183,7 +183,7 @@
             <input
               type="text"
               id="nombreCliente"
-              placeholder="Ejemplo: María López"
+              placeholder="Ejemplo: María José López"
               autocomplete="name"
             >
 
@@ -191,12 +191,14 @@
 
 
 
-          <!-- TELÉFONO -->
+          <!-- =================================================
+               TELÉFONO
+               ================================================= -->
 
           <div class="form-group">
 
             <label for="telefonoCliente">
-              Teléfono
+              Teléfono celular
             </label>
 
 
@@ -205,13 +207,23 @@
               id="telefonoCliente"
               placeholder="Ejemplo: 960684125"
               autocomplete="tel"
+              inputmode="numeric"
             >
+
+            <small class="campo-ayuda">
+
+              Este número se utilizará para enviar
+              los datos del cliente por WhatsApp.
+
+            </small>
 
           </div>
 
 
 
-          <!-- PIN -->
+          <!-- =================================================
+               PIN
+               ================================================= -->
 
           <div class="form-group">
 
@@ -223,16 +235,16 @@
             <input
               type="password"
               id="pinCliente"
-              placeholder="Ingresa un PIN"
+              placeholder="Ejemplo: 1234"
               inputmode="numeric"
               autocomplete="off"
+              maxlength="10"
             >
-
 
             <small class="campo-ayuda">
 
-              El PIN será utilizado para identificar
-              al cliente cuando corresponda.
+              El PIN será enviado junto con el código
+              al celular del cliente.
 
             </small>
 
@@ -240,7 +252,36 @@
 
 
 
-          <!-- BOTÓN -->
+          <!-- =================================================
+               ESTADO
+               ================================================= -->
+
+          <div class="form-group">
+
+            <label for="estadoCliente">
+              Estado
+            </label>
+
+
+            <select id="estadoCliente">
+
+              <option value="Activo">
+                Activo
+              </option>
+
+              <option value="Inactivo">
+                Inactivo
+              </option>
+
+            </select>
+
+          </div>
+
+
+
+          <!-- =================================================
+               BOTÓN REGISTRAR CLIENTE
+               ================================================= -->
 
           <button
             type="button"
@@ -254,7 +295,9 @@
 
 
 
-          <!-- MENSAJE -->
+          <!-- =================================================
+               MENSAJE
+               ================================================= -->
 
           <div
             id="mensajeCliente"
@@ -263,12 +306,14 @@
 
 
 
-          <!-- RESULTADO -->
+          <!-- =================================================
+               RESULTADO
+               ================================================= -->
 
           <div
             id="resultadoCliente"
             class="resultado-registro"
-            style="display: none;"
+            style="display:none;"
           >
 
             <div class="resultado-icono">
@@ -281,9 +326,28 @@
             </h3>
 
 
-            <p id="detalleCliente">
-              -
-            </p>
+            <div
+              id="detalleCliente"
+              class="detalle-cliente"
+            ></div>
+
+
+            <!-- =================================================
+                 BOTÓN WHATSAPP
+                 ================================================= -->
+
+            <a
+              id="btnWhatsAppCliente"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="button whatsapp-button"
+              style="display:none;"
+            >
+
+              📱 Enviar datos por WhatsApp
+
+            </a>
 
           </div>
 
@@ -301,7 +365,7 @@
 
 
         <!-- =================================================
-             REGISTRAR COMPRA / SERVICIO
+             REGISTRAR MOVIMIENTO
              ================================================= -->
 
         <div class="admin-form">
@@ -336,7 +400,7 @@
 
 
           <!-- =================================================
-               CÓDIGO DEL CLIENTE
+               CÓDIGO
                ================================================= -->
 
           <div class="form-group">
@@ -351,7 +415,7 @@
               <input
                 type="text"
                 id="codigoRegistro"
-                placeholder="Ejemplo: JP0001"
+                placeholder="Ejemplo: MARIAJOSE001"
                 autocomplete="off"
               >
 
@@ -373,13 +437,13 @@
 
 
           <!-- =================================================
-               INFORMACIÓN DEL CLIENTE
+               CLIENTE
                ================================================= -->
 
           <div
             id="clienteRegistro"
             class="cliente-registro"
-            style="display: none;"
+            style="display:none;"
           >
 
             <div class="cliente-icono">
@@ -535,7 +599,7 @@
 
 
           <!-- =================================================
-               BOTÓN REGISTRAR
+               REGISTRAR MOVIMIENTO
                ================================================= -->
 
           <button
@@ -562,13 +626,13 @@
 
 
           <!-- =================================================
-               RESULTADO
+               RESULTADO MOVIMIENTO
                ================================================= -->
 
           <div
             id="resultadoRegistro"
             class="resultado-registro"
-            style="display: none;"
+            style="display:none;"
           >
 
             <div class="resultado-icono">
@@ -587,22 +651,21 @@
 
           </div>
 
+
         </div>
 
 
 
         <!-- =================================================
-             HISTORIAL DEL CLIENTE
+             HISTORIAL
              ================================================= -->
 
         <section
           id="historialRegistro"
           class="historial-admin"
-          style="display: none;"
+          style="display:none;"
         >
 
-
-          <!-- ENCABEZADO -->
 
           <div class="historial-titulo">
 
@@ -628,32 +691,17 @@
 
 
 
-          <!-- =================================================
-               LISTA DEL HISTORIAL
-               ================================================= -->
-
           <div
             id="historialBody"
             class="lista-historial-admin"
-          >
-
-            <!--
-              Los movimientos serán cargados
-              automáticamente desde Google Sheets.
-            -->
-
-          </div>
+          ></div>
 
 
-
-          <!-- =================================================
-               HISTORIAL VACÍO
-               ================================================= -->
 
           <div
             id="historialVacio"
             class="historial-vacio"
-            style="display: none;"
+            style="display:none;"
           >
 
             <div>
@@ -675,17 +723,11 @@
 
 
 
-          <!-- =================================================
-               CANTIDAD DE MOVIMIENTOS
-               ================================================= -->
-
           <div
             id="totalMovimientos"
             class="total-movimientos"
           >
-
             0 movimientos
-
           </div>
 
 
@@ -695,7 +737,6 @@
       </div>
 
     </section>
-
 
   </main>
 
