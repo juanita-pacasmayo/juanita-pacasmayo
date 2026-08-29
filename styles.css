@@ -3301,3 +3301,143 @@ footer {
   }
 
 }
+
+/* =====================================================
+   PRODUCTOS Y SERVICIOS PREMIUM
+   Agregar al FINAL del styles.css
+===================================================== */
+
+.section-title{
+  text-align:center;
+  max-width:720px;
+  margin:0 auto 45px;
+}
+
+.gold-decoration{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin:16px 0;
+  color:var(--gold);
+}
+
+.gold-decoration span{
+  width:55px;
+  height:1px;
+  background:var(--gold);
+}
+
+.beauty-grid{
+  max-width:1200px;
+  margin:40px auto 0;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+
+.beauty-card{
+  background:#fff;
+  border:1px solid #f2d8e2;
+  border-radius:26px;
+  padding:34px 28px;
+  text-align:center;
+  box-shadow:0 14px 35px rgba(89,35,50,.08);
+  transition:.30s ease;
+}
+
+.beauty-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 22px 45px rgba(89,35,50,.15);
+}
+
+.beauty-icon{
+  width:120px;
+  height:120px;
+  margin:0 auto 22px;
+  border-radius:50%;
+  background:linear-gradient(145deg,#fff5f8,#ffe8ef);
+  border:1px solid #f3d5df;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  box-shadow:inset 0 0 0 4px #fff;
+}
+
+.beauty-icon img{
+  width:72px;
+  height:72px;
+  object-fit:contain;
+}
+
+.beauty-icon span{
+  font-size:56px;
+}
+
+.beauty-card h3{
+  color:var(--pink);
+  margin:0;
+  font-size:24px;
+}
+
+.card-decoration{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  color:var(--gold);
+  margin:14px 0;
+}
+
+.card-decoration span{
+  width:36px;
+  height:1px;
+  background:var(--gold);
+}
+
+.beauty-card p{
+  color:#6b5960;
+  line-height:1.6;
+  margin-bottom:24px;
+}
+
+.card-button{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 22px;
+  border:1.5px solid var(--pink);
+  border-radius:30px;
+  color:var(--pink);
+  text-decoration:none;
+  font-weight:700;
+  transition:.25s;
+}
+
+.card-button:hover{
+  background:var(--pink);
+  color:#fff;
+}
+
+.services{
+  background:#fff2f6;
+}
+
+@media (max-width:900px){
+
+  .beauty-grid{
+    grid-template-columns:1fr;
+    max-width:550px;
+  }
+
+  .beauty-icon{
+    width:105px;
+    height:105px;
+  }
+
+  .beauty-icon img{
+    width:64px;
+    height:64px;
+  }
+}
