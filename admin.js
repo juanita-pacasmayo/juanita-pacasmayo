@@ -14,96 +14,148 @@ const URL_APPS_SCRIPT =
 
 
 // ==========================================================
-// ELEMENTOS - REGISTRAR MOVIMIENTO
+// ELEMENTOS - MOVIMIENTOS
 // ==========================================================
 
 const codigoRegistro =
-  document.getElementById("codigoRegistro");
+  document.getElementById(
+    "codigoRegistro"
+  );
 
 const btnBuscarCliente =
-  document.getElementById("btnBuscarCliente");
+  document.getElementById(
+    "btnBuscarCliente"
+  );
 
 const clienteRegistro =
-  document.getElementById("clienteRegistro");
+  document.getElementById(
+    "clienteRegistro"
+  );
 
 const nombreRegistro =
-  document.getElementById("nombreRegistro");
+  document.getElementById(
+    "nombreRegistro"
+  );
 
 const puntosRegistro =
-  document.getElementById("puntosRegistro");
+  document.getElementById(
+    "puntosRegistro"
+  );
 
 const tipoRegistro =
-  document.getElementById("tipoRegistro");
+  document.getElementById(
+    "tipoRegistro"
+  );
 
 const conceptoRegistro =
-  document.getElementById("conceptoRegistro");
+  document.getElementById(
+    "conceptoRegistro"
+  );
 
 const montoRegistro =
-  document.getElementById("montoRegistro");
+  document.getElementById(
+    "montoRegistro"
+  );
 
 const observacionRegistro =
-  document.getElementById("observacionRegistro");
+  document.getElementById(
+    "observacionRegistro"
+  );
 
 const btnRegistrarMovimiento =
-  document.getElementById("btnRegistrarMovimiento");
+  document.getElementById(
+    "btnRegistrarMovimiento"
+  );
 
 const mensajeRegistro =
-  document.getElementById("mensajeRegistro");
+  document.getElementById(
+    "mensajeRegistro"
+  );
 
 const resultadoRegistro =
-  document.getElementById("resultadoRegistro");
+  document.getElementById(
+    "resultadoRegistro"
+  );
 
 const detalleRegistro =
-  document.getElementById("detalleRegistro");
+  document.getElementById(
+    "detalleRegistro"
+  );
 
 
 // ==========================================================
-// ELEMENTOS - REGISTRAR CLIENTE
+// ELEMENTOS - CLIENTE
 // ==========================================================
-
-const formularioCliente =
-  document.getElementById("formularioCliente");
-
-const btnRegistrarCliente =
-  document.getElementById("btnRegistrarCliente");
 
 const nombreCliente =
-  document.getElementById("nombreCliente");
+  document.getElementById(
+    "nombreCliente"
+  );
 
 const telefonoCliente =
-  document.getElementById("telefonoCliente");
+  document.getElementById(
+    "telefonoCliente"
+  );
 
 const pinCliente =
-  document.getElementById("pinCliente");
+  document.getElementById(
+    "pinCliente"
+  );
 
 const estadoCliente =
-  document.getElementById("estadoCliente");
+  document.getElementById(
+    "estadoCliente"
+  );
+
+const btnRegistrarCliente =
+  document.getElementById(
+    "btnRegistrarCliente"
+  );
 
 const mensajeCliente =
-  document.getElementById("mensajeCliente");
+  document.getElementById(
+    "mensajeCliente"
+  );
 
 const resultadoCliente =
-  document.getElementById("resultadoCliente");
+  document.getElementById(
+    "resultadoCliente"
+  );
+
+const detalleCliente =
+  document.getElementById(
+    "detalleCliente"
+  );
+
+const btnWhatsAppCliente =
+  document.getElementById(
+    "btnWhatsAppCliente"
+  );
 
 
 // ==========================================================
 // ELEMENTOS - HISTORIAL
 // ==========================================================
 
-const historialClienteHTML =
-  document.getElementById("historialCliente");
-
 const historialRegistro =
-  document.getElementById("historialRegistro");
+  document.getElementById(
+    "historialRegistro"
+  );
 
 const historialBody =
-  document.getElementById("historialBody");
+  document.getElementById(
+    "historialBody"
+  );
 
 const historialVacio =
-  document.getElementById("historialVacio");
+  document.getElementById(
+    "historialVacio"
+  );
 
 const totalMovimientos =
-  document.getElementById("totalMovimientos");
+  document.getElementById(
+    "totalMovimientos"
+  );
 
 
 // ==========================================================
@@ -119,11 +171,14 @@ function mostrarMensaje(
     return;
   }
 
+
   mensajeRegistro.textContent =
     mensaje;
 
+
   mensajeRegistro.className =
-    "mensaje-registro " + tipo;
+    "mensaje-registro " +
+    tipo;
 
 }
 
@@ -141,17 +196,20 @@ function mostrarMensajeCliente(
     return;
   }
 
+
   mensajeCliente.textContent =
     mensaje;
 
+
   mensajeCliente.className =
-    "mensaje-registro " + tipo;
+    "mensaje-registro " +
+    tipo;
 
 }
 
 
 // ==========================================================
-// LEER RESPUESTA JSON
+// LEER JSON
 // ==========================================================
 
 async function leerRespuestaJSON(
@@ -161,17 +219,17 @@ async function leerRespuestaJSON(
   const texto =
     await respuesta.text();
 
+
   console.log(
     "Respuesta del servidor:",
     texto
   );
 
 
-  // --------------------------------------------------------
-  // Comprobar respuesta vacía
-  // --------------------------------------------------------
-
-  if (!texto || !texto.trim()) {
+  if (
+    !texto ||
+    !texto.trim()
+  ) {
 
     throw new Error(
       "El servidor no devolvió ninguna respuesta."
@@ -180,29 +238,16 @@ async function leerRespuestaJSON(
   }
 
 
-  // --------------------------------------------------------
-  // Comprobar HTML
-  // --------------------------------------------------------
-
   if (
     texto.trim().startsWith("<")
   ) {
 
-    console.error(
-      "Apps Script devolvió HTML:",
-      texto
-    );
-
     throw new Error(
-      "Apps Script devolvió HTML en lugar de JSON. Verifica que estés usando la URL /exec de la implementación activa."
+      "Apps Script devolvió HTML en lugar de JSON. Verifica la URL /exec de la Web App."
     );
 
   }
 
-
-  // --------------------------------------------------------
-  // Convertir JSON
-  // --------------------------------------------------------
 
   try {
 
@@ -217,6 +262,7 @@ async function leerRespuestaJSON(
       texto
     );
 
+
     throw new Error(
       "La respuesta de Apps Script no es un JSON válido."
     );
@@ -227,7 +273,7 @@ async function leerRespuestaJSON(
 
 
 // ==========================================================
-// CREAR URL DE CONSULTA
+// CREAR URL
 // ==========================================================
 
 function crearURL(
@@ -284,7 +330,7 @@ function escaparHTML(
 
 
 // ==========================================================
-// FORMATEAR DINERO
+// FORMATEAR MONTO
 // ==========================================================
 
 function formatearMonto(
@@ -302,37 +348,13 @@ function formatearMonto(
 
 
 // ==========================================================
-// FORMATEAR PUNTOS
-// ==========================================================
-
-function formatearPuntos(
-  puntos
-) {
-
-  return (
-    Number(
-      puntos || 0
-    ).toLocaleString("es-PE") +
-    " puntos"
-  );
-
-}
-
-
-// ==========================================================
 // BUSCAR CLIENTE
 // ==========================================================
 
 async function buscarCliente() {
 
   if (!codigoRegistro) {
-
-    console.warn(
-      "No existe #codigoRegistro"
-    );
-
     return;
-
   }
 
 
@@ -341,10 +363,6 @@ async function buscarCliente() {
       .trim()
       .toUpperCase();
 
-
-  // --------------------------------------------------------
-  // Validar código
-  // --------------------------------------------------------
 
   if (!codigo) {
 
@@ -359,10 +377,6 @@ async function buscarCliente() {
 
   }
 
-
-  // --------------------------------------------------------
-  // Estado
-  // --------------------------------------------------------
 
   mostrarMensaje(
     "🔎 Buscando cliente...",
@@ -391,10 +405,12 @@ async function buscarCliente() {
     const parametros =
       new URLSearchParams();
 
+
     parametros.append(
       "accion",
       "consultarPuntos"
     );
+
 
     parametros.append(
       "codigo",
@@ -402,21 +418,11 @@ async function buscarCliente() {
     );
 
 
-    const url =
-      crearURL(
-        parametros
-      );
-
-
-    console.log(
-      "Consultando cliente:",
-      url
-    );
-
-
     const respuesta =
       await fetch(
-        url,
+        crearURL(
+          parametros
+        ),
         {
           method: "GET",
           cache: "no-cache"
@@ -430,16 +436,6 @@ async function buscarCliente() {
       );
 
 
-    console.log(
-      "Cliente recibido:",
-      datos
-    );
-
-
-    // ------------------------------------------------------
-    // Error
-    // ------------------------------------------------------
-
     if (!datos.correcto) {
 
       throw new Error(
@@ -450,15 +446,10 @@ async function buscarCliente() {
     }
 
 
-    // ------------------------------------------------------
-    // Mostrar cliente
-    // ------------------------------------------------------
-
     if (nombreRegistro) {
 
       nombreRegistro.textContent =
-        datos.cliente ||
-        "Cliente";
+        datos.cliente;
 
     }
 
@@ -494,10 +485,6 @@ async function buscarCliente() {
     );
 
 
-    // ------------------------------------------------------
-    // Cargar historial
-    // ------------------------------------------------------
-
     await cargarHistorial(
       datos.codigoCliente ||
       codigo
@@ -507,7 +494,6 @@ async function buscarCliente() {
   } catch (error) {
 
     console.error(
-      "Error buscando cliente:",
       error
     );
 
@@ -532,20 +518,17 @@ async function buscarCliente() {
 
 
 // ==========================================================
-// REGISTRAR COMPRA / SERVICIO
+// REGISTRAR MOVIMIENTO
 // ==========================================================
 
 async function registrarMovimiento() {
 
-  if (!codigoRegistro) {
-    return;
-  }
-
-
   const codigo =
-    codigoRegistro.value
-      .trim()
-      .toUpperCase();
+    codigoRegistro
+      ? codigoRegistro.value
+          .trim()
+          .toUpperCase()
+      : "";
 
 
   const tipo =
@@ -574,10 +557,6 @@ async function registrarMovimiento() {
       : "";
 
 
-  // --------------------------------------------------------
-  // Validar código
-  // --------------------------------------------------------
-
   if (!codigo) {
 
     mostrarMensaje(
@@ -585,16 +564,10 @@ async function registrarMovimiento() {
       "error"
     );
 
-    codigoRegistro.focus();
-
     return;
 
   }
 
-
-  // --------------------------------------------------------
-  // Validar monto
-  // --------------------------------------------------------
 
   if (
     isNaN(monto) ||
@@ -606,18 +579,10 @@ async function registrarMovimiento() {
       "error"
     );
 
-    if (montoRegistro) {
-      montoRegistro.focus();
-    }
-
     return;
 
   }
 
-
-  // --------------------------------------------------------
-  // Estado
-  // --------------------------------------------------------
 
   mostrarMensaje(
     "⏳ Registrando movimiento...",
@@ -644,25 +609,30 @@ async function registrarMovimiento() {
       "registrarMovimiento"
     );
 
+
     parametros.append(
       "codigo",
       codigo
     );
+
 
     parametros.append(
       "tipo",
       tipo
     );
 
+
     parametros.append(
       "concepto",
       concepto
     );
 
+
     parametros.append(
       "monto",
       monto
     );
+
 
     parametros.append(
       "observacion",
@@ -670,21 +640,11 @@ async function registrarMovimiento() {
     );
 
 
-    const url =
-      crearURL(
-        parametros
-      );
-
-
-    console.log(
-      "Registrando movimiento:",
-      url
-    );
-
-
     const respuesta =
       await fetch(
-        url,
+        crearURL(
+          parametros
+        ),
         {
           method: "GET",
           cache: "no-cache"
@@ -698,16 +658,6 @@ async function registrarMovimiento() {
       );
 
 
-    console.log(
-      "Respuesta registrar:",
-      datos
-    );
-
-
-    // ------------------------------------------------------
-    // Comprobar
-    // ------------------------------------------------------
-
     if (!datos.correcto) {
 
       throw new Error(
@@ -717,10 +667,6 @@ async function registrarMovimiento() {
 
     }
 
-
-    // ------------------------------------------------------
-    // Mostrar resultado
-    // ------------------------------------------------------
 
     if (resultadoRegistro) {
 
@@ -780,10 +726,6 @@ async function registrarMovimiento() {
     );
 
 
-    // ------------------------------------------------------
-    // Actualizar información cliente
-    // ------------------------------------------------------
-
     if (nombreRegistro) {
 
       nombreRegistro.textContent =
@@ -812,10 +754,6 @@ async function registrarMovimiento() {
     }
 
 
-    // ------------------------------------------------------
-    // Limpiar campos
-    // ------------------------------------------------------
-
     if (montoRegistro) {
 
       montoRegistro.value =
@@ -832,28 +770,14 @@ async function registrarMovimiento() {
     }
 
 
-    // ------------------------------------------------------
-    // Actualizar historial
-    // ------------------------------------------------------
-
     await cargarHistorial(
       datos.codigoCliente
     );
 
 
-    // ------------------------------------------------------
-    // Ir al historial
-    // ------------------------------------------------------
+    if (historialRegistro) {
 
-    const historial =
-      document.getElementById(
-        "historialCliente"
-      );
-
-
-    if (historial) {
-
-      historial.scrollIntoView({
+      historialRegistro.scrollIntoView({
         behavior: "smooth",
         block: "start"
       });
@@ -864,7 +788,6 @@ async function registrarMovimiento() {
   } catch (error) {
 
     console.error(
-      "Error registrando movimiento:",
       error
     );
 
@@ -891,531 +814,15 @@ async function registrarMovimiento() {
 
 
 // ==========================================================
-// CARGAR HISTORIAL
-// ==========================================================
-
-async function cargarHistorial(
-  codigo
-) {
-
-  if (!codigo) {
-    return;
-  }
-
-
-  const contenedor =
-    obtenerContenedorHistorial();
-
-
-  if (!contenedor) {
-    return;
-  }
-
-
-  // --------------------------------------------------------
-  // Estado de carga
-  // --------------------------------------------------------
-
-  contenedor.innerHTML =
-
-    "<div class='historial-cargando'>" +
-
-      "<div class='historial-spinner'>⏳</div>" +
-
-      "<strong>Consultando historial...</strong>" +
-
-      "<p>Estamos buscando las compras y servicios del cliente.</p>" +
-
-    "</div>";
-
-
-  try {
-
-    const parametros =
-      new URLSearchParams();
-
-
-    parametros.append(
-      "accion",
-      "historialCliente"
-    );
-
-
-    parametros.append(
-      "codigo",
-      codigo
-    );
-
-
-    const url =
-      crearURL(
-        parametros
-      );
-
-
-    console.log(
-      "Consultando historial:",
-      url
-    );
-
-
-    const respuesta =
-      await fetch(
-        url,
-        {
-          method: "GET",
-          cache: "no-cache"
-        }
-      );
-
-
-    const datos =
-      await leerRespuestaJSON(
-        respuesta
-      );
-
-
-    console.log(
-      "Historial recibido:",
-      datos
-    );
-
-
-    if (!datos.correcto) {
-
-      throw new Error(
-        datos.mensaje ||
-        "No se pudo cargar el historial."
-      );
-
-    }
-
-
-    mostrarHistorial(
-      datos
-    );
-
-
-  } catch (error) {
-
-    console.error(
-      "Error cargando historial:",
-      error
-    );
-
-
-    contenedor.innerHTML =
-
-      "<div class='historial-vacio'>" +
-
-        "<div style='font-size:35px;'>⚠️</div>" +
-
-        "<strong>No se pudo cargar el historial</strong>" +
-
-        "<p>" +
-
-        escaparHTML(
-          error.message
-        ) +
-
-        "</p>" +
-
-      "</div>";
-
-  }
-
-}
-
-
-// ==========================================================
-// OBTENER CONTENEDOR HISTORIAL
-// ==========================================================
-
-function obtenerContenedorHistorial() {
-
-  let contenedor =
-    document.getElementById(
-      "historialCliente"
-    );
-
-
-  // --------------------------------------------------------
-  // Si existe
-  // --------------------------------------------------------
-
-  if (contenedor) {
-
-    return contenedor;
-
-  }
-
-
-  // --------------------------------------------------------
-  // Buscar otro contenedor existente
-  // --------------------------------------------------------
-
-  contenedor =
-    document.getElementById(
-      "historialRegistro"
-    );
-
-
-  if (contenedor) {
-
-    return contenedor;
-
-  }
-
-
-  // --------------------------------------------------------
-  // Crear uno nuevo
-  // --------------------------------------------------------
-
-  contenedor =
-    document.createElement(
-      "div"
-    );
-
-
-  contenedor.id =
-    "historialCliente";
-
-
-  contenedor.className =
-    "historial-cliente";
-
-
-  const formulario =
-    document.querySelector(
-      ".admin-form"
-    );
-
-
-  if (formulario) {
-
-    formulario.appendChild(
-      contenedor
-    );
-
-  } else {
-
-    document.body.appendChild(
-      contenedor
-    );
-
-  }
-
-
-  return contenedor;
-
-}
-
-
-// ==========================================================
-// MOSTRAR HISTORIAL
-// ==========================================================
-
-function mostrarHistorial(
-  datos
-) {
-
-  const contenedor =
-    obtenerContenedorHistorial();
-
-
-  if (!contenedor) {
-    return;
-  }
-
-
-  const historial =
-    Array.isArray(
-      datos.historial
-    )
-      ? datos.historial
-      : [];
-
-
-  // --------------------------------------------------------
-  // Encabezado
-  // --------------------------------------------------------
-
-  let html =
-
-    "<div class='historial-header'>" +
-
-      "<div>" +
-
-        "<p class='section-kicker'>" +
-        "MOVIMIENTOS" +
-        "</p>" +
-
-        "<h3>📋 Historial del cliente</h3>" +
-
-      "</div>" +
-
-      "<span class='total-movimientos'>" +
-
-        historial.length +
-
-        (
-          historial.length === 1
-            ? " movimiento"
-            : " movimientos"
-        ) +
-
-      "</span>" +
-
-    "</div>";
-
-
-  // --------------------------------------------------------
-  // Sin movimientos
-  // --------------------------------------------------------
-
-  if (
-    historial.length === 0
-  ) {
-
-    html +=
-
-      "<div class='historial-vacio'>" +
-
-        "<div class='historial-vacio-icono'>" +
-        "📋" +
-        "</div>" +
-
-        "<strong>Este cliente todavía no tiene movimientos.</strong>" +
-
-        "<p>" +
-        "Aquí aparecerán sus compras y servicios registrados." +
-        "</p>" +
-
-      "</div>";
-
-
-    contenedor.innerHTML =
-      html;
-
-
-    actualizarTotalMovimientos(
-      0
-    );
-
-
-    return;
-
-  }
-
-
-  // --------------------------------------------------------
-  // Lista
-  // --------------------------------------------------------
-
-  html +=
-    "<div class='historial-lista'>";
-
-
-  historial.forEach(
-    function(movimiento) {
-
-      const monto =
-        Number(
-          movimiento.monto || 0
-        );
-
-
-      const puntos =
-        Number(
-          movimiento.puntos || 0
-        );
-
-
-      const tipo =
-        movimiento.tipo ||
-        "Movimiento";
-
-
-      const concepto =
-        movimiento.concepto ||
-        "Sin concepto";
-
-
-      const fecha =
-        movimiento.fecha ||
-        "-";
-
-
-      const observacion =
-        movimiento.observacion ||
-        "";
-
-
-      html +=
-
-        "<div class='historial-item'>" +
-
-          "<div class='historial-fecha'>" +
-
-            "<strong>📅 " +
-
-              escaparHTML(
-                fecha
-              ) +
-
-            "</strong>" +
-
-            "<small>" +
-
-              escaparHTML(
-                tipo
-              ) +
-
-            "</small>" +
-
-          "</div>" +
-
-
-          "<div class='historial-concepto'>" +
-
-            "<strong>" +
-
-              escaparHTML(
-                concepto
-              ) +
-
-            "</strong>" +
-
-            (
-
-              observacion
-
-                ? "<small>" +
-
-                  escaparHTML(
-                    observacion
-                  ) +
-
-                  "</small>"
-
-                : ""
-
-            ) +
-
-          "</div>" +
-
-
-          "<div class='historial-monto'>" +
-
-            "<span>💰</span>" +
-
-            "<strong>" +
-
-              formatearMonto(
-                monto
-              ) +
-
-            "</strong>" +
-
-          "</div>" +
-
-
-          "<div class='historial-puntos'>" +
-
-            "<span>⭐</span>" +
-
-            "<strong>+" +
-
-              puntos +
-
-              " puntos" +
-
-            "</strong>" +
-
-          "</div>" +
-
-        "</div>";
-
-    }
-  );
-
-
-  html +=
-    "</div>";
-
-
-  contenedor.innerHTML =
-    html;
-
-
-  actualizarTotalMovimientos(
-    historial.length
-  );
-
-}
-
-
-// ==========================================================
-// ACTUALIZAR TOTAL DE MOVIMIENTOS
-// ==========================================================
-
-function actualizarTotalMovimientos(
-  cantidad
-) {
-
-  const elementos =
-    document.querySelectorAll(
-      ".total-movimientos"
-    );
-
-
-  elementos.forEach(
-    function(elemento) {
-
-      elemento.textContent =
-        cantidad +
-        (
-          cantidad === 1
-            ? " movimiento"
-            : " movimientos"
-        );
-
-    }
-  );
-
-}
-
-
-// ==========================================================
 // REGISTRAR CLIENTE
 // ==========================================================
 
 async function registrarCliente() {
 
-  // --------------------------------------------------------
-  // Verificar elementos
-  // --------------------------------------------------------
-
-  if (
-    !nombreCliente
-  ) {
-
-    console.error(
-      "No se encontró #nombreCliente en admin.html"
-    );
-
-    return;
-
-  }
-
-
-  // --------------------------------------------------------
-  // Obtener valores
-  // --------------------------------------------------------
-
   const nombre =
-    nombreCliente.value
-      .trim();
+    nombreCliente
+      ? nombreCliente.value.trim()
+      : "";
 
 
   const telefono =
@@ -1437,13 +844,13 @@ async function registrarCliente() {
 
 
   // --------------------------------------------------------
-  // Validar nombre
+  // VALIDACIONES
   // --------------------------------------------------------
 
   if (!nombre) {
 
     mostrarMensajeCliente(
-      "❌ Ingresa el nombre del cliente.",
+      "❌ Ingresa el nombre completo del cliente.",
       "error"
     );
 
@@ -1454,10 +861,6 @@ async function registrarCliente() {
   }
 
 
-  // --------------------------------------------------------
-  // Validar teléfono
-  // --------------------------------------------------------
-
   if (!telefono) {
 
     mostrarMensajeCliente(
@@ -1465,22 +868,51 @@ async function registrarCliente() {
       "error"
     );
 
-    if (telefonoCliente) {
-      telefonoCliente.focus();
-    }
+    telefonoCliente.focus();
 
     return;
 
   }
 
 
-  // --------------------------------------------------------
-  // Validar PIN
-  // --------------------------------------------------------
+  // Solo números
 
   if (
-    pin &&
-    !/^\d+$/.test(pin)
+    !/^\d+$/.test(
+      telefono
+    )
+  ) {
+
+    mostrarMensajeCliente(
+      "❌ El teléfono debe contener solamente números.",
+      "error"
+    );
+
+    telefonoCliente.focus();
+
+    return;
+
+  }
+
+
+  if (!pin) {
+
+    mostrarMensajeCliente(
+      "❌ Ingresa un PIN para el cliente.",
+      "error"
+    );
+
+    pinCliente.focus();
+
+    return;
+
+  }
+
+
+  if (
+    !/^\d+$/.test(
+      pin
+    )
   ) {
 
     mostrarMensajeCliente(
@@ -1488,9 +920,7 @@ async function registrarCliente() {
       "error"
     );
 
-    if (pinCliente) {
-      pinCliente.focus();
-    }
+    pinCliente.focus();
 
     return;
 
@@ -1498,7 +928,7 @@ async function registrarCliente() {
 
 
   // --------------------------------------------------------
-  // Estado
+  // ESTADO
   // --------------------------------------------------------
 
   mostrarMensajeCliente(
@@ -1516,10 +946,6 @@ async function registrarCliente() {
 
 
   try {
-
-    // ------------------------------------------------------
-    // Parámetros
-    // ------------------------------------------------------
 
     const parametros =
       new URLSearchParams();
@@ -1555,29 +981,11 @@ async function registrarCliente() {
     );
 
 
-    // ------------------------------------------------------
-    // URL
-    // ------------------------------------------------------
-
-    const url =
-      crearURL(
-        parametros
-      );
-
-
-    console.log(
-      "Registrando cliente:",
-      url
-    );
-
-
-    // ------------------------------------------------------
-    // Enviar
-    // ------------------------------------------------------
-
     const respuesta =
       await fetch(
-        url,
+        crearURL(
+          parametros
+        ),
         {
           method: "GET",
           cache: "no-cache"
@@ -1597,10 +1005,6 @@ async function registrarCliente() {
     );
 
 
-    // ------------------------------------------------------
-    // Comprobar respuesta
-    // ------------------------------------------------------
-
     if (!datos.correcto) {
 
       throw new Error(
@@ -1612,7 +1016,7 @@ async function registrarCliente() {
 
 
     // ======================================================
-    // CLIENTE REGISTRADO
+    // MOSTRAR ÉXITO
     // ======================================================
 
     mostrarMensajeCliente(
@@ -1621,92 +1025,122 @@ async function registrarCliente() {
     );
 
 
-    // ------------------------------------------------------
-    // Mostrar resultado
-    // ------------------------------------------------------
-
     if (resultadoCliente) {
 
       resultadoCliente.style.display =
         "block";
 
+    }
 
-      resultadoCliente.innerHTML =
 
-        "<div class='resultado-icono'>🎉</div>" +
+    if (detalleCliente) {
 
-        "<h3>Cliente registrado</h3>" +
+      detalleCliente.innerHTML =
 
-        "<p>" +
+        "<div class='cliente-exito-datos'>" +
 
-          "<strong>" +
+          "<p>" +
 
-            escaparHTML(
-              datos.cliente ||
-              nombre
-            ) +
+            "<span>👤 Cliente</span>" +
 
-          "</strong>" +
+            "<strong>" +
 
-          "<br>" +
+              escaparHTML(
+                datos.nombre ||
+                nombre
+              ) +
 
-          "Código del cliente: " +
+            "</strong>" +
 
-          "<strong>" +
+          "</p>" +
 
-            escaparHTML(
-              datos.codigoCliente ||
-              ""
-            ) +
+          "<p>" +
 
-          "</strong>" +
+            "<span>🆔 Código</span>" +
 
-          "<br>" +
+            "<strong class='codigo-generado'>" +
 
-          "⭐ Puntos iniciales: " +
+              escaparHTML(
+                datos.codigoCliente ||
+                ""
+              ) +
 
-          "<strong>" +
+            "</strong>" +
 
-            Number(
-              datos.puntos ||
-              0
-            ) +
+          "</p>" +
 
-          "</strong>" +
+          "<p>" +
 
-        "</p>";
+            "<span>🔐 PIN</span>" +
+
+            "<strong>" +
+
+              escaparHTML(
+                datos.pin ||
+                pin
+              ) +
+
+            "</strong>" +
+
+          "</p>" +
+
+          "<p>" +
+
+            "<span>⭐ Puntos iniciales</span>" +
+
+            "<strong>0</strong>" +
+
+          "</p>" +
+
+        "</div>";
 
     }
 
 
-    // ------------------------------------------------------
-    // Limpiar formulario
-    // ------------------------------------------------------
+    // ======================================================
+    // CREAR BOTÓN WHATSAPP
+    // ======================================================
 
-    nombreCliente.value =
-      "";
+    if (
+      btnWhatsAppCliente
+    ) {
+
+      const enlaceWhatsApp =
+        crearEnlaceWhatsApp(
+          datos.telefono ||
+          telefono,
+          datos.nombre ||
+          nombre,
+          datos.codigoCliente ||
+          "",
+          datos.pin ||
+          pin
+        );
 
 
-    if (telefonoCliente) {
+      if (
+        enlaceWhatsApp
+      ) {
 
-      telefonoCliente.value =
-        "";
+        btnWhatsAppCliente.href =
+          enlaceWhatsApp;
+
+        btnWhatsAppCliente.style.display =
+          "inline-flex";
+
+      } else {
+
+        btnWhatsAppCliente.style.display =
+          "none";
+
+      }
 
     }
 
 
-    if (pinCliente) {
-
-      pinCliente.value =
-        "";
-
-    }
-
-
-    // ------------------------------------------------------
-    // Si se recibió código, cargarlo en
-    // el formulario de movimientos
-    // ------------------------------------------------------
+    // ======================================================
+    // COLOCAR CÓDIGO EN REGISTRO DE MOVIMIENTOS
+    // ======================================================
 
     if (
       datos.codigoCliente &&
@@ -1717,13 +1151,10 @@ async function registrarCliente() {
         datos.codigoCliente;
 
 
-      // Mostrar automáticamente cliente
-      // sin necesidad de buscar nuevamente
-
       if (nombreRegistro) {
 
         nombreRegistro.textContent =
-          datos.cliente ||
+          datos.nombre ||
           nombre;
 
       }
@@ -1732,12 +1163,7 @@ async function registrarCliente() {
       if (puntosRegistro) {
 
         puntosRegistro.textContent =
-          "⭐ " +
-          Number(
-            datos.puntos ||
-            0
-          ) +
-          " puntos";
+          "⭐ 0 puntos";
 
       }
 
@@ -1753,6 +1179,34 @@ async function registrarCliente() {
       await cargarHistorial(
         datos.codigoCliente
       );
+
+    }
+
+
+    // ======================================================
+    // LIMPIAR FORMULARIO
+    // ======================================================
+
+    if (nombreCliente) {
+
+      nombreCliente.value =
+        "";
+
+    }
+
+
+    if (telefonoCliente) {
+
+      telefonoCliente.value =
+        "";
+
+    }
+
+
+    if (pinCliente) {
+
+      pinCliente.value =
+        "";
 
     }
 
@@ -1787,50 +1241,211 @@ async function registrarCliente() {
 
 
 // ==========================================================
-// LIMPIAR FORMULARIO CLIENTE
+// GENERAR ENLACE WHATSAPP
 // ==========================================================
 
-function limpiarFormularioCliente() {
+function crearEnlaceWhatsApp(
+  telefono,
+  nombre,
+  codigo,
+  pin
+) {
 
-  if (nombreCliente) {
-
-    nombreCliente.value =
-      "";
-
-  }
-
-
-  if (telefonoCliente) {
-
-    telefonoCliente.value =
-      "";
-
-  }
+  let numero =
+    String(
+      telefono || ""
+    )
+      .replace(
+        /\D/g,
+        ""
+      );
 
 
-  if (pinCliente) {
+  if (!numero) {
 
-    pinCliente.value =
-      "";
+    return "";
 
   }
 
 
-  if (mensajeCliente) {
+  // --------------------------------------------------------
+  // Perú
+  //
+  // 960684125
+  // ↓
+  // 51960684125
+  // --------------------------------------------------------
 
-    mensajeCliente.textContent =
-      "";
+  if (
+    numero.length === 9
+  ) {
 
-    mensajeCliente.className =
-      "mensaje-registro";
+    numero =
+      "51" +
+      numero;
 
   }
 
 
-  if (resultadoCliente) {
+  const mensaje =
 
-    resultadoCliente.style.display =
-      "none";
+    "Hola " +
+    nombre +
+    " 👋\n\n" +
+
+    "Bienvenido(a) al programa de puntos de Juanita Pacasmayo 💖\n\n" +
+
+    "Estos son tus datos:\n\n" +
+
+    "🆔 Código de cliente: " +
+    codigo +
+    "\n" +
+
+    "🔐 PIN: " +
+    pin +
+    "\n" +
+
+    "⭐ Puntos acumulados: 0\n\n" +
+
+    "Guarda tu código y PIN para consultar tus puntos y premios.\n\n" +
+
+    "¡Gracias por elegir Juanita Pacasmayo! 🌸";
+
+
+  return (
+    "https://wa.me/" +
+    numero +
+    "?text=" +
+    encodeURIComponent(
+      mensaje
+    )
+  );
+
+}
+
+
+// ==========================================================
+// CARGAR HISTORIAL
+// ==========================================================
+
+async function cargarHistorial(
+  codigo
+) {
+
+  if (
+    !codigo
+  ) {
+
+    return;
+
+  }
+
+
+  if (
+    !historialRegistro &&
+    !historialBody
+  ) {
+
+    return;
+
+  }
+
+
+  if (historialRegistro) {
+
+    historialRegistro.style.display =
+      "block";
+
+  }
+
+
+  if (historialBody) {
+
+    historialBody.innerHTML =
+
+      "<div class='historial-cargando'>" +
+
+        "⏳ Consultando historial..." +
+
+      "</div>";
+
+  }
+
+
+  try {
+
+    const parametros =
+      new URLSearchParams();
+
+
+    parametros.append(
+      "accion",
+      "historialCliente"
+    );
+
+
+    parametros.append(
+      "codigo",
+      codigo
+    );
+
+
+    const respuesta =
+      await fetch(
+        crearURL(
+          parametros
+        ),
+        {
+          method: "GET",
+          cache: "no-cache"
+        }
+      );
+
+
+    const datos =
+      await leerRespuestaJSON(
+        respuesta
+      );
+
+
+    if (!datos.correcto) {
+
+      throw new Error(
+        datos.mensaje ||
+        "No se pudo cargar el historial."
+      );
+
+    }
+
+
+    mostrarHistorial(
+      datos
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      "Error historial:",
+      error
+    );
+
+
+    if (historialBody) {
+
+      historialBody.innerHTML =
+
+        "<div class='historial-vacio'>" +
+
+          "⚠️ No se pudo cargar el historial.<br><br>" +
+
+          escaparHTML(
+            error.message
+          ) +
+
+        "</div>";
+
+    }
 
   }
 
@@ -1838,7 +1453,310 @@ function limpiarFormularioCliente() {
 
 
 // ==========================================================
-// BOTÓN BUSCAR CLIENTE
+// MOSTRAR HISTORIAL
+// ==========================================================
+
+function mostrarHistorial(
+  datos
+) {
+
+  if (!historialBody) {
+
+    return;
+
+  }
+
+
+  const historial =
+    Array.isArray(
+      datos.historial
+    )
+      ? datos.historial
+      : [];
+
+
+  actualizarTotalMovimientos(
+    historial.length
+  );
+
+
+  if (
+    historialVacio
+  ) {
+
+    historialVacio.style.display =
+      "none";
+
+  }
+
+
+  if (
+    historial.length === 0
+  ) {
+
+    historialBody.innerHTML =
+
+      "<div class='historial-vacio'>" +
+
+        "<div>" +
+          "📋" +
+        "</div>" +
+
+        "<strong>" +
+          "Este cliente todavía no tiene movimientos." +
+        "</strong>" +
+
+        "<p>" +
+          "Aquí aparecerán sus compras y servicios registrados." +
+        "</p>" +
+
+      "</div>";
+
+
+    return;
+
+  }
+
+
+  let html = "";
+
+
+  historial.forEach(
+    function(movimiento) {
+
+      const tipo =
+        movimiento.tipo ||
+        "Movimiento";
+
+
+      const concepto =
+        movimiento.concepto ||
+        "Sin concepto";
+
+
+      const fecha =
+        movimiento.fecha ||
+        "-";
+
+
+      const monto =
+        Number(
+          movimiento.monto || 0
+        );
+
+
+      const puntos =
+        Number(
+          movimiento.puntos || 0
+        );
+
+
+      const observacion =
+        movimiento.observacion ||
+        "";
+
+
+      let icono =
+        "🧾";
+
+
+      if (
+        String(
+          tipo
+        )
+          .toLowerCase()
+          .includes(
+            "servicio"
+          )
+      ) {
+
+        icono =
+          "✨";
+
+      }
+
+
+      if (
+        String(
+          concepto
+        )
+          .toLowerCase()
+          .includes(
+            "laceado"
+          )
+      ) {
+
+        icono =
+          "💇";
+
+      }
+
+      else if (
+        String(
+          concepto
+        )
+          .toLowerCase()
+          .includes(
+            "uñas"
+          )
+      ) {
+
+        icono =
+          "💅";
+
+      }
+
+      else if (
+        String(
+          concepto
+        )
+          .toLowerCase()
+          .includes(
+            "pestañas"
+          )
+      ) {
+
+        icono =
+          "👁️";
+
+      }
+
+      else if (
+        String(
+          concepto
+        )
+          .toLowerCase()
+          .includes(
+            "producto"
+          )
+      ) {
+
+        icono =
+          "🛍️";
+
+      }
+
+
+      html +=
+
+        "<div class='historial-item'>" +
+
+          "<div class='historial-icono'>" +
+
+            icono +
+
+          "</div>" +
+
+
+          "<div class='historial-info'>" +
+
+            "<strong>" +
+
+              escaparHTML(
+                concepto
+              ) +
+
+            "</strong>" +
+
+            "<span>" +
+
+              escaparHTML(
+                tipo
+              ) +
+
+            "</span>" +
+
+            "<small>" +
+
+              "📅 " +
+
+              escaparHTML(
+                fecha
+              ) +
+
+            "</small>" +
+
+            (
+
+              observacion
+
+                ? "<small>" +
+                    escaparHTML(
+                      observacion
+                    ) +
+                  "</small>"
+
+                : ""
+
+            ) +
+
+          "</div>" +
+
+
+          "<div class='historial-monto'>" +
+
+            "<strong>" +
+
+              formatearMonto(
+                monto
+              ) +
+
+            "</strong>" +
+
+            "<span>" +
+
+              "⭐ +" +
+              puntos +
+              " puntos" +
+
+            "</span>" +
+
+          "</div>" +
+
+        "</div>";
+
+    }
+  );
+
+
+  historialBody.innerHTML =
+    html;
+
+}
+
+
+// ==========================================================
+// ACTUALIZAR TOTAL
+// ==========================================================
+
+function actualizarTotalMovimientos(
+  cantidad
+) {
+
+  if (
+    !totalMovimientos
+  ) {
+
+    return;
+
+  }
+
+
+  totalMovimientos.textContent =
+
+    cantidad +
+
+    (
+      cantidad === 1
+        ? " movimiento"
+        : " movimientos"
+    );
+
+}
+
+
+// ==========================================================
+// BOTÓN BUSCAR
 // ==========================================================
 
 if (
@@ -1886,29 +1804,7 @@ if (
 
 
 // ==========================================================
-// FORMULARIO REGISTRAR CLIENTE
-// ==========================================================
-
-if (
-  formularioCliente
-) {
-
-  formularioCliente.addEventListener(
-    "submit",
-    function(evento) {
-
-      evento.preventDefault();
-
-      registrarCliente();
-
-    }
-  );
-
-}
-
-
-// ==========================================================
-// ENTER EN CÓDIGO DEL CLIENTE
+// ENTER EN CÓDIGO
 // ==========================================================
 
 if (
@@ -1936,7 +1832,7 @@ if (
 
 
 // ==========================================================
-// ENTER / VALIDACIÓN TELÉFONO
+// SOLO NÚMEROS EN TELÉFONO
 // ==========================================================
 
 if (
@@ -1946,8 +1842,6 @@ if (
   telefonoCliente.addEventListener(
     "input",
     function() {
-
-      // Permitir solamente números
 
       this.value =
         this.value.replace(
@@ -1962,7 +1856,7 @@ if (
 
 
 // ==========================================================
-// VALIDACIÓN PIN
+// SOLO NÚMEROS EN PIN
 // ==========================================================
 
 if (
@@ -1986,7 +1880,7 @@ if (
 
 
 // ==========================================================
-// MAYÚSCULAS AUTOMÁTICAS EN CÓDIGO
+// MAYÚSCULAS EN CÓDIGO
 // ==========================================================
 
 if (
@@ -2007,41 +1901,6 @@ if (
 
 
 // ==========================================================
-// OCULTAR RESULTADO AL EMPEZAR NUEVA BÚSQUEDA
-// ==========================================================
-
-if (
-  codigoRegistro
-) {
-
-  codigoRegistro.addEventListener(
-    "input",
-    function() {
-
-      if (resultadoRegistro) {
-
-        resultadoRegistro.style.display =
-          "none";
-
-      }
-
-      if (mensajeRegistro) {
-
-        mensajeRegistro.textContent =
-          "";
-
-        mensajeRegistro.className =
-          "mensaje-registro";
-
-      }
-
-    }
-  );
-
-}
-
-
-// ==========================================================
 // INICIO
 // ==========================================================
 
@@ -2050,19 +1909,23 @@ console.log(
 );
 
 console.log(
-  "✅ admin.js cargado correctamente."
+  "✅ admin.js cargado correctamente"
 );
 
 console.log(
-  "✅ Sistema de movimientos: listo"
+  "✅ Registrar cliente: OK"
 );
 
 console.log(
-  "✅ Sistema de historial: listo"
+  "✅ WhatsApp: OK"
 );
 
 console.log(
-  "✅ Sistema de clientes: listo"
+  "✅ Movimientos: OK"
+);
+
+console.log(
+  "✅ Historial: OK"
 );
 
 console.log(
