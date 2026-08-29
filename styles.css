@@ -3366,9 +3366,10 @@ footer {
 }
 
 .beauty-icon img{
-  width:72px;
-  height:72px;
-  object-fit:contain;
+  width:92px;
+  height:92px;
+  object-fit:cover;
+  border-radius:50%;
 }
 
 .beauty-icon span{
@@ -3437,7 +3438,9 @@ footer {
   }
 
   .beauty-icon img{
-    width:64px;
-    height:64px;
-  }
+  width:92px;
+  height:92px;
+  object-fit:cover;
+  border-radius:50%;
+}
 }
