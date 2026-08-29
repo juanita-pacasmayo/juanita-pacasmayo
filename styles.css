@@ -3444,3 +3444,145 @@ footer {
   border-radius:50%;
 }
 }
+
+/* =====================================================
+   REDES SOCIALES EN EL ENCABEZADO
+===================================================== */
+
+.header-social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.header-social-icon {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  text-decoration: none;
+
+  box-shadow:
+    0 5px 14px rgba(89, 35, 50, 0.14);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.header-social-icon svg {
+  width: 19px;
+  height: 19px;
+
+  display: block;
+}
+
+/* FACEBOOK */
+
+.header-social-icon.facebook {
+  background: #1877f2;
+  color: white;
+}
+
+.header-social-icon.facebook svg {
+  fill: currentColor;
+}
+
+/* INSTAGRAM */
+
+.header-social-icon.instagram {
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #833ab4,
+      #e1306c 55%,
+      #f77737
+    );
+}
+
+.header-social-icon.instagram svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+.header-social-icon.instagram svg circle:last-child {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* EFECTO AL PASAR EL MOUSE */
+
+.header-social-icon:hover {
+  transform: translateY(-3px) scale(1.08);
+
+  box-shadow:
+    0 9px 20px rgba(89, 35, 50, 0.22);
+}
+
+
+/* =====================================================
+   REDES SOCIALES EN CELULAR
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .header-social {
+    order: 2;
+
+    gap: 6px;
+
+    margin-left: auto;
+    margin-right: 3px;
+  }
+
+  .header-social-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .header-social-icon svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .header-buttons {
+    order: 3;
+  }
+
+  .menu-toggle {
+    order: 4;
+  }
+
+}
+
+
+/* =====================================================
+   CELULARES PEQUEÑOS
+===================================================== */
+
+@media (max-width: 430px) {
+
+  .header-social {
+    gap: 4px;
+  }
+
+  .header-social-icon {
+    width: 31px;
+    height: 31px;
+  }
+
+  .header-social-icon svg {
+    width: 15px;
+    height: 15px;
+  }
+
+}  
