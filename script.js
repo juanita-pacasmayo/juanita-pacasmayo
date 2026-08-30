@@ -19,7 +19,10 @@ const URL_APPS_SCRIPT =
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  console.log("script.js cargado correctamente");
+  console.log("=================================");
+  console.log("Juanita Pacasmayo - script.js");
+  console.log("Script cargado correctamente");
+  console.log("=================================");
 
 
   // ===================================================
@@ -55,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!btnConsultarPuntos) {
 
     console.error(
-      "No se encontró btnConsultarPuntos"
+      "No se encontró el botón #btnConsultarPuntos"
     );
 
     return;
@@ -131,34 +134,34 @@ document.addEventListener("DOMContentLoaded", function () {
         ? codigoCliente.value.trim().toUpperCase()
         : "";
 
+
     const pin =
       pinCliente
         ? pinCliente.value.trim()
         : "";
 
 
-    // -------------------------------------------------
+    // =================================================
     // LIMPIAR MENSAJE
-    // -------------------------------------------------
+    // =================================================
 
     ocultarMensaje();
 
 
-    // -------------------------------------------------
+    // =================================================
     // OCULTAR RESULTADO ANTERIOR
-    // -------------------------------------------------
+    // =================================================
 
     if (resultadoPuntos) {
 
-      resultadoPuntos.style.display =
-        "none";
+      resultadoPuntos.style.display = "none";
 
     }
 
 
-    // -------------------------------------------------
+    // =================================================
     // VALIDAR CÓDIGO
-    // -------------------------------------------------
+    // =================================================
 
     if (!codigo) {
 
@@ -167,17 +170,13 @@ document.addEventListener("DOMContentLoaded", function () {
         "error"
       );
 
-      if (codigoCliente) {
-        codigoCliente.focus();
-      }
-
       return;
     }
 
 
-    // -------------------------------------------------
+    // =================================================
     // VALIDAR PIN
-    // -------------------------------------------------
+    // =================================================
 
     if (!pin) {
 
@@ -186,32 +185,27 @@ document.addEventListener("DOMContentLoaded", function () {
         "error"
       );
 
-      if (pinCliente) {
-        pinCliente.focus();
-      }
-
       return;
     }
 
 
-    // -------------------------------------------------
+    // =================================================
     // BOTÓN CARGANDO
-    // -------------------------------------------------
+    // =================================================
 
     const textoOriginal =
       btnConsultarPuntos.textContent;
 
-    btnConsultarPuntos.disabled =
-      true;
+    btnConsultarPuntos.disabled = true;
 
     btnConsultarPuntos.textContent =
-      "🔐 Verificando...";
+      "🔄 Consultando...";
 
 
     try {
 
       // =================================================
-      // CONSULTAR CÓDIGO + PIN
+      // URL DE CONSULTA
       // =================================================
 
       const url =
@@ -240,7 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!respuesta.ok) {
 
         throw new Error(
-          "Error HTTP: " +
+          "Error de conexión: " +
           respuesta.status
         );
 
@@ -248,7 +242,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
       // =================================================
-      // RESPUESTA JSON
+      // JSON
       // =================================================
 
       const datos =
@@ -256,20 +250,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
       console.log(
-        "Respuesta de Google Apps Script:",
+        "Respuesta consultarPuntos:",
         datos
       );
 
 
       // =================================================
-      // COMPROBAR RESPUESTA
+      // VALIDAR RESPUESTA
       // =================================================
 
       if (!datos.correcto) {
 
         throw new Error(
           datos.mensaje ||
-          "Código o PIN incorrectos."
+          "Código o PIN incorrecto."
         );
 
       }
@@ -295,11 +289,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
       const puntos =
-        Number(datos.puntos) || 0;
+        Number(
+          datos.puntos ||
+          datos.Puntos ||
+          0
+        );
 
 
       console.log(
-        "Nombre:",
+        "Cliente:",
         nombre
       );
 
@@ -315,7 +313,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
       // =================================================
-      // NOMBRE
+      // MOSTRAR NOMBRE
       // =================================================
 
       if (nombreCliente) {
@@ -327,7 +325,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
       // =================================================
-      // PUNTOS
+      // MOSTRAR PUNTOS
       // =================================================
 
       if (cantidadPuntos) {
@@ -360,17 +358,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
       // =================================================
-      // OBTENER HISTORIAL
+      // CREAR / MOSTRAR HISTORIAL
       // =================================================
 
       await cargarHistorial(
-        codigoResultado,
-        pin
+        codigoResultado
       );
 
 
       // =================================================
-      // MENSAJE DE ÉXITO
+      // MENSAJE
       // =================================================
 
       mostrarMensaje(
@@ -380,7 +377,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
       // =================================================
-      // LIMPIAR PIN POR SEGURIDAD
+      // LIMPIAR PIN
       // =================================================
 
       if (pinCliente) {
@@ -393,7 +390,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (error) {
 
       console.error(
-        "Error:",
+        "Error al consultar:",
         error
       );
 
@@ -431,81 +428,36 @@ document.addEventListener("DOMContentLoaded", function () {
   // CARGAR HISTORIAL DE PUNTOS
   // ===================================================
 
-  async function cargarHistorial(
-    codigo,
-    pin
-  ) {
+  async function cargarHistorial(codigo) {
+
+    console.log(
+      "Cargando historial del cliente:",
+      codigo
+    );
+
 
     try {
 
-      // -------------------------------------------------
-      // CREAR / OBTENER CONTENEDOR
-      // -------------------------------------------------
-
-      const contenedor =
-        obtenerContenedorHistorial();
-
-
-      if (!contenedor) {
-
-        console.warn(
-          "No se pudo crear el historial."
-        );
-
-        return;
-
-      }
-
-
-      // -------------------------------------------------
-      // MENSAJE DE CARGA
-      // -------------------------------------------------
-
-      contenedor.innerHTML = `
-
-        <div style="
-          text-align:center;
-          padding:25px;
-          color:#777;
-        ">
-
-          <div style="
-            font-size:30px;
-            margin-bottom:10px;
-          ">
-            ⏳
-          </div>
-
-          <div>
-            Cargando historial de puntos...
-          </div>
-
-        </div>
-
-      `;
-
-
-      // -------------------------------------------------
-      // URL
-      // -------------------------------------------------
+      // ===============================================
+      // URL HISTORIAL
+      // ===============================================
 
       const url =
         URL_APPS_SCRIPT +
         "?accion=obtenerHistorialCliente" +
         "&codigo=" +
-        encodeURIComponent(codigo) +
-        "&pin=" +
-        encodeURIComponent(pin);
+        encodeURIComponent(codigo);
 
 
       console.log(
-        "Consultando historial..."
+        "URL historial:",
+        url
       );
 
 
-      // -------------------------------------------------
-      // FETCH
-      // -------------------------------------------------
+      // ===============================================
+      // CONSULTAR GOOGLE APPS SCRIPT
+      // ===============================================
 
       const respuesta =
         await fetch(url);
@@ -514,124 +466,78 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!respuesta.ok) {
 
         throw new Error(
-          "Error al consultar historial."
+          "Error HTTP historial: " +
+          respuesta.status
         );
 
       }
 
 
-      // -------------------------------------------------
-      // JSON
-      // -------------------------------------------------
+      // ===============================================
+      // OBTENER JSON
+      // ===============================================
 
       const datos =
         await respuesta.json();
 
 
       console.log(
-        "Historial recibido:",
+        "Respuesta historial:",
         datos
       );
 
 
-      // -------------------------------------------------
-      // COMPROBAR RESPUESTA
-      // -------------------------------------------------
+      // ===============================================
+      // SI EL SERVIDOR DEVUELVE ERROR
+      // ===============================================
 
-      if (!datos.correcto) {
+      if (
+        datos.correcto === false
+      ) {
 
-        contenedor.innerHTML = `
-
-          <div style="
-            text-align:center;
-            padding:25px;
-            color:#777;
-          ">
-
-            <div style="
-              font-size:30px;
-              margin-bottom:10px;
-            ">
-              📋
-            </div>
-
-            <p>
-              No se pudo cargar el historial.
-            </p>
-
-          </div>
-
-        `;
-
-        return;
+        throw new Error(
+          datos.mensaje ||
+          "No se pudo obtener el historial."
+        );
 
       }
 
 
-      // -------------------------------------------------
-      // OBTENER LISTA
-      // -------------------------------------------------
+      // ===============================================
+      // BUSCAR ARRAY DE MOVIMIENTOS
+      // ===============================================
 
-      const historial =
+      let historial =
         datos.historial ||
         datos.movimientos ||
+        datos.movimientosCliente ||
         datos.data ||
-        datos.registros ||
+        datos.datos ||
         [];
 
 
-      // -------------------------------------------------
-      // SI NO HAY HISTORIAL
-      // -------------------------------------------------
+      // ===============================================
+      // ASEGURAR QUE SEA ARRAY
+      // ===============================================
 
-      if (
-        !Array.isArray(historial) ||
-        historial.length === 0
-      ) {
+      if (!Array.isArray(historial)) {
 
-        contenedor.innerHTML = `
-
-          <div style="
-            text-align:center;
-            padding:25px;
-            color:#777;
-          ">
-
-            <div style="
-              font-size:32px;
-              margin-bottom:10px;
-            ">
-              📋
-            </div>
-
-            <h4 style="
-              margin:0 0 8px 0;
-              color:#c7386f;
-            ">
-              Historial de puntos
-            </h4>
-
-            <p style="
-              margin:0;
-            ">
-              Aún no tienes movimientos registrados.
-            </p>
-
-          </div>
-
-        `;
-
-        return;
+        historial = [];
 
       }
 
 
-      // -------------------------------------------------
+      console.log(
+        "Movimientos encontrados:",
+        historial.length
+      );
+
+
+      // ===============================================
       // MOSTRAR HISTORIAL
-      // -------------------------------------------------
+      // ===============================================
 
       mostrarHistorial(
-        contenedor,
         historial
       );
 
@@ -644,113 +550,11 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
 
-      const contenedor =
-        obtenerContenedorHistorial();
-
-
-      if (contenedor) {
-
-        contenedor.innerHTML = `
-
-          <div style="
-            text-align:center;
-            padding:25px;
-            color:#777;
-          ">
-
-            <div style="
-              font-size:30px;
-              margin-bottom:10px;
-            ">
-              📋
-            </div>
-
-            <h4 style="
-              margin:0 0 8px 0;
-              color:#c7386f;
-            ">
-              Historial de puntos
-            </h4>
-
-            <p style="
-              margin:0;
-            ">
-              No se pudo cargar el historial en este momento.
-            </p>
-
-          </div>
-
-        `;
-
-      }
-
-    }
-
-  }
-
-
-  // ===================================================
-  // CREAR CONTENEDOR HISTORIAL
-  // ===================================================
-
-  function obtenerContenedorHistorial() {
-
-    if (!resultadoPuntos) {
-      return null;
-    }
-
-
-    let historial =
-      document.getElementById(
-        "historialPuntos"
+      mostrarHistorialError(
+        error.message
       );
 
-
-    // -------------------------------------------------
-    // SI YA EXISTE
-    // -------------------------------------------------
-
-    if (historial) {
-
-      return historial;
-
     }
-
-
-    // -------------------------------------------------
-    // CREAR CONTENEDOR
-    // -------------------------------------------------
-
-    historial =
-      document.createElement("div");
-
-
-    historial.id =
-      "historialPuntos";
-
-
-    historial.style.marginTop =
-      "35px";
-
-
-    historial.style.paddingTop =
-      "30px";
-
-
-    historial.style.borderTop =
-      "1px solid #ead1db";
-
-
-    // -------------------------------------------------
-    // AGREGAR AL RESULTADO
-    // -------------------------------------------------
-
-    resultadoPuntos.appendChild(
-      historial
-    );
-
-
-    return historial;
 
   }
 
@@ -759,378 +563,438 @@ document.addEventListener("DOMContentLoaded", function () {
   // MOSTRAR HISTORIAL
   // ===================================================
 
-  function mostrarHistorial(
-    contenedor,
-    historial
-  ) {
+  function mostrarHistorial(historial) {
 
-    let html = `
-
-      <div style="
-        text-align:center;
-        margin-bottom:25px;
-      ">
-
-        <div style="
-          font-size:13px;
-          letter-spacing:2px;
-          color:#c7386f;
-          font-weight:700;
-          margin-bottom:8px;
-        ">
-          TUS MOVIMIENTOS
-        </div>
-
-        <h3 style="
-          margin:0;
-          font-size:28px;
-          color:#c7386f;
-        ">
-          📋 Historial de puntos
-        </h3>
-
-        <p style="
-          margin:8px 0 0 0;
-          color:#777;
-          font-size:14px;
-        ">
-          Aquí puedes consultar los puntos que has ganado.
-        </p>
-
-      </div>
-
-
-      <div style="
-        display:flex;
-        flex-direction:column;
-        gap:12px;
-      ">
-    `;
-
-
-    // =================================================
-    // RECORRER HISTORIAL
-    // =================================================
-
-    historial.forEach(function (
-      movimiento
-    ) {
-
-      // ------------------------------------------------
-      // SOPORTAR DIFERENTES NOMBRES DE CAMPOS
-      // ------------------------------------------------
-
-      const fecha =
-        movimiento.fecha ||
-        movimiento.Fecha ||
-        movimiento.fechaRegistro ||
-        movimiento.FechaRegistro ||
-        "";
-
-
-      const tipo =
-        movimiento.tipo ||
-        movimiento.Tipo ||
-        "";
-
-
-      const concepto =
-        movimiento.concepto ||
-        movimiento.Concepto ||
-        movimiento.descripcion ||
-        movimiento.Descripcion ||
-        "Movimiento";
-
-
-      const monto =
-        movimiento.monto ||
-        movimiento.Monto ||
-        0;
-
-
-      const puntos =
-        movimiento.puntos ||
-        movimiento.Puntos ||
-        movimiento.puntosGanados ||
-        movimiento.PuntosGanados ||
-        0;
-
-
-      const observacion =
-        movimiento.observacion ||
-        movimiento.Observacion ||
-        "";
-
-
-      // ------------------------------------------------
-      // FORMATEAR FECHA
-      // ------------------------------------------------
-
-      const fechaFormateada =
-        formatearFecha(fecha);
-
-
-      // ------------------------------------------------
-      // FORMATEAR MONTO
-      // ------------------------------------------------
-
-      const montoNumero =
-        Number(monto) || 0;
-
-
-      const montoTexto =
-        montoNumero > 0
-          ? "S/ " +
-            montoNumero.toFixed(2)
-          : "";
-
-
-      // ------------------------------------------------
-      // FORMATEAR PUNTOS
-      // ------------------------------------------------
-
-      const puntosNumero =
-        Number(puntos) || 0;
-
-
-      // ------------------------------------------------
-      // CREAR TARJETA
-      // ------------------------------------------------
-
-      html += `
-
-        <div style="
-          background:#ffffff;
-          border:1px solid #ead1db;
-          border-radius:16px;
-          padding:18px 20px;
-          box-shadow:0 5px 18px rgba(0,0,0,0.05);
-          display:flex;
-          align-items:center;
-          justify-content:space-between;
-          gap:15px;
-          flex-wrap:wrap;
-        ">
-
-
-          <!-- INFORMACIÓN -->
-
-          <div style="
-            flex:1;
-            min-width:200px;
-          ">
-
-            <div style="
-              font-size:16px;
-              font-weight:700;
-              color:#333;
-              margin-bottom:5px;
-            ">
-              ${escapeHTML(concepto)}
-            </div>
-
-
-            <div style="
-              font-size:13px;
-              color:#777;
-              margin-bottom:4px;
-            ">
-              📅 ${escapeHTML(fechaFormateada)}
-            </div>
-
-
-            ${
-              tipo
-                ? `
-                  <div style="
-                    font-size:13px;
-                    color:#888;
-                  ">
-                    ${escapeHTML(tipo)}
-                  </div>
-                `
-                : ""
-            }
-
-
-            ${
-              observacion
-                ? `
-                  <div style="
-                    font-size:13px;
-                    color:#888;
-                    margin-top:4px;
-                  ">
-                    ${escapeHTML(observacion)}
-                  </div>
-                `
-                : ""
-            }
-
-          </div>
-
-
-          <!-- MONTO -->
-
-          ${
-            montoTexto
-              ? `
-                <div style="
-                  min-width:90px;
-                  text-align:center;
-                ">
-
-                  <div style="
-                    font-size:12px;
-                    color:#999;
-                    margin-bottom:4px;
-                  ">
-                    Consumo
-                  </div>
-
-                  <div style="
-                    font-size:16px;
-                    font-weight:700;
-                    color:#555;
-                  ">
-                    ${montoTexto}
-                  </div>
-
-                </div>
-              `
-              : ""
-          }
-
-
-          <!-- PUNTOS -->
-
-          <div style="
-            min-width:100px;
-            text-align:center;
-            background:#fff4f8;
-            border-radius:12px;
-            padding:10px 14px;
-          ">
-
-            <div style="
-              font-size:12px;
-              color:#999;
-              margin-bottom:3px;
-            ">
-              Puntos
-            </div>
-
-            <div style="
-              font-size:20px;
-              font-weight:800;
-              color:#c7386f;
-            ">
-              +${puntosNumero}
-            </div>
-
-          </div>
-
-
-        </div>
-
-      `;
-
-    });
-
-
-    html += `
-      </div>
-    `;
-
-
-    // -------------------------------------------------
-    // INSERTAR
-    // -------------------------------------------------
-
-    contenedor.innerHTML =
-      html;
-
-  }
-
-
-  // ===================================================
-  // FORMATEAR FECHA
-  // ===================================================
-
-  function formatearFecha(
-    fecha
-  ) {
-
-    if (!fecha) {
-      return "Fecha no disponible";
+    if (!resultadoPuntos) {
+      return;
     }
 
 
-    // -------------------------------------------------
-    // SI YA ES TEXTO
-    // -------------------------------------------------
+    // =================================================
+    // BUSCAR CONTENEDOR
+    // =================================================
 
-    if (
-      typeof fecha === "string"
-    ) {
-
-      // Si viene como fecha completa
-      // intentamos convertirla
-
-      const fechaDate =
-        new Date(fecha);
+    let historialContainer =
+      document.getElementById(
+        "historialPuntos"
+      );
 
 
-      if (
-        !isNaN(
-          fechaDate.getTime()
-        )
-      ) {
+    // =================================================
+    // CREAR CONTENEDOR SI NO EXISTE
+    // =================================================
 
-        return fechaDate.toLocaleDateString(
-          "es-PE",
-          {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric"
-          }
-        );
+    if (!historialContainer) {
 
-      }
+      historialContainer =
+        document.createElement("div");
+
+      historialContainer.id =
+        "historialPuntos";
 
 
-      return fecha;
-
-    }
-
-
-    // -------------------------------------------------
-    // SI ES FECHA NUMÉRICA
-    // -------------------------------------------------
-
-    const fechaDate =
-      new Date(fecha);
+      historialContainer.style.marginTop =
+        "40px";
 
 
-    if (
-      !isNaN(
-        fechaDate.getTime()
-      )
-    ) {
+      historialContainer.style.paddingTop =
+        "30px";
 
-      return fechaDate.toLocaleDateString(
-        "es-PE",
-        {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric"
-        }
+
+      historialContainer.style.borderTop =
+        "1px solid #ead1db";
+
+
+      // Lo colocamos al final del resultado
+      resultadoPuntos.appendChild(
+        historialContainer
       );
 
     }
 
 
-    return String(fecha);
+    // =================================================
+    // SIN MOVIMIENTOS
+    // =================================================
+
+    if (
+      !historial ||
+      historial.length === 0
+    ) {
+
+      historialContainer.innerHTML = `
+
+        <div style="
+          text-align:center;
+          padding:25px;
+          border-radius:18px;
+          background:#fff;
+          border:1px solid #ead1db;
+        ">
+
+          <div style="
+            font-size:34px;
+            margin-bottom:10px;
+          ">
+            📋
+          </div>
+
+          <h3 style="
+            margin:0 0 8px;
+            color:#c7386f;
+          ">
+            Historial de puntos
+          </h3>
+
+          <p style="
+            margin:0;
+            color:#777;
+          ">
+            Aún no tienes movimientos registrados.
+          </p>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    // =================================================
+    // GENERAR FILAS
+    // =================================================
+
+    let filas = "";
+
+
+    historial.forEach(
+      function (movimiento) {
+
+        // ---------------------------------------------
+        // ACEPTAR DIFERENTES NOMBRES DE COLUMNAS
+        // ---------------------------------------------
+
+        const fecha =
+          movimiento.fecha ||
+          movimiento.Fecha ||
+          movimiento.fechaRegistro ||
+          movimiento.FechaRegistro ||
+          "";
+
+
+        const tipo =
+          movimiento.tipo ||
+          movimiento.Tipo ||
+          "";
+
+
+        const concepto =
+          movimiento.concepto ||
+          movimiento.Concepto ||
+          movimiento.descripcion ||
+          movimiento.Descripcion ||
+          "Movimiento";
+
+
+        const puntos =
+          Number(
+            movimiento.puntos ||
+            movimiento.Puntos ||
+            movimiento.puntosGanados ||
+            movimiento.PuntosGanados ||
+            0
+          );
+
+
+        const monto =
+          movimiento.monto ||
+          movimiento.Monto ||
+          "";
+
+
+        const observacion =
+          movimiento.observacion ||
+          movimiento.Observacion ||
+          "";
+
+
+        // ---------------------------------------------
+        // COLOR PUNTOS
+        // ---------------------------------------------
+
+        let signo =
+          puntos > 0
+            ? "+"
+            : "";
+
+
+        // ---------------------------------------------
+        // FILA
+        // ---------------------------------------------
+
+        filas += `
+
+          <div style="
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:15px;
+            padding:16px;
+            margin-bottom:10px;
+            background:#ffffff;
+            border:1px solid #ead1db;
+            border-radius:15px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.04);
+          ">
+
+            <!-- INFORMACIÓN -->
+
+            <div style="
+              flex:1;
+              text-align:left;
+            ">
+
+              <div style="
+                font-weight:700;
+                color:#333;
+                font-size:15px;
+                margin-bottom:5px;
+              ">
+                ${escapeHTML(concepto)}
+              </div>
+
+
+              <div style="
+                color:#888;
+                font-size:13px;
+              ">
+                ${escapeHTML(String(fecha))}
+              </div>
+
+
+              ${
+                tipo
+                  ? `
+                    <div style="
+                      color:#c7386f;
+                      font-size:12px;
+                      margin-top:4px;
+                      font-weight:600;
+                    ">
+                      ${escapeHTML(String(tipo))}
+                    </div>
+                  `
+                  : ""
+              }
+
+
+              ${
+                monto
+                  ? `
+                    <div style="
+                      color:#777;
+                      font-size:12px;
+                      margin-top:4px;
+                    ">
+                      Monto: S/ ${escapeHTML(String(monto))}
+                    </div>
+                  `
+                  : ""
+              }
+
+
+              ${
+                observacion
+                  ? `
+                    <div style="
+                      color:#777;
+                      font-size:12px;
+                      margin-top:4px;
+                    ">
+                      ${escapeHTML(String(observacion))}
+                    </div>
+                  `
+                  : ""
+              }
+
+            </div>
+
+
+            <!-- PUNTOS -->
+
+            <div style="
+              min-width:90px;
+              text-align:center;
+              padding:10px;
+              border-radius:12px;
+              background:#fff4f8;
+            ">
+
+              <div style="
+                font-size:20px;
+                font-weight:800;
+                color:#c7386f;
+              ">
+                ${signo}${puntos}
+              </div>
+
+              <div style="
+                font-size:11px;
+                color:#888;
+              ">
+                puntos
+              </div>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }
+    );
+
+
+    // =================================================
+    // CONTENIDO COMPLETO
+    // =================================================
+
+    historialContainer.innerHTML = `
+
+      <div style="
+        text-align:center;
+        margin-bottom:20px;
+      ">
+
+        <div style="
+          font-size:32px;
+          margin-bottom:5px;
+        ">
+          📋
+        </div>
+
+
+        <h3 style="
+          margin:0;
+          color:#c7386f;
+          font-size:25px;
+        ">
+          Historial de puntos
+        </h3>
+
+
+        <p style="
+          margin:8px 0 0;
+          color:#777;
+          font-size:14px;
+        ">
+          Aquí puedes revisar tus movimientos y puntos ganados.
+        </p>
+
+      </div>
+
+
+      <div>
+        ${filas}
+      </div>
+
+    `;
+
+  }
+
+
+  // ===================================================
+  // ERROR DEL HISTORIAL
+  // ===================================================
+
+  function mostrarHistorialError(
+    mensaje
+  ) {
+
+    if (!resultadoPuntos) {
+      return;
+    }
+
+
+    let historialContainer =
+      document.getElementById(
+        "historialPuntos"
+      );
+
+
+    if (!historialContainer) {
+
+      historialContainer =
+        document.createElement("div");
+
+      historialContainer.id =
+        "historialPuntos";
+
+
+      historialContainer.style.marginTop =
+        "40px";
+
+
+      historialContainer.style.paddingTop =
+        "30px";
+
+
+      historialContainer.style.borderTop =
+        "1px solid #ead1db";
+
+
+      resultadoPuntos.appendChild(
+        historialContainer
+      );
+
+    }
+
+
+    historialContainer.innerHTML = `
+
+      <div style="
+        text-align:center;
+        padding:25px;
+        border-radius:18px;
+        background:#fff;
+        border:1px solid #ead1db;
+      ">
+
+        <div style="
+          font-size:32px;
+          margin-bottom:8px;
+        ">
+          📋
+        </div>
+
+
+        <h3 style="
+          margin:0 0 8px;
+          color:#c7386f;
+        ">
+          Historial de puntos
+        </h3>
+
+
+        <p style="
+          margin:0;
+          color:#777;
+          font-size:14px;
+        ">
+          No se pudo cargar el historial.
+        </p>
+
+      </div>
+
+    `;
+
+
+    console.error(
+      "Historial:",
+      mensaje
+    );
 
   }
 
@@ -1166,135 +1030,166 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
 
-    premios.forEach(function (
-      premio
-    ) {
+    premios.forEach(
+      function (premio) {
 
-      const strong =
-        premio.querySelector(
-          "strong"
-        );
-
-
-      if (!strong) {
-        return;
-      }
-
-
-      // -----------------------------------------------
-      // OBTENER PUNTOS DEL PREMIO
-      // -----------------------------------------------
-
-      const textoPuntos =
-        strong.textContent;
-
-
-      const puntosPremio =
-        parseInt(
-          textoPuntos.replace(
-            /\D/g,
-            ""
-          ),
-          10
-        );
-
-
-      if (!puntosPremio) {
-        return;
-      }
-
-
-      // -----------------------------------------------
-      // ELIMINAR MENSAJE ANTERIOR
-      // -----------------------------------------------
-
-      const mensajeAnterior =
-        premio.querySelector(
-          ".estado-premio"
-        );
-
-
-      if (mensajeAnterior) {
-
-        mensajeAnterior.remove();
-
-      }
-
-
-      // -----------------------------------------------
-      // PREMIO DISPONIBLE
-      // -----------------------------------------------
-
-      if (
-        puntosCliente >=
-        puntosPremio
-      ) {
-
-        premio.classList.add(
-          "premio-disponible"
-        );
-
-
-        const mensaje =
-          document.createElement(
-            "div"
+        const strong =
+          premio.querySelector(
+            "strong"
           );
 
 
-        mensaje.className =
-          "estado-premio";
+        if (!strong) {
+          return;
+        }
 
 
-        mensaje.textContent =
-          "🎉 ¡Premio disponible!";
+        // =============================================
+        // PUNTOS DEL PREMIO
+        // =============================================
+
+        const textoPuntos =
+          strong.textContent;
 
 
-        premio.appendChild(
-          mensaje
-        );
-
-      }
-
-
-      // -----------------------------------------------
-      // PREMIO BLOQUEADO
-      // -----------------------------------------------
-
-      else {
-
-        premio.classList.remove(
-          "premio-disponible"
-        );
-
-
-        const faltan =
-          puntosPremio -
-          puntosCliente;
-
-
-        const mensaje =
-          document.createElement(
-            "div"
+        const puntosPremio =
+          parseInt(
+            textoPuntos.replace(
+              /\D/g,
+              ""
+            ),
+            10
           );
 
 
-        mensaje.className =
-          "estado-premio";
+        if (!puntosPremio) {
+          return;
+        }
 
 
-        mensaje.textContent =
-          "Te faltan " +
-          faltan +
-          " puntos";
+        // =============================================
+        // ELIMINAR ESTADO ANTERIOR
+        // =============================================
+
+        const mensajeAnterior =
+          premio.querySelector(
+            ".estado-premio"
+          );
 
 
-        premio.appendChild(
-          mensaje
-        );
+        if (mensajeAnterior) {
+
+          mensajeAnterior.remove();
+
+        }
+
+
+        // =============================================
+        // PREMIO DISPONIBLE
+        // =============================================
+
+        if (
+          puntosCliente >=
+          puntosPremio
+        ) {
+
+          premio.classList.add(
+            "premio-disponible"
+          );
+
+
+          const mensaje =
+            document.createElement(
+              "div"
+            );
+
+
+          mensaje.className =
+            "estado-premio";
+
+
+          mensaje.textContent =
+            "🎉 ¡Premio disponible!";
+
+
+          premio.appendChild(
+            mensaje
+          );
+
+        }
+
+
+        // =============================================
+        // PREMIO BLOQUEADO
+        // =============================================
+
+        else {
+
+          premio.classList.remove(
+            "premio-disponible"
+          );
+
+
+          const faltan =
+            puntosPremio -
+            puntosCliente;
+
+
+          const mensaje =
+            document.createElement(
+              "div"
+            );
+
+
+          mensaje.className =
+            "estado-premio";
+
+
+          mensaje.textContent =
+            "Te faltan " +
+            faltan +
+            " puntos";
+
+
+          premio.appendChild(
+            mensaje
+          );
+
+        }
 
       }
+    );
 
-    });
+  }
+
+
+  // ===================================================
+  // ESCAPAR HTML
+  // ===================================================
+
+  function escapeHTML(text) {
+
+    return String(text)
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+      .replace(
+        /</g,
+        "&lt;"
+      )
+      .replace(
+        />/g,
+        "&gt;"
+      )
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+      .replace(
+        /'/g,
+        "&#039;"
+      );
 
   }
 
@@ -1349,19 +1244,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     mensajePuntos.style.padding =
-      "14px";
+      "14px 20px";
 
     mensajePuntos.style.borderRadius =
       "12px";
 
     mensajePuntos.style.marginTop =
       "15px";
-
-    mensajePuntos.style.textAlign =
-      "center";
-
-    mensajePuntos.style.fontWeight =
-      "600";
 
   }
 
@@ -1380,41 +1269,9 @@ document.addEventListener("DOMContentLoaded", function () {
     mensajePuntos.textContent =
       "";
 
+
     mensajePuntos.style.display =
       "none";
-
-  }
-
-
-  // ===================================================
-  // ESCAPAR HTML
-  // ===================================================
-
-  function escapeHTML(
-    text
-  ) {
-
-    return String(text)
-      .replace(
-        /&/g,
-        "&amp;"
-      )
-      .replace(
-        /</g,
-        "&lt;"
-      )
-      .replace(
-        />/g,
-        "&gt;"
-      )
-      .replace(
-        /"/g,
-        "&quot;"
-      )
-      .replace(
-        /'/g,
-        "&#039;"
-      );
 
   }
 
@@ -1463,9 +1320,9 @@ if (
   );
 
 
-  // ---------------------------------------------------
-  // CERRAR MENÚ AL SELECCIONAR
-  // ---------------------------------------------------
+  // ===================================================
+  // CERRAR MENÚ
+  // ===================================================
 
   mainNav
     .querySelectorAll("a")
