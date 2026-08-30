@@ -22,15 +22,19 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log("script.js cargado correctamente");
 
 
-  // ---------------------------------------------------
-  // ELEMENTOS
-  // ---------------------------------------------------
+  // ===================================================
+  // ELEMENTOS DEL FORMULARIO
+  // ===================================================
 
   const btnConsultarPuntos =
     document.getElementById("btnConsultarPuntos");
 
   const codigoCliente =
     document.getElementById("codigoCliente");
+
+  // NUEVO: campo PIN
+  const pinCliente =
+    document.getElementById("pinCliente");
 
   const mensajePuntos =
     document.getElementById("mensajePuntos");
@@ -45,14 +49,14 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("cantidadPuntos");
 
 
-  // ---------------------------------------------------
+  // ===================================================
   // COMPROBAR BOTÓN
-  // ---------------------------------------------------
+  // ===================================================
 
   if (!btnConsultarPuntos) {
 
     console.error(
-      "No se encontró btnConsultarPuntos"
+      "No se encontró el botón #btnConsultarPuntos"
     );
 
     return;
@@ -70,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // ===================================================
-  // ENTER EN EL CAMPO DE CÓDIGO
+  // ENTER EN CÓDIGO
   // ===================================================
 
   if (codigoCliente) {
@@ -94,10 +98,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // ===================================================
-  // CONSULTAR CLIENTE
+  // ENTER EN PIN
+  // ===================================================
+
+  if (pinCliente) {
+
+    pinCliente.addEventListener(
+      "keypress",
+      function (event) {
+
+        if (event.key === "Enter") {
+
+          event.preventDefault();
+
+          consultarPuntos();
+
+        }
+
+      }
+    );
+
+  }
+
+
+  // ===================================================
+  // FUNCIÓN PRINCIPAL
+  // CONSULTAR PUNTOS
   // ===================================================
 
   async function consultarPuntos() {
+
+    // -------------------------------------------------
+    // OBTENER CÓDIGO
+    // -------------------------------------------------
 
     const codigo =
       codigoCliente
@@ -106,15 +139,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // -------------------------------------------------
-    // LIMPIAR
+    // OBTENER PIN
+    // -------------------------------------------------
+
+    const pin =
+      pinCliente
+        ? pinCliente.value.trim()
+        : "";
+
+
+    // -------------------------------------------------
+    // OCULTAR MENSAJE
     // -------------------------------------------------
 
     ocultarMensaje();
 
 
     // -------------------------------------------------
-    // VALIDAR
+    // OCULTAR RESULTADO ANTERIOR
     // -------------------------------------------------
+
+    if (resultadoPuntos) {
+
+      resultadoPuntos.style.display =
+        "none";
+
+    }
+
+
+    // =================================================
+    // VALIDAR CÓDIGO
+    // =================================================
 
     if (!codigo) {
 
@@ -123,44 +178,71 @@ document.addEventListener("DOMContentLoaded", function () {
         "error"
       );
 
+      if (codigoCliente) {
+        codigoCliente.focus();
+      }
+
       return;
     }
 
 
-    // -------------------------------------------------
+    // =================================================
+    // VALIDAR PIN
+    // =================================================
+
+    if (!pin) {
+
+      mostrarMensaje(
+        "Por favor, ingresa tu PIN.",
+        "error"
+      );
+
+      if (pinCliente) {
+        pinCliente.focus();
+      }
+
+      return;
+    }
+
+
+    // =================================================
     // BOTÓN CARGANDO
-    // -------------------------------------------------
+    // =================================================
 
     const textoOriginal =
       btnConsultarPuntos.textContent;
 
-    btnConsultarPuntos.disabled = true;
+    btnConsultarPuntos.disabled =
+      true;
 
     btnConsultarPuntos.textContent =
-      "Consultando...";
+      "Verificando...";
 
+
+    // =================================================
+    // CONSULTAR GOOGLE APPS SCRIPT
+    // =================================================
 
     try {
 
-      // ===============================================
-      // URL
-      // ===============================================
-
       const url =
         URL_APPS_SCRIPT +
-        "?accion=consultarPuntos&codigo=" +
-        encodeURIComponent(codigo);
+        "?accion=consultarPuntos" +
+        "&codigo=" +
+        encodeURIComponent(codigo) +
+        "&pin=" +
+        encodeURIComponent(pin);
 
 
       console.log(
-        "Consultando:",
-        url
+        "Consultando cliente:",
+        codigo
       );
 
 
-      // ===============================================
+      // =================================================
       // FETCH
-      // ===============================================
+      // =================================================
 
       const respuesta =
         await fetch(url);
@@ -169,16 +251,16 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!respuesta.ok) {
 
         throw new Error(
-          "Error HTTP: " +
+          "Error de conexión con el servidor. Código HTTP: " +
           respuesta.status
         );
 
       }
 
 
-      // ===============================================
+      // =================================================
       // RESPUESTA JSON
-      // ===============================================
+      // =================================================
 
       const datos =
         await respuesta.json();
@@ -190,23 +272,23 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
 
-      // ===============================================
-      // COMPROBAR RESPUESTA
-      // ===============================================
+      // =================================================
+      // COMPROBAR AUTENTICACIÓN
+      // =================================================
 
       if (!datos.correcto) {
 
         throw new Error(
           datos.mensaje ||
-          "No se encontró el cliente."
+          "Código de cliente o PIN incorrecto."
         );
 
       }
 
 
-      // ===============================================
-      // OBTENER DATOS DEL CLIENTE
-      // ===============================================
+      // =================================================
+      // OBTENER NOMBRE
+      // =================================================
 
       const nombre =
         datos.cliente ||
@@ -215,40 +297,28 @@ document.addEventListener("DOMContentLoaded", function () {
         "Cliente";
 
 
-      const codigoResultado =
-        datos.codigoCliente ||
-        datos.codigo ||
-        datos.CodigoCliente ||
-        datos.Codigo ||
-        codigo;
-
-
-      const pin =
-        datos.pin ||
-        datos.PIN ||
-        datos.Pin ||
-        datos.contrasena ||
-        datos.contraseña ||
-        datos.password ||
-        "";
-
+      // =================================================
+      // OBTENER PUNTOS
+      // =================================================
 
       const puntos =
         Number(datos.puntos) || 0;
 
 
-      console.log("Nombre:", nombre);
+      console.log(
+        "Cliente autenticado:",
+        nombre
+      );
 
-      console.log("Código:", codigoResultado);
+      console.log(
+        "Puntos:",
+        puntos
+      );
 
-      console.log("PIN:", pin);
 
-      console.log("Puntos:", puntos);
-
-
-      // ===============================================
-      // NOMBRE DEL CLIENTE
-      // ===============================================
+      // =================================================
+      // MOSTRAR NOMBRE
+      // =================================================
 
       if (nombreCliente) {
 
@@ -258,9 +328,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
 
-      // ===============================================
-      // PUNTOS
-      // ===============================================
+      // =================================================
+      // MOSTRAR PUNTOS
+      // =================================================
 
       if (cantidadPuntos) {
 
@@ -270,19 +340,18 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
 
-      // ===============================================
-      // MOSTRAR CÓDIGO Y PIN
-      // ===============================================
+      // =================================================
+      // IMPORTANTE
+      // =================================================
+      // NO MOSTRAMOS EL PIN
+      // NO MOSTRAMOS EL CÓDIGO
+      // EL PIN SOLO SIRVE PARA AUTENTICAR
+      // =================================================
 
-      mostrarDatosAcceso(
-        codigoResultado,
-        pin
-      );
 
-
-      // ===============================================
+      // =================================================
       // MOSTRAR RESULTADO
-      // ===============================================
+      // =================================================
 
       if (resultadoPuntos) {
 
@@ -292,30 +361,45 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
 
-      // ===============================================
+      // =================================================
       // ACTUALIZAR PREMIOS
-      // ===============================================
+      // =================================================
 
       actualizarPremios(puntos);
 
 
-      // ===============================================
-      // MENSAJE
-      // ===============================================
+      // =================================================
+      // MENSAJE DE ÉXITO
+      // =================================================
 
       mostrarMensaje(
-        "Consulta realizada correctamente.",
+        "¡Bienvenido! Consulta realizada correctamente.",
         "exito"
       );
+
+
+      // =================================================
+      // LIMPIAR PIN DESPUÉS DE INGRESAR
+      // =================================================
+
+      if (pinCliente) {
+
+        pinCliente.value = "";
+
+      }
 
 
     } catch (error) {
 
       console.error(
-        "Error:",
+        "Error al consultar:",
         error
       );
 
+
+      // -------------------------------------------------
+      // OCULTAR RESULTADO
+      // -------------------------------------------------
 
       if (resultadoPuntos) {
 
@@ -325,14 +409,21 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
 
+      // -------------------------------------------------
+      // MOSTRAR ERROR
+      // -------------------------------------------------
+
       mostrarMensaje(
         error.message ||
         "No se pudo realizar la consulta.",
         "error"
       );
 
-
     } finally {
+
+      // =================================================
+      // RESTAURAR BOTÓN
+      // =================================================
 
       btnConsultarPuntos.disabled =
         false;
@@ -346,189 +437,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
-  // ===================================================
-  // MOSTRAR CÓDIGO Y PIN DEL CLIENTE
-  // ===================================================
-
-  function mostrarDatosAcceso(codigo, pin) {
-
-    if (!resultadoPuntos) {
-      return;
-    }
-
-
-    // -------------------------------------------------
-    // BUSCAR SI YA EXISTE EL BLOQUE
-    // -------------------------------------------------
-
-    let acceso =
-      document.getElementById(
-        "datosAccesoCliente"
-      );
-
-
-    // -------------------------------------------------
-    // SI NO EXISTE, CREARLO AUTOMÁTICAMENTE
-    // -------------------------------------------------
-
-    if (!acceso) {
-
-      acceso =
-        document.createElement("div");
-
-      acceso.id =
-        "datosAccesoCliente";
-
-      acceso.style.marginTop =
-        "25px";
-
-      acceso.style.padding =
-        "22px";
-
-      acceso.style.borderRadius =
-        "18px";
-
-      acceso.style.background =
-        "linear-gradient(135deg, #fff7fa, #ffffff)";
-
-      acceso.style.border =
-        "1px solid #e7b1c5";
-
-      acceso.style.boxShadow =
-        "0 8px 25px rgba(0,0,0,0.08)";
-
-      acceso.style.textAlign =
-        "center";
-
-
-      resultadoPuntos.appendChild(
-        acceso
-      );
-
-    }
-
-
-    // -------------------------------------------------
-    // CONTENIDO
-    // -------------------------------------------------
-
-    acceso.innerHTML = `
-
-      <div style="
-        font-size: 13px;
-        letter-spacing: 2px;
-        color: #c7386f;
-        font-weight: 700;
-        margin-bottom: 8px;
-      ">
-        🔐 DATOS DE ACCESO
-      </div>
-
-      <div style="
-        font-size: 15px;
-        color: #555;
-        margin-bottom: 18px;
-      ">
-        Guarda estos datos para futuras consultas.
-      </div>
-
-
-      <div style="
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
-      ">
-
-
-        <!-- CÓDIGO -->
-
-        <div style="
-          min-width: 200px;
-          padding: 15px 20px;
-          border-radius: 14px;
-          background: #ffffff;
-          border: 1px solid #ead1db;
-        ">
-
-          <div style="
-            font-size: 12px;
-            color: #777;
-            margin-bottom: 6px;
-          ">
-            CÓDIGO DE CLIENTE
-          </div>
-
-          <div style="
-            font-size: 24px;
-            font-weight: 800;
-            color: #c7386f;
-            letter-spacing: 1px;
-          ">
-            ${escapeHTML(codigo)}
-          </div>
-
-        </div>
-
-
-        <!-- PIN -->
-
-        <div style="
-          min-width: 200px;
-          padding: 15px 20px;
-          border-radius: 14px;
-          background: #ffffff;
-          border: 1px solid #ead1db;
-        ">
-
-          <div style="
-            font-size: 12px;
-            color: #777;
-            margin-bottom: 6px;
-          ">
-            PIN / CONTRASEÑA
-          </div>
-
-          <div style="
-            font-size: 24px;
-            font-weight: 800;
-            color: #333;
-            letter-spacing: 4px;
-          ">
-            ${pin
-              ? escapeHTML(String(pin))
-              : "No disponible"}
-          </div>
-
-        </div>
-
-
-      </div>
-
-    `;
-
-  }
-
-
-  // ===================================================
-  // PROTEGER TEXTO HTML
-  // ===================================================
-
-  function escapeHTML(text) {
-
-    return String(text)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-
-  }
-
-
-  // ===================================================
+  // =====================================================
   // ACTUALIZAR PREMIOS
-  // ===================================================
+  // =====================================================
 
   function actualizarPremios(puntosCliente) {
 
@@ -553,6 +464,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     premios.forEach(function (premio) {
 
+      // -------------------------------------------------
+      // BUSCAR PUNTOS DEL PREMIO
+      // -------------------------------------------------
+
       const strong =
         premio.querySelector("strong");
 
@@ -561,10 +476,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-
-      // -----------------------------------------------
-      // OBTENER PUNTOS DEL PREMIO
-      // -----------------------------------------------
 
       const textoPuntos =
         strong.textContent;
@@ -582,9 +493,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
 
-      // -----------------------------------------------
+      // -------------------------------------------------
       // ELIMINAR MENSAJE ANTERIOR
-      // -----------------------------------------------
+      // -------------------------------------------------
 
       const mensajeAnterior =
         premio.querySelector(
@@ -599,9 +510,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
 
-      // -----------------------------------------------
+      // =================================================
       // PREMIO DISPONIBLE
-      // -----------------------------------------------
+      // =================================================
 
       if (puntosCliente >= puntosPremio) {
 
@@ -629,9 +540,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
 
-      // -----------------------------------------------
+      // =================================================
       // PREMIO BLOQUEADO
-      // -----------------------------------------------
+      // =================================================
 
       else {
 
@@ -670,9 +581,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
-  // ===================================================
+  // =====================================================
   // MOSTRAR MENSAJE
-  // ===================================================
+  // =====================================================
 
   function mostrarMensaje(
     texto,
@@ -697,6 +608,12 @@ document.addEventListener("DOMContentLoaded", function () {
       mensajePuntos.style.color =
         "#c62828";
 
+      mensajePuntos.style.background =
+        "#ffebee";
+
+      mensajePuntos.style.border =
+        "1px solid #ef9a9a";
+
     }
 
     else {
@@ -704,14 +621,30 @@ document.addEventListener("DOMContentLoaded", function () {
       mensajePuntos.style.color =
         "#2e7d32";
 
+      mensajePuntos.style.background =
+        "#e8f5e9";
+
+      mensajePuntos.style.border =
+        "1px solid #a5d6a7";
+
     }
+
+
+    mensajePuntos.style.padding =
+      "10px 15px";
+
+    mensajePuntos.style.borderRadius =
+      "10px";
+
+    mensajePuntos.style.marginTop =
+      "15px";
 
   }
 
 
-  // ===================================================
+  // =====================================================
   // OCULTAR MENSAJE
-  // ===================================================
+  // =====================================================
 
   function ocultarMensaje() {
 
@@ -722,7 +655,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     mensajePuntos.textContent =
       "";
-
 
     mensajePuntos.style.display =
       "none";
@@ -766,9 +698,9 @@ if (menuToggle && mainNav) {
   );
 
 
-  // ---------------------------------------------------
+  // ===================================================
   // CERRAR MENÚ AL SELECCIONAR UNA OPCIÓN
-  // ---------------------------------------------------
+  // ===================================================
 
   mainNav
     .querySelectorAll("a")
