@@ -1,7 +1,7 @@
 // =====================================================
 // JUANITA PACASMAYO
 // SCRIPT.JS
-// CONSULTA DE PUNTOS + CÓDIGO + PIN
+// CONSULTA DE PUNTOS + CÓDIGO + PIN + HISTORIAL
 // =====================================================
 
 
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // ===================================================
-  // ELEMENTOS DEL FORMULARIO
+  // ELEMENTOS
   // ===================================================
 
   const btnConsultarPuntos =
@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const codigoCliente =
     document.getElementById("codigoCliente");
 
-  // NUEVO: campo PIN
   const pinCliente =
     document.getElementById("pinCliente");
 
@@ -56,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!btnConsultarPuntos) {
 
     console.error(
-      "No se encontró el botón #btnConsultarPuntos"
+      "No se encontró btnConsultarPuntos"
     );
 
     return;
@@ -122,25 +121,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // ===================================================
-  // FUNCIÓN PRINCIPAL
-  // CONSULTAR PUNTOS
+  // CONSULTAR CLIENTE
   // ===================================================
 
   async function consultarPuntos() {
-
-    // -------------------------------------------------
-    // OBTENER CÓDIGO
-    // -------------------------------------------------
 
     const codigo =
       codigoCliente
         ? codigoCliente.value.trim().toUpperCase()
         : "";
-
-
-    // -------------------------------------------------
-    // OBTENER PIN
-    // -------------------------------------------------
 
     const pin =
       pinCliente
@@ -149,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // -------------------------------------------------
-    // OCULTAR MENSAJE
+    // LIMPIAR MENSAJE
     // -------------------------------------------------
 
     ocultarMensaje();
@@ -167,9 +156,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // =================================================
+    // -------------------------------------------------
     // VALIDAR CÓDIGO
-    // =================================================
+    // -------------------------------------------------
 
     if (!codigo) {
 
@@ -186,14 +175,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // =================================================
+    // -------------------------------------------------
     // VALIDAR PIN
-    // =================================================
+    // -------------------------------------------------
 
     if (!pin) {
 
       mostrarMensaje(
-        "Por favor, ingresa tu PIN.",
+        "Por favor, ingresa tu PIN / contraseña.",
         "error"
       );
 
@@ -205,9 +194,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // =================================================
+    // -------------------------------------------------
     // BOTÓN CARGANDO
-    // =================================================
+    // -------------------------------------------------
 
     const textoOriginal =
       btnConsultarPuntos.textContent;
@@ -216,14 +205,14 @@ document.addEventListener("DOMContentLoaded", function () {
       true;
 
     btnConsultarPuntos.textContent =
-      "Verificando...";
+      "🔐 Verificando...";
 
-
-    // =================================================
-    // CONSULTAR GOOGLE APPS SCRIPT
-    // =================================================
 
     try {
+
+      // =================================================
+      // CONSULTAR CÓDIGO + PIN
+      // =================================================
 
       const url =
         URL_APPS_SCRIPT +
@@ -251,7 +240,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!respuesta.ok) {
 
         throw new Error(
-          "Error de conexión con el servidor. Código HTTP: " +
+          "Error HTTP: " +
           respuesta.status
         );
 
@@ -273,21 +262,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
       // =================================================
-      // COMPROBAR AUTENTICACIÓN
+      // COMPROBAR RESPUESTA
       // =================================================
 
       if (!datos.correcto) {
 
         throw new Error(
           datos.mensaje ||
-          "Código de cliente o PIN incorrecto."
+          "Código o PIN incorrectos."
         );
 
       }
 
 
       // =================================================
-      // OBTENER NOMBRE
+      // DATOS DEL CLIENTE
       // =================================================
 
       const nombre =
@@ -297,17 +286,26 @@ document.addEventListener("DOMContentLoaded", function () {
         "Cliente";
 
 
-      // =================================================
-      // OBTENER PUNTOS
-      // =================================================
+      const codigoResultado =
+        datos.codigoCliente ||
+        datos.codigo ||
+        datos.CodigoCliente ||
+        datos.Codigo ||
+        codigo;
+
 
       const puntos =
         Number(datos.puntos) || 0;
 
 
       console.log(
-        "Cliente autenticado:",
+        "Nombre:",
         nombre
+      );
+
+      console.log(
+        "Código:",
+        codigoResultado
       );
 
       console.log(
@@ -317,7 +315,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
       // =================================================
-      // MOSTRAR NOMBRE
+      // NOMBRE
       // =================================================
 
       if (nombreCliente) {
@@ -329,7 +327,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
       // =================================================
-      // MOSTRAR PUNTOS
+      // PUNTOS
       // =================================================
 
       if (cantidadPuntos) {
@@ -338,15 +336,6 @@ document.addEventListener("DOMContentLoaded", function () {
           puntos;
 
       }
-
-
-      // =================================================
-      // IMPORTANTE
-      // =================================================
-      // NO MOSTRAMOS EL PIN
-      // NO MOSTRAMOS EL CÓDIGO
-      // EL PIN SOLO SIRVE PARA AUTENTICAR
-      // =================================================
 
 
       // =================================================
@@ -365,7 +354,19 @@ document.addEventListener("DOMContentLoaded", function () {
       // ACTUALIZAR PREMIOS
       // =================================================
 
-      actualizarPremios(puntos);
+      actualizarPremios(
+        puntos
+      );
+
+
+      // =================================================
+      // OBTENER HISTORIAL
+      // =================================================
+
+      await cargarHistorial(
+        codigoResultado,
+        pin
+      );
 
 
       // =================================================
@@ -379,7 +380,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
       // =================================================
-      // LIMPIAR PIN DESPUÉS DE INGRESAR
+      // LIMPIAR PIN POR SEGURIDAD
       // =================================================
 
       if (pinCliente) {
@@ -392,14 +393,10 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (error) {
 
       console.error(
-        "Error al consultar:",
+        "Error:",
         error
       );
 
-
-      // -------------------------------------------------
-      // OCULTAR RESULTADO
-      // -------------------------------------------------
 
       if (resultadoPuntos) {
 
@@ -409,42 +406,747 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
 
-      // -------------------------------------------------
-      // MOSTRAR ERROR
-      // -------------------------------------------------
-
       mostrarMensaje(
         error.message ||
         "No se pudo realizar la consulta.",
         "error"
       );
 
-    } finally {
 
-      // =================================================
-      // RESTAURAR BOTÓN
-      // =================================================
+    } finally {
 
       btnConsultarPuntos.disabled =
         false;
 
       btnConsultarPuntos.textContent =
         textoOriginal ||
-        "Consultar mis puntos";
+        "🔐 Consultar mis puntos";
 
     }
 
   }
 
 
-  // =====================================================
-  // ACTUALIZAR PREMIOS
-  // =====================================================
+  // ===================================================
+  // CARGAR HISTORIAL DE PUNTOS
+  // ===================================================
 
-  function actualizarPremios(puntosCliente) {
+  async function cargarHistorial(
+    codigo,
+    pin
+  ) {
+
+    try {
+
+      // -------------------------------------------------
+      // CREAR / OBTENER CONTENEDOR
+      // -------------------------------------------------
+
+      const contenedor =
+        obtenerContenedorHistorial();
+
+
+      if (!contenedor) {
+
+        console.warn(
+          "No se pudo crear el historial."
+        );
+
+        return;
+
+      }
+
+
+      // -------------------------------------------------
+      // MENSAJE DE CARGA
+      // -------------------------------------------------
+
+      contenedor.innerHTML = `
+
+        <div style="
+          text-align:center;
+          padding:25px;
+          color:#777;
+        ">
+
+          <div style="
+            font-size:30px;
+            margin-bottom:10px;
+          ">
+            ⏳
+          </div>
+
+          <div>
+            Cargando historial de puntos...
+          </div>
+
+        </div>
+
+      `;
+
+
+      // -------------------------------------------------
+      // URL
+      // -------------------------------------------------
+
+      const url =
+        URL_APPS_SCRIPT +
+        "?accion=obtenerHistorialCliente" +
+        "&codigo=" +
+        encodeURIComponent(codigo) +
+        "&pin=" +
+        encodeURIComponent(pin);
+
+
+      console.log(
+        "Consultando historial..."
+      );
+
+
+      // -------------------------------------------------
+      // FETCH
+      // -------------------------------------------------
+
+      const respuesta =
+        await fetch(url);
+
+
+      if (!respuesta.ok) {
+
+        throw new Error(
+          "Error al consultar historial."
+        );
+
+      }
+
+
+      // -------------------------------------------------
+      // JSON
+      // -------------------------------------------------
+
+      const datos =
+        await respuesta.json();
+
+
+      console.log(
+        "Historial recibido:",
+        datos
+      );
+
+
+      // -------------------------------------------------
+      // COMPROBAR RESPUESTA
+      // -------------------------------------------------
+
+      if (!datos.correcto) {
+
+        contenedor.innerHTML = `
+
+          <div style="
+            text-align:center;
+            padding:25px;
+            color:#777;
+          ">
+
+            <div style="
+              font-size:30px;
+              margin-bottom:10px;
+            ">
+              📋
+            </div>
+
+            <p>
+              No se pudo cargar el historial.
+            </p>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      // -------------------------------------------------
+      // OBTENER LISTA
+      // -------------------------------------------------
+
+      const historial =
+        datos.historial ||
+        datos.movimientos ||
+        datos.data ||
+        datos.registros ||
+        [];
+
+
+      // -------------------------------------------------
+      // SI NO HAY HISTORIAL
+      // -------------------------------------------------
+
+      if (
+        !Array.isArray(historial) ||
+        historial.length === 0
+      ) {
+
+        contenedor.innerHTML = `
+
+          <div style="
+            text-align:center;
+            padding:25px;
+            color:#777;
+          ">
+
+            <div style="
+              font-size:32px;
+              margin-bottom:10px;
+            ">
+              📋
+            </div>
+
+            <h4 style="
+              margin:0 0 8px 0;
+              color:#c7386f;
+            ">
+              Historial de puntos
+            </h4>
+
+            <p style="
+              margin:0;
+            ">
+              Aún no tienes movimientos registrados.
+            </p>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      // -------------------------------------------------
+      // MOSTRAR HISTORIAL
+      // -------------------------------------------------
+
+      mostrarHistorial(
+        contenedor,
+        historial
+      );
+
+
+    } catch (error) {
+
+      console.error(
+        "Error cargando historial:",
+        error
+      );
+
+
+      const contenedor =
+        obtenerContenedorHistorial();
+
+
+      if (contenedor) {
+
+        contenedor.innerHTML = `
+
+          <div style="
+            text-align:center;
+            padding:25px;
+            color:#777;
+          ">
+
+            <div style="
+              font-size:30px;
+              margin-bottom:10px;
+            ">
+              📋
+            </div>
+
+            <h4 style="
+              margin:0 0 8px 0;
+              color:#c7386f;
+            ">
+              Historial de puntos
+            </h4>
+
+            <p style="
+              margin:0;
+            ">
+              No se pudo cargar el historial en este momento.
+            </p>
+
+          </div>
+
+        `;
+
+      }
+
+    }
+
+  }
+
+
+  // ===================================================
+  // CREAR CONTENEDOR HISTORIAL
+  // ===================================================
+
+  function obtenerContenedorHistorial() {
+
+    if (!resultadoPuntos) {
+      return null;
+    }
+
+
+    let historial =
+      document.getElementById(
+        "historialPuntos"
+      );
+
+
+    // -------------------------------------------------
+    // SI YA EXISTE
+    // -------------------------------------------------
+
+    if (historial) {
+
+      return historial;
+
+    }
+
+
+    // -------------------------------------------------
+    // CREAR CONTENEDOR
+    // -------------------------------------------------
+
+    historial =
+      document.createElement("div");
+
+
+    historial.id =
+      "historialPuntos";
+
+
+    historial.style.marginTop =
+      "35px";
+
+
+    historial.style.paddingTop =
+      "30px";
+
+
+    historial.style.borderTop =
+      "1px solid #ead1db";
+
+
+    // -------------------------------------------------
+    // AGREGAR AL RESULTADO
+    // -------------------------------------------------
+
+    resultadoPuntos.appendChild(
+      historial
+    );
+
+
+    return historial;
+
+  }
+
+
+  // ===================================================
+  // MOSTRAR HISTORIAL
+  // ===================================================
+
+  function mostrarHistorial(
+    contenedor,
+    historial
+  ) {
+
+    let html = `
+
+      <div style="
+        text-align:center;
+        margin-bottom:25px;
+      ">
+
+        <div style="
+          font-size:13px;
+          letter-spacing:2px;
+          color:#c7386f;
+          font-weight:700;
+          margin-bottom:8px;
+        ">
+          TUS MOVIMIENTOS
+        </div>
+
+        <h3 style="
+          margin:0;
+          font-size:28px;
+          color:#c7386f;
+        ">
+          📋 Historial de puntos
+        </h3>
+
+        <p style="
+          margin:8px 0 0 0;
+          color:#777;
+          font-size:14px;
+        ">
+          Aquí puedes consultar los puntos que has ganado.
+        </p>
+
+      </div>
+
+
+      <div style="
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+      ">
+    `;
+
+
+    // =================================================
+    // RECORRER HISTORIAL
+    // =================================================
+
+    historial.forEach(function (
+      movimiento
+    ) {
+
+      // ------------------------------------------------
+      // SOPORTAR DIFERENTES NOMBRES DE CAMPOS
+      // ------------------------------------------------
+
+      const fecha =
+        movimiento.fecha ||
+        movimiento.Fecha ||
+        movimiento.fechaRegistro ||
+        movimiento.FechaRegistro ||
+        "";
+
+
+      const tipo =
+        movimiento.tipo ||
+        movimiento.Tipo ||
+        "";
+
+
+      const concepto =
+        movimiento.concepto ||
+        movimiento.Concepto ||
+        movimiento.descripcion ||
+        movimiento.Descripcion ||
+        "Movimiento";
+
+
+      const monto =
+        movimiento.monto ||
+        movimiento.Monto ||
+        0;
+
+
+      const puntos =
+        movimiento.puntos ||
+        movimiento.Puntos ||
+        movimiento.puntosGanados ||
+        movimiento.PuntosGanados ||
+        0;
+
+
+      const observacion =
+        movimiento.observacion ||
+        movimiento.Observacion ||
+        "";
+
+
+      // ------------------------------------------------
+      // FORMATEAR FECHA
+      // ------------------------------------------------
+
+      const fechaFormateada =
+        formatearFecha(fecha);
+
+
+      // ------------------------------------------------
+      // FORMATEAR MONTO
+      // ------------------------------------------------
+
+      const montoNumero =
+        Number(monto) || 0;
+
+
+      const montoTexto =
+        montoNumero > 0
+          ? "S/ " +
+            montoNumero.toFixed(2)
+          : "";
+
+
+      // ------------------------------------------------
+      // FORMATEAR PUNTOS
+      // ------------------------------------------------
+
+      const puntosNumero =
+        Number(puntos) || 0;
+
+
+      // ------------------------------------------------
+      // CREAR TARJETA
+      // ------------------------------------------------
+
+      html += `
+
+        <div style="
+          background:#ffffff;
+          border:1px solid #ead1db;
+          border-radius:16px;
+          padding:18px 20px;
+          box-shadow:0 5px 18px rgba(0,0,0,0.05);
+          display:flex;
+          align-items:center;
+          justify-content:space-between;
+          gap:15px;
+          flex-wrap:wrap;
+        ">
+
+
+          <!-- INFORMACIÓN -->
+
+          <div style="
+            flex:1;
+            min-width:200px;
+          ">
+
+            <div style="
+              font-size:16px;
+              font-weight:700;
+              color:#333;
+              margin-bottom:5px;
+            ">
+              ${escapeHTML(concepto)}
+            </div>
+
+
+            <div style="
+              font-size:13px;
+              color:#777;
+              margin-bottom:4px;
+            ">
+              📅 ${escapeHTML(fechaFormateada)}
+            </div>
+
+
+            ${
+              tipo
+                ? `
+                  <div style="
+                    font-size:13px;
+                    color:#888;
+                  ">
+                    ${escapeHTML(tipo)}
+                  </div>
+                `
+                : ""
+            }
+
+
+            ${
+              observacion
+                ? `
+                  <div style="
+                    font-size:13px;
+                    color:#888;
+                    margin-top:4px;
+                  ">
+                    ${escapeHTML(observacion)}
+                  </div>
+                `
+                : ""
+            }
+
+          </div>
+
+
+          <!-- MONTO -->
+
+          ${
+            montoTexto
+              ? `
+                <div style="
+                  min-width:90px;
+                  text-align:center;
+                ">
+
+                  <div style="
+                    font-size:12px;
+                    color:#999;
+                    margin-bottom:4px;
+                  ">
+                    Consumo
+                  </div>
+
+                  <div style="
+                    font-size:16px;
+                    font-weight:700;
+                    color:#555;
+                  ">
+                    ${montoTexto}
+                  </div>
+
+                </div>
+              `
+              : ""
+          }
+
+
+          <!-- PUNTOS -->
+
+          <div style="
+            min-width:100px;
+            text-align:center;
+            background:#fff4f8;
+            border-radius:12px;
+            padding:10px 14px;
+          ">
+
+            <div style="
+              font-size:12px;
+              color:#999;
+              margin-bottom:3px;
+            ">
+              Puntos
+            </div>
+
+            <div style="
+              font-size:20px;
+              font-weight:800;
+              color:#c7386f;
+            ">
+              +${puntosNumero}
+            </div>
+
+          </div>
+
+
+        </div>
+
+      `;
+
+    });
+
+
+    html += `
+      </div>
+    `;
+
+
+    // -------------------------------------------------
+    // INSERTAR
+    // -------------------------------------------------
+
+    contenedor.innerHTML =
+      html;
+
+  }
+
+
+  // ===================================================
+  // FORMATEAR FECHA
+  // ===================================================
+
+  function formatearFecha(
+    fecha
+  ) {
+
+    if (!fecha) {
+      return "Fecha no disponible";
+    }
+
+
+    // -------------------------------------------------
+    // SI YA ES TEXTO
+    // -------------------------------------------------
+
+    if (
+      typeof fecha === "string"
+    ) {
+
+      // Si viene como fecha completa
+      // intentamos convertirla
+
+      const fechaDate =
+        new Date(fecha);
+
+
+      if (
+        !isNaN(
+          fechaDate.getTime()
+        )
+      ) {
+
+        return fechaDate.toLocaleDateString(
+          "es-PE",
+          {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
+          }
+        );
+
+      }
+
+
+      return fecha;
+
+    }
+
+
+    // -------------------------------------------------
+    // SI ES FECHA NUMÉRICA
+    // -------------------------------------------------
+
+    const fechaDate =
+      new Date(fecha);
+
+
+    if (
+      !isNaN(
+        fechaDate.getTime()
+      )
+    ) {
+
+      return fechaDate.toLocaleDateString(
+        "es-PE",
+        {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric"
+        }
+      );
+
+    }
+
+
+    return String(fecha);
+
+  }
+
+
+  // ===================================================
+  // ACTUALIZAR PREMIOS
+  // ===================================================
+
+  function actualizarPremios(
+    puntosCliente
+  ) {
 
     const lista =
-      document.querySelector(".premios-lista");
+      document.querySelector(
+        ".premios-lista"
+      );
 
 
     if (!lista) {
@@ -459,17 +1161,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     const premios =
-      lista.querySelectorAll(".premio");
+      lista.querySelectorAll(
+        ".premio"
+      );
 
 
-    premios.forEach(function (premio) {
-
-      // -------------------------------------------------
-      // BUSCAR PUNTOS DEL PREMIO
-      // -------------------------------------------------
+    premios.forEach(function (
+      premio
+    ) {
 
       const strong =
-        premio.querySelector("strong");
+        premio.querySelector(
+          "strong"
+        );
 
 
       if (!strong) {
@@ -477,13 +1181,20 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
 
+      // -----------------------------------------------
+      // OBTENER PUNTOS DEL PREMIO
+      // -----------------------------------------------
+
       const textoPuntos =
         strong.textContent;
 
 
       const puntosPremio =
         parseInt(
-          textoPuntos.replace(/\D/g, ""),
+          textoPuntos.replace(
+            /\D/g,
+            ""
+          ),
           10
         );
 
@@ -493,9 +1204,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
 
-      // -------------------------------------------------
+      // -----------------------------------------------
       // ELIMINAR MENSAJE ANTERIOR
-      // -------------------------------------------------
+      // -----------------------------------------------
 
       const mensajeAnterior =
         premio.querySelector(
@@ -510,11 +1221,14 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
 
-      // =================================================
+      // -----------------------------------------------
       // PREMIO DISPONIBLE
-      // =================================================
+      // -----------------------------------------------
 
-      if (puntosCliente >= puntosPremio) {
+      if (
+        puntosCliente >=
+        puntosPremio
+      ) {
 
         premio.classList.add(
           "premio-disponible"
@@ -522,7 +1236,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         const mensaje =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
 
 
         mensaje.className =
@@ -540,9 +1256,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
 
-      // =================================================
+      // -----------------------------------------------
       // PREMIO BLOQUEADO
-      // =================================================
+      // -----------------------------------------------
 
       else {
 
@@ -557,7 +1273,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         const mensaje =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
 
 
         mensaje.className =
@@ -581,9 +1299,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
-  // =====================================================
+  // ===================================================
   // MOSTRAR MENSAJE
-  // =====================================================
+  // ===================================================
 
   function mostrarMensaje(
     texto,
@@ -631,20 +1349,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     mensajePuntos.style.padding =
-      "10px 15px";
+      "14px";
 
     mensajePuntos.style.borderRadius =
-      "10px";
+      "12px";
 
     mensajePuntos.style.marginTop =
       "15px";
 
+    mensajePuntos.style.textAlign =
+      "center";
+
+    mensajePuntos.style.fontWeight =
+      "600";
+
   }
 
 
-  // =====================================================
+  // ===================================================
   // OCULTAR MENSAJE
-  // =====================================================
+  // ===================================================
 
   function ocultarMensaje() {
 
@@ -661,6 +1385,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
   }
 
+
+  // ===================================================
+  // ESCAPAR HTML
+  // ===================================================
+
+  function escapeHTML(
+    text
+  ) {
+
+    return String(text)
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+      .replace(
+        /</g,
+        "&lt;"
+      )
+      .replace(
+        />/g,
+        "&gt;"
+      )
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+      .replace(
+        /'/g,
+        "&#039;"
+      );
+
+  }
+
 });
 
 
@@ -669,13 +1426,21 @@ document.addEventListener("DOMContentLoaded", function () {
 // =====================================================
 
 const menuToggle =
-  document.querySelector(".menu-toggle");
+  document.querySelector(
+    ".menu-toggle"
+  );
+
 
 const mainNav =
-  document.querySelector(".main-nav");
+  document.querySelector(
+    ".main-nav"
+  );
 
 
-if (menuToggle && mainNav) {
+if (
+  menuToggle &&
+  mainNav
+) {
 
   menuToggle.addEventListener(
     "click",
@@ -698,31 +1463,33 @@ if (menuToggle && mainNav) {
   );
 
 
-  // ===================================================
-  // CERRAR MENÚ AL SELECCIONAR UNA OPCIÓN
-  // ===================================================
+  // ---------------------------------------------------
+  // CERRAR MENÚ AL SELECCIONAR
+  // ---------------------------------------------------
 
   mainNav
     .querySelectorAll("a")
-    .forEach(function (enlace) {
+    .forEach(
+      function (enlace) {
 
-      enlace.addEventListener(
-        "click",
-        function () {
+        enlace.addEventListener(
+          "click",
+          function () {
 
-          mainNav.classList.remove(
-            "menu-abierto"
-          );
+            mainNav.classList.remove(
+              "menu-abierto"
+            );
 
 
-          menuToggle.setAttribute(
-            "aria-expanded",
-            "false"
-          );
+            menuToggle.setAttribute(
+              "aria-expanded",
+              "false"
+            );
 
-        }
-      );
+          }
+        );
 
-    });
+      }
+    );
 
 }
