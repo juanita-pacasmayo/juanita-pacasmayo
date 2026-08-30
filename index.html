@@ -32,10 +32,12 @@
     <!-- LOGO -->
 
     <a href="#inicio" class="brand">
+
       <img
         src="images/Logo.png"
         alt="Logo Juanita Pacasmayo"
       >
+
     </a>
 
 
@@ -121,6 +123,7 @@
       class="menu-toggle"
       aria-label="Abrir menú"
       aria-expanded="false"
+      type="button"
     >
 
       <span></span>
@@ -161,7 +164,9 @@
         target="_blank"
         rel="noopener noreferrer"
       >
+
         Contáctanos por WhatsApp
+
       </a>
 
     </nav>
@@ -181,7 +186,9 @@
         target="_blank"
         rel="noopener noreferrer"
       >
+
         Contáctanos
+
       </a>
 
 
@@ -191,7 +198,9 @@
         class="admin-button"
         href="login.html"
       >
+
         🔐 Administración
+
       </a>
 
     </div>
@@ -251,7 +260,9 @@
             class="button primary"
             href="#servicios"
           >
+
             Ver servicios
+
           </a>
 
 
@@ -259,7 +270,9 @@
             class="button secondary"
             href="#puntos"
           >
+
             Conoce tus puntos
+
           </a>
 
         </div>
@@ -314,8 +327,10 @@
 
 
         <p class="section-lead">
+
           Encuentra productos seleccionados para
           cuidar y realzar tu belleza todos los días.
+
         </p>
 
       </div>
@@ -325,9 +340,7 @@
       <div class="beauty-grid">
 
 
-        <!-- =================================================
-             MAQUILLAJE
-        ================================================== -->
+        <!-- MAQUILLAJE -->
 
         <article class="beauty-card">
 
@@ -358,8 +371,10 @@
 
 
           <p>
+
             Productos para cada ocasión y para
             resaltar tu belleza.
+
           </p>
 
 
@@ -367,6 +382,7 @@
             href="#contacto"
             class="card-button"
           >
+
             Ver productos
 
             <strong>
@@ -379,9 +395,7 @@
 
 
 
-        <!-- =================================================
-             CUIDADO CAPILAR
-        ================================================== -->
+        <!-- CUIDADO CAPILAR -->
 
         <article class="beauty-card">
 
@@ -412,8 +426,10 @@
 
 
           <p>
+
             Hidratación y cuidado para mantener
             tu cabello hermoso.
+
           </p>
 
 
@@ -421,6 +437,7 @@
             href="#contacto"
             class="card-button"
           >
+
             Ver productos
 
             <strong>
@@ -433,9 +450,7 @@
 
 
 
-        <!-- =================================================
-             PERFUMES
-        ================================================== -->
+        <!-- PERFUMES -->
 
         <article class="beauty-card">
 
@@ -466,8 +481,10 @@
 
 
           <p>
+
             Fragancias para expresar tu estilo
             y personalidad.
+
           </p>
 
 
@@ -475,6 +492,7 @@
             href="#contacto"
             class="card-button"
           >
+
             Ver productos
 
             <strong>
@@ -525,8 +543,10 @@
 
 
         <p class="section-lead">
+
           Déjate consentir y disfruta una
           experiencia de belleza.
+
         </p>
 
       </div>
@@ -536,9 +556,7 @@
       <div class="beauty-grid services-grid">
 
 
-        <!-- =================================================
-             LACEADO
-        ================================================== -->
+        <!-- LACEADO -->
 
         <article class="beauty-card service-card">
 
@@ -569,8 +587,10 @@
 
 
           <p>
+
             Un acabado suave, brillante y elegante
             para tu cabello.
+
           </p>
 
 
@@ -578,6 +598,7 @@
             href="#contacto"
             class="card-button"
           >
+
             Más información
 
             <strong>
@@ -590,9 +611,7 @@
 
 
 
-        <!-- =================================================
-             UÑAS
-        ================================================== -->
+        <!-- UÑAS -->
 
         <article class="beauty-card service-card">
 
@@ -623,8 +642,10 @@
 
 
           <p>
+
             Diseños y cuidados para lucir unas
             manos increíbles.
+
           </p>
 
 
@@ -632,6 +653,7 @@
             href="#contacto"
             class="card-button"
           >
+
             Más información
 
             <strong>
@@ -644,9 +666,7 @@
 
 
 
-        <!-- =================================================
-             PESTAÑAS
-        ================================================== -->
+        <!-- PESTAÑAS -->
 
         <article class="beauty-card service-card">
 
@@ -677,8 +697,10 @@
 
 
           <p>
+
             Realza tu mirada y luce unas pestañas
             increíbles.
+
           </p>
 
 
@@ -686,6 +708,7 @@
             href="#contacto"
             class="card-button"
           >
+
             Más información
 
             <strong>
@@ -723,9 +746,11 @@
 
 
       <p class="points-intro">
-        Ingresa tu código de cliente para conocer
-        tus puntos acumulados y los premios que
-        puedes obtener.
+
+        Ingresa tu código de cliente y tu PIN para
+        consultar tus puntos acumulados y los premios
+        que puedes obtener.
+
       </p>
 
 
@@ -733,10 +758,18 @@
       <div class="points-box">
 
 
+        <!-- =================================================
+             FORMULARIO DE ACCESO
+        ================================================== -->
+
         <div class="points-form">
 
+          <!-- CÓDIGO -->
+
           <label for="codigoCliente">
+
             Código de cliente
+
           </label>
 
 
@@ -744,35 +777,74 @@
             type="text"
             id="codigoCliente"
             placeholder="Ejemplo: JP0001"
-            autocomplete="off"
+            autocomplete="username"
+            autocapitalize="characters"
+            maxlength="20"
           >
 
+
+          <!-- PIN -->
+
+          <label
+            for="pinCliente"
+            style="margin-top: 15px;"
+          >
+
+            PIN / Contraseña
+
+          </label>
+
+
+          <input
+            type="password"
+            id="pinCliente"
+            placeholder="Ingresa tu PIN"
+            autocomplete="current-password"
+            inputmode="numeric"
+            maxlength="20"
+          >
+
+
+          <!-- BOTÓN -->
 
           <button
             type="button"
             class="button primary"
             id="btnConsultarPuntos"
           >
-            Consultar mis puntos
+
+            🔐 Consultar mis puntos
+
           </button>
 
         </div>
 
 
 
+        <!-- =================================================
+             MENSAJE
+        ================================================== -->
+
         <div
           id="mensajePuntos"
           class="points-message"
+          style="display:none;"
         ></div>
 
 
 
+        <!-- =================================================
+             RESULTADO
+        ================================================== -->
+
         <div
           id="resultadoPuntos"
           class="points-result"
-          style="display: none;"
+          style="display:none;"
         >
 
+
+          <!-- SALUDO -->
 
           <p class="cliente-saludo">
 
@@ -783,6 +855,8 @@
           </p>
 
 
+
+          <!-- PUNTOS -->
 
           <div class="points-number">
 
@@ -804,6 +878,10 @@
 
 
 
+          <!-- =================================================
+               PREMIOS
+          ================================================== -->
+
           <div class="premios-info">
 
             <h3>
@@ -813,6 +891,8 @@
 
             <div class="premios-lista">
 
+
+              <!-- 150 -->
 
               <div class="premio">
 
@@ -836,6 +916,8 @@
 
 
 
+              <!-- 200 -->
+
               <div class="premio">
 
                 <span>
@@ -858,6 +940,8 @@
 
 
 
+              <!-- 300 -->
+
               <div class="premio">
 
                 <span>
@@ -879,6 +963,8 @@
               </div>
 
 
+
+              <!-- 350 -->
 
               <div class="premio">
 
@@ -934,8 +1020,10 @@
 
 
       <p>
+
         Muy pronto encontrarás nuestros trabajos
         y novedades aquí.
+
       </p>
 
     </section>
@@ -962,8 +1050,10 @@
 
 
       <p>
+
         Escríbenos y reserva tu cita o consulta
         por nuestros productos.
+
       </p>
 
 
@@ -973,7 +1063,9 @@
         rel="noopener noreferrer"
         class="button primary"
       >
+
         💬 Contáctanos por WhatsApp
+
       </a>
 
     </section>
@@ -995,7 +1087,9 @@
 
 
 
-  <!-- JAVASCRIPT -->
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
 
   <script src="script.js"></script>
 
