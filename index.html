@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -16,9 +17,8 @@
 
   <title>Juanita Pacasmayo | Belleza que inspira</title>
 
-  <!-- =====================================================
-       GOOGLE FONTS
-       ===================================================== -->
+
+  <!-- GOOGLE FONTS -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -33,635 +33,1119 @@
     rel="stylesheet"
   >
 
-  <!-- =====================================================
-       ICONOS
-       ===================================================== -->
+
+  <!-- FONT AWESOME -->
 
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
   >
 
-  <!-- =====================================================
-       CSS PRINCIPAL
-       ===================================================== -->
-
-  <link
-    rel="stylesheet"
-    href="styles.css"
-  >
-
-  <!-- =====================================================
-       ESTILOS DEL INDEX
-       ===================================================== -->
 
   <style>
+
+    /* =====================================================
+       CONFIGURACIÓN GENERAL
+    ===================================================== */
+
+    * {
+      box-sizing: border-box;
+    }
 
     html {
       scroll-behavior: smooth;
     }
 
     body {
+
       margin: 0;
-      font-family: "DM Sans", Arial, sans-serif;
+
+      font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+      color: #30262b;
+
+      background:
+        #fffafb;
+
+    }
+
+    a {
+      text-decoration: none;
     }
 
 
     /* =====================================================
-       ENCABEZADO
-       ===================================================== */
+       HEADER
+    ===================================================== */
 
     .site-header {
+
       position: sticky;
+
       top: 0;
+
       z-index: 1000;
+
       width: 100%;
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid #f2dce4;
-      box-shadow: 0 4px 18px rgba(120,40,70,0.05);
+
+      background:
+        rgba(255,255,255,.97);
+
+      border-top:
+        3px solid #333;
+
+      border-bottom:
+        1px solid #efdce3;
+
+      box-shadow:
+        0 3px 15px
+        rgba(120,40,70,.04);
+
     }
 
 
     .header-inner {
-      width: min(1320px, 94%);
-      min-height: 96px;
-      margin: auto;
 
-      display: flex;
-      align-items: center;
-      gap: 25px;
+      width:
+        min(1450px, 92%);
+
+      min-height:
+        118px;
+
+      margin:
+        auto;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        30px;
+
     }
 
 
-    /* =====================================================
-       LOGO
-       ===================================================== */
+    /* LOGO */
 
     .brand {
-      display: flex;
-      align-items: center;
-      flex-shrink: 0;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      flex-shrink:
+        0;
+
     }
 
 
     .brand img {
-      width: 185px;
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
 
+      width:
+        188px;
 
-    /* =====================================================
-       REDES SOCIALES
-       ===================================================== */
+      height:
+        auto;
 
-    .social-links {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-left: 55px;
-    }
+      display:
+        block;
 
-
-    .social-links a {
-      width: 50px;
-      height: 50px;
-
-      border-radius: 50%;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      color: #fff;
-      text-decoration: none;
-
-      font-size: 22px;
-
-      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
-
-      transition:
-        transform .25s ease,
-        box-shadow .25s ease;
-    }
-
-
-    .social-links a:hover {
-      transform: translateY(-3px);
-
-      box-shadow:
-        0 12px 25px rgba(0,0,0,0.18);
-    }
-
-
-    .social-facebook {
-      background: #1877f2;
-    }
-
-
-    .social-instagram {
-      background:
-        linear-gradient(
-          135deg,
-          #f58529,
-          #dd2a7b,
-          #8134af,
-          #515bd4
-        );
     }
 
 
     /* =====================================================
        MENÚ
-       ===================================================== */
+    ===================================================== */
 
     .main-nav {
-      display: flex;
-      align-items: center;
-      justify-content: center;
 
-      gap: 38px;
+      display:
+        flex;
 
-      margin-left: auto;
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      gap:
+        48px;
+
+      margin-left:
+        auto;
+
+      margin-right:
+        35px;
+
     }
 
 
     .main-nav a {
-      color: #171717;
 
-      text-decoration: none;
+      color:
+        #151515;
 
-      font-family: "Montserrat", Arial, sans-serif;
+      font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
 
-      font-size: 17px;
-      font-weight: 700;
+      font-size:
+        18px;
 
-      transition: color .25s ease;
+      font-weight:
+        700;
+
+      transition:
+        .25s ease;
+
+      white-space:
+        nowrap;
+
     }
 
 
     .main-nav a:hover {
-      color: #c83d68;
+
+      color:
+        #c83d68;
+
     }
 
 
     /* =====================================================
        BOTÓN CONTACTO
-       ===================================================== */
+    ===================================================== */
 
     .contact-button {
-      display: inline-flex;
 
-      align-items: center;
-      justify-content: center;
+      display:
+        inline-flex;
 
-      min-width: 160px;
+      align-items:
+        center;
 
-      padding: 15px 25px;
+      justify-content:
+        center;
 
-      border-radius: 999px;
+      min-width:
+        188px;
 
-      background: #c83d68;
+      padding:
+        17px 28px;
 
-      color: #fff !important;
+      border-radius:
+        999px;
 
-      text-decoration: none;
+      background:
+        #c83d68;
 
-      font-family: "Montserrat", Arial, sans-serif;
+      color:
+        #fff;
 
-      font-weight: 700;
-      font-size: 16px;
+      font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+      font-size:
+        17px;
+
+      font-weight:
+        700;
 
       transition:
-        transform .25s ease,
-        box-shadow .25s ease;
+        .25s ease;
+
+      box-shadow:
+        0 8px 20px
+        rgba(200,61,104,.18);
+
+      white-space:
+        nowrap;
+
     }
 
 
     .contact-button:hover {
-      transform: translateY(-2px);
 
-      box-shadow:
-        0 10px 25px rgba(200,61,104,0.25);
+      transform:
+        translateY(-2px);
+
+      background:
+        #b7325b;
+
     }
 
 
     /* =====================================================
-       BOTÓN ADMINISTRACIÓN
-       ===================================================== */
+       ADMINISTRACIÓN
+    ===================================================== */
 
     .admin-button {
-      display: inline-flex;
 
-      align-items: center;
-      justify-content: center;
+      display:
+        inline-flex;
 
-      min-width: 170px;
+      align-items:
+        center;
 
-      padding: 15px 23px;
+      justify-content:
+        center;
 
-      border-radius: 999px;
+      min-width:
+        198px;
 
-      border: 1.5px solid #c83d68;
+      padding:
+        16px 23px;
 
-      color: #b93660;
+      border-radius:
+        999px;
 
-      background: #fff;
+      border:
+        1.5px solid #c83d68;
 
-      text-decoration: none;
+      color:
+        #c83d68;
 
-      font-family: "Montserrat", Arial, sans-serif;
+      background:
+        #fff;
 
-      font-size: 15px;
-      font-weight: 700;
+      font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+      font-size:
+        16px;
+
+      font-weight:
+        700;
 
       transition:
-        background .25s ease,
-        color .25s ease,
-        transform .25s ease;
+        .25s ease;
+
+      white-space:
+        nowrap;
+
     }
 
 
     .admin-button:hover {
-      background: #c83d68;
-      color: #fff;
-      transform: translateY(-2px);
+
+      background:
+        #c83d68;
+
+      color:
+        #fff;
+
     }
 
 
     /* =====================================================
-       BOTONES GENERALES
-       ===================================================== */
+       BOTÓN MENÚ CELULAR
+    ===================================================== */
 
-    .btn {
-      display: inline-flex;
+    .mobile-menu-button {
 
-      align-items: center;
-      justify-content: center;
+      display:
+        none;
 
-      padding: 15px 25px;
+      border:
+        0;
 
-      border-radius: 999px;
+      background:
+        transparent;
 
-      text-decoration: none;
+      color:
+        #c83d68;
 
-      font-weight: 700;
+      font-size:
+        28px;
 
-      transition:
-        transform .25s ease,
-        box-shadow .25s ease;
-    }
+      cursor:
+        pointer;
 
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-
-    .btn-primary {
-      background: #c83d68;
-
-      color: #fff;
-
-      box-shadow:
-        0 10px 25px rgba(200,61,104,.20);
-    }
-
-
-    .btn-light {
-      background: #fff;
-
-      color: #c83d68;
-
-      border: 1px solid #e7c7d2;
     }
 
 
     /* =====================================================
        HERO
-       ===================================================== */
+    ===================================================== */
 
     .hero {
-      padding: 80px 0 70px;
+
+      min-height:
+        700px;
+
+      padding:
+        120px 0 105px;
 
       background:
         linear-gradient(
           180deg,
-          #fff5f8 0%,
-          #fff 100%
+          #fff9fa 0%,
+          #fffafb 100%
         );
+
     }
 
 
     .hero-grid {
-      width: min(1180px, 92%);
 
-      margin: auto;
+      width:
+        min(1450px, 92%);
 
-      display: grid;
+      margin:
+        auto;
 
-      grid-template-columns: 1fr 1fr;
+      display:
+        grid;
 
-      align-items: center;
+      grid-template-columns:
+        1fr 1fr;
 
-      gap: 55px;
+      align-items:
+        center;
+
+      gap:
+        80px;
+
     }
 
+
+    .hero-content {
+
+      padding-left:
+        5px;
+
+    }
+
+
+    /* FRASE SUPERIOR */
 
     .eyebrow {
-      color: #c9953d;
 
-      text-transform: uppercase;
+      color:
+        #d39424;
 
-      letter-spacing: 4px;
+      text-transform:
+        uppercase;
 
-      font-size: 13px;
+      letter-spacing:
+        5px;
 
-      font-weight: 800;
+      font-size:
+        16px;
 
-      margin-bottom: 15px;
+      font-weight:
+        800;
+
+      margin-bottom:
+        15px;
+
     }
 
 
+    /* TÍTULO */
+
     .hero h1 {
-      margin: 0;
 
-      color: #c83d68;
+      margin:
+        0;
 
-      font-family: "Great Vibes", cursive;
+      color:
+        #c83d68;
 
-      font-size: clamp(65px, 8vw, 105px);
+      font-family:
+        "Great Vibes",
+        cursive;
 
-      line-height: .95;
+      font-size:
+        clamp(80px, 8vw, 125px);
 
-      font-weight: 400;
+      line-height:
+        .85;
+
+      font-weight:
+        400;
+
     }
 
 
     .hero h1 span {
-      display: block;
 
-      margin-top: 12px;
+      display:
+        block;
 
-      font-family: "Montserrat", Arial, sans-serif;
+      margin-top:
+        20px;
 
-      font-size: clamp(23px, 3vw, 35px);
+      font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
 
-      letter-spacing: 8px;
+      font-size:
+        clamp(25px, 3vw, 38px);
 
-      color: #222;
+      letter-spacing:
+        9px;
 
-      font-weight: 700;
+      color:
+        #29232a;
+
+      font-weight:
+        600;
+
     }
 
 
     .hero p {
-      max-width: 600px;
 
-      margin: 28px 0;
+      max-width:
+        760px;
 
-      color: #63545b;
+      margin:
+        32px 0 35px;
 
-      font-size: 19px;
+      color:
+        #63545b;
 
-      line-height: 1.7;
+      font-size:
+        22px;
+
+      line-height:
+        1.65;
+
     }
 
+
+    .hero p strong {
+
+      color:
+        #30262b;
+
+    }
+
+
+    /* =====================================================
+       BOTONES HERO
+    ===================================================== */
 
     .actions {
-      display: flex;
 
-      flex-wrap: wrap;
+      display:
+        flex;
 
-      gap: 14px;
+      flex-wrap:
+        wrap;
+
+      gap:
+        17px;
+
     }
 
 
-    .hero-card {
-      border-radius: 32px;
+    .btn {
 
-      overflow: hidden;
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      min-height:
+        62px;
+
+      padding:
+        15px 32px;
+
+      border-radius:
+        999px;
+
+      font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+      font-size:
+        17px;
+
+      font-weight:
+        700;
+
+      transition:
+        .25s ease;
+
+    }
+
+
+    .btn:hover {
+
+      transform:
+        translateY(-3px);
+
+    }
+
+
+    .btn-primary {
+
+      background:
+        #c83d68;
+
+      color:
+        #fff;
 
       box-shadow:
-        0 20px 50px rgba(120,40,70,.15);
+        0 12px 25px
+        rgba(200,61,104,.20);
 
-      background: #fff;
+    }
+
+
+    .btn-primary:hover {
+
+      background:
+        #b7325b;
+
+    }
+
+
+    .btn-light {
+
+      background:
+        #fff;
+
+      color:
+        #c83d68;
+
+      border:
+        1px solid #e8bdcc;
+
+    }
+
+
+    .btn-light:hover {
+
+      background:
+        #fff3f6;
+
+    }
+
+
+    /* =====================================================
+       IMAGEN HERO
+    ===================================================== */
+
+    .hero-card {
+
+      overflow:
+        hidden;
+
+      border-radius:
+        32px;
+
+      background:
+        #fff;
+
+      box-shadow:
+        0 25px 55px
+        rgba(120,40,70,.14);
+
     }
 
 
     .hero-card img {
-      width: 100%;
 
-      height: auto;
+      width:
+        100%;
 
-      display: block;
+      height:
+        auto;
+
+      display:
+        block;
+
     }
 
 
     /* =====================================================
        SECCIONES
-       ===================================================== */
+    ===================================================== */
 
     .section {
-      padding: 90px 0;
+
+      padding:
+        100px 0;
+
     }
 
 
     .container {
-      width: min(1180px, 92%);
 
-      margin: auto;
+      width:
+        min(1250px, 92%);
+
+      margin:
+        auto;
+
     }
 
 
     .section-head {
-      text-align: center;
 
-      max-width: 760px;
+      text-align:
+        center;
 
-      margin: 0 auto 45px;
+      max-width:
+        850px;
+
+      margin:
+        0 auto 55px;
+
     }
 
 
     .section-head h2 {
-      margin: 0 0 15px;
 
-      color: #c83d68;
+      margin:
+        0 0 15px;
 
-      font-family: "Montserrat", Arial, sans-serif;
+      color:
+        #c83d68;
 
-      font-size: clamp(36px, 5vw, 55px);
+      font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
 
-      font-weight: 700;
+      font-size:
+        clamp(36px,5vw,55px);
+
     }
 
 
     .section-head p {
-      color: #6d5c64;
 
-      font-size: 17px;
+      color:
+        #665861;
 
-      line-height: 1.7;
-    }
+      font-size:
+        19px;
 
+      line-height:
+        1.6;
 
-    /* =====================================================
-       SERVICIOS
-       ===================================================== */
+      margin:
+        0;
 
-    .services {
-      display: grid;
-
-      grid-template-columns:
-        repeat(4,1fr);
-
-      gap: 22px;
-    }
-
-
-    .service {
-      padding: 35px 25px;
-
-      text-align: center;
-
-      background: #fff;
-
-      border: 1px solid #f0dce4;
-
-      border-radius: 25px;
-
-      box-shadow:
-        0 12px 35px rgba(120,40,70,.07);
-
-      transition:
-        transform .25s ease,
-        box-shadow .25s ease;
-    }
-
-
-    .service:hover {
-      transform: translateY(-7px);
-
-      box-shadow:
-        0 18px 40px rgba(120,40,70,.12);
-    }
-
-
-    .service .icon {
-      width: 75px;
-      height: 75px;
-
-      margin: 0 auto 20px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 50%;
-
-      background: #fff0f4;
-
-      font-size: 35px;
-    }
-
-
-    .service h3 {
-      margin: 0 0 10px;
-
-      color: #2c2227;
-
-      font-size: 21px;
-    }
-
-
-    .service p {
-      margin: 0;
-
-      color: #75666d;
-
-      line-height: 1.6;
     }
 
 
     /* =====================================================
        PRODUCTOS
-       ===================================================== */
+    ===================================================== */
 
-    .visual {
-      display: grid;
+    .products {
+
+      display:
+        grid;
 
       grid-template-columns:
-        repeat(3,1fr);
+        repeat(3, 1fr);
 
-      gap: 25px;
+      gap:
+        35px;
+
     }
 
 
-    .visual-card {
-      overflow: hidden;
+    .product-card {
 
-      background: #fff;
+      min-height:
+        490px;
 
-      border-radius: 25px;
+      padding:
+        40px 35px 30px;
 
-      border: 1px solid #f0dce4;
+      background:
+        #fff;
+
+      border:
+        1px solid #f0d5df;
+
+      border-radius:
+        30px;
+
+      text-align:
+        center;
 
       box-shadow:
-        0 12px 35px rgba(120,40,70,.08);
+        0 20px 45px
+        rgba(120,40,70,.08);
+
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
     }
 
 
-    .visual-card img {
-      width: 100%;
+    .product-card:hover {
 
-      aspect-ratio: 4/3;
+      transform:
+        translateY(-7px);
 
-      object-fit: cover;
+      box-shadow:
+        0 25px 50px
+        rgba(120,40,70,.13);
 
-      display: block;
     }
 
 
-    .visual-card .caption {
-      padding: 22px;
+    /* CÍRCULO DE IMAGEN */
+
+    .product-image {
+
+      width:
+        142px;
+
+      height:
+        142px;
+
+      margin:
+        0 auto 28px;
+
+      border-radius:
+        50%;
+
+      background:
+        #fff1f5;
+
+      border:
+        1px solid #f1cad7;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      box-shadow:
+        0 0 0 8px #fff7f9,
+        0 0 0 9px #f1d5de;
+
+      overflow:
+        hidden;
+
     }
 
 
-    .visual-card .caption strong {
-      color: #c83d68;
+    .product-image img {
 
-      font-size: 20px;
+      width:
+        100%;
+
+      height:
+        100%;
+
+      object-fit:
+        cover;
+
     }
 
 
-    .visual-card .caption p {
-      margin-top: 8px;
+    .product-card h3 {
 
-      color: #75666d;
+      margin:
+        0;
 
-      line-height: 1.5;
+      color:
+        #c83d68;
+
+      font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+      font-size:
+        29px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    /* DECORACIÓN DORADA */
+
+    .gold-decoration {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      gap:
+        12px;
+
+      margin:
+        20px 0;
+
+      color:
+        #d49a2e;
+
+      font-size:
+        18px;
+
+    }
+
+
+    .gold-decoration::before,
+    .gold-decoration::after {
+
+      content:
+        "";
+
+      width:
+        42px;
+
+      height:
+        1px;
+
+      background:
+        #d49a2e;
+
+    }
+
+
+    .product-card p {
+
+      min-height:
+        65px;
+
+      margin:
+        0 auto 28px;
+
+      max-width:
+        370px;
+
+      color:
+        #665861;
+
+      font-size:
+        18px;
+
+      line-height:
+        1.55;
+
+    }
+
+
+    .product-button {
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      padding:
+        14px 28px;
+
+      border:
+        1.5px solid #d94b75;
+
+      border-radius:
+        999px;
+
+      color:
+        #c83d68;
+
+      background:
+        #fff;
+
+      font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+      font-weight:
+        700;
+
+      font-size:
+        17px;
+
+      transition:
+        .25s ease;
+
+    }
+
+
+    .product-button:hover {
+
+      background:
+        #c83d68;
+
+      color:
+        #fff;
+
+    }
+
+
+    /* =====================================================
+       SERVICIOS
+    ===================================================== */
+
+    .services {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(4,1fr);
+
+      gap:
+        25px;
+
+    }
+
+
+    .service {
+
+      background:
+        #fff;
+
+      border:
+        1px solid #f0dce4;
+
+      border-radius:
+        25px;
+
+      padding:
+        35px 22px;
+
+      text-align:
+        center;
+
+      box-shadow:
+        0 15px 35px
+        rgba(120,40,70,.06);
+
+      transition:
+        .25s ease;
+
+    }
+
+
+    .service:hover {
+
+      transform:
+        translateY(-6px);
+
+    }
+
+
+    .service .icon {
+
+      width:
+        75px;
+
+      height:
+        75px;
+
+      margin:
+        0 auto 20px;
+
+      border-radius:
+        50%;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      background:
+        #fff0f4;
+
+      font-size:
+        34px;
+
+    }
+
+
+    .service h3 {
+
+      margin:
+        0 0 10px;
+
+      color:
+        #30262b;
+
+      font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+      font-size:
+        20px;
+
+    }
+
+
+    .service p {
+
+      margin:
+        0;
+
+      color:
+        #75666d;
+
+      line-height:
+        1.55;
+
     }
 
 
     /* =====================================================
        PROGRAMA DE PUNTOS
-       ===================================================== */
+    ===================================================== */
 
     .loyalty {
-      padding: 55px;
 
-      display: grid;
+      padding:
+        60px;
 
-      grid-template-columns: 1fr 1fr;
-
-      gap: 45px;
-
-      align-items: center;
-
-      border-radius: 35px;
+      border-radius:
+        35px;
 
       background:
         linear-gradient(
@@ -670,429 +1154,649 @@
           #fff
         );
 
-      border: 1px solid #f0dce4;
+      border:
+        1px solid #f0dce4;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:
+        50px;
+
+      align-items:
+        center;
 
       box-shadow:
-        0 15px 45px rgba(120,40,70,.08);
+        0 18px 45px
+        rgba(120,40,70,.07);
+
     }
 
 
     .loyalty h2 {
-      margin: 0 0 18px;
 
-      color: #c83d68;
+      margin:
+        0 0 18px;
 
-      font-size: clamp(35px,5vw,52px);
+      color:
+        #c83d68;
 
-      font-weight: 700;
+      font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+      font-size:
+        45px;
+
     }
 
 
     .loyalty p {
-      color: #6d5c64;
 
-      line-height: 1.7;
+      color:
+        #665861;
 
-      font-size: 17px;
+      font-size:
+        18px;
 
-      margin-bottom: 25px;
+      line-height:
+        1.7;
+
+      margin-bottom:
+        28px;
+
     }
 
 
     .steps {
-      display: grid;
 
-      gap: 18px;
+      display:
+        grid;
+
+      gap:
+        16px;
+
     }
 
 
     .step {
-      display: flex;
 
-      align-items: flex-start;
+      display:
+        flex;
 
-      gap: 18px;
+      gap:
+        16px;
 
-      padding: 20px;
+      align-items:
+        flex-start;
 
-      background: #fff;
+      padding:
+        20px;
 
-      border-radius: 20px;
+      background:
+        #fff;
 
-      border: 1px solid #f0dce4;
+      border:
+        1px solid #f0dce4;
+
+      border-radius:
+        20px;
+
     }
 
 
     .step .num {
-      width: 42px;
 
-      height: 42px;
+      width:
+        43px;
 
-      flex-shrink: 0;
+      height:
+        43px;
 
-      border-radius: 50%;
+      flex-shrink:
+        0;
 
-      background: #c83d68;
+      border-radius:
+        50%;
 
-      color: #fff;
+      background:
+        #c83d68;
 
-      display: flex;
+      color:
+        #fff;
 
-      align-items: center;
+      display:
+        flex;
 
-      justify-content: center;
+      align-items:
+        center;
 
-      font-weight: 800;
+      justify-content:
+        center;
+
+      font-weight:
+        800;
+
     }
 
 
     .step strong {
-      display: block;
 
-      color: #2c2227;
+      display:
+        block;
 
-      margin-bottom: 5px;
+      margin-bottom:
+        5px;
+
+      color:
+        #30262b;
+
     }
 
 
     .step span {
-      display: block;
 
-      color: #75666d;
+      color:
+        #75666d;
 
-      line-height: 1.5;
+      line-height:
+        1.5;
+
     }
 
 
     /* =====================================================
        GALERÍA
-       ===================================================== */
+    ===================================================== */
 
     .gallery {
-      display: grid;
+
+      display:
+        grid;
 
       grid-template-columns:
         repeat(3,1fr);
 
-      gap: 22px;
+      gap:
+        25px;
+
     }
 
 
     .gallery figure {
-      margin: 0;
 
-      overflow: hidden;
+      margin:
+        0;
 
-      border-radius: 25px;
+      overflow:
+        hidden;
 
-      background: #fff;
+      border-radius:
+        25px;
 
-      border: 1px solid #f0dce4;
+      background:
+        #fff;
+
+      border:
+        1px solid #f0dce4;
 
       box-shadow:
-        0 12px 35px rgba(120,40,70,.08);
+        0 15px 35px
+        rgba(120,40,70,.08);
+
     }
 
 
     .gallery img {
-      width: 100%;
 
-      aspect-ratio: 4/3;
+      width:
+        100%;
 
-      object-fit: cover;
+      aspect-ratio:
+        4 / 3;
 
-      display: block;
+      object-fit:
+        cover;
+
+      display:
+        block;
 
       transition:
         transform .4s ease;
+
     }
 
 
     .gallery figure:hover img {
-      transform: scale(1.04);
+
+      transform:
+        scale(1.04);
+
     }
 
 
     /* =====================================================
        CONTACTO
-       ===================================================== */
+    ===================================================== */
 
     .cta {
-      margin-top: 25px;
 
-      padding: 50px;
+      padding:
+        55px;
 
-      border-radius: 30px;
+      border-radius:
+        32px;
 
-      background: #c83d68;
+      background:
+        #c83d68;
 
-      color: #fff;
+      color:
+        #fff;
 
-      display: flex;
+      display:
+        flex;
 
-      align-items: center;
+      align-items:
+        center;
 
-      justify-content: space-between;
+      justify-content:
+        space-between;
 
-      gap: 25px;
+      gap:
+        30px;
+
     }
 
 
     .cta h2 {
-      margin: 0;
 
-      font-family: "Great Vibes", cursive;
+      margin:
+        0;
 
-      font-size: 50px;
+      font-family:
+        "Great Vibes",
+        cursive;
 
-      font-weight: 400;
+      font-size:
+        55px;
+
+      font-weight:
+        400;
+
     }
 
 
     .cta p {
-      margin: 8px 0 0;
 
-      font-size: 17px;
+      margin:
+        8px 0 0;
+
+      font-size:
+        18px;
+
     }
 
 
     .cta .btn {
-      background: #fff;
 
-      color: #c83d68;
+      background:
+        #fff;
 
-      flex-shrink: 0;
+      color:
+        #c83d68;
+
+      flex-shrink:
+        0;
+
     }
 
 
     /* =====================================================
        FOOTER
-       ===================================================== */
+    ===================================================== */
 
     footer {
-      margin-top: 70px;
 
-      padding: 40px 0;
+      margin-top:
+        70px;
 
-      border-top: 1px solid #efdce3;
+      padding:
+        45px 0;
 
-      text-align: center;
+      text-align:
+        center;
 
-      color: #75666d;
+      border-top:
+        1px solid #efdce3;
 
-      font-size: 14px;
+      color:
+        #75666d;
+
+      font-size:
+        14px;
+
     }
 
 
     footer strong {
-      display: block;
 
-      margin-bottom: 8px;
+      display:
+        block;
 
-      color: #c83d68;
+      margin-bottom:
+        8px;
 
-      font-family: "Great Vibes", cursive;
+      color:
+        #c83d68;
 
-      font-size: 32px;
+      font-family:
+        "Great Vibes",
+        cursive;
 
-      font-weight: 400;
+      font-size:
+        36px;
+
+      font-weight:
+        400;
+
     }
 
 
     /* =====================================================
-       MENÚ MÓVIL
-       ===================================================== */
+       TABLET
+    ===================================================== */
 
-    .mobile-menu-button {
-      display: none;
+    @media(max-width:1100px) {
 
-      border: 0;
+      .header-inner {
 
-      background: transparent;
+        min-height:
+          100px;
 
-      color: #c83d68;
+      }
 
-      font-size: 27px;
+      .brand img {
 
-      cursor: pointer;
-    }
+        width:
+          165px;
 
-
-    /* =====================================================
-       RESPONSIVE
-       ===================================================== */
-
-    @media(max-width:1150px) {
-
-      .social-links {
-        margin-left: 20px;
       }
 
       .main-nav {
-        gap: 22px;
+
+        gap:
+          25px;
+
+        margin-right:
+          15px;
+
+      }
+
+      .main-nav a {
+
+        font-size:
+          15px;
+
       }
 
       .contact-button,
       .admin-button {
-        min-width: auto;
 
-        padding: 13px 17px;
+        min-width:
+          auto;
 
-        font-size: 13px;
+        padding:
+          13px 17px;
+
+        font-size:
+          13px;
+
+      }
+
+      .hero-grid {
+
+        gap:
+          45px;
+
+      }
+
+      .products {
+
+        gap:
+          20px;
+
       }
 
     }
 
 
-    @media(max-width:950px) {
+    /* =====================================================
+       TABLET PEQUEÑA
+    ===================================================== */
 
-      .header-inner {
-        min-height: 80px;
-      }
-
-
-      .brand img {
-        width: 160px;
-      }
-
-
-      .social-links {
-        margin-left: auto;
-      }
-
+    @media(max-width:900px) {
 
       .main-nav,
       .contact-button,
       .admin-button {
-        display: none;
-      }
 
+        display:
+          none;
+
+      }
 
       .mobile-menu-button {
-        display: block;
+
+        display:
+          block;
+
       }
 
+      .hero {
+
+        padding:
+          70px 0;
+
+      }
 
       .hero-grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
+
       }
 
+      .hero-content {
 
-      .hero-card {
-        max-width: 700px;
+        text-align:
+          center;
 
-        margin: auto;
       }
 
+      .hero p {
+
+        margin-left:
+          auto;
+
+        margin-right:
+          auto;
+
+      }
+
+      .actions {
+
+        justify-content:
+          center;
+
+      }
+
+      .products {
+
+        grid-template-columns:
+          repeat(2,1fr);
+
+      }
 
       .services {
+
         grid-template-columns:
           repeat(2,1fr);
+
       }
-
-
-      .visual,
-      .gallery {
-        grid-template-columns:
-          repeat(2,1fr);
-      }
-
 
       .loyalty {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
+
       }
 
     }
 
 
+    /* =====================================================
+       CELULAR
+    ===================================================== */
+
     @media(max-width:600px) {
 
       .header-inner {
-        width: 92%;
-      }
 
+        min-height:
+          78px;
+
+      }
 
       .brand img {
-        width: 145px;
+
+        width:
+          140px;
+
       }
-
-
-      .social-links {
-        gap: 7px;
-      }
-
-
-      .social-links a {
-        width: 40px;
-
-        height: 40px;
-
-        font-size: 18px;
-      }
-
 
       .hero {
-        padding: 55px 0;
-      }
 
+        padding:
+          55px 0;
+
+      }
 
       .hero h1 {
-        font-size: 60px;
-      }
 
+        font-size:
+          68px;
+
+      }
 
       .hero h1 span {
-        font-size: 20px;
 
-        letter-spacing: 5px;
+        font-size:
+          20px;
+
+        letter-spacing:
+          5px;
+
       }
-
 
       .hero p {
-        font-size: 16px;
-      }
 
+        font-size:
+          16px;
+
+      }
 
       .actions {
-        flex-direction: column;
 
-        align-items: stretch;
+        flex-direction:
+          column;
+
       }
-
 
       .btn {
-        text-align: center;
-      }
 
+        width:
+          100%;
+
+      }
 
       .section {
-        padding: 60px 0;
+
+        padding:
+          65px 0;
+
       }
 
+      .products {
 
-      .services,
-      .visual,
+        grid-template-columns:
+          1fr;
+
+      }
+
+      .services {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
       .gallery {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
+
       }
 
+      .product-card {
+
+        min-height:
+          auto;
+
+      }
 
       .loyalty {
-        padding: 30px 22px;
+
+        padding:
+          30px 22px;
+
       }
 
+      .loyalty h2 {
+
+        font-size:
+          34px;
+
+      }
 
       .cta {
-        padding: 30px 22px;
 
-        flex-direction: column;
+        padding:
+          35px 25px;
 
-        align-items: flex-start;
+        flex-direction:
+          column;
+
+        align-items:
+          flex-start;
+
       }
 
-
       .cta h2 {
-        font-size: 42px;
+
+        font-size:
+          43px;
+
+      }
+
+      .cta .btn {
+
+        width:
+          auto;
+
       }
 
     }
@@ -1105,989 +1809,914 @@
 <body>
 
 
-  <!-- =====================================================
-       ENCABEZADO
-       ===================================================== -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
-  <header class="site-header">
+<header class="site-header">
 
-    <div class="header-inner">
+  <div class="header-inner">
 
 
-      <!-- LOGO -->
+    <!-- LOGO -->
 
-      <a
-        href="index.html"
-        class="brand"
-        aria-label="Juanita Pacasmayo"
+    <a
+      href="index.html"
+      class="brand"
+    >
+
+      <img
+        src="images/Logo.png"
+        alt="Juanita Pacasmayo"
       >
 
-        <img
-          src="images/Logo.png"
-          alt="Juanita Pacasmayo"
-        >
+    </a>
 
+
+    <!-- MENÚ -->
+
+    <nav
+      class="main-nav"
+      id="mainNav"
+    >
+
+      <a href="#servicios">
+        Servicios
       </a>
 
+      <a href="#productos">
+        Productos
+      </a>
 
-      <!-- =================================================
-           REDES SOCIALES
-           ================================================= -->
+      <!-- IMPORTANTE: CONSULTA DE PUNTOS -->
 
-      <div class="social-links">
+      <a href="consulta.html">
+        Puntos
+      </a>
 
-        <a
-          href="#"
-          class="social-facebook"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Facebook"
-        >
+      <a href="#galeria">
+        Galería
+      </a>
 
-          <i class="fab fa-facebook-f"></i>
-
-        </a>
+    </nav>
 
 
-        <a
-          href="#"
-          class="social-instagram"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Instagram"
-        >
+    <!-- CONTACTO -->
 
-          <i class="fab fa-instagram"></i>
+    <a
+      href="#contacto"
+      class="contact-button"
+    >
 
-        </a>
+      Contáctanos
+
+    </a>
+
+
+    <!-- ADMINISTRACIÓN -->
+
+    <a
+      href="login.html"
+      class="admin-button"
+    >
+
+      🔐 Administración
+
+    </a>
+
+
+    <!-- MENÚ CELULAR -->
+
+    <button
+      class="mobile-menu-button"
+      id="mobileMenuButton"
+      aria-label="Abrir menú"
+    >
+
+      <i class="fas fa-bars"></i>
+
+    </button>
+
+
+  </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     CONTENIDO
+===================================================== -->
+
+<main>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section
+  class="hero"
+  id="inicio"
+>
+
+  <div class="hero-grid">
+
+
+    <div class="hero-content">
+
+
+      <div class="eyebrow">
+
+        Belleza que inspira ✦
 
       </div>
 
 
-      <!-- =================================================
-           MENÚ
-           ================================================= -->
+      <h1>
 
-      <nav class="main-nav">
+        Juanita
 
-        <a href="#servicios">
-          Servicios
+        <span>
+          PACASMAYO
+        </span>
+
+      </h1>
+
+
+      <p>
+
+        Productos de belleza y servicios pensados
+        para realzar tu estilo:
+
+        <strong>
+          laceados, uñas y pestañas.
+        </strong>
+
+      </p>
+
+
+      <div class="actions">
+
+
+        <a
+          href="#servicios"
+          class="btn btn-primary"
+        >
+
+          Ver servicios
+
         </a>
 
 
-        <a href="#productos">
-          Productos
+        <!-- PUNTOS → CONSULTA.HTML -->
+
+        <a
+          href="consulta.html"
+          class="btn btn-light"
+        >
+
+          Conoce tus puntos
+
         </a>
 
 
-        <!-- =================================================
-             PUNTOS → CONSULTA.HTML
-             ================================================= -->
+      </div>
 
-        <a href="consulta.html">
-          Puntos
-        </a>
-
-
-        <a href="#galeria">
-          Galería
-        </a>
-
-      </nav>
-
-
-      <!-- =================================================
-           CONTACTO
-           ================================================= -->
-
-      <a
-        href="#contacto"
-        class="contact-button"
-      >
-
-        Contáctanos
-
-      </a>
-
-
-      <!-- =================================================
-           ADMINISTRACIÓN
-           ================================================= -->
-
-      <a
-        href="login.html"
-        class="admin-button"
-      >
-
-        🔐 Administración
-
-      </a>
-
-
-      <!-- =================================================
-           MENÚ MÓVIL
-           ================================================= -->
-
-      <button
-        class="mobile-menu-button"
-        id="mobileMenuButton"
-        aria-label="Abrir menú"
-      >
-
-        <i class="fas fa-bars"></i>
-
-      </button>
 
     </div>
 
-  </header>
 
 
-  <!-- =====================================================
-       CONTENIDO PRINCIPAL
-       ===================================================== -->
+    <!-- IMAGEN HERO -->
 
-  <main id="inicio">
+    <div class="hero-card">
 
+      <img
+        src="images/hero.jpg"
+        alt="Juanita Pacasmayo - Belleza"
+      >
 
-    <!-- ===================================================
-         HERO
-         =================================================== -->
-
-    <section class="hero">
-
-      <div class="hero-grid">
+    </div>
 
 
-        <!-- TEXTO -->
+  </div>
 
-        <div>
-
-          <div class="eyebrow">
-            Belleza que inspira ✨
-          </div>
+</section>
 
 
-          <h1>
 
-            Juanita
+<!-- =====================================================
+     SERVICIOS
+===================================================== -->
 
-            <span>
-              PACASMAYO
-            </span>
+<section
+  class="section"
+  id="servicios"
+>
 
-          </h1>
-
-
-          <p>
-
-            Productos de belleza y servicios pensados
-            para realzar tu estilo:
-            <strong>laceados, uñas y pestañas</strong>.
-
-          </p>
+  <div class="container">
 
 
-          <div class="actions">
+    <div class="section-head">
+
+      <div class="eyebrow">
+        Todo en un solo lugar
+      </div>
+
+      <h2>
+        Servicios de belleza
+      </h2>
+
+      <p>
+        Elige tu servicio favorito y vive una
+        experiencia de belleza con el estilo
+        Juanita Pacasmayo.
+      </p>
+
+    </div>
 
 
-            <a
-              href="#servicios"
-              class="btn btn-primary"
-            >
-
-              Ver servicios
-
-            </a>
+    <div class="services">
 
 
-            <!-- =================================================
-                 CONOCE TUS PUNTOS → CONSULTA.HTML
-                 ================================================= -->
+      <article class="service">
 
-            <a
-              href="consulta.html"
-              class="btn btn-light"
-            >
-
-              🔐 Conoce tus puntos
-
-            </a>
-
-          </div>
-
+        <div class="icon">
+          💄
         </div>
 
+        <h3>
+          Cosméticos
+        </h3>
 
-        <!-- IMAGEN PRINCIPAL -->
+        <p>
+          Encuentra productos para complementar
+          tu rutina de belleza.
+        </p>
 
-        <div class="hero-card">
+      </article>
+
+
+      <article class="service">
+
+        <div class="icon">
+          💅
+        </div>
+
+        <h3>
+          Uñas
+        </h3>
+
+        <p>
+          Diseños y acabados para darle
+          personalidad a tus manos.
+        </p>
+
+      </article>
+
+
+      <article class="service">
+
+        <div class="icon">
+          💇‍♀️
+        </div>
+
+        <h3>
+          Laceado
+        </h3>
+
+        <p>
+          Cuida y transforma tu cabello con
+          un acabado elegante.
+        </p>
+
+      </article>
+
+
+      <article class="service">
+
+        <div class="icon">
+          👁️
+        </div>
+
+        <h3>
+          Pestañas
+        </h3>
+
+        <p>
+          Realza tu mirada con un acabado
+          delicado y sofisticado.
+        </p>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PRODUCTOS
+===================================================== -->
+
+<section
+  class="section"
+  id="productos"
+>
+
+  <div class="container">
+
+
+    <div class="section-head">
+
+      <div class="eyebrow">
+        Compra y disfruta
+      </div>
+
+      <h2>
+        Tus productos favoritos
+      </h2>
+
+      <p>
+        Encuentra productos seleccionados para cuidar
+        y realzar tu belleza todos los días.
+      </p>
+
+    </div>
+
+
+
+    <div class="products">
+
+
+      <!-- MAQUILLAJE -->
+
+      <article class="product-card">
+
+
+        <div class="product-image">
 
           <img
-            src="images/hero.jpg"
-            alt="Servicios de belleza Juanita Pacasmayo"
-            onerror="this.style.display='none'"
+            src="images/maquillaje.png"
+            alt="Maquillaje"
           >
 
         </div>
 
-      </div>
 
-    </section>
-
-
-    <!-- ===================================================
-         SERVICIOS
-         =================================================== -->
-
-    <section
-      class="section"
-      id="servicios"
-    >
-
-      <div class="container">
+        <h3>
+          Maquillaje
+        </h3>
 
 
-        <div class="section-head">
-
-          <div class="eyebrow">
-            Todo en un solo lugar
-          </div>
-
-
-          <h2>
-            Servicios de belleza
-          </h2>
-
-
-          <p>
-
-            Elige tu servicio favorito y vive una
-            experiencia de belleza con el estilo
-            Juanita Pacasmayo.
-
-          </p>
-
+        <div class="gold-decoration">
+          ♥
         </div>
 
 
-        <div class="services">
+        <p>
+          Productos para cada ocasión y para
+          resaltar tu belleza.
+        </p>
 
 
-          <!-- COSMÉTICOS -->
+        <a
+          href="#contacto"
+          class="product-button"
+        >
 
-          <article class="service">
+          Ver productos
+          &nbsp;›
 
-            <div class="icon">
-              💄
-            </div>
+        </a>
 
 
-            <h3>
-              Cosméticos
-            </h3>
+      </article>
 
 
-            <p>
 
-              Encuentra productos para complementar
-              tu rutina de belleza.
+      <!-- CUIDADO CAPILAR -->
 
-            </p>
+      <article class="product-card">
 
-          </article>
 
+        <div class="product-image">
 
-          <!-- UÑAS -->
-
-          <article class="service">
-
-            <div class="icon">
-              💅
-            </div>
-
-
-            <h3>
-              Uñas
-            </h3>
-
-
-            <p>
-
-              Diseños y acabados para darle
-              personalidad a tus manos.
-
-            </p>
-
-          </article>
-
-
-          <!-- LACEADO -->
-
-          <article class="service">
-
-            <div class="icon">
-              💇‍♀️
-            </div>
-
-
-            <h3>
-              Laceado
-            </h3>
-
-
-            <p>
-
-              Cuida y transforma tu cabello con
-              un acabado elegante.
-
-            </p>
-
-          </article>
-
-
-          <!-- PESTAÑAS -->
-
-          <article class="service">
-
-            <div class="icon">
-              👁️
-            </div>
-
-
-            <h3>
-              Pestañas
-            </h3>
-
-
-            <p>
-
-              Realza tu mirada con un acabado
-              delicado y sofisticado.
-
-            </p>
-
-          </article>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         PRODUCTOS
-         =================================================== -->
-
-    <section
-      class="section"
-      id="productos"
-    >
-
-      <div class="container">
-
-
-        <div class="section-head">
-
-          <div class="eyebrow">
-            Compra y disfruta
-          </div>
-
-
-          <h2>
-            Tus productos favoritos
-          </h2>
-
-
-          <p>
-
-            Encuentra productos de belleza seleccionados
-            para acompañar tu rutina.
-
-          </p>
-
-        </div>
-
-
-        <div class="visual">
-
-
-          <!-- MAQUILLAJE -->
-
-          <article class="visual-card">
-
-            <img
-              src="images/maquillaje.png"
-              alt="Maquillaje Juanita Pacasmayo"
-            >
-
-
-            <div class="caption">
-
-              <strong>
-                Maquillaje
-              </strong>
-
-
-              <p>
-
-                Productos para realzar tu belleza
-                todos los días.
-
-              </p>
-
-            </div>
-
-          </article>
-
-
-          <!-- CUIDADO CAPILAR -->
-
-          <article class="visual-card">
-
-            <img
-              src="images/cuidado-capilar.png"
-              alt="Cuidado capilar Juanita Pacasmayo"
-            >
-
-
-            <div class="caption">
-
-              <strong>
-                Cuidado capilar
-              </strong>
-
-
-              <p>
-
-                Productos para cuidar y mantener
-                tu cabello.
-
-              </p>
-
-            </div>
-
-          </article>
-
-
-          <!-- PERFUMES -->
-
-          <article class="visual-card">
-
-            <img
-              src="images/perfumes.png"
-              alt="Perfumes Juanita Pacasmayo"
-            >
-
-
-            <div class="caption">
-
-              <strong>
-                Perfumes
-              </strong>
-
-
-              <p>
-
-                Fragancias para acompañarte
-                en cada momento.
-
-              </p>
-
-            </div>
-
-          </article>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         PROGRAMA DE PUNTOS
-         =================================================== -->
-
-    <section class="section">
-
-      <div class="container">
-
-
-        <div class="loyalty">
-
-
-          <div>
-
-            <div class="eyebrow">
-              Programa de beneficios
-            </div>
-
-
-            <h2>
-              Acumula puntos ✨
-            </h2>
-
-
-            <p>
-
-              Por tus compras acumulas puntos que
-              podrás consultar desde tu cuenta y
-              utilizar para disfrutar de beneficios
-              en nuestros servicios.
-
-            </p>
-
-
-            <!-- =================================================
-                 CONSULTAR MIS PUNTOS → CONSULTA.HTML
-                 ================================================= -->
-
-            <a
-              href="consulta.html"
-              class="btn btn-primary"
-            >
-
-              🔐 Consultar mis puntos
-
-            </a>
-
-          </div>
-
-
-          <div class="steps">
-
-
-            <div class="step">
-
-              <div class="num">
-                1
-              </div>
-
-
-              <div>
-
-                <strong>
-                  Compra
-                </strong>
-
-
-                <span>
-                  Adquiere tus productos de belleza favoritos.
-                </span>
-
-              </div>
-
-            </div>
-
-
-            <div class="step">
-
-              <div class="num">
-                2
-              </div>
-
-
-              <div>
-
-                <strong>
-                  Acumula
-                </strong>
-
-
-                <span>
-                  Registra tus compras y suma puntos.
-                </span>
-
-              </div>
-
-            </div>
-
-
-            <div class="step">
-
-              <div class="num">
-                3
-              </div>
-
-
-              <div>
-
-                <strong>
-                  Consulta
-                </strong>
-
-
-                <span>
-                  Ingresa tu código y PIN para consultar
-                  tus puntos e historial.
-                </span>
-
-              </div>
-
-            </div>
-
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         SERVICIOS VISUALES
-         =================================================== -->
-
-    <section class="section">
-
-      <div class="container">
-
-
-        <div class="section-head">
-
-          <div class="eyebrow">
-            Nuestra especialidad
-          </div>
-
-
-          <h2>
-            Belleza que inspira
-          </h2>
-
-
-          <p>
-
-            Descubre algunos de nuestros servicios
-            y transforma tu estilo.
-
-          </p>
-
-        </div>
-
-
-        <div class="gallery">
-
-
-          <figure>
-
-            <img
-              src="images/laceado.png"
-              alt="Laceado"
-            >
-
-          </figure>
-
-
-          <figure>
-
-            <img
-              src="images/unas.png"
-              alt="Uñas"
-            >
-
-          </figure>
-
-
-          <figure>
-
-            <img
-              src="images/pestanas.png"
-              alt="Pestañas"
-            >
-
-          </figure>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         GALERÍA
-         =================================================== -->
-
-    <section
-      class="section"
-      id="galeria"
-    >
-
-      <div class="container">
-
-
-        <div class="section-head">
-
-          <div class="eyebrow">
-            Inspírate
-          </div>
-
-
-          <h2>
-            Galería
-          </h2>
-
-
-          <p>
-
-            Muy pronto encontrarás nuestros trabajos
-            y novedades aquí.
-
-          </p>
-
-        </div>
-
-
-        <div class="gallery">
-
-
-          <figure>
-
-            <img
-              src="images/laceado.png"
-              alt="Laceado"
-            >
-
-          </figure>
-
-
-          <figure>
-
-            <img
-              src="images/unas.png"
-              alt="Uñas"
-            >
-
-          </figure>
-
-
-          <figure>
-
-            <img
-              src="images/pestanas.png"
-              alt="Pestañas"
-            >
-
-          </figure>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         CONTACTO
-         =================================================== -->
-
-    <section
-      class="section"
-      id="contacto"
-    >
-
-      <div class="container">
-
-
-        <div class="cta">
-
-
-          <div>
-
-            <h2>
-              ¿Lista para consentirte?
-            </h2>
-
-
-            <p>
-
-              Descubre nuestros productos y servicios
-              de belleza en Juanita Pacasmayo.
-
-            </p>
-
-          </div>
-
-
-          <a
-            href="#servicios"
-            class="btn"
+          <img
+            src="images/cuidado-capilar.png"
+            alt="Cuidado capilar"
           >
 
-            Ver servicios ✨
+        </div>
 
-          </a>
+
+        <h3>
+          Cuidado capilar
+        </h3>
+
+
+        <div class="gold-decoration">
+          ♥
+        </div>
+
+
+        <p>
+          Hidratación y cuidado para mantener
+          tu cabello hermoso.
+        </p>
+
+
+        <a
+          href="#contacto"
+          class="product-button"
+        >
+
+          Ver productos
+          &nbsp;›
+
+        </a>
+
+
+      </article>
+
+
+
+      <!-- PERFUMES -->
+
+      <article class="product-card">
+
+
+        <div class="product-image">
+
+          <img
+            src="images/perfumes.png"
+            alt="Perfumes"
+          >
 
         </div>
 
-      </div>
 
-    </section>
-
-
-  </main>
+        <h3>
+          Perfumes
+        </h3>
 
 
-  <!-- =====================================================
-       FOOTER
-       ===================================================== -->
-
-  <footer>
-
-    <div class="container">
+        <div class="gold-decoration">
+          ♥
+        </div>
 
 
-      <strong>
-        Juanita Pacasmayo
-      </strong>
+        <p>
+          Fragancias para expresar tu estilo
+          y personalidad.
+        </p>
+
+
+        <a
+          href="#contacto"
+          class="product-button"
+        >
+
+          Ver productos
+          &nbsp;›
+
+        </a>
+
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PROGRAMA DE PUNTOS
+===================================================== -->
+
+<section class="section">
+
+  <div class="container">
+
+
+    <div class="loyalty">
 
 
       <div>
-        Cosméticos · Uñas · Laceado · Pestañas
+
+
+        <div class="eyebrow">
+          Programa de beneficios
+        </div>
+
+
+        <h2>
+          Acumula puntos ✨
+        </h2>
+
+
+        <p>
+          Por tus compras y servicios acumulas puntos
+          que podrás consultar desde tu cuenta y
+          utilizar para disfrutar de nuestros beneficios.
+        </p>
+
+
+        <!-- PUNTOS → CONSULTA -->
+
+        <a
+          href="consulta.html"
+          class="btn btn-primary"
+        >
+
+          🔐 Consultar mis puntos
+
+        </a>
+
+
       </div>
 
 
-      <div style="margin-top:8px">
-        Belleza que inspira
+
+      <div class="steps">
+
+
+        <div class="step">
+
+          <div class="num">
+            1
+          </div>
+
+          <div>
+
+            <strong>
+              Compra
+            </strong>
+
+            <span>
+              Adquiere tus productos o disfruta
+              de nuestros servicios.
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="num">
+            2
+          </div>
+
+          <div>
+
+            <strong>
+              Acumula
+            </strong>
+
+            <span>
+              Registra tus compras y suma puntos.
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="num">
+            3
+          </div>
+
+          <div>
+
+            <strong>
+              Consulta
+            </strong>
+
+            <span>
+              Ingresa tu código y contraseña
+              para consultar tus puntos.
+            </span>
+
+          </div>
+
+        </div>
+
+
       </div>
 
-
-      <div
-        style="
-          margin-top:15px;
-          font-size:12px;
-        "
-      >
-
-        © 2026 Juanita Pacasmayo ·
-        Todos los derechos reservados
-
-      </div>
 
     </div>
 
-  </footer>
+  </div>
+
+</section>
 
 
-  <!-- =====================================================
-       MENÚ MÓVIL
-       ===================================================== -->
 
-  <script>
+<!-- =====================================================
+     GALERÍA
+===================================================== -->
 
-    const mobileMenuButton =
-      document.getElementById(
-        "mobileMenuButton"
-      );
+<section
+  class="section"
+  id="galeria"
+>
 
-
-    const mainNav =
-      document.querySelector(
-        ".main-nav"
-      );
+  <div class="container">
 
 
-    if (
-      mobileMenuButton &&
-      mainNav
-    ) {
+    <div class="section-head">
 
-      mobileMenuButton.addEventListener(
-        "click",
-        function() {
+      <div class="eyebrow">
+        Inspírate
+      </div>
 
-          const visible =
-            mainNav.style.display === "flex";
+      <h2>
+        Belleza que inspira
+      </h2>
 
+      <p>
+        Descubre algunos de nuestros servicios
+        y transforma tu estilo.
+      </p>
 
-          if (visible) {
-
-            mainNav.style.display =
-              "none";
-
-          } else {
-
-            mainNav.style.display =
-              "flex";
-
-            mainNav.style.position =
-              "absolute";
-
-            mainNav.style.top =
-              "80px";
-
-            mainNav.style.left =
-              "0";
-
-            mainNav.style.right =
-              "0";
-
-            mainNav.style.background =
-              "#fff";
-
-            mainNav.style.padding =
-              "22px";
-
-            mainNav.style.flexDirection =
-              "column";
-
-            mainNav.style.alignItems =
-              "center";
-
-            mainNav.style.gap =
-              "20px";
-
-            mainNav.style.borderBottom =
-              "1px solid #f2dce4";
-
-            mainNav.style.boxShadow =
-              "0 10px 25px rgba(0,0,0,.08)";
-
-          }
-
-        }
-      );
-
-    }
+    </div>
 
 
-    /* =====================================================
-       CERRAR MENÚ AL HACER CLICK
-       ===================================================== */
+    <div class="gallery">
 
-    document
-      .querySelectorAll(".main-nav a")
-      .forEach(
-        function(enlace) {
 
-          enlace.addEventListener(
-            "click",
-            function() {
+      <figure>
 
-              if (
-                window.innerWidth <= 950
-              ) {
+        <img
+          src="images/laceado.png"
+          alt="Laceado"
+        >
 
-                mainNav.style.display =
-                  "none";
+      </figure>
 
-              }
 
-            }
+      <figure>
+
+        <img
+          src="images/unas.png"
+          alt="Uñas"
+        >
+
+      </figure>
+
+
+      <figure>
+
+        <img
+          src="images/pestanas.png"
+          alt="Pestañas"
+        >
+
+      </figure>
+
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTACTO
+===================================================== -->
+
+<section
+  class="section"
+  id="contacto"
+>
+
+  <div class="container">
+
+
+    <div class="cta">
+
+
+      <div>
+
+        <h2>
+          ¿Lista para consentirte?
+        </h2>
+
+        <p>
+          Descubre nuestros productos y servicios
+          de belleza en Juanita Pacasmayo.
+        </p>
+
+      </div>
+
+
+      <a
+        href="#servicios"
+        class="btn"
+      >
+
+        Ver servicios ✨
+
+      </a>
+
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+  <div class="container">
+
+
+    <strong>
+      Juanita Pacasmayo
+    </strong>
+
+
+    <div>
+      Cosméticos · Uñas · Laceado · Pestañas
+    </div>
+
+
+    <div style="margin-top:8px">
+      Belleza que inspira
+    </div>
+
+
+    <div
+      style="
+        margin-top:15px;
+        font-size:12px;
+      "
+    >
+
+      © 2026 Juanita Pacasmayo
+      · Todos los derechos reservados
+
+    </div>
+
+
+  </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT MENÚ CELULAR
+===================================================== -->
+
+<script>
+
+  const mobileMenuButton =
+    document.getElementById(
+      "mobileMenuButton"
+    );
+
+
+  const mainNav =
+    document.getElementById(
+      "mainNav"
+    );
+
+
+  if (
+    mobileMenuButton &&
+    mainNav
+  ) {
+
+
+    mobileMenuButton.addEventListener(
+      "click",
+      function () {
+
+
+        const abierto =
+          mainNav.classList.contains(
+            "mobile-open"
           );
 
-        }
-      );
 
-  </script>
+        if (abierto) {
+
+          mainNav.classList.remove(
+            "mobile-open"
+          );
+
+          mainNav.style.display =
+            "none";
+
+        } else {
+
+          mainNav.classList.add(
+            "mobile-open"
+          );
+
+          mainNav.style.display =
+            "flex";
+
+          mainNav.style.position =
+            "absolute";
+
+          mainNav.style.top =
+            "78px";
+
+          mainNav.style.left =
+            "0";
+
+          mainNav.style.right =
+            "0";
+
+          mainNav.style.background =
+            "#ffffff";
+
+          mainNav.style.padding =
+            "25px";
+
+          mainNav.style.flexDirection =
+            "column";
+
+          mainNav.style.gap =
+            "22px";
+
+          mainNav.style.margin =
+            "0";
+
+          mainNav.style.borderBottom =
+            "1px solid #efdce3";
+
+          mainNav.style.boxShadow =
+            "0 10px 25px rgba(0,0,0,.08)";
+
+        }
+
+      }
+    );
+
+
+    mainNav
+      .querySelectorAll("a")
+      .forEach(function(enlace) {
+
+
+        enlace.addEventListener(
+          "click",
+          function() {
+
+
+            if (
+              window.innerWidth <= 900
+            ) {
+
+              mainNav.style.display =
+                "none";
+
+              mainNav.classList.remove(
+                "mobile-open"
+              );
+
+            }
+
+          }
+        );
+
+
+      });
+
+
+  }
+
+</script>
 
 
 </body>
