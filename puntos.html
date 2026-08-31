@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Mis puntos | Juanita Pacasmayo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Great+Vibes&family=Montserrat:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    body {
+
+      margin: 0;
+
+      min-height: 100vh;
+
+      font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+      background:
+        linear-gradient(
+          135deg,
+          #fff4f7,
+          #ffffff
+        );
+
+      color: #30262b;
+
+    }
+
+
+    .topbar {
+
+      min-height: 82px;
+
+      background:
+        rgba(255,255,255,.96);
+
+      border-bottom:
+        1px solid #f1dce4;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      padding:
+        12px 5%;
+
+      box-shadow:
+        0 5px 20px
+        rgba(120,40,70,.06);
+
+    }
+
+
+    .topbar img {
+
+      width: 155px;
+
+      height: auto;
+
+      display: block;
+
+    }
+
+
+    .top-actions {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+    }
+
+
+    .top-button {
+
+      border: 1px solid #e9cbd6;
+
+      background: #fff;
+
+      color: #c83d68;
+
+      border-radius: 999px;
+
+      padding: 11px 17px;
+
+      text-decoration: none;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      font-family: inherit;
+
+    }
+
+
+    .top-button:hover {
+
+      background: #fff0f4;
+
+    }
+
+
+    .page {
+
+      width: min(1100px, 92%);
+
+      margin:
+        45px auto 70px;
+
+    }
+
+
+    .welcome {
+
+      text-align: center;
+
+      margin-bottom: 30px;
+
+    }
+
+
+    .eyebrow {
+
+      color: #c9953d;
+
+      text-transform: uppercase;
+
+      letter-spacing: 3px;
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      margin-bottom: 9px;
+
+    }
+
+
+    .welcome h1 {
+
+      margin: 0;
+
+      color: #c83d68;
+
+      font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+      font-size:
+        clamp(28px,5vw,42px);
+
+    }
+
+
+    .welcome p {
+
+      color: #75666d;
+
+      margin:
+        10px 0 0;
+
+    }
+
+
+    /*
+    ==========================================================
+    TARJETA PRINCIPAL DE PUNTOS
+    ==========================================================
+    */
+
+    .points-card {
+
+      position: relative;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          #c83d68,
+          #a92f55
+        );
+
+      color: #fff;
+
+      border-radius: 30px;
+
+      padding: 35px;
+
+      box-shadow:
+        0 20px 45px
+        rgba(120,40,70,.20);
+
+      margin-bottom: 28px;
+
+    }
+
+
+    .points-card::after {
+
+      content: "";
+
+      position: absolute;
+
+      width: 220px;
+
+      height: 220px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255,255,255,.08);
+
+      right: -70px;
+
+      top: -90px;
+
+    }
+
+
+    .points-grid {
+
+      position: relative;
+
+      z-index: 2;
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap: 30px;
+
+      align-items: center;
+
+    }
+
+
+    .client-label {
+
+      font-size: 13px;
+
+      opacity: .85;
+
+      margin-bottom: 5px;
+
+    }
+
+
+    .client-name {
+
+      font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+      font-size:
+        clamp(25px,4vw,35px);
+
+      font-weight: 800;
+
+      margin-bottom: 10px;
+
+    }
+
+
+    .client-code {
+
+      display: inline-flex;
+
+      padding: 7px 13px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(255,255,255,.16);
+
+      font-weight: 700;
+
+      font-size: 14px;
+
+    }
+
+
+    .points-number {
+
+      text-align: center;
+
+      background:
+        rgba(255,255,255,.12);
+
+      border:
+        1px solid
+        rgba(255,255,255,.18);
+
+      border-radius: 25px;
+
+      padding: 25px;
+
+    }
+
+
+    .points-number .star {
+
+      font-size: 25px;
+
+      margin-bottom: 5px;
+
+    }
+
+
+    .points-number strong {
+
+      display: block;
+
+      font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+      font-size:
+        clamp(50px,8vw,78px);
+
+      line-height: 1;
+
+    }
+
+
+    .points-number span {
+
+      display: block;
+
+      margin-top: 8px;
+
+      font-size: 17px;
+
+      font-weight: 700;
+
+    }
+
+
+    /*
+    ==========================================================
+    ESTADÍSTICAS
+    ==========================================================
+    */
+
+    .stats {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap: 18px;
+
+      margin-bottom: 35px;
+
+    }
+
+
+    .stat {
+
+      background: #fff;
+
+      border:
+        1px solid #f0dce4;
+
+      border-radius: 20px;
+
+      padding: 23px;
+
+      text-align: center;
+
+      box-shadow:
+        0 10px 30px
+        rgba(120,40,70,.06);
+
+    }
+
+
+    .stat-icon {
+
+      color: #c83d68;
+
+      font-size: 24px;
+
+      margin-bottom: 9px;
+
+    }
+
+
+    .stat strong {
+
+      display: block;
+
+      font-size: 27px;
+
+      color: #30262b;
+
+    }
+
+
+    .stat span {
+
+      color: #75666d;
+
+      font-size: 13px;
+
+    }
+
+
+    /*
+    ==========================================================
+    HISTORIAL
+    ==========================================================
+    */
+
+    .history-card {
+
+      background: #fff;
+
+      border:
+        1px solid #f0dce4;
+
+      border-radius: 28px;
+
+      padding: 30px;
+
+      box-shadow:
+        0 15px 40px
+        rgba(120,40,70,.07);
+
+    }
+
+
+    .history-title {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      margin-bottom: 22px;
+
+    }
+
+
+    .history-title h2 {
+
+      margin: 0;
+
+      color: #c83d68;
+
+      font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+      font-size: 25px;
+
+    }
+
+
+    .history-count {
+
+      background: #fff0f4;
+
+      color: #c83d68;
+
+      padding: 7px 12px;
+
+      border-radius: 999px;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+    }
+
+
+    .table-wrapper {
+
+      overflow-x: auto;
+
+    }
+
+
+    table {
+
+      width: 100%;
+
+      border-collapse: collapse;
+
+      min-width: 650px;
+
+    }
+
+
+    th {
+
+      background: #fff4f7;
+
+      color: #6b4f5a;
+
+      font-size: 13px;
+
+      text-align: left;
+
+      padding: 14px;
+
+      border-bottom:
+        1px solid #efdce4;
+
+      white-space: nowrap;
+
+    }
+
+
+    td {
+
+      padding: 15px 14px;
+
+      border-bottom:
+        1px solid #f3e5ea;
+
+      color: #54434b;
+
+      font-size: 14px;
+
+      vertical-align: middle;
+
+    }
+
+
+    tr:last-child td {
+
+      border-bottom: 0;
+
+    }
+
+
+    .amount {
+
+      font-weight: 800;
+
+      color: #30262b;
+
+      white-space: nowrap;
+
+    }
+
+
+    .points-earned {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 4px;
+
+      padding: 6px 10px;
+
+      border-radius: 999px;
+
+      background: #effaf3;
+
+      color: #28733e;
+
+      font-weight: 800;
+
+      white-space: nowrap;
+
+    }
+
+
+    .empty {
+
+      text-align: center;
+
+      padding: 45px 20px;
+
+      color: #75666d;
+
+    }
+
+
+    .empty i {
+
+      display: block;
+
+      font-size: 38px;
+
+      color: #d99aad;
+
+      margin-bottom: 12px;
+
+    }
+
+
+    .loading {
+
+      text-align: center;
+
+      padding: 45px;
+
+      color: #75666d;
+
+    }
+
+
+    .loading i {
+
+      color: #c83d68;
+
+      font-size: 30px;
+
+      margin-bottom: 12px;
+
+    }
+
+
+    .error-box {
+
+      background: #fff0f2;
+
+      color: #a5274e;
+
+      border:
+        1px solid #f4ccd8;
+
+      border-radius: 18px;
+
+      padding: 25px;
+
+      text-align: center;
+
+    }
+
+
+    .footer-links {
+
+      text-align: center;
+
+      margin-top: 28px;
+
+    }
+
+
+    .footer-links a {
+
+      color: #c83d68;
+
+      text-decoration: none;
+
+      font-weight: 700;
+
+      margin: 0 10px;
+
+    }
+
+
+    @media(max-width:750px) {
+
+      .points-grid {
+
+        grid-template-columns: 1fr;
+
+      }
+
+      .stats {
+
+        grid-template-columns: 1fr;
+
+      }
+
+      .points-card {
+
+        padding: 25px;
+
+      }
+
+      .history-card {
+
+        padding: 20px 15px;
+
+      }
+
+    }
+
+
+    @media(max-width:500px) {
+
+      .topbar img {
+
+        width: 130px;
+
+      }
+
+      .top-button {
+
+        padding: 9px 12px;
+
+        font-size: 12px;
+
+      }
+
+      .page {
+
+        width: 94%;
+
+        margin-top: 30px;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<header class="topbar">
+
+  <a href="index.html">
+
+    <img
+      src="images/Logo.png"
+      alt="Juanita Pacasmayo"
+    >
+
+  </a>
+
+
+  <div class="top-actions">
+
+    <a
+      href="index.html"
+      class="top-button"
+    >
+
+      <i class="fas fa-home"></i>
+
+      Inicio
+
+    </a>
+
+
+    <button
+      class="top-button"
+      id="cerrarSesion"
+    >
+
+      <i class="fas fa-sign-out-alt"></i>
+
+      Salir
+
+    </button>
+
+  </div>
+
+</header>
+
+
+<main class="page">
+
+
+  <section class="welcome">
+
+    <div class="eyebrow">
+      Programa de beneficios
+    </div>
+
+    <h1>
+      ¡Hola, <span id="nombreCliente">cliente</span>! ✨
+    </h1>
+
+    <p>
+      Aquí puedes consultar tus puntos e historial.
+    </p>
+
+  </section>
+
+
+  <!-- PUNTOS -->
+
+  <section class="points-card">
+
+    <div class="points-grid">
+
+
+      <div>
+
+        <div class="client-label">
+          CLIENTE
+        </div>
+
+        <div
+          class="client-name"
+          id="nombreGrande"
+        >
+          —
+        </div>
+
+        <div
+          class="client-code"
+          id="codigoCliente"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <div class="points-number">
+
+        <div class="star">
+          ⭐
+        </div>
+
+        <strong id="puntos">
+          0
+        </strong>
+
+        <span>
+          PUNTOS ACUMULADOS
+        </span>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- ESTADÍSTICAS -->
+
+  <section class="stats">
+
+
+    <div class="stat">
+
+      <div class="stat-icon">
+        <i class="fas fa-receipt"></i>
+      </div>
+
+      <strong id="cantidadMovimientos">
+        0
+      </strong>
+
+      <span>
+        Movimientos registrados
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-icon">
+        <i class="fas fa-coins"></i>
+      </div>
+
+      <strong id="totalGastado">
+        S/ 0.00
+      </strong>
+
+      <span>
+        Total registrado
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-icon">
+        <i class="fas fa-star"></i>
+      </div>
+
+      <strong id="totalPuntosGanados">
+        0
+      </strong>
+
+      <span>
+        Puntos ganados
+      </span>
+
+    </div>
+
+
+  </section>
+
+
+  <!-- HISTORIAL -->
+
+  <section class="history-card">
+
+
+    <div class="history-title">
+
+      <h2>
+        <i class="fas fa-history"></i>
+        Historial de puntos
+      </h2>
+
+      <div
+        class="history-count"
+        id="historyCount"
+      >
+        0 movimientos
+      </div>
+
+    </div>
+
+
+    <div id="historyContent">
+
+      <div class="loading">
+
+        <i class="fas fa-spinner fa-spin"></i>
+
+        <div>
+          Cargando historial...
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </section>
+
+
+  <div class="footer-links">
+
+    <a href="index.html">
+      <i class="fas fa-home"></i>
+      Inicio
+    </a>
+
+    <a href="consulta.html">
+      <i class="fas fa-user-lock"></i>
+      Cambiar cliente
+    </a>
+
+  </div>
+
+
+</main>
+
+
+<script>
+
+
+  /*
+  ==========================================================
+  RECUPERAR INFORMACIÓN DE CONSULTA.HTML
+  ==========================================================
+  */
+
+
+  const datosGuardados =
+    sessionStorage.getItem(
+      "clientePuntos"
+    );
+
+
+  const nombreCliente =
+    document.getElementById(
+      "nombreCliente"
+    );
+
+
+  const nombreGrande =
+    document.getElementById(
+      "nombreGrande"
+    );
+
+
+  const codigoCliente =
+    document.getElementById(
+      "codigoCliente"
+    );
+
+
+  const puntos =
+    document.getElementById(
+      "puntos"
+    );
+
+
+  const cantidadMovimientos =
+    document.getElementById(
+      "cantidadMovimientos"
+    );
+
+
+  const totalGastado =
+    document.getElementById(
+      "totalGastado"
+    );
+
+
+  const totalPuntosGanados =
+    document.getElementById(
+      "totalPuntosGanados"
+    );
+
+
+  const historyCount =
+    document.getElementById(
+      "historyCount"
+    );
+
+
+  const historyContent =
+    document.getElementById(
+      "historyContent"
+    );
+
+
+  /*
+  ==========================================================
+  SI NO HAY SESIÓN
+  ==========================================================
+  */
+
+  if (!datosGuardados) {
+
+    historyContent.innerHTML = `
+
+      <div class="error-box">
+
+        <i class="fas fa-lock"></i>
+
+        <h3>
+          No hay una sesión activa
+        </h3>
+
+        <p>
+          Primero debes ingresar tu código de cliente
+          y PIN.
+        </p>
+
+        <a
+          href="consulta.html"
+          class="top-button"
+        >
+          Ir a consultar mis puntos
+        </a>
+
+      </div>
+
+    `;
+
+  } else {
+
+
+    try {
+
+
+      const datos =
+        JSON.parse(
+          datosGuardados
+        );
+
+
+      /*
+      ======================================================
+      DATOS DEL CLIENTE
+      ======================================================
+      */
+
+      const nombre =
+        datos.cliente ||
+        "Cliente";
+
+
+      nombreCliente.textContent =
+        nombre;
+
+
+      nombreGrande.textContent =
+        nombre;
+
+
+      codigoCliente.textContent =
+        datos.codigoCliente ||
+        "—";
+
+
+      puntos.textContent =
+        Number(
+          datos.puntos || 0
+        ).toLocaleString(
+          "es-PE"
+        );
+
+
+      /*
+      ======================================================
+      HISTORIAL
+      ======================================================
+      */
+
+      const historial =
+        Array.isArray(
+          datos.historial
+        )
+          ? datos.historial
+          : [];
+
+
+      cantidadMovimientos.textContent =
+        historial.length;
+
+
+      historyCount.textContent =
+        historial.length +
+        (
+          historial.length === 1
+            ? " movimiento"
+            : " movimientos"
+        );
+
+
+      /*
+      ======================================================
+      CALCULAR TOTALES
+      ======================================================
+      */
+
+      let total =
+        0;
+
+
+      let puntosGanados =
+        0;
+
+
+      historial.forEach(
+        function(item) {
+
+          total +=
+            Number(
+              item.monto || 0
+            );
+
+
+          puntosGanados +=
+            Number(
+              item.puntos || 0
+            );
+
+        }
+      );
+
+
+      totalGastado.textContent =
+        "S/ " +
+        total.toLocaleString(
+          "es-PE",
+          {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+          }
+        );
+
+
+      totalPuntosGanados.textContent =
+        puntosGanados.toLocaleString(
+          "es-PE"
+        );
+
+
+      /*
+      ======================================================
+      SI NO HAY HISTORIAL
+      ======================================================
+      */
+
+      if (
+        historial.length === 0
+      ) {
+
+        historyContent.innerHTML = `
+
+          <div class="empty">
+
+            <i class="fas fa-receipt"></i>
+
+            <strong>
+              Todavía no tienes movimientos registrados.
+            </strong>
+
+            <p>
+              Cuando realices una compra o servicio,
+              aquí aparecerá tu historial.
+            </p>
+
+          </div>
+
+        `;
+
+      } else {
+
+
+        /*
+        ====================================================
+        CREAR TABLA
+        ====================================================
+        */
+
+        let html = `
+
+          <div class="table-wrapper">
+
+            <table>
+
+              <thead>
+
+                <tr>
+
+                  <th>
+                    Fecha
+                  </th>
+
+                  <th>
+                    Tipo
+                  </th>
+
+                  <th>
+                    Concepto
+                  </th>
+
+                  <th>
+                    Monto
+                  </th>
+
+                  <th>
+                    Puntos
+                  </th>
+
+                  <th>
+                    Observación
+                  </th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+        `;
+
+
+        historial.forEach(
+          function(item) {
+
+
+            const monto =
+              Number(
+                item.monto || 0
+              );
+
+
+            const puntosItem =
+              Number(
+                item.puntos || 0
+              );
+
+
+            html += `
+
+              <tr>
+
+                <td>
+                  ${escaparHTML(
+                    item.fecha || "—"
+                  )}
+                </td>
+
+                <td>
+                  ${escaparHTML(
+                    item.tipo || "—"
+                  )}
+                </td>
+
+                <td>
+                  <strong>
+                    ${escaparHTML(
+                      item.concepto || "—"
+                    )}
+                  </strong>
+                </td>
+
+                <td class="amount">
+                  S/
+                  ${monto.toLocaleString(
+                    "es-PE",
+                    {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2
+                    }
+                  )}
+                </td>
+
+                <td>
+
+                  <span class="points-earned">
+
+                    +${puntosItem.toLocaleString(
+                      "es-PE"
+                    )}
+
+                    ⭐
+
+                  </span>
+
+                </td>
+
+                <td>
+                  ${escaparHTML(
+                    item.observacion || "—"
+                  )}
+                </td>
+
+              </tr>
+
+            `;
+
+          }
+        );
+
+
+        html += `
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        `;
+
+
+        historyContent.innerHTML =
+          html;
+
+      }
+
+
+    } catch(error) {
+
+      console.error(error);
+
+
+      historyContent.innerHTML = `
+
+        <div class="error-box">
+
+          <i class="fas fa-exclamation-triangle"></i>
+
+          <h3>
+            No se pudieron cargar tus datos
+          </h3>
+
+          <p>
+            Vuelve a iniciar sesión.
+          </p>
+
+          <a
+            href="consulta.html"
+            class="top-button"
+          >
+            Consultar nuevamente
+          </a>
+
+        </div>
+
+      `;
+
+    }
+
+  }
+
+
+  /*
+  ==========================================================
+  SEGURIDAD:
+  ESCAPAR TEXTO ANTES DE INSERTARLO EN HTML
+  ==========================================================
+  */
+
+  function escaparHTML(texto) {
+
+    return String(texto)
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+      .replace(
+        /</g,
+        "&lt;"
+      )
+      .replace(
+        />/g,
+        "&gt;"
+      )
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+      .replace(
+        /'/g,
+        "&#039;"
+      );
+
+  }
+
+
+  /*
+  ==========================================================
+  CERRAR SESIÓN
+  ==========================================================
+  */
+
+  document
+    .getElementById("cerrarSesion")
+    .addEventListener(
+      "click",
+      function() {
+
+        sessionStorage.removeItem(
+          "clientePuntos"
+        );
+
+        window.location.href =
+          "consulta.html";
+
+      }
+    );
+
+
+</script>
+
+</body>
+</html>
