@@ -30,7 +30,6 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
   >
 
-
   <style>
 
     * {
@@ -60,6 +59,10 @@
 
     }
 
+
+    /* ======================================================
+       BARRA SUPERIOR
+       ====================================================== */
 
     .topbar {
 
@@ -139,6 +142,10 @@
     }
 
 
+    /* ======================================================
+       CONTENEDOR
+       ====================================================== */
+
     .page {
 
       width: min(1100px, 92%);
@@ -148,6 +155,10 @@
 
     }
 
+
+    /* ======================================================
+       BIENVENIDA
+       ====================================================== */
 
     .welcome {
 
@@ -202,11 +213,9 @@
     }
 
 
-    /*
-    ==========================================================
-    TARJETA PRINCIPAL DE PUNTOS
-    ==========================================================
-    */
+    /* ======================================================
+       TARJETA PRINCIPAL DE PUNTOS
+       ====================================================== */
 
     .points-card {
 
@@ -379,11 +388,9 @@
     }
 
 
-    /*
-    ==========================================================
-    ESTADÍSTICAS
-    ==========================================================
-    */
+    /* ======================================================
+       ESTADÍSTICAS
+       ====================================================== */
 
     .stats {
 
@@ -450,11 +457,208 @@
     }
 
 
-    /*
-    ==========================================================
-    HISTORIAL
-    ==========================================================
-    */
+    /* ======================================================
+       PREMIOS
+       ====================================================== */
+
+    .rewards-section {
+
+      margin-bottom: 38px;
+
+    }
+
+
+    .rewards-header {
+
+      text-align: center;
+
+      margin-bottom: 22px;
+
+    }
+
+
+    .rewards-header h2 {
+
+      margin: 0;
+
+      color: #c83d68;
+
+      font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+      font-size: 27px;
+
+    }
+
+
+    .rewards-header p {
+
+      margin:
+        8px 0 0;
+
+      color: #75666d;
+
+      font-size: 15px;
+
+    }
+
+
+    .rewards-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(2,1fr);
+
+      gap: 20px;
+
+    }
+
+
+    .reward-card {
+
+      background: #fff;
+
+      border:
+        1px solid #f0dce4;
+
+      border-radius: 22px;
+
+      padding: 20px;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 17px;
+
+      min-height: 125px;
+
+      box-shadow:
+        0 10px 30px
+        rgba(120,40,70,.06);
+
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+    }
+
+
+    .reward-card:hover {
+
+      transform:
+        translateY(-3px);
+
+      box-shadow:
+        0 15px 35px
+        rgba(120,40,70,.10);
+
+    }
+
+
+    .reward-icon {
+
+      width: 58px;
+
+      height: 58px;
+
+      flex-shrink: 0;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      border-radius: 17px;
+
+      background: #fff4f7;
+
+      border:
+        1px solid #f4dce5;
+
+      font-size: 29px;
+
+    }
+
+
+    .reward-info {
+
+      flex: 1;
+
+      min-width: 0;
+
+    }
+
+
+    .reward-points {
+
+      color: #c83d68;
+
+      font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+      font-size: 18px;
+
+      font-weight: 800;
+
+      margin-bottom: 4px;
+
+    }
+
+
+    .reward-name {
+
+      color: #65535b;
+
+      font-size: 14px;
+
+      line-height: 1.4;
+
+    }
+
+
+    .reward-status {
+
+      flex-shrink: 0;
+
+      padding:
+        8px 13px;
+
+      border-radius: 999px;
+
+      background: #f8f5f6;
+
+      color: #75666d;
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      text-align: center;
+
+      white-space: nowrap;
+
+    }
+
+
+    .reward-status.available {
+
+      background: #eaf8ef;
+
+      color: #28733e;
+
+    }
+
+
+    /* ======================================================
+       HISTORIAL
+       ====================================================== */
 
     .history-card {
 
@@ -703,6 +907,10 @@
     }
 
 
+    /* ======================================================
+       RESPONSIVE
+       ====================================================== */
+
     @media(max-width:750px) {
 
       .points-grid {
@@ -711,17 +919,34 @@
 
       }
 
+
       .stats {
 
         grid-template-columns: 1fr;
 
       }
 
+
+      .rewards-grid {
+
+        grid-template-columns: 1fr;
+
+      }
+
+
+      .reward-card {
+
+        padding: 17px;
+
+      }
+
+
       .points-card {
 
         padding: 25px;
 
       }
+
 
       .history-card {
 
@@ -740,6 +965,7 @@
 
       }
 
+
       .top-button {
 
         padding: 9px 12px;
@@ -748,11 +974,54 @@
 
       }
 
+
       .page {
 
         width: 94%;
 
         margin-top: 30px;
+
+      }
+
+
+      .reward-card {
+
+        gap: 12px;
+
+      }
+
+
+      .reward-icon {
+
+        width: 52px;
+
+        height: 52px;
+
+        font-size: 25px;
+
+      }
+
+
+      .reward-points {
+
+        font-size: 16px;
+
+      }
+
+
+      .reward-name {
+
+        font-size: 13px;
+
+      }
+
+
+      .reward-status {
+
+        padding:
+          7px 9px;
+
+        font-size: 10px;
 
       }
 
@@ -811,6 +1080,10 @@
 <main class="page">
 
 
+  <!-- ====================================================
+       BIENVENIDA
+       ==================================================== -->
+
   <section class="welcome">
 
     <div class="eyebrow">
@@ -822,13 +1095,16 @@
     </h1>
 
     <p>
-      Aquí puedes consultar tus puntos e historial.
+      Aquí puedes consultar tus puntos,
+      premios e historial.
     </p>
 
   </section>
 
 
-  <!-- PUNTOS -->
+  <!-- ====================================================
+       PUNTOS
+       ==================================================== -->
 
   <section class="points-card">
 
@@ -880,7 +1156,9 @@
   </section>
 
 
-  <!-- ESTADÍSTICAS -->
+  <!-- ====================================================
+       ESTADÍSTICAS
+       ==================================================== -->
 
   <section class="stats">
 
@@ -939,7 +1217,47 @@
   </section>
 
 
-  <!-- HISTORIAL -->
+  <!-- ====================================================
+       PREMIOS DISPONIBLES
+       ==================================================== -->
+
+  <section class="rewards-section">
+
+
+    <div class="rewards-header">
+
+      <div class="eyebrow">
+        Programa de beneficios
+      </div>
+
+      <h2>
+        🎁 Premios disponibles
+      </h2>
+
+      <p>
+        Mira cuántos puntos te faltan para reclamar
+        cada premio.
+      </p>
+
+    </div>
+
+
+    <div
+      class="rewards-grid"
+      id="rewardsGrid"
+    >
+
+      <!-- Los premios se generan automáticamente -->
+
+    </div>
+
+
+  </section>
+
+
+  <!-- ====================================================
+       HISTORIAL
+       ==================================================== -->
 
   <section class="history-card">
 
@@ -979,16 +1297,27 @@
   </section>
 
 
+  <!-- ====================================================
+       ENLACES
+       ==================================================== -->
+
   <div class="footer-links">
 
     <a href="index.html">
+
       <i class="fas fa-home"></i>
+
       Inicio
+
     </a>
 
+
     <a href="consulta.html">
+
       <i class="fas fa-user-lock"></i>
+
       Cambiar cliente
+
     </a>
 
   </div>
@@ -1000,12 +1329,9 @@
 <script>
 
 
-  /*
-  ==========================================================
-  RECUPERAR INFORMACIÓN DE CONSULTA.HTML
-  ==========================================================
-  */
-
+  /* ======================================================
+     RECUPERAR INFORMACIÓN DE CONSULTA.HTML
+     ====================================================== */
 
   const datosGuardados =
     sessionStorage.getItem(
@@ -1067,11 +1393,15 @@
     );
 
 
-  /*
-  ==========================================================
-  SI NO HAY SESIÓN
-  ==========================================================
-  */
+  const rewardsGrid =
+    document.getElementById(
+      "rewardsGrid"
+    );
+
+
+  /* ======================================================
+     SI NO HAY SESIÓN
+     ====================================================== */
 
   if (!datosGuardados) {
 
@@ -1087,7 +1417,7 @@
 
         <p>
           Primero debes ingresar tu código de cliente
-          y PIN.
+          y contraseña.
         </p>
 
         <a
@@ -1096,6 +1426,21 @@
         >
           Ir a consultar mis puntos
         </a>
+
+      </div>
+
+    `;
+
+
+    rewardsGrid.innerHTML = `
+
+      <div class="error-box">
+
+        <i class="fas fa-lock"></i>
+
+        <p>
+          Inicia sesión para consultar tus premios.
+        </p>
 
       </div>
 
@@ -1113,11 +1458,9 @@
         );
 
 
-      /*
-      ======================================================
-      DATOS DEL CLIENTE
-      ======================================================
-      */
+      /* ==================================================
+         DATOS DEL CLIENTE
+         ================================================== */
 
       const nombre =
         datos.cliente ||
@@ -1137,19 +1480,152 @@
         "—";
 
 
-      puntos.textContent =
+      const puntosActuales =
         Number(
           datos.puntos || 0
-        ).toLocaleString(
+        );
+
+
+      puntos.textContent =
+        puntosActuales.toLocaleString(
           "es-PE"
         );
 
 
-      /*
-      ======================================================
-      HISTORIAL
-      ======================================================
-      */
+      /* ==================================================
+         PREMIOS
+         ================================================== */
+
+      const premios = [
+
+        {
+          puntos: 150,
+          nombre: "Regalos cosméticos",
+          icono: "💄"
+        },
+
+        {
+          puntos: 200,
+          nombre: "Lentes de sol",
+          icono: "🕶️"
+        },
+
+        {
+          puntos: 300,
+          nombre: "Pestañas 1x1 gratis",
+          icono: "👁️"
+        },
+
+        {
+          puntos: 350,
+          nombre: "Gorra o billetera",
+          icono: "🧢"
+        }
+
+      ];
+
+
+      let premiosHTML = "";
+
+
+      premios.forEach(
+        function(premio) {
+
+
+          const faltan =
+            Math.max(
+              0,
+              premio.puntos - puntosActuales
+            );
+
+
+          const disponible =
+            puntosActuales >= premio.puntos;
+
+
+          let estadoHTML;
+
+
+          if (disponible) {
+
+            estadoHTML = `
+
+              <div class="reward-status available">
+
+                🎉 ¡Puedes reclamarlo!
+
+              </div>
+
+            `;
+
+          } else {
+
+            estadoHTML = `
+
+              <div class="reward-status">
+
+                Te faltan
+                ${faltan.toLocaleString("es-PE")}
+                puntos
+
+              </div>
+
+            `;
+
+          }
+
+
+          premiosHTML += `
+
+            <article class="reward-card">
+
+
+              <div class="reward-icon">
+
+                ${premio.icono}
+
+              </div>
+
+
+              <div class="reward-info">
+
+                <div class="reward-points">
+
+                  ${premio.puntos.toLocaleString("es-PE")}
+                  puntos
+
+                </div>
+
+
+                <div class="reward-name">
+
+                  ${escaparHTML(
+                    premio.nombre
+                  )}
+
+                </div>
+
+              </div>
+
+
+              ${estadoHTML}
+
+
+            </article>
+
+          `;
+
+        }
+      );
+
+
+      rewardsGrid.innerHTML =
+        premiosHTML;
+
+
+      /* ==================================================
+         HISTORIAL
+         ================================================== */
 
       const historial =
         Array.isArray(
@@ -1172,11 +1648,9 @@
         );
 
 
-      /*
-      ======================================================
-      CALCULAR TOTALES
-      ======================================================
-      */
+      /* ==================================================
+         CALCULAR TOTALES
+         ================================================== */
 
       let total =
         0;
@@ -1221,11 +1695,9 @@
         );
 
 
-      /*
-      ======================================================
-      SI NO HAY HISTORIAL
-      ======================================================
-      */
+      /* ==================================================
+         SI NO HAY HISTORIAL
+         ================================================== */
 
       if (
         historial.length === 0
@@ -1253,11 +1725,9 @@
       } else {
 
 
-        /*
-        ====================================================
-        CREAR TABLA
-        ====================================================
-        */
+        /* ================================================
+           CREAR TABLA
+           ================================================ */
 
         let html = `
 
@@ -1323,27 +1793,40 @@
               <tr>
 
                 <td>
+
                   ${escaparHTML(
                     item.fecha || "—"
                   )}
+
                 </td>
 
+
                 <td>
+
                   ${escaparHTML(
                     item.tipo || "—"
                   )}
+
                 </td>
 
+
                 <td>
+
                   <strong>
+
                     ${escaparHTML(
                       item.concepto || "—"
                     )}
+
                   </strong>
+
                 </td>
 
+
                 <td class="amount">
+
                   S/
+
                   ${monto.toLocaleString(
                     "es-PE",
                     {
@@ -1351,7 +1834,9 @@
                       maximumFractionDigits: 2
                     }
                   )}
+
                 </td>
+
 
                 <td>
 
@@ -1367,11 +1852,15 @@
 
                 </td>
 
+
                 <td>
+
                   ${escaparHTML(
                     item.observacion || "—"
                   )}
+
                 </td>
+
 
               </tr>
 
@@ -1400,7 +1889,26 @@
 
     } catch(error) {
 
-      console.error(error);
+
+      console.error(
+        "Error cargando datos:",
+        error
+      );
+
+
+      rewardsGrid.innerHTML = `
+
+        <div class="error-box">
+
+          <i class="fas fa-exclamation-triangle"></i>
+
+          <p>
+            No se pudieron cargar los premios.
+          </p>
+
+        </div>
+
+      `;
 
 
       historyContent.innerHTML = `
@@ -1433,32 +1941,35 @@
   }
 
 
-  /*
-  ==========================================================
-  SEGURIDAD:
-  ESCAPAR TEXTO ANTES DE INSERTARLO EN HTML
-  ==========================================================
-  */
+  /* ======================================================
+     SEGURIDAD:
+     ESCAPAR TEXTO ANTES DE INSERTARLO EN HTML
+     ====================================================== */
 
   function escaparHTML(texto) {
 
     return String(texto)
+
       .replace(
         /&/g,
         "&amp;"
       )
+
       .replace(
         /</g,
         "&lt;"
       )
+
       .replace(
         />/g,
         "&gt;"
       )
+
       .replace(
         /"/g,
         "&quot;"
       )
+
       .replace(
         /'/g,
         "&#039;"
@@ -1467,11 +1978,9 @@
   }
 
 
-  /*
-  ==========================================================
-  CERRAR SESIÓN
-  ==========================================================
-  */
+  /* ======================================================
+     CERRAR SESIÓN
+     ====================================================== */
 
   document
     .getElementById("cerrarSesion")
@@ -1493,4 +2002,5 @@
 </script>
 
 </body>
+
 </html>
