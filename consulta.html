@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Consulta tus puntos | Juanita Pacasmayo
+  </title>
+
+  <!-- FUENTES -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- ESTILOS PRINCIPALES -->
+
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  >
+
+  <style>
+
+    /* ==================================================
+       PÁGINA DE CONSULTA
+    ================================================== */
+
+    .consulta-page {
+
+      min-height: 100vh;
+
+      background:
+        linear-gradient(
+          135deg,
+          #fff7fa,
+          #ffffff
+        );
+
+      padding-bottom: 60px;
+
+    }
+
+
+    /* ==================================================
+       ENCABEZADO
+    ================================================== */
+
+    .consulta-header {
+
+      background: #ffffff;
+
+      border-bottom:
+        1px solid #f0d7e0;
+
+      padding: 18px 40px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+    }
+
+
+    .consulta-logo img {
+
+      width: 185px;
+
+      max-width: 100%;
+
+      display: block;
+
+    }
+
+
+    .volver-inicio {
+
+      text-decoration: none;
+
+      color: #c7386f;
+
+      font-weight: 700;
+
+      border:
+        1px solid #c7386f;
+
+      padding: 11px 20px;
+
+      border-radius: 30px;
+
+      transition: .2s;
+
+    }
+
+
+    .volver-inicio:hover {
+
+      background: #c7386f;
+
+      color: white;
+
+    }
+
+
+    /* ==================================================
+       CONTENEDOR
+    ================================================== */
+
+    .consulta-container {
+
+      width: min(
+        1100px,
+        calc(100% - 30px)
+      );
+
+      margin: 0 auto;
+
+      padding-top: 65px;
+
+    }
+
+
+    .consulta-title {
+
+      text-align: center;
+
+      margin-bottom: 35px;
+
+    }
+
+
+    .consulta-title .section-kicker {
+
+      color: #c8871a;
+
+      letter-spacing: 4px;
+
+      font-weight: 700;
+
+      font-size: 13px;
+
+    }
+
+
+    .consulta-title h1 {
+
+      color: #c7386f;
+
+      font-size: clamp(
+        34px,
+        5vw,
+        55px
+      );
+
+      margin: 10px 0;
+
+    }
+
+
+    .consulta-title p {
+
+      color: #5e5360;
+
+      font-size: 17px;
+
+      max-width: 650px;
+
+      margin: auto;
+
+      line-height: 1.6;
+
+    }
+
+
+    /* ==================================================
+       CAJA DE ACCESO
+    ================================================== */
+
+    .acceso-card {
+
+      max-width: 650px;
+
+      margin: 0 auto 40px;
+
+      background: #ffffff;
+
+      border:
+        1px solid #efd9e2;
+
+      border-radius: 24px;
+
+      padding: 35px;
+
+      box-shadow:
+        0 15px 40px rgba(
+          70,
+          20,
+          45,
+          .08
+        );
+
+    }
+
+
+    .acceso-icon {
+
+      width: 65px;
+
+      height: 65px;
+
+      border-radius: 50%;
+
+      background: #fff1f6;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      margin: 0 auto 20px;
+
+      font-size: 30px;
+
+    }
+
+
+    .acceso-card h2 {
+
+      text-align: center;
+
+      color: #333;
+
+      margin-bottom: 25px;
+
+    }
+
+
+    .campo {
+
+      margin-bottom: 18px;
+
+    }
+
+
+    .campo label {
+
+      display: block;
+
+      margin-bottom: 8px;
+
+      font-weight: 700;
+
+      color: #444;
+
+    }
+
+
+    .campo input {
+
+      width: 100%;
+
+      box-sizing: border-box;
+
+      padding: 14px 16px;
+
+      border:
+        1px solid #d9c5ce;
+
+      border-radius: 12px;
+
+      font-size: 16px;
+
+      font-family: inherit;
+
+      outline: none;
+
+    }
+
+
+    .campo input:focus {
+
+      border-color: #c7386f;
+
+      box-shadow:
+        0 0 0 3px rgba(
+          199,
+          56,
+          111,
+          .10
+        );
+
+    }
+
+
+    .btn-consultar {
+
+      width: 100%;
+
+      border: none;
+
+      cursor: pointer;
+
+      margin-top: 5px;
+
+      font-size: 16px;
+
+      font-weight: 700;
+
+    }
+
+
+    .btn-consultar:disabled {
+
+      opacity: .7;
+
+      cursor: wait;
+
+    }
+
+
+    .mensaje-consulta {
+
+      display: none;
+
+      margin-top: 20px;
+
+      padding: 14px 18px;
+
+      border-radius: 12px;
+
+      text-align: center;
+
+      font-weight: 600;
+
+    }
+
+
+    .mensaje-consulta.error {
+
+      display: block;
+
+      color: #b3261e;
+
+      background: #fff0f0;
+
+      border: 1px solid #f0b7b7;
+
+    }
+
+
+    .mensaje-consulta.exito {
+
+      display: block;
+
+      color: #216e39;
+
+      background: #edf9f0;
+
+      border: 1px solid #b5dfbe;
+
+    }
+
+
+    /* ==================================================
+       RESULTADO
+    ================================================== */
+
+    #resultadoConsulta {
+
+      display: none;
+
+    }
+
+
+    .cliente-card {
+
+      background: #ffffff;
+
+      border:
+        1px solid #efd9e2;
+
+      border-radius: 24px;
+
+      padding: 30px;
+
+      margin-bottom: 25px;
+
+      text-align: center;
+
+      box-shadow:
+        0 12px 35px rgba(
+          70,
+          20,
+          45,
+          .06
+        );
+
+    }
+
+
+    .cliente-card h2 {
+
+      margin: 0 0 18px;
+
+      color: #333;
+
+    }
+
+
+    .puntos-grandes {
+
+      color: #c7386f;
+
+      font-size: 58px;
+
+      font-weight: 800;
+
+      line-height: 1;
+
+    }
+
+
+    .puntos-texto {
+
+      color: #666;
+
+      margin-top: 8px;
+
+      font-size: 16px;
+
+    }
+
+
+    /* ==================================================
+       PREMIOS
+    ================================================== */
+
+    .premios-info {
+
+      background: #ffffff;
+
+      border:
+        1px solid #efd9e2;
+
+      border-radius: 24px;
+
+      padding: 30px;
+
+      margin-bottom: 25px;
+
+    }
+
+
+    .premios-info h2 {
+
+      text-align: center;
+
+      color: #c7386f;
+
+      margin-top: 0;
+
+      margin-bottom: 25px;
+
+    }
+
+
+    .premios-lista {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          2,
+          minmax(0, 1fr)
+        );
+
+      gap: 18px;
+
+    }
+
+
+    .premio {
+
+      border:
+        1px solid #eadbe1;
+
+      border-radius: 18px;
+
+      padding: 20px;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 15px;
+
+      background: #fffafb;
+
+    }
+
+
+    .premio > span {
+
+      width: 58px;
+
+      height: 58px;
+
+      border-radius: 14px;
+
+      background: #fff0f5;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 29px;
+
+      flex-shrink: 0;
+
+    }
+
+
+    .premio strong {
+
+      color: #c7386f;
+
+      font-size: 19px;
+
+    }
+
+
+    .premio p {
+
+      margin: 5px 0 0;
+
+      color: #555;
+
+    }
+
+
+    .estado-premio {
+
+      display: inline-block;
+
+      margin-top: 10px;
+
+      padding: 6px 12px;
+
+      border-radius: 20px;
+
+      background: #f5f1f3;
+
+      color: #666;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+    }
+
+
+    .premio-disponible {
+
+      border-color: #c7386f;
+
+      background: #fff4f8;
+
+    }
+
+
+    .premio-disponible
+    .estado-premio {
+
+      background: #c7386f;
+
+      color: white;
+
+    }
+
+
+    /* ==================================================
+       HISTORIAL
+    ================================================== */
+
+    .historial-card {
+
+      background: #ffffff;
+
+      border:
+        1px solid #efd9e2;
+
+      border-radius: 24px;
+
+      padding: 30px;
+
+      box-shadow:
+        0 12px 35px rgba(
+          70,
+          20,
+          45,
+          .06
+        );
+
+    }
+
+
+    .historial-card h2 {
+
+      color: #c7386f;
+
+      text-align: center;
+
+      margin-top: 0;
+
+      margin-bottom: 25px;
+
+    }
+
+
+    .tabla-scroll {
+
+      width: 100%;
+
+      overflow-x: auto;
+
+      -webkit-overflow-scrolling: touch;
+
+    }
+
+
+    .tabla-historial {
+
+      width: 100%;
+
+      min-width: 650px;
+
+      border-collapse: collapse;
+
+    }
+
+
+    .tabla-historial th {
+
+      background: #c7386f;
+
+      color: white;
+
+      padding: 14px 12px;
+
+      text-align: left;
+
+      font-size: 14px;
+
+      white-space: nowrap;
+
+    }
+
+
+    .tabla-historial th:first-child {
+
+      border-radius: 10px 0 0 10px;
+
+    }
+
+
+    .tabla-historial th:last-child {
+
+      border-radius: 0 10px 10px 0;
+
+    }
+
+
+    .tabla-historial td {
+
+      padding: 14px 12px;
+
+      border-bottom:
+        1px solid #f0e4e8;
+
+      color: #444;
+
+      font-size: 14px;
+
+    }
+
+
+    .tabla-historial tr:hover td {
+
+      background: #fff8fa;
+
+    }
+
+
+    .puntos-ganados {
+
+      color: #2e7d32;
+
+      font-weight: 800;
+
+    }
+
+
+    .monto {
+
+      font-weight: 700;
+
+      white-space: nowrap;
+
+    }
+
+
+    .sin-historial {
+
+      text-align: center;
+
+      padding: 35px 15px;
+
+      color: #777;
+
+    }
+
+
+    /* ==================================================
+       RESPONSIVE
+    ================================================== */
+
+    @media (
+      max-width: 700px
+    ) {
+
+      .consulta-header {
+
+        padding:
+          15px 18px;
+
+      }
+
+
+      .consulta-logo img {
+
+        width: 145px;
+
+      }
+
+
+      .volver-inicio {
+
+        padding:
+          9px 14px;
+
+        font-size: 13px;
+
+      }
+
+
+      .consulta-container {
+
+        padding-top: 40px;
+
+      }
+
+
+      .acceso-card {
+
+        padding: 23px;
+
+      }
+
+
+      .premios-lista {
+
+        grid-template-columns: 1fr;
+
+      }
+
+
+      .cliente-card,
+      .premios-info,
+      .historial-card {
+
+        padding: 22px;
+
+      }
+
+
+      .puntos-grandes {
+
+        font-size: 50px;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <div class="consulta-page">
+
+
+    <!-- ===============================================
+         HEADER
+    ================================================ -->
+
+    <header class="consulta-header">
+
+      <a
+        href="index.html"
+        class="consulta-logo"
+      >
+
+        <img
+          src="images/Logo.png"
+          alt="Juanita Pacasmayo"
+        >
+
+      </a>
+
+
+      <a
+        href="index.html"
+        class="volver-inicio"
+      >
+        ← Volver
+      </a>
+
+    </header>
+
+
+
+    <!-- ===============================================
+         CONTENIDO
+    ================================================ -->
+
+    <main class="consulta-container">
+
+
+      <!-- TITULO -->
+
+      <div class="consulta-title">
+
+        <p class="section-kicker">
+          TU RECOMPENSA
+        </p>
+
+        <h1>
+          Consulta tus puntos
+        </h1>
+
+        <p>
+          Ingresa tu código de cliente y tu PIN
+          para consultar tus puntos, premios e
+          historial.
+        </p>
+
+      </div>
+
+
+
+      <!-- =============================================
+           ACCESO
+      ============================================== -->
+
+      <section class="acceso-card">
+
+        <div class="acceso-icon">
+          🔐
+        </div>
+
+
+        <h2>
+          Acceso de cliente
+        </h2>
+
+
+        <form id="formConsulta">
+
+
+          <!-- CÓDIGO -->
+
+          <div class="campo">
+
+            <label for="codigoCliente">
+              Código de cliente
+            </label>
+
+            <input
+              type="text"
+              id="codigoCliente"
+              placeholder="Ejemplo: JP0001"
+              autocomplete="username"
+              required
+            >
+
+          </div>
+
+
+          <!-- PIN -->
+
+          <div class="campo">
+
+            <label for="pinCliente">
+              PIN / Contraseña
+            </label>
+
+            <input
+              type="password"
+              id="pinCliente"
+              placeholder="Ingresa tu PIN"
+              autocomplete="current-password"
+              inputmode="numeric"
+              required
+            >
+
+          </div>
+
+
+          <button
+            type="submit"
+            class="button primary btn-consultar"
+            id="btnConsultarPuntos"
+          >
+            🔐 Consultar mis puntos
+          </button>
+
+
+        </form>
+
+
+        <div
+          id="mensajeConsulta"
+          class="mensaje-consulta"
+        ></div>
+
+      </section>
+
+
+
+      <!-- =============================================
+           RESULTADO
+      ============================================== -->
+
+      <div id="resultadoConsulta">
+
+
+        <!-- CLIENTE -->
+
+        <section class="cliente-card">
+
+          <h2>
+            ¡Hola,
+            <strong id="nombreCliente"></strong>!
+          </h2>
+
+
+          <div class="puntos-grandes">
+
+            ⭐
+            <span id="cantidadPuntos">
+              0
+            </span>
+
+          </div>
+
+
+          <div class="puntos-texto">
+            puntos acumulados
+          </div>
+
+        </section>
+
+
+
+        <!-- ===========================================
+             PREMIOS
+        ============================================ -->
+
+        <section class="premios-info">
+
+          <h2>
+            🎁 Premios
+          </h2>
+
+
+          <div class="premios-lista">
+
+
+            <div class="premio">
+
+              <span>
+                💄
+              </span>
+
+              <div>
+
+                <strong>
+                  150 puntos
+                </strong>
+
+                <p>
+                  Regalos cosméticos
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="premio">
+
+              <span>
+                🕶️
+              </span>
+
+              <div>
+
+                <strong>
+                  200 puntos
+                </strong>
+
+                <p>
+                  Lentes de sol
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="premio">
+
+              <span>
+                👁️
+              </span>
+
+              <div>
+
+                <strong>
+                  300 puntos
+                </strong>
+
+                <p>
+                  Pestañas 1x1 gratis
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="premio">
+
+              <span>
+                🧢
+              </span>
+
+              <div>
+
+                <strong>
+                  350 puntos
+                </strong>
+
+                <p>
+                  Gorra o billetera
+                </p>
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </section>
+
+
+
+        <!-- ===========================================
+             HISTORIAL
+        ============================================ -->
+
+        <section class="historial-card">
+
+          <h2>
+            📋 Historial de puntos
+          </h2>
+
+
+          <div id="contenedorHistorial">
+
+            <div class="sin-historial">
+              Cargando historial...
+            </div>
+
+          </div>
+
+        </section>
+
+
+      </div>
+
+
+    </main>
+
+
+    <footer>
+
+      © 2026 Juanita Pacasmayo · Belleza que inspira
+
+    </footer>
+
+
+  </div>
+
+
+  <script src="consulta.js"></script>
+
+</body>
+
+</html>
