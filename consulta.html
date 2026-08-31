@@ -10,11 +10,7 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>
-    Consulta tus puntos | Juanita Pacasmayo
-  </title>
-
-  <!-- FUENTES -->
+  <title>Consultar mis puntos | Juanita Pacasmayo</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -25,51 +21,46 @@
   >
 
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Great+Vibes&family=Montserrat:wght@600;700;800&display=swap"
     rel="stylesheet"
   >
-
-  <!-- ESTILOS PRINCIPALES -->
 
   <link
     rel="stylesheet"
-    href="styles.css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
   >
+
 
   <style>
 
-    /* ==================================================
-       PÁGINA DE CONSULTA
-    ================================================== */
+    * {
+      box-sizing: border-box;
+    }
 
-    .consulta-page {
-
+    body {
+      margin: 0;
       min-height: 100vh;
+      font-family: "DM Sans", Arial, sans-serif;
 
       background:
         linear-gradient(
           135deg,
-          #fff7fa,
+          #fff4f7,
           #ffffff
         );
 
-      padding-bottom: 60px;
-
+      color: #30262b;
     }
 
 
-    /* ==================================================
-       ENCABEZADO
-    ================================================== */
+    .topbar {
 
-    .consulta-header {
+      height: 82px;
 
-      background: #ffffff;
+      background: rgba(255,255,255,.96);
 
       border-bottom:
-        1px solid #f0d7e0;
-
-      padding: 18px 40px;
+        1px solid #f1dce4;
 
       display: flex;
 
@@ -77,158 +68,83 @@
 
       justify-content: space-between;
 
+      padding:
+        0 5%;
+
+      box-shadow:
+        0 5px 20px rgba(120,40,70,.06);
+
     }
 
 
-    .consulta-logo img {
+    .topbar img {
 
-      width: 185px;
+      width: 155px;
 
-      max-width: 100%;
+      height: auto;
 
       display: block;
 
     }
 
 
-    .volver-inicio {
+    .back {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 8px;
 
       text-decoration: none;
 
-      color: #c7386f;
+      color: #c83d68;
 
       font-weight: 700;
 
-      border:
-        1px solid #c7386f;
+    }
 
-      padding: 11px 20px;
+
+    .page {
+
+      width: min(500px, 92%);
+
+      margin:
+        55px auto 80px;
+
+    }
+
+
+    .card {
+
+      background: #fff;
 
       border-radius: 30px;
 
-      transition: .2s;
-
-    }
-
-
-    .volver-inicio:hover {
-
-      background: #c7386f;
-
-      color: white;
-
-    }
-
-
-    /* ==================================================
-       CONTENEDOR
-    ================================================== */
-
-    .consulta-container {
-
-      width: min(
-        1100px,
-        calc(100% - 30px)
-      );
-
-      margin: 0 auto;
-
-      padding-top: 65px;
-
-    }
-
-
-    .consulta-title {
-
-      text-align: center;
-
-      margin-bottom: 35px;
-
-    }
-
-
-    .consulta-title .section-kicker {
-
-      color: #c8871a;
-
-      letter-spacing: 4px;
-
-      font-weight: 700;
-
-      font-size: 13px;
-
-    }
-
-
-    .consulta-title h1 {
-
-      color: #c7386f;
-
-      font-size: clamp(
-        34px,
-        5vw,
-        55px
-      );
-
-      margin: 10px 0;
-
-    }
-
-
-    .consulta-title p {
-
-      color: #5e5360;
-
-      font-size: 17px;
-
-      max-width: 650px;
-
-      margin: auto;
-
-      line-height: 1.6;
-
-    }
-
-
-    /* ==================================================
-       CAJA DE ACCESO
-    ================================================== */
-
-    .acceso-card {
-
-      max-width: 650px;
-
-      margin: 0 auto 40px;
-
-      background: #ffffff;
+      padding: 42px 35px;
 
       border:
-        1px solid #efd9e2;
-
-      border-radius: 24px;
-
-      padding: 35px;
+        1px solid #f0dce4;
 
       box-shadow:
-        0 15px 40px rgba(
-          70,
-          20,
-          45,
-          .08
-        );
+        0 20px 55px rgba(120,40,70,.12);
 
     }
 
 
-    .acceso-icon {
+    .icon {
 
-      width: 65px;
+      width: 75px;
 
-      height: 65px;
+      height: 75px;
+
+      margin: 0 auto 22px;
 
       border-radius: 50%;
 
-      background: #fff1f6;
+      background: #fff0f4;
+
+      color: #c83d68;
 
       display: flex;
 
@@ -236,577 +152,317 @@
 
       justify-content: center;
 
-      margin: 0 auto 20px;
-
-      font-size: 30px;
+      font-size: 31px;
 
     }
 
 
-    .acceso-card h2 {
+    .eyebrow {
 
       text-align: center;
 
-      color: #333;
+      color: #c9953d;
 
-      margin-bottom: 25px;
+      text-transform: uppercase;
+
+      letter-spacing: 3px;
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      margin-bottom: 10px;
 
     }
 
 
-    .campo {
+    h1 {
 
-      margin-bottom: 18px;
+      margin: 0;
+
+      text-align: center;
+
+      color: #c83d68;
+
+      font-family: "Montserrat", Arial, sans-serif;
+
+      font-size: 32px;
 
     }
 
 
-    .campo label {
+    .subtitle {
+
+      text-align: center;
+
+      color: #75666d;
+
+      line-height: 1.6;
+
+      margin:
+        12px auto 30px;
+
+    }
+
+
+    .field {
+
+      margin-bottom: 20px;
+
+    }
+
+
+    .field label {
 
       display: block;
 
       margin-bottom: 8px;
 
-      font-weight: 700;
+      color: #34272d;
 
-      color: #444;
+      font-weight: 700;
 
     }
 
 
-    .campo input {
+    .input-wrap {
+
+      position: relative;
+
+    }
+
+
+    .input-wrap i {
+
+      position: absolute;
+
+      left: 17px;
+
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      color: #c83d68;
+
+    }
+
+
+    input {
 
       width: 100%;
 
-      box-sizing: border-box;
-
-      padding: 14px 16px;
+      height: 55px;
 
       border:
-        1px solid #d9c5ce;
+        1px solid #e8ccd7;
 
-      border-radius: 12px;
+      border-radius: 15px;
 
-      font-size: 16px;
+      padding:
+        0 17px 0 48px;
 
       font-family: inherit;
 
+      font-size: 16px;
+
       outline: none;
 
+      transition:
+        border .2s ease,
+        box-shadow .2s ease;
+
     }
 
 
-    .campo input:focus {
+    input:focus {
 
-      border-color: #c7386f;
+      border-color: #c83d68;
 
       box-shadow:
-        0 0 0 3px rgba(
-          199,
-          56,
-          111,
-          .10
-        );
+        0 0 0 4px rgba(200,61,104,.10);
 
     }
 
 
-    .btn-consultar {
+    .pin-toggle {
 
-      width: 100%;
+      position: absolute;
 
-      border: none;
+      right: 15px;
+
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      border: 0;
+
+      background: transparent;
+
+      color: #8b6977;
 
       cursor: pointer;
 
-      margin-top: 5px;
-
-      font-size: 16px;
-
-      font-weight: 700;
+      font-size: 17px;
 
     }
 
 
-    .btn-consultar:disabled {
+    .btn {
 
-      opacity: .7;
+      width: 100%;
+
+      height: 56px;
+
+      border: 0;
+
+      border-radius: 999px;
+
+      background: #c83d68;
+
+      color: #fff;
+
+      font-family: "Montserrat", Arial, sans-serif;
+
+      font-weight: 700;
+
+      font-size: 16px;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 12px 25px rgba(200,61,104,.20);
+
+      transition:
+        transform .2s ease,
+        opacity .2s ease;
+
+    }
+
+
+    .btn:hover {
+
+      transform: translateY(-2px);
+
+    }
+
+
+    .btn:disabled {
+
+      opacity: .65;
 
       cursor: wait;
 
     }
 
 
-    .mensaje-consulta {
+    .message {
 
       display: none;
 
       margin-top: 20px;
 
-      padding: 14px 18px;
-
-      border-radius: 12px;
-
-      text-align: center;
-
-      font-weight: 600;
-
-    }
-
-
-    .mensaje-consulta.error {
-
-      display: block;
-
-      color: #b3261e;
-
-      background: #fff0f0;
-
-      border: 1px solid #f0b7b7;
-
-    }
-
-
-    .mensaje-consulta.exito {
-
-      display: block;
-
-      color: #216e39;
-
-      background: #edf9f0;
-
-      border: 1px solid #b5dfbe;
-
-    }
-
-
-    /* ==================================================
-       RESULTADO
-    ================================================== */
-
-    #resultadoConsulta {
-
-      display: none;
-
-    }
-
-
-    .cliente-card {
-
-      background: #ffffff;
-
-      border:
-        1px solid #efd9e2;
-
-      border-radius: 24px;
-
-      padding: 30px;
-
-      margin-bottom: 25px;
-
-      text-align: center;
-
-      box-shadow:
-        0 12px 35px rgba(
-          70,
-          20,
-          45,
-          .06
-        );
-
-    }
-
-
-    .cliente-card h2 {
-
-      margin: 0 0 18px;
-
-      color: #333;
-
-    }
-
-
-    .puntos-grandes {
-
-      color: #c7386f;
-
-      font-size: 58px;
-
-      font-weight: 800;
-
-      line-height: 1;
-
-    }
-
-
-    .puntos-texto {
-
-      color: #666;
-
-      margin-top: 8px;
-
-      font-size: 16px;
-
-    }
-
-
-    /* ==================================================
-       PREMIOS
-    ================================================== */
-
-    .premios-info {
-
-      background: #ffffff;
-
-      border:
-        1px solid #efd9e2;
-
-      border-radius: 24px;
-
-      padding: 30px;
-
-      margin-bottom: 25px;
-
-    }
-
-
-    .premios-info h2 {
-
-      text-align: center;
-
-      color: #c7386f;
-
-      margin-top: 0;
-
-      margin-bottom: 25px;
-
-    }
-
-
-    .premios-lista {
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(
-          2,
-          minmax(0, 1fr)
-        );
-
-      gap: 18px;
-
-    }
-
-
-    .premio {
-
-      border:
-        1px solid #eadbe1;
-
-      border-radius: 18px;
-
-      padding: 20px;
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 15px;
-
-      background: #fffafb;
-
-    }
-
-
-    .premio > span {
-
-      width: 58px;
-
-      height: 58px;
+      padding: 14px 16px;
 
       border-radius: 14px;
 
-      background: #fff0f5;
+      font-size: 14px;
 
-      display: flex;
+      line-height: 1.5;
 
-      align-items: center;
-
-      justify-content: center;
-
-      font-size: 29px;
-
-      flex-shrink: 0;
+      text-align: center;
 
     }
 
 
-    .premio strong {
+    .message.error {
 
-      color: #c7386f;
+      display: block;
 
-      font-size: 19px;
+      background: #fff0f2;
 
-    }
+      color: #a5274e;
 
-
-    .premio p {
-
-      margin: 5px 0 0;
-
-      color: #555;
+      border: 1px solid #f4ccd8;
 
     }
 
 
-    .estado-premio {
+    .message.success {
 
-      display: inline-block;
+      display: block;
 
-      margin-top: 10px;
+      background: #effaf3;
 
-      padding: 6px 12px;
+      color: #28733e;
 
-      border-radius: 20px;
+      border: 1px solid #ccebd6;
 
-      background: #f5f1f3;
+    }
 
-      color: #666;
+
+    .help {
+
+      text-align: center;
+
+      margin-top: 25px;
+
+      color: #85737b;
 
       font-size: 13px;
 
+      line-height: 1.6;
+
+    }
+
+
+    .home {
+
+      display: block;
+
+      text-align: center;
+
+      margin-top: 22px;
+
+      color: #c83d68;
+
+      text-decoration: none;
+
       font-weight: 700;
 
     }
 
 
-    .premio-disponible {
+    @media(max-width:600px) {
 
-      border-color: #c7386f;
+      .topbar {
 
-      background: #fff4f8;
-
-    }
-
-
-    .premio-disponible
-    .estado-premio {
-
-      background: #c7386f;
-
-      color: white;
-
-    }
-
-
-    /* ==================================================
-       HISTORIAL
-    ================================================== */
-
-    .historial-card {
-
-      background: #ffffff;
-
-      border:
-        1px solid #efd9e2;
-
-      border-radius: 24px;
-
-      padding: 30px;
-
-      box-shadow:
-        0 12px 35px rgba(
-          70,
-          20,
-          45,
-          .06
-        );
-
-    }
-
-
-    .historial-card h2 {
-
-      color: #c7386f;
-
-      text-align: center;
-
-      margin-top: 0;
-
-      margin-bottom: 25px;
-
-    }
-
-
-    .tabla-scroll {
-
-      width: 100%;
-
-      overflow-x: auto;
-
-      -webkit-overflow-scrolling: touch;
-
-    }
-
-
-    .tabla-historial {
-
-      width: 100%;
-
-      min-width: 650px;
-
-      border-collapse: collapse;
-
-    }
-
-
-    .tabla-historial th {
-
-      background: #c7386f;
-
-      color: white;
-
-      padding: 14px 12px;
-
-      text-align: left;
-
-      font-size: 14px;
-
-      white-space: nowrap;
-
-    }
-
-
-    .tabla-historial th:first-child {
-
-      border-radius: 10px 0 0 10px;
-
-    }
-
-
-    .tabla-historial th:last-child {
-
-      border-radius: 0 10px 10px 0;
-
-    }
-
-
-    .tabla-historial td {
-
-      padding: 14px 12px;
-
-      border-bottom:
-        1px solid #f0e4e8;
-
-      color: #444;
-
-      font-size: 14px;
-
-    }
-
-
-    .tabla-historial tr:hover td {
-
-      background: #fff8fa;
-
-    }
-
-
-    .puntos-ganados {
-
-      color: #2e7d32;
-
-      font-weight: 800;
-
-    }
-
-
-    .monto {
-
-      font-weight: 700;
-
-      white-space: nowrap;
-
-    }
-
-
-    .sin-historial {
-
-      text-align: center;
-
-      padding: 35px 15px;
-
-      color: #777;
-
-    }
-
-
-    /* ==================================================
-       RESPONSIVE
-    ================================================== */
-
-    @media (
-      max-width: 700px
-    ) {
-
-      .consulta-header {
-
-        padding:
-          15px 18px;
+        height: 72px;
 
       }
 
+      .topbar img {
 
-      .consulta-logo img {
-
-        width: 145px;
-
-      }
-
-
-      .volver-inicio {
-
-        padding:
-          9px 14px;
-
-        font-size: 13px;
+        width: 130px;
 
       }
 
+      .page {
 
-      .consulta-container {
-
-        padding-top: 40px;
-
-      }
-
-
-      .acceso-card {
-
-        padding: 23px;
+        margin-top: 30px;
 
       }
 
+      .card {
 
-      .premios-lista {
+        padding: 32px 22px;
 
-        grid-template-columns: 1fr;
-
-      }
-
-
-      .cliente-card,
-      .premios-info,
-      .historial-card {
-
-        padding: 22px;
+        border-radius: 25px;
 
       }
 
+      h1 {
 
-      .puntos-grandes {
-
-        font-size: 50px;
+        font-size: 27px;
 
       }
 
@@ -819,326 +475,490 @@
 
 <body>
 
-  <div class="consulta-page">
+
+<header class="topbar">
+
+  <a href="index.html">
+
+    <img
+      src="images/Logo.png"
+      alt="Juanita Pacasmayo"
+    >
+
+  </a>
 
 
-    <!-- ===============================================
-         HEADER
-    ================================================ -->
+  <a
+    href="index.html"
+    class="back"
+  >
 
-    <header class="consulta-header">
+    <i class="fas fa-arrow-left"></i>
 
-      <a
-        href="index.html"
-        class="consulta-logo"
-      >
+    Volver
 
-        <img
-          src="images/Logo.png"
-          alt="Juanita Pacasmayo"
-        >
+  </a>
 
-      </a>
+</header>
 
 
-      <a
-        href="index.html"
-        class="volver-inicio"
-      >
-        ← Volver
-      </a>
+<main class="page">
 
-    </header>
+  <section class="card">
 
 
+    <div class="icon">
 
-    <!-- ===============================================
-         CONTENIDO
-    ================================================ -->
+      <i class="fas fa-lock"></i>
 
-    <main class="consulta-container">
-
-
-      <!-- TITULO -->
-
-      <div class="consulta-title">
-
-        <p class="section-kicker">
-          TU RECOMPENSA
-        </p>
-
-        <h1>
-          Consulta tus puntos
-        </h1>
-
-        <p>
-          Ingresa tu código de cliente y tu PIN
-          para consultar tus puntos, premios e
-          historial.
-        </p>
-
-      </div>
+    </div>
 
 
+    <div class="eyebrow">
+      Programa de beneficios
+    </div>
 
-      <!-- =============================================
-           ACCESO
-      ============================================== -->
 
-      <section class="acceso-card">
+    <h1>
+      Consulta tus puntos
+    </h1>
 
-        <div class="acceso-icon">
-          🔐
+
+    <p class="subtitle">
+
+      Ingresa tu código de cliente y tu PIN
+      para consultar tus puntos e historial.
+
+    </p>
+
+
+    <form id="consultaForm">
+
+
+      <div class="field">
+
+        <label for="codigo">
+          Código de cliente
+        </label>
+
+        <div class="input-wrap">
+
+          <i class="fas fa-user"></i>
+
+          <input
+            type="text"
+            id="codigo"
+            name="codigo"
+            placeholder="Ejemplo: JP001"
+            autocomplete="username"
+            required
+          >
+
         </div>
 
-
-        <h2>
-          Acceso de cliente
-        </h2>
+      </div>
 
 
-        <form id="formConsulta">
+      <div class="field">
 
+        <label for="pin">
+          PIN
+        </label>
 
-          <!-- CÓDIGO -->
+        <div class="input-wrap">
 
-          <div class="campo">
+          <i class="fas fa-key"></i>
 
-            <label for="codigoCliente">
-              Código de cliente
-            </label>
-
-            <input
-              type="text"
-              id="codigoCliente"
-              placeholder="Ejemplo: JP0001"
-              autocomplete="username"
-              required
-            >
-
-          </div>
-
-
-          <!-- PIN -->
-
-          <div class="campo">
-
-            <label for="pinCliente">
-              PIN / Contraseña
-            </label>
-
-            <input
-              type="password"
-              id="pinCliente"
-              placeholder="Ingresa tu PIN"
-              autocomplete="current-password"
-              inputmode="numeric"
-              required
-            >
-
-          </div>
-
+          <input
+            type="password"
+            id="pin"
+            name="pin"
+            placeholder="Ingresa tu PIN"
+            inputmode="numeric"
+            autocomplete="current-password"
+            required
+          >
 
           <button
-            type="submit"
-            class="button primary btn-consultar"
-            id="btnConsultarPuntos"
+            type="button"
+            class="pin-toggle"
+            id="togglePin"
+            aria-label="Mostrar PIN"
           >
-            🔐 Consultar mis puntos
+
+            <i class="fas fa-eye"></i>
+
           </button>
 
-
-        </form>
-
-
-        <div
-          id="mensajeConsulta"
-          class="mensaje-consulta"
-        ></div>
-
-      </section>
-
-
-
-      <!-- =============================================
-           RESULTADO
-      ============================================== -->
-
-      <div id="resultadoConsulta">
-
-
-        <!-- CLIENTE -->
-
-        <section class="cliente-card">
-
-          <h2>
-            ¡Hola,
-            <strong id="nombreCliente"></strong>!
-          </h2>
-
-
-          <div class="puntos-grandes">
-
-            ⭐
-            <span id="cantidadPuntos">
-              0
-            </span>
-
-          </div>
-
-
-          <div class="puntos-texto">
-            puntos acumulados
-          </div>
-
-        </section>
-
-
-
-        <!-- ===========================================
-             PREMIOS
-        ============================================ -->
-
-        <section class="premios-info">
-
-          <h2>
-            🎁 Premios
-          </h2>
-
-
-          <div class="premios-lista">
-
-
-            <div class="premio">
-
-              <span>
-                💄
-              </span>
-
-              <div>
-
-                <strong>
-                  150 puntos
-                </strong>
-
-                <p>
-                  Regalos cosméticos
-                </p>
-
-              </div>
-
-            </div>
-
-
-            <div class="premio">
-
-              <span>
-                🕶️
-              </span>
-
-              <div>
-
-                <strong>
-                  200 puntos
-                </strong>
-
-                <p>
-                  Lentes de sol
-                </p>
-
-              </div>
-
-            </div>
-
-
-            <div class="premio">
-
-              <span>
-                👁️
-              </span>
-
-              <div>
-
-                <strong>
-                  300 puntos
-                </strong>
-
-                <p>
-                  Pestañas 1x1 gratis
-                </p>
-
-              </div>
-
-            </div>
-
-
-            <div class="premio">
-
-              <span>
-                🧢
-              </span>
-
-              <div>
-
-                <strong>
-                  350 puntos
-                </strong>
-
-                <p>
-                  Gorra o billetera
-                </p>
-
-              </div>
-
-            </div>
-
-
-          </div>
-
-        </section>
-
-
-
-        <!-- ===========================================
-             HISTORIAL
-        ============================================ -->
-
-        <section class="historial-card">
-
-          <h2>
-            📋 Historial de puntos
-          </h2>
-
-
-          <div id="contenedorHistorial">
-
-            <div class="sin-historial">
-              Cargando historial...
-            </div>
-
-          </div>
-
-        </section>
-
+        </div>
 
       </div>
 
 
-    </main>
+      <button
+        type="submit"
+        class="btn"
+        id="btnConsultar"
+      >
+
+        <i class="fas fa-search"></i>
+
+        &nbsp; Consultar mis puntos
+
+      </button>
 
 
-    <footer>
-
-      © 2026 Juanita Pacasmayo · Belleza que inspira
-
-    </footer>
+    </form>
 
 
-  </div>
+    <div
+      id="message"
+      class="message"
+    ></div>
 
 
-  <script src="consulta.js"></script>
+    <div class="help">
+
+      🔐 Tu PIN se utiliza únicamente para
+      verificar tu acceso.
+
+      <br>
+
+      Nunca se mostrará en tu cuenta.
+
+    </div>
+
+
+    <a
+      href="index.html"
+      class="home"
+    >
+
+      <i class="fas fa-home"></i>
+
+      Volver a Juanita Pacasmayo
+
+    </a>
+
+
+  </section>
+
+</main>
+
+
+<script>
+
+
+  /*
+  ==========================================================
+  URL DE TU GOOGLE APPS SCRIPT
+  ==========================================================
+
+  REEMPLAZA SOLAMENTE ESTA URL POR LA URL REAL
+  DE TU WEB APP.
+
+  Ejemplo:
+
+  https://script.google.com/macros/s/XXXXXXXXXXXX/exec
+  */
+
+  const URL_WEB_APP =
+    "URL_DE_TU_WEB_APP";
+
+
+  const form =
+    document.getElementById(
+      "consultaForm"
+    );
+
+
+  const codigoInput =
+    document.getElementById(
+      "codigo"
+    );
+
+
+  const pinInput =
+    document.getElementById(
+      "pin"
+    );
+
+
+  const btnConsultar =
+    document.getElementById(
+      "btnConsultar"
+    );
+
+
+  const message =
+    document.getElementById(
+      "message"
+    );
+
+
+  const togglePin =
+    document.getElementById(
+      "togglePin"
+    );
+
+
+  /*
+  ==========================================================
+  MOSTRAR / OCULTAR PIN
+  ==========================================================
+  */
+
+  togglePin.addEventListener(
+    "click",
+    function() {
+
+      if (
+        pinInput.type === "password"
+      ) {
+
+        pinInput.type = "text";
+
+        togglePin.innerHTML =
+          '<i class="fas fa-eye-slash"></i>';
+
+      } else {
+
+        pinInput.type = "password";
+
+        togglePin.innerHTML =
+          '<i class="fas fa-eye"></i>';
+
+      }
+
+    }
+  );
+
+
+  /*
+  ==========================================================
+  MENSAJE
+  ==========================================================
+  */
+
+  function mostrarMensaje(
+    texto,
+    tipo
+  ) {
+
+    message.textContent =
+      texto;
+
+    message.className =
+      "message " + tipo;
+
+  }
+
+
+  /*
+  ==========================================================
+  CONSULTAR
+  ==========================================================
+  */
+
+  form.addEventListener(
+    "submit",
+    async function(event) {
+
+      event.preventDefault();
+
+
+      const codigo =
+        codigoInput.value
+          .trim()
+          .toUpperCase();
+
+
+      const pin =
+        pinInput.value
+          .trim();
+
+
+      if (!codigo) {
+
+        mostrarMensaje(
+          "Ingresa tu código de cliente.",
+          "error"
+        );
+
+        codigoInput.focus();
+
+        return;
+
+      }
+
+
+      if (!pin) {
+
+        mostrarMensaje(
+          "Ingresa tu PIN.",
+          "error"
+        );
+
+        pinInput.focus();
+
+        return;
+
+      }
+
+
+      if (
+        URL_WEB_APP ===
+        "URL_DE_TU_WEB_APP"
+      ) {
+
+        mostrarMensaje(
+          "Falta configurar la URL de Google Apps Script.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      btnConsultar.disabled =
+        true;
+
+
+      btnConsultar.innerHTML =
+        '<i class="fas fa-spinner fa-spin"></i> Verificando...';
+
+
+      message.className =
+        "message";
+
+
+      try {
+
+
+        const url =
+          URL_WEB_APP +
+          "?accion=consultarPuntos" +
+          "&codigo=" +
+          encodeURIComponent(codigo) +
+          "&pin=" +
+          encodeURIComponent(pin);
+
+
+        const response =
+          await fetch(url, {
+            method: "GET",
+            redirect: "follow"
+          });
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            "No se pudo conectar con el servidor."
+          );
+
+        }
+
+
+        const resultado =
+          await response.json();
+
+
+        if (
+          !resultado.correcto
+        ) {
+
+          throw new Error(
+            resultado.mensaje ||
+            "Código o PIN incorrecto."
+          );
+
+        }
+
+
+        /*
+        ======================================================
+        GUARDAMOS LOS DATOS TEMPORALMENTE
+        ======================================================
+
+        NO GUARDAMOS EL PIN.
+
+        Solo guardamos el resultado autorizado.
+        */
+
+        sessionStorage.setItem(
+          "clientePuntos",
+          JSON.stringify({
+
+            cliente:
+              resultado.cliente,
+
+            codigoCliente:
+              resultado.codigoCliente,
+
+            puntos:
+              resultado.puntos,
+
+            estado:
+              resultado.estado,
+
+            historial:
+              resultado.historial || []
+
+          })
+        );
+
+
+        mostrarMensaje(
+          "Acceso correcto. Cargando tus puntos...",
+          "success"
+        );
+
+
+        /*
+        ======================================================
+        ABRIR PUNTOS.HTML
+        ======================================================
+        */
+
+        setTimeout(
+          function() {
+
+            window.location.href =
+              "puntos.html";
+
+          },
+          500
+        );
+
+
+      } catch(error) {
+
+        console.error(error);
+
+
+        mostrarMensaje(
+          error.message ||
+          "No se pudo realizar la consulta.",
+          "error"
+        );
+
+
+        btnConsultar.disabled =
+          false;
+
+
+        btnConsultar.innerHTML =
+          '<i class="fas fa-search"></i> &nbsp; Consultar mis puntos';
+
+      }
+
+    }
+  );
+
+
+</script>
 
 </body>
-
 </html>
