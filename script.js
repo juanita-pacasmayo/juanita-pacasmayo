@@ -1,1585 +1,92 @@
-// =====================================================
+// ==========================================================
 // JUANITA PACASMAYO
-// SCRIPT.JS
-// CONSULTA DE PUNTOS + CÓDIGO + PIN + HISTORIAL
-// =====================================================
+// SCRIPT.JS COMPLETO
+// ==========================================================
+//
+// FUNCIONES:
+//
+// 1. MENÚ PRINCIPAL
+// 2. CONSULTA DE PUNTOS
+// 3. VALIDACIÓN CÓDIGO + PIN
+// 4. PREMIOS
+// 5. HISTORIAL
+// 6. COMPATIBILIDAD CON ADMINISTRACIÓN
+//
+// ==========================================================
 
 
-// =====================================================
+// ==========================================================
 // URL DE GOOGLE APPS SCRIPT
-// =====================================================
+// ==========================================================
 
 const URL_APPS_SCRIPT =
   "https://script.google.com/macros/s/AKfycbxZW06LP3ctRtIZXBBlo3paILCjcBjQVDMCuOLmNnqU4BuZpbMz3b8jh82V8ZNki1U/exec";
 
 
-// =====================================================
-// CUANDO CARGA LA PÁGINA
-// =====================================================
+// ==========================================================
+// CUANDO CARGA EL DOCUMENTO
+// ==========================================================
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
 
-  console.log("=================================");
-  console.log("Juanita Pacasmayo");
-  console.log("script.js cargado correctamente");
-  console.log("=================================");
-
-
-  // ===================================================
-  // ELEMENTOS
-  // ===================================================
-
-  const btnConsultarPuntos =
-    document.getElementById("btnConsultarPuntos");
-
-
-  const codigoCliente =
-    document.getElementById("codigoCliente");
-
-
-  const pinCliente =
-    document.getElementById("pinCliente");
-
-
-  const mensajePuntos =
-    document.getElementById("mensajePuntos");
-
-
-  const resultadoPuntos =
-    document.getElementById("resultadoPuntos");
-
-
-  const nombreCliente =
-    document.getElementById("nombreCliente");
-
-
-  const cantidadPuntos =
-    document.getElementById("cantidadPuntos");
-
-
-  // ===================================================
-  // COMPROBAR BOTÓN
-  // ===================================================
-
-  if (!btnConsultarPuntos) {
-
-    console.error(
-      "No se encontró el botón #btnConsultarPuntos"
+    console.log(
+      "✅ Juanita Pacasmayo - script.js cargado"
     );
+
+
+    // ======================================================
+    // MENÚ MÓVIL
+    // ======================================================
+
+    inicializarMenu();
+
+
+    // ======================================================
+    // CONSULTA DE PUNTOS
+    // ======================================================
+
+    inicializarConsultaPuntos();
+
+
+    // ======================================================
+    // ADMINISTRACIÓN
+    // ======================================================
+
+    inicializarAdministracion();
+
+  }
+);
+
+
+// ==========================================================
+// MENÚ MÓVIL
+// ==========================================================
+
+function inicializarMenu() {
+
+  const menuToggle =
+    document.querySelector(
+      ".menu-toggle"
+    );
+
+
+  const mainNav =
+    document.querySelector(
+      ".main-nav"
+    );
+
+
+  if (
+    !menuToggle ||
+    !mainNav
+  ) {
 
     return;
-  }
-
-
-  // ===================================================
-  // BOTÓN CONSULTAR
-  // ===================================================
-
-  btnConsultarPuntos.addEventListener(
-    "click",
-    consultarPuntos
-  );
-
-
-  // ===================================================
-  // ENTER EN CÓDIGO
-  // ===================================================
-
-  if (codigoCliente) {
-
-    codigoCliente.addEventListener(
-      "keypress",
-      function (event) {
-
-        if (event.key === "Enter") {
-
-          event.preventDefault();
-
-          consultarPuntos();
-
-        }
-
-      }
-    );
 
   }
 
-
-  // ===================================================
-  // ENTER EN PIN
-  // ===================================================
-
-  if (pinCliente) {
-
-    pinCliente.addEventListener(
-      "keypress",
-      function (event) {
-
-        if (event.key === "Enter") {
-
-          event.preventDefault();
-
-          consultarPuntos();
-
-        }
-
-      }
-    );
-
-  }
-
-
-  // ===================================================
-  // CONSULTAR CLIENTE
-  // ===================================================
-
-  async function consultarPuntos() {
-
-    // -------------------------------------------------
-    // OBTENER CÓDIGO
-    // -------------------------------------------------
-
-    const codigo =
-      codigoCliente
-        ? codigoCliente.value.trim().toUpperCase()
-        : "";
-
-
-    // -------------------------------------------------
-    // OBTENER PIN
-    // -------------------------------------------------
-
-    const pin =
-      pinCliente
-        ? pinCliente.value.trim()
-        : "";
-
-
-    // -------------------------------------------------
-    // LIMPIAR MENSAJE
-    // -------------------------------------------------
-
-    ocultarMensaje();
-
-
-    // -------------------------------------------------
-    // OCULTAR RESULTADO ANTERIOR
-    // -------------------------------------------------
-
-    if (resultadoPuntos) {
-
-      resultadoPuntos.style.display =
-        "none";
-
-    }
-
-
-    // -------------------------------------------------
-    // VALIDAR CÓDIGO
-    // -------------------------------------------------
-
-    if (!codigo) {
-
-      mostrarMensaje(
-        "Por favor, ingresa tu código de cliente.",
-        "error"
-      );
-
-      if (codigoCliente) {
-        codigoCliente.focus();
-      }
-
-      return;
-    }
-
-
-    // -------------------------------------------------
-    // VALIDAR PIN
-    // -------------------------------------------------
-
-    if (!pin) {
-
-      mostrarMensaje(
-        "Por favor, ingresa tu PIN / contraseña.",
-        "error"
-      );
-
-      if (pinCliente) {
-        pinCliente.focus();
-      }
-
-      return;
-    }
-
-
-    // =================================================
-    // BOTÓN CARGANDO
-    // =================================================
-
-    const textoOriginal =
-      btnConsultarPuntos.textContent;
-
-
-    btnConsultarPuntos.disabled =
-      true;
-
-
-    btnConsultarPuntos.textContent =
-      "🔄 Consultando...";
-
-
-    try {
-
-      // ===============================================
-      // CREAR URL
-      // ===============================================
-
-      const url =
-        URL_APPS_SCRIPT +
-        "?accion=consultarPuntos" +
-        "&codigo=" +
-        encodeURIComponent(codigo) +
-        "&pin=" +
-        encodeURIComponent(pin);
-
-
-      console.log(
-        "Consultando cliente:",
-        codigo
-      );
-
-
-      // ===============================================
-      // FETCH
-      // ===============================================
-
-      const respuesta =
-        await fetch(url);
-
-
-      // ===============================================
-      // COMPROBAR HTTP
-      // ===============================================
-
-      if (!respuesta.ok) {
-
-        throw new Error(
-          "Error de conexión con el servidor: " +
-          respuesta.status
-        );
-
-      }
-
-
-      // ===============================================
-      // CONVERTIR A JSON
-      // ===============================================
-
-      const datos =
-        await respuesta.json();
-
-
-      console.log(
-        "Respuesta Google Apps Script:",
-        datos
-      );
-
-
-      // ===============================================
-      // COMPROBAR RESPUESTA
-      // ===============================================
-
-      if (!datos.correcto) {
-
-        throw new Error(
-          datos.mensaje ||
-          "Código o PIN incorrecto."
-        );
-
-      }
-
-
-      // =================================================
-      // DATOS DEL CLIENTE
-      // =================================================
-
-      const nombre =
-        datos.cliente ||
-        datos.nombre ||
-        datos.Nombre ||
-        "Cliente";
-
-
-      const codigoResultado =
-        datos.codigoCliente ||
-        datos.codigo ||
-        datos.CodigoCliente ||
-        datos.Codigo ||
-        codigo;
-
-
-      const puntos =
-        Number(
-          datos.puntos ||
-          datos.Puntos ||
-          0
-        );
-
-
-      console.log(
-        "Cliente:",
-        nombre
-      );
-
-
-      console.log(
-        "Código:",
-        codigoResultado
-      );
-
-
-      console.log(
-        "Puntos:",
-        puntos
-      );
-
-
-      // =================================================
-      // NOMBRE
-      // =================================================
-
-      if (nombreCliente) {
-
-        nombreCliente.textContent =
-          nombre;
-
-      }
-
-
-      // =================================================
-      // PUNTOS
-      // =================================================
-
-      if (cantidadPuntos) {
-
-        cantidadPuntos.textContent =
-          puntos;
-
-      }
-
-
-      // =================================================
-      // PREMIOS
-      // =================================================
-
-      actualizarPremios(
-        puntos
-      );
-
-
-      // =================================================
-      // HISTORIAL
-      // =================================================
-
-      /*
-       IMPORTANTE:
-
-       El Código.gs debe devolver algo como:
-
-       historial: [
-         {
-           Fecha: "30/08/2026",
-           Tipo: "Servicio",
-           Concepto: "Laceado",
-           Monto: 80,
-           Puntos: 80
-         }
-       ]
-      */
-
-
-      let historial =
-        datos.historial ||
-        datos.Historial ||
-        [];
-
-
-      // -------------------------------------------------
-      // SI EL HISTORIAL VIENE DENTRO DE CLIENTE
-      // -------------------------------------------------
-
-      if (
-        (!Array.isArray(historial) ||
-        historial.length === 0) &&
-        datos.clienteData &&
-        Array.isArray(datos.clienteData.historial)
-      ) {
-
-        historial =
-          datos.clienteData.historial;
-
-      }
-
-
-      console.log(
-        "Historial recibido:",
-        historial
-      );
-
-
-      // -------------------------------------------------
-      // MOSTRAR HISTORIAL
-      // -------------------------------------------------
-
-      mostrarHistorial(
-        historial
-      );
-
-
-      // =================================================
-      // MOSTRAR RESULTADO
-      // =================================================
-
-      if (resultadoPuntos) {
-
-        resultadoPuntos.style.display =
-          "block";
-
-      }
-
-
-      // =================================================
-      // MENSAJE DE ÉXITO
-      // =================================================
-
-      mostrarMensaje(
-        "¡Bienvenido! Consulta realizada correctamente.",
-        "exito"
-      );
-
-
-      // =================================================
-      // LIMPIAR PIN
-      // =================================================
-
-      /*
-       Por seguridad, después de consultar
-       dejamos vacío el campo PIN.
-      */
-
-      if (pinCliente) {
-
-        pinCliente.value =
-          "";
-
-      }
-
-
-    } catch (error) {
-
-      console.error(
-        "Error al consultar:",
-        error
-      );
-
-
-      // -------------------------------------------------
-      // OCULTAR RESULTADO
-      // -------------------------------------------------
-
-      if (resultadoPuntos) {
-
-        resultadoPuntos.style.display =
-          "none";
-
-      }
-
-
-      // -------------------------------------------------
-      // MOSTRAR ERROR
-      // -------------------------------------------------
-
-      mostrarMensaje(
-        error.message ||
-        "No se pudo realizar la consulta.",
-        "error"
-      );
-
-
-    } finally {
-
-      // -------------------------------------------------
-      // RESTAURAR BOTÓN
-      // -------------------------------------------------
-
-      btnConsultarPuntos.disabled =
-        false;
-
-
-      btnConsultarPuntos.textContent =
-        textoOriginal ||
-        "🔐 Consultar mis puntos";
-
-    }
-
-  }
-
-
-  // =====================================================
-  // ACTUALIZAR PREMIOS
-  // =====================================================
-
-  function actualizarPremios(
-    puntosCliente
-  ) {
-
-    const lista =
-      document.querySelector(
-        ".premios-lista"
-      );
-
-
-    if (!lista) {
-
-      console.warn(
-        "No se encontró .premios-lista"
-      );
-
-      return;
-
-    }
-
-
-    const premios =
-      lista.querySelectorAll(
-        ".premio"
-      );
-
-
-    premios.forEach(
-      function (premio) {
-
-        const strong =
-          premio.querySelector(
-            "strong"
-          );
-
-
-        if (!strong) {
-          return;
-        }
-
-
-        // -----------------------------------------------
-        // OBTENER PUNTOS DEL PREMIO
-        // -----------------------------------------------
-
-        const textoPuntos =
-          strong.textContent;
-
-
-        const puntosPremio =
-          parseInt(
-            textoPuntos.replace(
-              /\D/g,
-              ""
-            ),
-            10
-          );
-
-
-        if (!puntosPremio) {
-          return;
-        }
-
-
-        // -----------------------------------------------
-        // ELIMINAR MENSAJE ANTERIOR
-        // -----------------------------------------------
-
-        const mensajeAnterior =
-          premio.querySelector(
-            ".estado-premio"
-          );
-
-
-        if (mensajeAnterior) {
-
-          mensajeAnterior.remove();
-
-        }
-
-
-        // -----------------------------------------------
-        // PREMIO DISPONIBLE
-        // -----------------------------------------------
-
-        if (
-          puntosCliente >=
-          puntosPremio
-        ) {
-
-          premio.classList.add(
-            "premio-disponible"
-          );
-
-
-          const mensaje =
-            document.createElement(
-              "div"
-            );
-
-
-          mensaje.className =
-            "estado-premio";
-
-
-          mensaje.textContent =
-            "🎉 ¡Premio disponible!";
-
-
-          premio.appendChild(
-            mensaje
-          );
-
-        }
-
-
-        // -----------------------------------------------
-        // PREMIO BLOQUEADO
-        // -----------------------------------------------
-
-        else {
-
-          premio.classList.remove(
-            "premio-disponible"
-          );
-
-
-          const faltan =
-            puntosPremio -
-            puntosCliente;
-
-
-          const mensaje =
-            document.createElement(
-              "div"
-            );
-
-
-          mensaje.className =
-            "estado-premio";
-
-
-          mensaje.textContent =
-            "Te faltan " +
-            faltan +
-            " puntos";
-
-
-          premio.appendChild(
-            mensaje
-          );
-
-        }
-
-      }
-    );
-
-  }
-
-
-  // =====================================================
-  // MOSTRAR HISTORIAL
-  // =====================================================
-
-  function mostrarHistorial(
-    historial
-  ) {
-
-    if (!resultadoPuntos) {
-      return;
-    }
-
-
-    // ---------------------------------------------------
-    // BUSCAR CONTENEDOR EXISTENTE
-    // ---------------------------------------------------
-
-    let contenedor =
-      document.getElementById(
-        "historialPuntos"
-      );
-
-
-    // ---------------------------------------------------
-    // CREAR CONTENEDOR
-    // ---------------------------------------------------
-
-    if (!contenedor) {
-
-      contenedor =
-        document.createElement(
-          "div"
-        );
-
-
-      contenedor.id =
-        "historialPuntos";
-
-
-      resultadoPuntos.appendChild(
-        contenedor
-      );
-
-    }
-
-
-    // ===================================================
-    // AGREGAR ESTILOS UNA SOLA VEZ
-    // ===================================================
-
-    if (
-      !document.getElementById(
-        "estiloHistorial"
-      )
-    ) {
-
-      const css =
-        document.createElement(
-          "style"
-        );
-
-
-      css.id =
-        "estiloHistorial";
-
-
-      css.textContent = `
-
-        /* ==========================================
-           CONTENEDOR
-        ========================================== */
-
-        #historialPuntos {
-          width: 100%;
-          margin-top: 38px;
-          box-sizing: border-box;
-        }
-
-
-        .historial-contenedor {
-          width: 100%;
-          box-sizing: border-box;
-          background: #ffffff;
-          border: 1px solid #ead6df;
-          border-radius: 20px;
-          padding: 25px;
-          box-shadow:
-            0 10px 30px rgba(0,0,0,0.06);
-        }
-
-
-        /* ==========================================
-           CABECERA
-        ========================================== */
-
-        .historial-titulo {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          margin-bottom: 6px;
-        }
-
-
-        .historial-titulo-icono {
-          width: 44px;
-          height: 44px;
-          min-width: 44px;
-          border-radius: 13px;
-          background: #fff1f6;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 22px;
-        }
-
-
-        .historial-titulo h3 {
-          margin: 0;
-          color: #c7386f;
-          font-size: 22px;
-          font-weight: 800;
-        }
-
-
-        .historial-subtitulo {
-          margin:
-            0 0 22px 56px;
-          color: #777777;
-          font-size: 14px;
-        }
-
-
-        /* ==========================================
-           TABLA
-        ========================================== */
-
-        .historial-tabla-wrapper {
-          width: 100%;
-          overflow-x: auto;
-          border-radius: 14px;
-          border: 1px solid #eee0e6;
-          -webkit-overflow-scrolling: touch;
-        }
-
-
-        .historial-tabla {
-          width: 100%;
-          min-width: 650px;
-          border-collapse: collapse;
-          background: #ffffff;
-        }
-
-
-        .historial-tabla thead {
-          background: #c7386f;
-          color: #ffffff;
-        }
-
-
-        .historial-tabla th {
-          padding: 15px 14px;
-          text-align: left;
-          font-size: 12px;
-          font-weight: 800;
-          letter-spacing: .5px;
-          text-transform: uppercase;
-          white-space: nowrap;
-        }
-
-
-        .historial-tabla td {
-          padding: 15px 14px;
-          border-bottom:
-            1px solid #f0e4e9;
-          color: #4d4d4d;
-          font-size: 14px;
-          vertical-align: middle;
-        }
-
-
-        .historial-tabla tbody tr {
-          transition:
-            background .2s ease;
-        }
-
-
-        .historial-tabla tbody tr:hover {
-          background: #fff8fb;
-        }
-
-
-        .historial-tabla tbody tr:last-child td {
-          border-bottom: none;
-        }
-
-
-        /* ==========================================
-           FECHA
-        ========================================== */
-
-        .historial-fecha {
-          display: inline-flex;
-          align-items: center;
-          gap: 5px;
-          white-space: nowrap;
-          font-weight: 600;
-          color: #555555;
-        }
-
-
-        /* ==========================================
-           TIPO
-        ========================================== */
-
-        .historial-tipo {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: 6px 11px;
-          border-radius: 20px;
-          background: #fff1f6;
-          color: #c7386f;
-          font-size: 12px;
-          font-weight: 700;
-          white-space: nowrap;
-        }
-
-
-        /* ==========================================
-           MONTO
-        ========================================== */
-
-        .historial-monto {
-          font-weight: 700;
-          color: #444444;
-          white-space: nowrap;
-        }
-
-
-        /* ==========================================
-           PUNTOS
-        ========================================== */
-
-        .historial-puntos {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 4px;
-          padding: 6px 12px;
-          border-radius: 20px;
-          background: #fff8e8;
-          color: #b87900;
-          font-weight: 800;
-          white-space: nowrap;
-        }
-
-
-        /* ==========================================
-           HISTORIAL VACÍO
-        ========================================== */
-
-        .historial-vacio {
-          text-align: center;
-          padding: 35px 20px;
-          color: #777777;
-        }
-
-
-        .historial-vacio-icono {
-          font-size: 38px;
-          margin-bottom: 10px;
-        }
-
-
-        .historial-vacio p {
-          margin: 0;
-          font-size: 15px;
-        }
-
-
-        /* ==========================================
-           CELULAR
-        ========================================== */
-
-        @media (max-width: 700px) {
-
-          #historialPuntos {
-            margin-top: 30px;
-          }
-
-
-          .historial-contenedor {
-            padding: 15px;
-            border-radius: 17px;
-          }
-
-
-          .historial-titulo {
-            gap: 10px;
-          }
-
-
-          .historial-titulo-icono {
-            width: 40px;
-            height: 40px;
-            min-width: 40px;
-            font-size: 20px;
-          }
-
-
-          .historial-titulo h3 {
-            font-size: 19px;
-          }
-
-
-          .historial-subtitulo {
-            margin:
-              8px 0 18px 0;
-            font-size: 13px;
-            line-height: 1.5;
-          }
-
-
-          /*
-             Ocultar encabezado
-          */
-
-          .historial-tabla-wrapper {
-            border: none;
-            overflow: visible;
-          }
-
-
-          .historial-tabla {
-            width: 100%;
-            min-width: 0;
-            display: block;
-          }
-
-
-          .historial-tabla thead {
-            display: none;
-          }
-
-
-          .historial-tabla tbody {
-            display: block;
-            width: 100%;
-          }
-
-
-          /*
-             Cada movimiento es una tarjeta
-          */
-
-          .historial-tabla tr {
-            display: block;
-            width: 100%;
-            margin-bottom: 14px;
-            padding: 14px;
-            box-sizing: border-box;
-            border:
-              1px solid #eadce2;
-            border-radius: 15px;
-            background: #ffffff;
-            box-shadow:
-              0 5px 15px rgba(0,0,0,.04);
-          }
-
-
-          .historial-tabla tr:last-child {
-            margin-bottom: 0;
-          }
-
-
-          /*
-             Cada dato de la tarjeta
-          */
-
-          .historial-tabla td {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            padding: 9px 0;
-            border-bottom:
-              1px solid #f3e9ed;
-            font-size: 14px;
-            text-align: right;
-          }
-
-
-          .historial-tabla td:last-child {
-            border-bottom: none;
-          }
-
-
-          /*
-             Nombre del campo
-          */
-
-          .historial-tabla td::before {
-            content: attr(data-label);
-            font-weight: 700;
-            color: #777777;
-            text-align: left;
-            flex-shrink: 0;
-          }
-
-
-          .historial-tabla td[data-label="Concepto"] {
-            align-items: flex-start;
-          }
-
-
-          .historial-tabla td[data-label="Concepto"] {
-            text-align: right;
-          }
-
-
-          .historial-tipo,
-          .historial-puntos {
-            margin-left: auto;
-          }
-
-        }
-
-
-        /* ==========================================
-           CELULARES MUY PEQUEÑOS
-        ========================================== */
-
-        @media (max-width: 400px) {
-
-          .historial-contenedor {
-            padding: 12px;
-          }
-
-
-          .historial-tabla tr {
-            padding: 12px;
-          }
-
-
-          .historial-tabla td {
-            font-size: 13px;
-          }
-
-
-          .historial-tipo,
-          .historial-puntos {
-            font-size: 11px;
-            padding:
-              5px 8px;
-          }
-
-        }
-
-      `;
-
-
-      document.head.appendChild(
-        css
-      );
-
-    }
-
-
-    // =================================================
-    // VALIDAR HISTORIAL
-    // =================================================
-
-    if (
-      !Array.isArray(historial) ||
-      historial.length === 0
-    ) {
-
-      contenedor.innerHTML = `
-
-        <div class="historial-contenedor">
-
-          <div class="historial-titulo">
-
-            <div class="historial-titulo-icono">
-              📋
-            </div>
-
-            <h3>
-              Historial de puntos
-            </h3>
-
-          </div>
-
-
-          <div class="historial-vacio">
-
-            <div class="historial-vacio-icono">
-              📭
-            </div>
-
-            <p>
-              Aún no tienes movimientos registrados.
-            </p>
-
-          </div>
-
-        </div>
-
-      `;
-
-      return;
-
-    }
-
-
-    // =================================================
-    // ORDENAR HISTORIAL
-    // MÁS RECIENTE PRIMERO
-    // =================================================
-
-    const historialOrdenado =
-      [...historial].reverse();
-
-
-    // =================================================
-    // GENERAR FILAS
-    // =================================================
-
-    let filas = "";
-
-
-    historialOrdenado.forEach(
-      function (movimiento) {
-
-        // ---------------------------------------------
-        // FECHA
-        // ---------------------------------------------
-
-        const fecha =
-          movimiento.Fecha ??
-          movimiento.fecha ??
-          "";
-
-
-        // ---------------------------------------------
-        // TIPO
-        // ---------------------------------------------
-
-        const tipo =
-          movimiento.Tipo ??
-          movimiento.tipo ??
-          "Movimiento";
-
-
-        // ---------------------------------------------
-        // CONCEPTO
-        // ---------------------------------------------
-
-        const concepto =
-          movimiento.Concepto ??
-          movimiento.concepto ??
-          "-";
-
-
-        // ---------------------------------------------
-        // MONTO
-        // ---------------------------------------------
-
-        const monto =
-          movimiento.Monto ??
-          movimiento.monto ??
-          0;
-
-
-        // ---------------------------------------------
-        // PUNTOS
-        // ---------------------------------------------
-
-        const puntos =
-          movimiento.Puntos ??
-          movimiento.puntos ??
-          0;
-
-
-        filas += `
-
-          <tr>
-
-            <td data-label="Fecha">
-
-              <span class="historial-fecha">
-                📅
-                ${escapeHTML(fecha)}
-              </span>
-
-            </td>
-
-
-            <td data-label="Tipo">
-
-              <span class="historial-tipo">
-                ${escapeHTML(tipo)}
-              </span>
-
-            </td>
-
-
-            <td data-label="Concepto">
-
-              ${escapeHTML(concepto)}
-
-            </td>
-
-
-            <td data-label="Monto">
-
-              <span class="historial-monto">
-                S/ ${formatearMonto(monto)}
-              </span>
-
-            </td>
-
-
-            <td data-label="Puntos">
-
-              <span class="historial-puntos">
-                ⭐ +${escapeHTML(puntos)}
-              </span>
-
-            </td>
-
-          </tr>
-
-        `;
-
-      }
-    );
-
-
-    // =================================================
-    // MOSTRAR TABLA
-    // =================================================
-
-    contenedor.innerHTML = `
-
-      <div class="historial-contenedor">
-
-
-        <div class="historial-titulo">
-
-          <div class="historial-titulo-icono">
-            📋
-          </div>
-
-          <h3>
-            Historial de puntos
-          </h3>
-
-        </div>
-
-
-        <p class="historial-subtitulo">
-          Aquí puedes revisar tus compras y
-          servicios registrados.
-        </p>
-
-
-        <div class="historial-tabla-wrapper">
-
-          <table class="historial-tabla">
-
-            <thead>
-
-              <tr>
-
-                <th>
-                  Fecha
-                </th>
-
-                <th>
-                  Tipo
-                </th>
-
-                <th>
-                  Concepto
-                </th>
-
-                <th>
-                  Monto
-                </th>
-
-                <th>
-                  Puntos
-                </th>
-
-              </tr>
-
-            </thead>
-
-
-            <tbody>
-
-              ${filas}
-
-            </tbody>
-
-          </table>
-
-        </div>
-
-
-      </div>
-
-    `;
-
-  }
-
-
-  // =====================================================
-  // FORMATEAR MONTO
-  // =====================================================
-
-  function formatearMonto(
-    valor
-  ) {
-
-    const numero =
-      Number(valor) || 0;
-
-
-    return numero.toFixed(2);
-
-  }
-
-
-  // =====================================================
-  // ESCAPAR HTML
-  // =====================================================
-
-  function escapeHTML(
-    texto
-  ) {
-
-    return String(texto)
-
-      .replace(
-        /&/g,
-        "&amp;"
-      )
-
-      .replace(
-        /</g,
-        "&lt;"
-      )
-
-      .replace(
-        />/g,
-        "&gt;"
-      )
-
-      .replace(
-        /"/g,
-        "&quot;"
-      )
-
-      .replace(
-        /'/g,
-        "&#039;"
-      );
-
-  }
-
-
-  // =====================================================
-  // MOSTRAR MENSAJE
-  // =====================================================
-
-  function mostrarMensaje(
-    texto,
-    tipo
-  ) {
-
-    if (!mensajePuntos) {
-      return;
-    }
-
-
-    mensajePuntos.textContent =
-      texto;
-
-
-    mensajePuntos.style.display =
-      "block";
-
-
-    if (tipo === "error") {
-
-      mensajePuntos.style.color =
-        "#c62828";
-
-
-      mensajePuntos.style.background =
-        "#ffebee";
-
-
-      mensajePuntos.style.border =
-        "1px solid #ef9a9a";
-
-    }
-
-    else {
-
-      mensajePuntos.style.color =
-        "#2e7d32";
-
-
-      mensajePuntos.style.background =
-        "#e8f5e9";
-
-
-      mensajePuntos.style.border =
-        "1px solid #a5d6a7";
-
-    }
-
-
-    mensajePuntos.style.padding =
-      "14px 18px";
-
-
-    mensajePuntos.style.borderRadius =
-      "12px";
-
-
-    mensajePuntos.style.marginTop =
-      "15px";
-
-
-    mensajePuntos.style.textAlign =
-      "center";
-
-
-    mensajePuntos.style.fontWeight =
-      "600";
-
-  }
-
-
-  // =====================================================
-  // OCULTAR MENSAJE
-  // =====================================================
-
-  function ocultarMensaje() {
-
-    if (!mensajePuntos) {
-      return;
-    }
-
-
-    mensajePuntos.textContent =
-      "";
-
-
-    mensajePuntos.style.display =
-      "none";
-
-  }
-
-});
-
-
-// =====================================================
-// MENÚ MÓVIL
-// =====================================================
-
-const menuToggle =
-  document.querySelector(
-    ".menu-toggle"
-  );
-
-
-const mainNav =
-  document.querySelector(
-    ".main-nav"
-  );
-
-
-if (
-  menuToggle &&
-  mainNav
-) {
 
   menuToggle.addEventListener(
     "click",
@@ -1602,33 +109,1803 @@ if (
   );
 
 
-  // ---------------------------------------------------
-  // CERRAR MENÚ AL SELECCIONAR
-  // ---------------------------------------------------
-
-  mainNav
-    .querySelectorAll("a")
-    .forEach(
-      function (enlace) {
-
-        enlace.addEventListener(
-          "click",
-          function () {
-
-            mainNav.classList.remove(
-              "menu-abierto"
-            );
+  const enlaces =
+    mainNav.querySelectorAll(
+      "a"
+    );
 
 
-            menuToggle.setAttribute(
-              "aria-expanded",
-              "false"
-            );
+  enlaces.forEach(
+    function (enlace) {
 
-          }
-        );
+      enlace.addEventListener(
+        "click",
+        function () {
+
+          mainNav.classList.remove(
+            "menu-abierto"
+          );
+
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+// ==========================================================
+// INICIALIZAR CONSULTA DE PUNTOS
+// ==========================================================
+
+function inicializarConsultaPuntos() {
+
+  const formulario =
+    document.getElementById(
+      "formConsultaPuntos"
+    );
+
+
+  if (!formulario) {
+
+    // Esta página no es puntos.html
+
+    return;
+
+  }
+
+
+  console.log(
+    "🔐 Módulo de consulta de puntos activo"
+  );
+
+
+  formulario.addEventListener(
+    "submit",
+    function (evento) {
+
+      evento.preventDefault();
+
+      consultarPuntosCliente();
+
+    }
+  );
+
+
+  // ========================================================
+  // ENTER EN CÓDIGO
+  // ========================================================
+
+  const codigo =
+    document.getElementById(
+      "codigoCliente"
+    );
+
+
+  if (codigo) {
+
+    codigo.addEventListener(
+      "input",
+      function () {
+
+        this.value =
+          this.value
+            .toUpperCase();
 
       }
     );
 
+  }
+
 }
+
+
+// ==========================================================
+// CONSULTAR PUNTOS DEL CLIENTE
+// ==========================================================
+
+async function consultarPuntosCliente() {
+
+  const codigoInput =
+    document.getElementById(
+      "codigoCliente"
+    );
+
+
+  const pinInput =
+    document.getElementById(
+      "pinCliente"
+    );
+
+
+  const boton =
+    document.getElementById(
+      "btnConsultarPuntos"
+    );
+
+
+  const resultado =
+    document.getElementById(
+      "resultadoCliente"
+    );
+
+
+  const codigo =
+    codigoInput
+      ? codigoInput.value
+          .trim()
+          .toUpperCase()
+      : "";
+
+
+  const pin =
+    pinInput
+      ? pinInput.value.trim()
+      : "";
+
+
+  // ========================================================
+  // LIMPIAR RESULTADO ANTERIOR
+  // ========================================================
+
+  if (resultado) {
+
+    resultado.style.display =
+      "none";
+
+  }
+
+
+  ocultarMensajePuntos();
+
+
+  // ========================================================
+  // VALIDAR CÓDIGO
+  // ========================================================
+
+  if (!codigo) {
+
+    mostrarMensajePuntos(
+      "Por favor, ingresa tu código de cliente.",
+      "error"
+    );
+
+    if (codigoInput) {
+      codigoInput.focus();
+    }
+
+    return;
+
+  }
+
+
+  // ========================================================
+  // VALIDAR PIN
+  // ========================================================
+
+  if (!pin) {
+
+    mostrarMensajePuntos(
+      "Por favor, ingresa tu PIN.",
+      "error"
+    );
+
+    if (pinInput) {
+      pinInput.focus();
+    }
+
+    return;
+
+  }
+
+
+  // ========================================================
+  // BOTÓN CARGANDO
+  // ========================================================
+
+  let textoOriginal =
+    "🔐 Consultar mis puntos";
+
+
+  if (boton) {
+
+    textoOriginal =
+      boton.textContent;
+
+    boton.disabled =
+      true;
+
+    boton.textContent =
+      "⏳ Consultando...";
+
+  }
+
+
+  try {
+
+    // ======================================================
+    // CONSTRUIR URL
+    // ======================================================
+
+    const parametros =
+      new URLSearchParams();
+
+
+    parametros.append(
+      "accion",
+      "consultarPuntos"
+    );
+
+
+    parametros.append(
+      "codigo",
+      codigo
+    );
+
+
+    parametros.append(
+      "pin",
+      pin
+    );
+
+
+    const url =
+      URL_APPS_SCRIPT +
+      "?" +
+      parametros.toString();
+
+
+    console.log(
+      "🔎 Consultando cliente:",
+      codigo
+    );
+
+
+    // ======================================================
+    // FETCH
+    // ======================================================
+
+    const respuesta =
+      await fetch(
+        url,
+        {
+          method: "GET",
+          cache: "no-cache"
+        }
+      );
+
+
+    if (!respuesta.ok) {
+
+      throw new Error(
+        "Error de conexión. Código HTTP: " +
+        respuesta.status
+      );
+
+    }
+
+
+    // ======================================================
+    // LEER JSON
+    // ======================================================
+
+    const datos =
+      await leerRespuestaJSON(
+        respuesta
+      );
+
+
+    console.log(
+      "📦 Respuesta:",
+      datos
+    );
+
+
+    // ======================================================
+    // VALIDAR RESPUESTA
+    // ======================================================
+
+    if (
+      !datos ||
+      !datos.correcto
+    ) {
+
+      throw new Error(
+        datos &&
+        datos.mensaje
+          ? datos.mensaje
+          : "Código de cliente o PIN incorrecto."
+      );
+
+    }
+
+
+    // ======================================================
+    // MOSTRAR DATOS DEL CLIENTE
+    // ======================================================
+
+    mostrarDatosCliente(
+      datos
+    );
+
+
+    // ======================================================
+    // MOSTRAR HISTORIAL
+    // ======================================================
+
+    mostrarHistorial(
+      datos.historial || []
+    );
+
+
+    // ======================================================
+    // CARGAR PREMIOS
+    // ======================================================
+
+    await cargarPremiosCliente(
+      codigo,
+      pin,
+      Number(
+        datos.puntos
+      ) || 0
+    );
+
+
+    // ======================================================
+    // MOSTRAR RESULTADO
+    // ======================================================
+
+    if (resultado) {
+
+      resultado.style.display =
+        "block";
+
+    }
+
+
+    mostrarMensajePuntos(
+      "✅ Consulta realizada correctamente.",
+      "exito"
+    );
+
+
+    // ======================================================
+    // DESPLAZAR A RESULTADO
+    // ======================================================
+
+    setTimeout(
+      function () {
+
+        if (resultado) {
+
+          resultado.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+        }
+
+      },
+      200
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      "❌ Error consulta puntos:",
+      error
+    );
+
+
+    if (resultado) {
+
+      resultado.style.display =
+        "none";
+
+    }
+
+
+    mostrarMensajePuntos(
+      error.message ||
+      "No se pudo realizar la consulta.",
+      "error"
+    );
+
+
+  } finally {
+
+    if (boton) {
+
+      boton.disabled =
+        false;
+
+      boton.textContent =
+        textoOriginal;
+
+    }
+
+  }
+
+}
+
+
+// ==========================================================
+// MOSTRAR DATOS DEL CLIENTE
+// ==========================================================
+
+function mostrarDatosCliente(
+  datos
+) {
+
+  const nombre =
+    document.getElementById(
+      "nombreCliente"
+    );
+
+
+  const codigo =
+    document.getElementById(
+      "codigoResultado"
+    );
+
+
+  const puntos =
+    document.getElementById(
+      "cantidadPuntos"
+    );
+
+
+  if (nombre) {
+
+    nombre.textContent =
+      datos.cliente ||
+      "Cliente";
+
+  }
+
+
+  if (codigo) {
+
+    codigo.textContent =
+      datos.codigoCliente ||
+      "-";
+
+  }
+
+
+  if (puntos) {
+
+    puntos.textContent =
+      Number(
+        datos.puntos
+      ) || 0;
+
+  }
+
+}
+
+
+// ==========================================================
+// CARGAR PREMIOS DEL CLIENTE
+// ==========================================================
+
+async function cargarPremiosCliente(
+  codigo,
+  pin,
+  puntosCliente
+) {
+
+  const contenedor =
+    document.getElementById(
+      "premiosLista"
+    );
+
+
+  if (!contenedor) {
+
+    return;
+
+  }
+
+
+  contenedor.innerHTML =
+    `
+      <div class="premio-card">
+        <div class="premio-icon">⏳</div>
+        <h3>Cargando premios...</h3>
+        <p>Estamos consultando tus beneficios.</p>
+      </div>
+    `;
+
+
+  try {
+
+    const parametros =
+      new URLSearchParams();
+
+
+    parametros.append(
+      "accion",
+      "premiosDisponibles"
+    );
+
+
+    parametros.append(
+      "codigo",
+      codigo
+    );
+
+
+    parametros.append(
+      "pin",
+      pin
+    );
+
+
+    const url =
+      URL_APPS_SCRIPT +
+      "?" +
+      parametros.toString();
+
+
+    const respuesta =
+      await fetch(
+        url,
+        {
+          method: "GET",
+          cache: "no-cache"
+        }
+      );
+
+
+    if (!respuesta.ok) {
+
+      throw new Error(
+        "No se pudieron consultar los premios."
+      );
+
+    }
+
+
+    const datos =
+      await leerRespuestaJSON(
+        respuesta
+      );
+
+
+    console.log(
+      "🎁 Premios:",
+      datos
+    );
+
+
+    if (
+      !datos ||
+      !datos.correcto
+    ) {
+
+      throw new Error(
+        datos &&
+        datos.mensaje
+          ? datos.mensaje
+          : "No se pudieron cargar los premios."
+      );
+
+    }
+
+
+    const disponibles =
+      Array.isArray(
+        datos.disponibles
+      )
+        ? datos.disponibles
+        : [];
+
+
+    const bloqueados =
+      Array.isArray(
+        datos.bloqueados
+      )
+        ? datos.bloqueados
+        : [];
+
+
+    mostrarPremios(
+      disponibles,
+      bloqueados,
+      puntosCliente
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      "❌ Error cargando premios:",
+      error
+    );
+
+
+    contenedor.innerHTML =
+      `
+        <div class="premio-card">
+          <div class="premio-icon">🎁</div>
+          <h3>Premios</h3>
+          <p>
+            No se pudieron cargar los premios en este momento.
+          </p>
+        </div>
+      `;
+
+  }
+
+}
+
+
+// ==========================================================
+// MOSTRAR PREMIOS
+// ==========================================================
+
+function mostrarPremios(
+  disponibles,
+  bloqueados,
+  puntosCliente
+) {
+
+  const contenedor =
+    document.getElementById(
+      "premiosLista"
+    );
+
+
+  if (!contenedor) {
+
+    return;
+
+  }
+
+
+  contenedor.innerHTML =
+    "";
+
+
+  // ========================================================
+  // PREMIOS DISPONIBLES
+  // ========================================================
+
+  disponibles.forEach(
+    function (premio) {
+
+      const tarjeta =
+        crearTarjetaPremio(
+          premio,
+          true,
+          0
+        );
+
+
+      contenedor.appendChild(
+        tarjeta
+      );
+
+    }
+  );
+
+
+  // ========================================================
+  // PREMIOS BLOQUEADOS
+  // ========================================================
+
+  bloqueados.forEach(
+    function (premio) {
+
+      const faltan =
+        Number(
+          premio.puntosFaltantes
+        ) ||
+        Math.max(
+          0,
+          Number(
+            premio.puntos
+          ) -
+          Number(
+            puntosCliente
+          )
+        );
+
+
+      const tarjeta =
+        crearTarjetaPremio(
+          premio,
+          false,
+          faltan
+        );
+
+
+      contenedor.appendChild(
+        tarjeta
+      );
+
+    }
+  );
+
+
+  // ========================================================
+  // SI NO HAY PREMIOS
+  // ========================================================
+
+  if (
+    disponibles.length === 0 &&
+    bloqueados.length === 0
+  ) {
+
+    contenedor.innerHTML =
+      `
+        <div class="premio-card">
+          <div class="premio-icon">🎁</div>
+          <h3>Aún no hay premios</h3>
+          <p>
+            Sigue acumulando puntos para
+            descubrir tus beneficios.
+          </p>
+        </div>
+      `;
+
+  }
+
+}
+
+
+// ==========================================================
+// CREAR TARJETA DE PREMIO
+// ==========================================================
+
+function crearTarjetaPremio(
+  premio,
+  disponible,
+  faltan
+) {
+
+  const tarjeta =
+    document.createElement(
+      "article"
+    );
+
+
+  tarjeta.className =
+    disponible
+      ? "premio-card disponible"
+      : "premio-card bloqueado";
+
+
+  const icono =
+    disponible
+      ? "🎁"
+      : "🔒";
+
+
+  const nombre =
+    escaparHTML(
+      premio.nombre ||
+      "Premio"
+    );
+
+
+  const descripcion =
+    escaparHTML(
+      premio.descripcion ||
+      ""
+    );
+
+
+  const puntos =
+    Number(
+      premio.puntos
+    ) || 0;
+
+
+  let estadoHTML =
+    "";
+
+
+  if (disponible) {
+
+    estadoHTML =
+      `
+        <div class="premio-estado">
+          🎉 ¡Premio disponible!
+        </div>
+      `;
+
+  } else {
+
+    estadoHTML =
+      `
+        <div class="premio-estado">
+          🔒 Te faltan
+          ${faltan}
+          puntos
+        </div>
+      `;
+
+  }
+
+
+  tarjeta.innerHTML =
+    `
+      <div class="premio-icon">
+        ${icono}
+      </div>
+
+      <h3>
+        ${nombre}
+      </h3>
+
+      <div class="premio-puntos">
+        ⭐ ${puntos} puntos
+      </div>
+
+      <p>
+        ${descripcion}
+      </p>
+
+      ${estadoHTML}
+    `;
+
+
+  return tarjeta;
+
+}
+
+
+// ==========================================================
+// MOSTRAR HISTORIAL
+// ==========================================================
+
+function mostrarHistorial(
+  historial
+) {
+
+  const contenedor =
+    document.getElementById(
+      "historialLista"
+    );
+
+
+  if (!contenedor) {
+
+    return;
+
+  }
+
+
+  contenedor.innerHTML =
+    "";
+
+
+  if (
+    !Array.isArray(historial) ||
+    historial.length === 0
+  ) {
+
+    contenedor.innerHTML =
+      `
+        <div class="sin-historial">
+          📋 Todavía no tienes compras o servicios registrados.
+        </div>
+      `;
+
+    return;
+
+  }
+
+
+  historial.forEach(
+    function (movimiento) {
+
+      const item =
+        document.createElement(
+          "div"
+        );
+
+
+      item.className =
+        "historial-item";
+
+
+      const fecha =
+        escaparHTML(
+          movimiento.fecha ||
+          ""
+        );
+
+
+      const tipo =
+        escaparHTML(
+          movimiento.tipo ||
+          ""
+        );
+
+
+      const concepto =
+        escaparHTML(
+          movimiento.concepto ||
+          "Movimiento"
+        );
+
+
+      const observacion =
+        escaparHTML(
+          movimiento.observacion ||
+          ""
+        );
+
+
+      const monto =
+        Number(
+          movimiento.monto
+        ) || 0;
+
+
+      const puntos =
+        Number(
+          movimiento.puntos
+        ) || 0;
+
+
+      const observacionHTML =
+        observacion
+          ? `
+              <small>
+                ${observacion}
+              </small>
+            `
+          : "";
+
+
+      item.innerHTML =
+        `
+          <div class="historial-concepto">
+
+            <div class="historial-fecha">
+              ${fecha}
+            </div>
+
+            <strong>
+              ${concepto}
+            </strong>
+
+            <small>
+              ${tipo}
+            </small>
+
+            ${observacionHTML}
+
+          </div>
+
+
+          <div class="historial-monto">
+
+            💰 S/
+            ${monto.toFixed(2)}
+
+          </div>
+
+
+          <div class="historial-puntos">
+
+            ⭐ +
+            ${puntos}
+            puntos
+
+          </div>
+
+        `;
+
+
+      contenedor.appendChild(
+        item
+      );
+
+    }
+  );
+
+}
+
+
+// ==========================================================
+// LEER RESPUESTA JSON
+// ==========================================================
+
+async function leerRespuestaJSON(
+  respuesta
+) {
+
+  const texto =
+    await respuesta.text();
+
+
+  if (!texto) {
+
+    throw new Error(
+      "El servidor no devolvió información."
+    );
+
+  }
+
+
+  try {
+
+    return JSON.parse(
+      texto
+    );
+
+  } catch (error) {
+
+    console.error(
+      "Respuesta no válida:",
+      texto
+    );
+
+
+    throw new Error(
+      "El servidor devolvió una respuesta no válida."
+    );
+
+  }
+
+}
+
+
+// ==========================================================
+// MOSTRAR MENSAJE
+// ==========================================================
+
+function mostrarMensajePuntos(
+  texto,
+  tipo
+) {
+
+  const mensaje =
+    document.getElementById(
+      "mensajePuntos"
+    );
+
+
+  if (!mensaje) {
+
+    return;
+
+  }
+
+
+  mensaje.textContent =
+    texto;
+
+
+  mensaje.className =
+    "mensaje " +
+    (
+      tipo === "error"
+        ? "error"
+        : "exito"
+    );
+
+
+  mensaje.style.display =
+    "block";
+
+}
+
+
+// ==========================================================
+// OCULTAR MENSAJE
+// ==========================================================
+
+function ocultarMensajePuntos() {
+
+  const mensaje =
+    document.getElementById(
+      "mensajePuntos"
+    );
+
+
+  if (!mensaje) {
+
+    return;
+
+  }
+
+
+  mensaje.textContent =
+    "";
+
+
+  mensaje.className =
+    "mensaje";
+
+
+  mensaje.style.display =
+    "none";
+
+}
+
+
+// ==========================================================
+// ESCAPAR HTML
+// ==========================================================
+
+function escaparHTML(
+  texto
+) {
+
+  return String(
+    texto || ""
+  )
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+// ==========================================================
+// ==========================================================
+// ADMINISTRACIÓN
+// ==========================================================
+// ==========================================================
+//
+// ESTA PARTE SOLO SE EJECUTA SI LOS ELEMENTOS EXISTEN.
+// NO AFECTA puntos.html.
+//
+// ==========================================================
+
+function inicializarAdministracion() {
+
+  const btnBuscar =
+    document.getElementById(
+      "btnBuscarCliente"
+    );
+
+
+  const btnRegistrar =
+    document.getElementById(
+      "btnRegistrarMovimiento"
+    );
+
+
+  const codigoRegistro =
+    document.getElementById(
+      "codigoRegistro"
+    );
+
+
+  if (btnBuscar) {
+
+    btnBuscar.addEventListener(
+      "click",
+      buscarClienteAdministracion
+    );
+
+  }
+
+
+  if (btnRegistrar) {
+
+    btnRegistrar.addEventListener(
+      "click",
+      registrarMovimientoAdministracion
+    );
+
+  }
+
+
+  if (codigoRegistro) {
+
+    codigoRegistro.addEventListener(
+      "keydown",
+      function (evento) {
+
+        if (
+          evento.key === "Enter"
+        ) {
+
+          evento.preventDefault();
+
+          buscarClienteAdministracion();
+
+        }
+
+      }
+    );
+
+  }
+
+
+  console.log(
+    "⚙️ Compatibilidad administrativa preparada"
+  );
+
+}
+
+
+// ==========================================================
+// BUSCAR CLIENTE EN ADMINISTRACIÓN
+// ==========================================================
+
+async function buscarClienteAdministracion() {
+
+  const codigoRegistro =
+    document.getElementById(
+      "codigoRegistro"
+    );
+
+
+  const nombreRegistro =
+    document.getElementById(
+      "nombreRegistro"
+    );
+
+
+  const puntosRegistro =
+    document.getElementById(
+      "puntosRegistro"
+    );
+
+
+  const clienteRegistro =
+    document.getElementById(
+      "clienteRegistro"
+    );
+
+
+  if (!codigoRegistro) {
+
+    return;
+
+  }
+
+
+  const codigo =
+    codigoRegistro.value
+      .trim()
+      .toUpperCase();
+
+
+  if (!codigo) {
+
+    mostrarMensajeAdministracion(
+      "❌ Primero escribe el código del cliente.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  try {
+
+    mostrarMensajeAdministracion(
+      "⏳ Buscando cliente...",
+      "info"
+    );
+
+
+    const parametros =
+      new URLSearchParams();
+
+
+    parametros.append(
+      "accion",
+      "consultarPuntos"
+    );
+
+
+    parametros.append(
+      "codigo",
+      codigo
+    );
+
+
+    // IMPORTANTE:
+    //
+    // Esta búsqueda administrativa
+    // depende de cómo tengas configurado
+    // tu panel actual.
+    //
+    // Si tu panel administra usando
+    // código solamente, el Apps Script
+    // debe aceptar esa consulta.
+    //
+
+    const url =
+      URL_APPS_SCRIPT +
+      "?" +
+      parametros.toString();
+
+
+    const respuesta =
+      await fetch(
+        url,
+        {
+          method: "GET",
+          cache: "no-cache"
+        }
+      );
+
+
+    const datos =
+      await leerRespuestaJSON(
+        respuesta
+      );
+
+
+    if (
+      !datos.correcto
+    ) {
+
+      throw new Error(
+        datos.mensaje ||
+        "No se encontró el cliente."
+      );
+
+    }
+
+
+    if (nombreRegistro) {
+
+      nombreRegistro.textContent =
+        datos.cliente ||
+        "Cliente";
+
+    }
+
+
+    if (puntosRegistro) {
+
+      puntosRegistro.textContent =
+        "⭐ " +
+        (
+          Number(
+            datos.puntos
+          ) || 0
+        ) +
+        " puntos";
+
+    }
+
+
+    if (clienteRegistro) {
+
+      clienteRegistro.style.display =
+        "flex";
+
+    }
+
+
+    codigoRegistro.value =
+      datos.codigoCliente ||
+      codigo;
+
+
+    mostrarMensajeAdministracion(
+      "✅ Cliente encontrado correctamente.",
+      "exito"
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      "Error buscando cliente:",
+      error
+    );
+
+
+    if (clienteRegistro) {
+
+      clienteRegistro.style.display =
+        "none";
+
+    }
+
+
+    mostrarMensajeAdministracion(
+      "❌ " +
+      (
+        error.message ||
+        "No se pudo buscar el cliente."
+      ),
+      "error"
+    );
+
+  }
+
+}
+
+
+// ==========================================================
+// REGISTRAR MOVIMIENTO ADMINISTRACIÓN
+// ==========================================================
+
+async function registrarMovimientoAdministracion() {
+
+  const codigoRegistro =
+    document.getElementById(
+      "codigoRegistro"
+    );
+
+
+  const tipoRegistro =
+    document.getElementById(
+      "tipoRegistro"
+    );
+
+
+  const conceptoRegistro =
+    document.getElementById(
+      "conceptoRegistro"
+    );
+
+
+  const montoRegistro =
+    document.getElementById(
+      "montoRegistro"
+    );
+
+
+  const observacionRegistro =
+    document.getElementById(
+      "observacionRegistro"
+    );
+
+
+  const btnRegistrar =
+    document.getElementById(
+      "btnRegistrarMovimiento"
+    );
+
+
+  if (!codigoRegistro) {
+
+    return;
+
+  }
+
+
+  const codigo =
+    codigoRegistro.value
+      .trim()
+      .toUpperCase();
+
+
+  const tipo =
+    tipoRegistro
+      ? tipoRegistro.value
+      : "Servicio";
+
+
+  const concepto =
+    conceptoRegistro
+      ? conceptoRegistro.value
+      : "Otro";
+
+
+  const monto =
+    montoRegistro
+      ? Number(
+          montoRegistro.value
+        )
+      : 0;
+
+
+  const observacion =
+    observacionRegistro
+      ? observacionRegistro.value.trim()
+      : "";
+
+
+  if (!codigo) {
+
+    mostrarMensajeAdministracion(
+      "❌ Primero escribe el código del cliente.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if (
+    isNaN(monto) ||
+    monto <= 0
+  ) {
+
+    mostrarMensajeAdministracion(
+      "❌ Ingresa un monto válido mayor que cero.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if (btnRegistrar) {
+
+    btnRegistrar.disabled =
+      true;
+
+  }
+
+
+  try {
+
+    mostrarMensajeAdministracion(
+      "⏳ Registrando movimiento...",
+      "info"
+    );
+
+
+    const parametros =
+      new URLSearchParams();
+
+
+    parametros.append(
+      "accion",
+      "registrarMovimiento"
+    );
+
+
+    parametros.append(
+      "codigo",
+      codigo
+    );
+
+
+    parametros.append(
+      "tipo",
+      tipo
+    );
+
+
+    parametros.append(
+      "concepto",
+      concepto
+    );
+
+
+    parametros.append(
+      "monto",
+      monto
+    );
+
+
+    parametros.append(
+      "observacion",
+      observacion
+    );
+
+
+    const url =
+      URL_APPS_SCRIPT +
+      "?" +
+      parametros.toString();
+
+
+    const respuesta =
+      await fetch(
+        url,
+        {
+          method: "GET",
+          cache: "no-cache"
+        }
+      );
+
+
+    const datos =
+      await leerRespuestaJSON(
+        respuesta
+      );
+
+
+    if (
+      !datos.correcto
+    ) {
+
+      throw new Error(
+        datos.mensaje ||
+        "No se pudo registrar el movimiento."
+      );
+
+    }
+
+
+    mostrarMensajeAdministracion(
+      "✅ Movimiento registrado correctamente. +" +
+      (
+        Number(
+          datos.puntosGanados
+        ) || 0
+      ) +
+      " puntos.",
+      "exito"
+    );
+
+
+    // ======================================================
+    // ACTUALIZAR PUNTOS EN ADMINISTRACIÓN
+    // ======================================================
+
+    const puntosRegistro =
+      document.getElementById(
+        "puntosRegistro"
+      );
+
+
+    if (puntosRegistro) {
+
+      puntosRegistro.textContent =
+        "⭐ " +
+        (
+          Number(
+            datos.puntosTotales
+          ) || 0
+        ) +
+        " puntos";
+
+    }
+
+
+    // ======================================================
+    // LIMPIAR CAMPOS
+    // ======================================================
+
+    if (montoRegistro) {
+
+      montoRegistro.value =
+        "";
+
+    }
+
+
+    if (observacionRegistro) {
+
+      observacionRegistro.value =
+        "";
+
+    }
+
+
+  } catch (error) {
+
+    console.error(
+      "Error registrando movimiento:",
+      error
+    );
+
+
+    mostrarMensajeAdministracion(
+      "❌ " +
+      (
+        error.message ||
+        "No se pudo registrar el movimiento."
+      ),
+      "error"
+    );
+
+
+  } finally {
+
+    if (btnRegistrar) {
+
+      btnRegistrar.disabled =
+        false;
+
+    }
+
+  }
+
+}
+
+
+// ==========================================================
+// MENSAJE ADMINISTRACIÓN
+// ==========================================================
+
+function mostrarMensajeAdministracion(
+  texto,
+  tipo
+) {
+
+  const mensaje =
+    document.getElementById(
+      "mensajeAdmin"
+    );
+
+
+  if (!mensaje) {
+
+    console.log(
+      texto
+    );
+
+    return;
+
+  }
+
+
+  mensaje.textContent =
+    texto;
+
+
+  mensaje.style.display =
+    "block";
+
+
+  if (
+    tipo === "error"
+  ) {
+
+    mensaje.style.color =
+      "#c62828";
+
+  }
+
+  else if (
+    tipo === "info"
+  ) {
+
+    mensaje.style.color =
+      "#777";
+
+  }
+
+  else {
+
+    mensaje.style.color =
+      "#2e7d32";
+
+  }
+
+}
+
+
+// ==========================================================
+// FIN SCRIPT.JS
+// ==========================================================
+
+console.log(
+  "✅ Juanita Pacasmayo - sistema web listo."
+);
