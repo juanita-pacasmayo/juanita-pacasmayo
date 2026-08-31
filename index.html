@@ -16,6 +16,10 @@
 
   <title>Juanita Pacasmayo | Belleza que inspira</title>
 
+  <!-- =====================================================
+       GOOGLE FONTS
+       ===================================================== -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
   <link
@@ -29,15 +33,27 @@
     rel="stylesheet"
   >
 
+  <!-- =====================================================
+       ICONOS
+       ===================================================== -->
+
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
   >
 
+  <!-- =====================================================
+       CSS PRINCIPAL
+       ===================================================== -->
+
   <link
     rel="stylesheet"
     href="styles.css"
   >
+
+  <!-- =====================================================
+       ESTILOS DEL INDEX
+       ===================================================== -->
 
   <style>
 
@@ -50,6 +66,11 @@
       font-family: "DM Sans", Arial, sans-serif;
     }
 
+
+    /* =====================================================
+       ENCABEZADO
+       ===================================================== */
+
     .site-header {
       position: sticky;
       top: 0;
@@ -61,20 +82,28 @@
       box-shadow: 0 4px 18px rgba(120,40,70,0.05);
     }
 
+
     .header-inner {
       width: min(1320px, 94%);
       min-height: 96px;
       margin: auto;
+
       display: flex;
       align-items: center;
       gap: 25px;
     }
+
+
+    /* =====================================================
+       LOGO
+       ===================================================== */
 
     .brand {
       display: flex;
       align-items: center;
       flex-shrink: 0;
     }
+
 
     .brand img {
       width: 185px;
@@ -83,6 +112,11 @@
       display: block;
     }
 
+
+    /* =====================================================
+       REDES SOCIALES
+       ===================================================== */
+
     .social-links {
       display: flex;
       align-items: center;
@@ -90,447 +124,803 @@
       margin-left: 55px;
     }
 
+
     .social-links a {
       width: 50px;
       height: 50px;
+
       border-radius: 50%;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       color: #fff;
       text-decoration: none;
+
       font-size: 22px;
+
       box-shadow: 0 8px 18px rgba(0,0,0,0.12);
-      transition: transform .25s ease, box-shadow .25s ease;
+
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease;
     }
+
 
     .social-links a:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.18);
+
+      box-shadow:
+        0 12px 25px rgba(0,0,0,0.18);
     }
+
 
     .social-facebook {
       background: #1877f2;
     }
 
+
     .social-instagram {
-      background: linear-gradient(
-        135deg,
-        #f58529,
-        #dd2a7b,
-        #8134af,
-        #515bd4
-      );
+      background:
+        linear-gradient(
+          135deg,
+          #f58529,
+          #dd2a7b,
+          #8134af,
+          #515bd4
+        );
     }
+
+
+    /* =====================================================
+       MENÚ
+       ===================================================== */
 
     .main-nav {
       display: flex;
       align-items: center;
       justify-content: center;
+
       gap: 38px;
+
       margin-left: auto;
     }
 
+
     .main-nav a {
       color: #171717;
+
       text-decoration: none;
+
       font-family: "Montserrat", Arial, sans-serif;
+
       font-size: 17px;
       font-weight: 700;
+
       transition: color .25s ease;
     }
+
 
     .main-nav a:hover {
       color: #c83d68;
     }
 
+
+    /* =====================================================
+       BOTÓN CONTACTO
+       ===================================================== */
+
     .contact-button {
       display: inline-flex;
+
       align-items: center;
       justify-content: center;
+
       min-width: 160px;
+
       padding: 15px 25px;
+
       border-radius: 999px;
+
       background: #c83d68;
+
       color: #fff !important;
+
       text-decoration: none;
+
       font-family: "Montserrat", Arial, sans-serif;
+
       font-weight: 700;
       font-size: 16px;
+
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease;
     }
+
+
+    .contact-button:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 10px 25px rgba(200,61,104,0.25);
+    }
+
+
+    /* =====================================================
+       BOTÓN ADMINISTRACIÓN
+       ===================================================== */
 
     .admin-button {
       display: inline-flex;
+
       align-items: center;
       justify-content: center;
+
       min-width: 170px;
+
       padding: 15px 23px;
+
       border-radius: 999px;
+
       border: 1.5px solid #c83d68;
+
       color: #b93660;
+
       background: #fff;
+
       text-decoration: none;
+
       font-family: "Montserrat", Arial, sans-serif;
+
       font-size: 15px;
       font-weight: 700;
+
+      transition:
+        background .25s ease,
+        color .25s ease,
+        transform .25s ease;
     }
+
 
     .admin-button:hover {
       background: #c83d68;
       color: #fff;
+      transform: translateY(-2px);
     }
+
+
+    /* =====================================================
+       BOTONES GENERALES
+       ===================================================== */
 
     .btn {
       display: inline-flex;
+
       align-items: center;
       justify-content: center;
+
       padding: 15px 25px;
+
       border-radius: 999px;
+
       text-decoration: none;
+
       font-weight: 700;
-      transition: transform .25s ease;
+
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease;
     }
+
 
     .btn:hover {
       transform: translateY(-2px);
     }
 
+
     .btn-primary {
       background: #c83d68;
+
       color: #fff;
-      box-shadow: 0 10px 25px rgba(200,61,104,.20);
+
+      box-shadow:
+        0 10px 25px rgba(200,61,104,.20);
     }
+
 
     .btn-light {
       background: #fff;
+
       color: #c83d68;
+
       border: 1px solid #e7c7d2;
     }
 
+
+    /* =====================================================
+       HERO
+       ===================================================== */
+
     .hero {
       padding: 80px 0 70px;
-      background: linear-gradient(
-        180deg,
-        #fff5f8 0%,
-        #fff 100%
-      );
+
+      background:
+        linear-gradient(
+          180deg,
+          #fff5f8 0%,
+          #fff 100%
+        );
     }
+
 
     .hero-grid {
       width: min(1180px, 92%);
+
       margin: auto;
+
       display: grid;
+
       grid-template-columns: 1fr 1fr;
+
       align-items: center;
+
       gap: 55px;
     }
 
+
     .eyebrow {
       color: #c9953d;
+
       text-transform: uppercase;
+
       letter-spacing: 4px;
+
       font-size: 13px;
+
       font-weight: 800;
+
       margin-bottom: 15px;
     }
 
+
     .hero h1 {
       margin: 0;
+
       color: #c83d68;
+
       font-family: "Great Vibes", cursive;
+
       font-size: clamp(65px, 8vw, 105px);
+
       line-height: .95;
+
       font-weight: 400;
     }
 
+
     .hero h1 span {
       display: block;
+
       margin-top: 12px;
+
       font-family: "Montserrat", Arial, sans-serif;
+
       font-size: clamp(23px, 3vw, 35px);
+
       letter-spacing: 8px;
+
       color: #222;
+
       font-weight: 700;
     }
 
+
     .hero p {
       max-width: 600px;
+
       margin: 28px 0;
+
       color: #63545b;
+
       font-size: 19px;
+
       line-height: 1.7;
     }
 
+
     .actions {
       display: flex;
+
       flex-wrap: wrap;
+
       gap: 14px;
     }
 
+
     .hero-card {
       border-radius: 32px;
+
       overflow: hidden;
-      box-shadow: 0 20px 50px rgba(120,40,70,.15);
+
+      box-shadow:
+        0 20px 50px rgba(120,40,70,.15);
+
       background: #fff;
     }
 
+
     .hero-card img {
       width: 100%;
+
       height: auto;
+
       display: block;
     }
+
+
+    /* =====================================================
+       SECCIONES
+       ===================================================== */
 
     .section {
       padding: 90px 0;
     }
 
+
     .container {
       width: min(1180px, 92%);
+
       margin: auto;
     }
 
+
     .section-head {
       text-align: center;
+
       max-width: 760px;
+
       margin: 0 auto 45px;
     }
 
+
     .section-head h2 {
       margin: 0 0 15px;
+
       color: #c83d68;
+
       font-family: "Montserrat", Arial, sans-serif;
+
       font-size: clamp(36px, 5vw, 55px);
+
+      font-weight: 700;
     }
+
 
     .section-head p {
       color: #6d5c64;
+
       font-size: 17px;
+
       line-height: 1.7;
     }
 
+
+    /* =====================================================
+       SERVICIOS
+       ===================================================== */
+
     .services {
       display: grid;
-      grid-template-columns: repeat(4,1fr);
+
+      grid-template-columns:
+        repeat(4,1fr);
+
       gap: 22px;
     }
 
+
     .service {
       padding: 35px 25px;
+
       text-align: center;
+
       background: #fff;
+
       border: 1px solid #f0dce4;
+
       border-radius: 25px;
-      box-shadow: 0 12px 35px rgba(120,40,70,.07);
-      transition: transform .25s ease;
+
+      box-shadow:
+        0 12px 35px rgba(120,40,70,.07);
+
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease;
     }
+
 
     .service:hover {
       transform: translateY(-7px);
+
+      box-shadow:
+        0 18px 40px rgba(120,40,70,.12);
     }
+
 
     .service .icon {
       width: 75px;
       height: 75px;
+
       margin: 0 auto 20px;
+
       display: flex;
+
       align-items: center;
       justify-content: center;
+
       border-radius: 50%;
+
       background: #fff0f4;
+
       font-size: 35px;
     }
 
+
     .service h3 {
       margin: 0 0 10px;
+
       color: #2c2227;
+
       font-size: 21px;
     }
 
+
     .service p {
       margin: 0;
+
       color: #75666d;
+
       line-height: 1.6;
     }
 
+
+    /* =====================================================
+       PRODUCTOS
+       ===================================================== */
+
     .visual {
       display: grid;
-      grid-template-columns: repeat(3,1fr);
+
+      grid-template-columns:
+        repeat(3,1fr);
+
       gap: 25px;
     }
 
+
     .visual-card {
       overflow: hidden;
+
       background: #fff;
+
       border-radius: 25px;
+
       border: 1px solid #f0dce4;
-      box-shadow: 0 12px 35px rgba(120,40,70,.08);
+
+      box-shadow:
+        0 12px 35px rgba(120,40,70,.08);
     }
+
 
     .visual-card img {
       width: 100%;
+
       aspect-ratio: 4/3;
+
       object-fit: cover;
+
       display: block;
     }
+
 
     .visual-card .caption {
       padding: 22px;
     }
 
+
     .visual-card .caption strong {
       color: #c83d68;
+
       font-size: 20px;
     }
 
+
     .visual-card .caption p {
       margin-top: 8px;
+
       color: #75666d;
+
       line-height: 1.5;
     }
+
+
+    /* =====================================================
+       PROGRAMA DE PUNTOS
+       ===================================================== */
 
     .loyalty {
       padding: 55px;
+
       display: grid;
+
       grid-template-columns: 1fr 1fr;
+
       gap: 45px;
+
       align-items: center;
+
       border-radius: 35px;
-      background: linear-gradient(135deg,#fff0f4,#fff);
+
+      background:
+        linear-gradient(
+          135deg,
+          #fff0f4,
+          #fff
+        );
+
       border: 1px solid #f0dce4;
-      box-shadow: 0 15px 45px rgba(120,40,70,.08);
+
+      box-shadow:
+        0 15px 45px rgba(120,40,70,.08);
     }
+
 
     .loyalty h2 {
       margin: 0 0 18px;
+
       color: #c83d68;
+
       font-size: clamp(35px,5vw,52px);
+
+      font-weight: 700;
     }
+
 
     .loyalty p {
       color: #6d5c64;
+
       line-height: 1.7;
+
       font-size: 17px;
+
       margin-bottom: 25px;
     }
 
+
     .steps {
       display: grid;
+
       gap: 18px;
     }
+
 
     .step {
       display: flex;
+
       align-items: flex-start;
+
       gap: 18px;
+
       padding: 20px;
+
       background: #fff;
+
       border-radius: 20px;
+
       border: 1px solid #f0dce4;
     }
+
 
     .step .num {
       width: 42px;
+
       height: 42px;
+
       flex-shrink: 0;
+
       border-radius: 50%;
+
       background: #c83d68;
+
       color: #fff;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       font-weight: 800;
     }
 
+
     .step strong {
       display: block;
+
       color: #2c2227;
+
       margin-bottom: 5px;
     }
 
+
     .step span {
       display: block;
+
       color: #75666d;
+
       line-height: 1.5;
     }
 
+
+    /* =====================================================
+       GALERÍA
+       ===================================================== */
+
     .gallery {
       display: grid;
-      grid-template-columns: repeat(3,1fr);
+
+      grid-template-columns:
+        repeat(3,1fr);
+
       gap: 22px;
     }
 
+
     .gallery figure {
       margin: 0;
+
       overflow: hidden;
+
       border-radius: 25px;
+
       background: #fff;
+
       border: 1px solid #f0dce4;
-      box-shadow: 0 12px 35px rgba(120,40,70,.08);
+
+      box-shadow:
+        0 12px 35px rgba(120,40,70,.08);
     }
+
 
     .gallery img {
       width: 100%;
+
       aspect-ratio: 4/3;
+
       object-fit: cover;
+
       display: block;
+
+      transition:
+        transform .4s ease;
     }
+
+
+    .gallery figure:hover img {
+      transform: scale(1.04);
+    }
+
+
+    /* =====================================================
+       CONTACTO
+       ===================================================== */
 
     .cta {
       margin-top: 25px;
+
       padding: 50px;
+
       border-radius: 30px;
+
       background: #c83d68;
+
       color: #fff;
+
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
+
       gap: 25px;
     }
 
+
     .cta h2 {
       margin: 0;
+
       font-family: "Great Vibes", cursive;
+
       font-size: 50px;
+
       font-weight: 400;
     }
+
 
     .cta p {
       margin: 8px 0 0;
+
       font-size: 17px;
     }
 
+
     .cta .btn {
       background: #fff;
+
       color: #c83d68;
+
       flex-shrink: 0;
     }
 
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+
     footer {
       margin-top: 70px;
+
       padding: 40px 0;
+
       border-top: 1px solid #efdce3;
+
       text-align: center;
+
       color: #75666d;
+
       font-size: 14px;
     }
 
+
     footer strong {
       display: block;
+
       margin-bottom: 8px;
+
       color: #c83d68;
+
       font-family: "Great Vibes", cursive;
+
       font-size: 32px;
+
       font-weight: 400;
     }
 
+
+    /* =====================================================
+       MENÚ MÓVIL
+       ===================================================== */
+
     .mobile-menu-button {
       display: none;
+
       border: 0;
+
       background: transparent;
+
       color: #c83d68;
+
       font-size: 27px;
+
       cursor: pointer;
     }
+
+
+    /* =====================================================
+       RESPONSIVE
+       ===================================================== */
 
     @media(max-width:1150px) {
 
@@ -545,10 +935,14 @@
       .contact-button,
       .admin-button {
         min-width: auto;
+
         padding: 13px 17px;
+
         font-size: 13px;
       }
+
     }
+
 
     @media(max-width:950px) {
 
@@ -556,13 +950,16 @@
         min-height: 80px;
       }
 
+
       .brand img {
         width: 160px;
       }
 
+
       .social-links {
         margin-left: auto;
       }
+
 
       .main-nav,
       .contact-button,
@@ -570,69 +967,108 @@
         display: none;
       }
 
+
       .mobile-menu-button {
         display: block;
       }
+
 
       .hero-grid {
         grid-template-columns: 1fr;
       }
 
-      .services {
-        grid-template-columns: repeat(2,1fr);
+
+      .hero-card {
+        max-width: 700px;
+
+        margin: auto;
       }
+
+
+      .services {
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
 
       .visual,
       .gallery {
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns:
+          repeat(2,1fr);
       }
+
 
       .loyalty {
         grid-template-columns: 1fr;
       }
+
     }
 
+
     @media(max-width:600px) {
+
+      .header-inner {
+        width: 92%;
+      }
+
 
       .brand img {
         width: 145px;
       }
 
+
       .social-links {
         gap: 7px;
       }
 
+
       .social-links a {
         width: 40px;
+
         height: 40px;
+
         font-size: 18px;
       }
+
 
       .hero {
         padding: 55px 0;
       }
 
+
       .hero h1 {
         font-size: 60px;
       }
 
+
       .hero h1 span {
         font-size: 20px;
+
         letter-spacing: 5px;
       }
+
 
       .hero p {
         font-size: 16px;
       }
 
+
       .actions {
         flex-direction: column;
+
         align-items: stretch;
       }
+
+
+      .btn {
+        text-align: center;
+      }
+
 
       .section {
         padding: 60px 0;
       }
+
 
       .services,
       .visual,
@@ -640,726 +1076,1020 @@
         grid-template-columns: 1fr;
       }
 
+
       .loyalty {
         padding: 30px 22px;
       }
 
+
       .cta {
         padding: 30px 22px;
+
         flex-direction: column;
+
         align-items: flex-start;
       }
+
 
       .cta h2 {
         font-size: 42px;
       }
+
     }
 
   </style>
+
 </head>
 
 
 <body>
 
-<header class="site-header">
 
-  <div class="header-inner">
+  <!-- =====================================================
+       ENCABEZADO
+       ===================================================== -->
 
-    <a href="index.html" class="brand">
-      <img
-        src="images/Logo.png"
-        alt="Juanita Pacasmayo"
-      >
-    </a>
+  <header class="site-header">
 
-    <div class="social-links">
+    <div class="header-inner">
 
-      <a
-        href="#"
-        class="social-facebook"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Facebook"
-      >
-        <i class="fab fa-facebook-f"></i>
-      </a>
+
+      <!-- LOGO -->
 
       <a
-        href="#"
-        class="social-instagram"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Instagram"
+        href="index.html"
+        class="brand"
+        aria-label="Juanita Pacasmayo"
       >
-        <i class="fab fa-instagram"></i>
-      </a>
-
-    </div>
-
-
-    <nav class="main-nav">
-
-      <a href="#servicios">
-        Servicios
-      </a>
-
-      <a href="#productos">
-        Productos
-      </a>
-
-      <!-- CORREGIDO: AHORA ABRE CONSULTA -->
-      <a href="consulta.html">
-        Puntos
-      </a>
-
-      <a href="#galeria">
-        Galería
-      </a>
-
-    </nav>
-
-
-    <a
-      href="#contacto"
-      class="contact-button"
-    >
-      Contáctanos
-    </a>
-
-
-    <a
-      href="administracion.html"
-      class="admin-button"
-    >
-      🔐 Administración
-    </a>
-
-
-    <button
-      class="mobile-menu-button"
-      id="mobileMenuButton"
-      aria-label="Abrir menú"
-    >
-      <i class="fas fa-bars"></i>
-    </button>
-
-  </div>
-
-</header>
-
-
-<main id="inicio">
-
-
-  <section class="hero">
-
-    <div class="hero-grid">
-
-      <div>
-
-        <div class="eyebrow">
-          Belleza que inspira ✨
-        </div>
-
-        <h1>
-          Juanita
-          <span>PACASMAYO</span>
-        </h1>
-
-        <p>
-          Productos de belleza y servicios pensados
-          para realzar tu estilo:
-          <strong>laceados, uñas y pestañas</strong>.
-        </p>
-
-        <div class="actions">
-
-          <a
-            href="#servicios"
-            class="btn btn-primary"
-          >
-            Ver servicios
-          </a>
-
-          <!-- CORREGIDO -->
-          <a
-            href="consulta.html"
-            class="btn btn-light"
-          >
-            🔐 Conoce tus puntos
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="hero-card">
 
         <img
-          src="images/hero.jpg"
-          alt="Servicios de belleza Juanita Pacasmayo"
-          onerror="this.style.display='none'"
+          src="images/Logo.png"
+          alt="Juanita Pacasmayo"
         >
 
-      </div>
+      </a>
 
-    </div>
 
-  </section>
+      <!-- =================================================
+           REDES SOCIALES
+           ================================================= -->
 
-
-  <section
-    class="section"
-    id="servicios"
-  >
-
-    <div class="container">
-
-      <div class="section-head">
-
-        <div class="eyebrow">
-          Todo en un solo lugar
-        </div>
-
-        <h2>
-          Servicios de belleza
-        </h2>
-
-        <p>
-          Elige tu servicio favorito y vive una
-          experiencia de belleza con el estilo
-          Juanita Pacasmayo.
-        </p>
-
-      </div>
-
-
-      <div class="services">
-
-        <article class="service">
-
-          <div class="icon">
-            💄
-          </div>
-
-          <h3>
-            Cosméticos
-          </h3>
-
-          <p>
-            Encuentra productos para complementar
-            tu rutina de belleza.
-          </p>
-
-        </article>
-
-
-        <article class="service">
-
-          <div class="icon">
-            💅
-          </div>
-
-          <h3>
-            Uñas
-          </h3>
-
-          <p>
-            Diseños y acabados para darle
-            personalidad a tus manos.
-          </p>
-
-        </article>
-
-
-        <article class="service">
-
-          <div class="icon">
-            💇‍♀️
-          </div>
-
-          <h3>
-            Laceado
-          </h3>
-
-          <p>
-            Cuida y transforma tu cabello con
-            un acabado elegante.
-          </p>
-
-        </article>
-
-
-        <article class="service">
-
-          <div class="icon">
-            👁️
-          </div>
-
-          <h3>
-            Pestañas
-          </h3>
-
-          <p>
-            Realza tu mirada con un acabado
-            delicado y sofisticado.
-          </p>
-
-        </article>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section
-    class="section"
-    id="productos"
-  >
-
-    <div class="container">
-
-      <div class="section-head">
-
-        <div class="eyebrow">
-          Compra y disfruta
-        </div>
-
-        <h2>
-          Tus productos favoritos
-        </h2>
-
-        <p>
-          Encuentra productos de belleza seleccionados
-          para acompañar tu rutina.
-        </p>
-
-      </div>
-
-
-      <div class="visual">
-
-        <article class="visual-card">
-
-          <img
-            src="images/maquillaje.png"
-            alt="Maquillaje Juanita Pacasmayo"
-          >
-
-          <div class="caption">
-
-            <strong>
-              Maquillaje
-            </strong>
-
-            <p>
-              Productos para realzar tu belleza
-              todos los días.
-            </p>
-
-          </div>
-
-        </article>
-
-
-        <article class="visual-card">
-
-          <img
-            src="images/cuidado-capilar.png"
-            alt="Cuidado capilar Juanita Pacasmayo"
-          >
-
-          <div class="caption">
-
-            <strong>
-              Cuidado capilar
-            </strong>
-
-            <p>
-              Productos para cuidar y mantener
-              tu cabello.
-            </p>
-
-          </div>
-
-        </article>
-
-
-        <article class="visual-card">
-
-          <img
-            src="images/perfumes.png"
-            alt="Perfumes Juanita Pacasmayo"
-          >
-
-          <div class="caption">
-
-            <strong>
-              Perfumes
-            </strong>
-
-            <p>
-              Fragancias para acompañarte
-              en cada momento.
-            </p>
-
-          </div>
-
-        </article>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section class="section">
-
-    <div class="container">
-
-      <div class="loyalty">
-
-        <div>
-
-          <div class="eyebrow">
-            Programa de beneficios
-          </div>
-
-          <h2>
-            Acumula puntos ✨
-          </h2>
-
-          <p>
-            Por tus compras acumulas puntos que
-            podrás consultar desde tu cuenta y
-            utilizar para disfrutar de beneficios
-            en nuestros servicios.
-          </p>
-
-          <!-- CORREGIDO -->
-          <a
-            href="consulta.html"
-            class="btn btn-primary"
-          >
-            🔐 Consultar mis puntos
-          </a>
-
-        </div>
-
-
-        <div class="steps">
-
-          <div class="step">
-
-            <div class="num">
-              1
-            </div>
-
-            <div>
-
-              <strong>
-                Compra
-              </strong>
-
-              <span>
-                Adquiere tus productos de belleza favoritos.
-              </span>
-
-            </div>
-
-          </div>
-
-
-          <div class="step">
-
-            <div class="num">
-              2
-            </div>
-
-            <div>
-
-              <strong>
-                Acumula
-              </strong>
-
-              <span>
-                Registra tus compras y suma puntos.
-              </span>
-
-            </div>
-
-          </div>
-
-
-          <div class="step">
-
-            <div class="num">
-              3
-            </div>
-
-            <div>
-
-              <strong>
-                Consulta
-              </strong>
-
-              <span>
-                Ingresa tu código y PIN para consultar
-                tus puntos e historial.
-              </span>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section class="section">
-
-    <div class="container">
-
-      <div class="section-head">
-
-        <div class="eyebrow">
-          Nuestra especialidad
-        </div>
-
-        <h2>
-          Belleza que inspira
-        </h2>
-
-        <p>
-          Descubre algunos de nuestros servicios
-          y transforma tu estilo.
-        </p>
-
-      </div>
-
-
-      <div class="gallery">
-
-        <figure>
-          <img
-            src="images/laceado.png"
-            alt="Laceado"
-          >
-        </figure>
-
-        <figure>
-          <img
-            src="images/unas.png"
-            alt="Uñas"
-          >
-        </figure>
-
-        <figure>
-          <img
-            src="images/pestanas.png"
-            alt="Pestañas"
-          >
-        </figure>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section
-    class="section"
-    id="galeria"
-  >
-
-    <div class="container">
-
-      <div class="section-head">
-
-        <div class="eyebrow">
-          Inspírate
-        </div>
-
-        <h2>
-          Galería
-        </h2>
-
-        <p>
-          Muy pronto encontrarás nuestros trabajos
-          y novedades aquí.
-        </p>
-
-      </div>
-
-
-      <div class="gallery">
-
-        <figure>
-          <img
-            src="images/laceado.png"
-            alt="Laceado"
-          >
-        </figure>
-
-        <figure>
-          <img
-            src="images/unas.png"
-            alt="Uñas"
-          >
-        </figure>
-
-        <figure>
-          <img
-            src="images/pestanas.png"
-            alt="Pestañas"
-          >
-        </figure>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section
-    class="section"
-    id="contacto"
-  >
-
-    <div class="container">
-
-      <div class="cta">
-
-        <div>
-
-          <h2>
-            ¿Lista para consentirte?
-          </h2>
-
-          <p>
-            Descubre nuestros productos y servicios
-            de belleza en Juanita Pacasmayo.
-          </p>
-
-        </div>
+      <div class="social-links">
 
         <a
-          href="#servicios"
-          class="btn"
+          href="#"
+          class="social-facebook"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
         >
-          Ver servicios ✨
+
+          <i class="fab fa-facebook-f"></i>
+
+        </a>
+
+
+        <a
+          href="#"
+          class="social-instagram"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+        >
+
+          <i class="fab fa-instagram"></i>
+
         </a>
 
       </div>
 
+
+      <!-- =================================================
+           MENÚ
+           ================================================= -->
+
+      <nav class="main-nav">
+
+        <a href="#servicios">
+          Servicios
+        </a>
+
+
+        <a href="#productos">
+          Productos
+        </a>
+
+
+        <!-- =================================================
+             PUNTOS → CONSULTA.HTML
+             ================================================= -->
+
+        <a href="consulta.html">
+          Puntos
+        </a>
+
+
+        <a href="#galeria">
+          Galería
+        </a>
+
+      </nav>
+
+
+      <!-- =================================================
+           CONTACTO
+           ================================================= -->
+
+      <a
+        href="#contacto"
+        class="contact-button"
+      >
+
+        Contáctanos
+
+      </a>
+
+
+      <!-- =================================================
+           ADMINISTRACIÓN
+           ================================================= -->
+
+      <a
+        href="administracion.html"
+        class="admin-button"
+      >
+
+        🔐 Administración
+
+      </a>
+
+
+      <!-- =================================================
+           MENÚ MÓVIL
+           ================================================= -->
+
+      <button
+        class="mobile-menu-button"
+        id="mobileMenuButton"
+        aria-label="Abrir menú"
+      >
+
+        <i class="fas fa-bars"></i>
+
+      </button>
+
     </div>
 
-  </section>
-
-</main>
+  </header>
 
 
-<footer>
+  <!-- =====================================================
+       CONTENIDO PRINCIPAL
+       ===================================================== -->
 
-  <div class="container">
+  <main id="inicio">
 
-    <strong>
-      Juanita Pacasmayo
-    </strong>
 
-    <div>
-      Cosméticos · Uñas · Laceado · Pestañas
+    <!-- ===================================================
+         HERO
+         =================================================== -->
+
+    <section class="hero">
+
+      <div class="hero-grid">
+
+
+        <!-- TEXTO -->
+
+        <div>
+
+          <div class="eyebrow">
+            Belleza que inspira ✨
+          </div>
+
+
+          <h1>
+
+            Juanita
+
+            <span>
+              PACASMAYO
+            </span>
+
+          </h1>
+
+
+          <p>
+
+            Productos de belleza y servicios pensados
+            para realzar tu estilo:
+            <strong>laceados, uñas y pestañas</strong>.
+
+          </p>
+
+
+          <div class="actions">
+
+
+            <a
+              href="#servicios"
+              class="btn btn-primary"
+            >
+
+              Ver servicios
+
+            </a>
+
+
+            <!-- =================================================
+                 CONOCE TUS PUNTOS → CONSULTA.HTML
+                 ================================================= -->
+
+            <a
+              href="consulta.html"
+              class="btn btn-light"
+            >
+
+              🔐 Conoce tus puntos
+
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- IMAGEN PRINCIPAL -->
+
+        <div class="hero-card">
+
+          <img
+            src="images/hero.jpg"
+            alt="Servicios de belleza Juanita Pacasmayo"
+            onerror="this.style.display='none'"
+          >
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         SERVICIOS
+         =================================================== -->
+
+    <section
+      class="section"
+      id="servicios"
+    >
+
+      <div class="container">
+
+
+        <div class="section-head">
+
+          <div class="eyebrow">
+            Todo en un solo lugar
+          </div>
+
+
+          <h2>
+            Servicios de belleza
+          </h2>
+
+
+          <p>
+
+            Elige tu servicio favorito y vive una
+            experiencia de belleza con el estilo
+            Juanita Pacasmayo.
+
+          </p>
+
+        </div>
+
+
+        <div class="services">
+
+
+          <!-- COSMÉTICOS -->
+
+          <article class="service">
+
+            <div class="icon">
+              💄
+            </div>
+
+
+            <h3>
+              Cosméticos
+            </h3>
+
+
+            <p>
+
+              Encuentra productos para complementar
+              tu rutina de belleza.
+
+            </p>
+
+          </article>
+
+
+          <!-- UÑAS -->
+
+          <article class="service">
+
+            <div class="icon">
+              💅
+            </div>
+
+
+            <h3>
+              Uñas
+            </h3>
+
+
+            <p>
+
+              Diseños y acabados para darle
+              personalidad a tus manos.
+
+            </p>
+
+          </article>
+
+
+          <!-- LACEADO -->
+
+          <article class="service">
+
+            <div class="icon">
+              💇‍♀️
+            </div>
+
+
+            <h3>
+              Laceado
+            </h3>
+
+
+            <p>
+
+              Cuida y transforma tu cabello con
+              un acabado elegante.
+
+            </p>
+
+          </article>
+
+
+          <!-- PESTAÑAS -->
+
+          <article class="service">
+
+            <div class="icon">
+              👁️
+            </div>
+
+
+            <h3>
+              Pestañas
+            </h3>
+
+
+            <p>
+
+              Realza tu mirada con un acabado
+              delicado y sofisticado.
+
+            </p>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         PRODUCTOS
+         =================================================== -->
+
+    <section
+      class="section"
+      id="productos"
+    >
+
+      <div class="container">
+
+
+        <div class="section-head">
+
+          <div class="eyebrow">
+            Compra y disfruta
+          </div>
+
+
+          <h2>
+            Tus productos favoritos
+          </h2>
+
+
+          <p>
+
+            Encuentra productos de belleza seleccionados
+            para acompañar tu rutina.
+
+          </p>
+
+        </div>
+
+
+        <div class="visual">
+
+
+          <!-- MAQUILLAJE -->
+
+          <article class="visual-card">
+
+            <img
+              src="images/maquillaje.png"
+              alt="Maquillaje Juanita Pacasmayo"
+            >
+
+
+            <div class="caption">
+
+              <strong>
+                Maquillaje
+              </strong>
+
+
+              <p>
+
+                Productos para realzar tu belleza
+                todos los días.
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <!-- CUIDADO CAPILAR -->
+
+          <article class="visual-card">
+
+            <img
+              src="images/cuidado-capilar.png"
+              alt="Cuidado capilar Juanita Pacasmayo"
+            >
+
+
+            <div class="caption">
+
+              <strong>
+                Cuidado capilar
+              </strong>
+
+
+              <p>
+
+                Productos para cuidar y mantener
+                tu cabello.
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <!-- PERFUMES -->
+
+          <article class="visual-card">
+
+            <img
+              src="images/perfumes.png"
+              alt="Perfumes Juanita Pacasmayo"
+            >
+
+
+            <div class="caption">
+
+              <strong>
+                Perfumes
+              </strong>
+
+
+              <p>
+
+                Fragancias para acompañarte
+                en cada momento.
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         PROGRAMA DE PUNTOS
+         =================================================== -->
+
+    <section class="section">
+
+      <div class="container">
+
+
+        <div class="loyalty">
+
+
+          <div>
+
+            <div class="eyebrow">
+              Programa de beneficios
+            </div>
+
+
+            <h2>
+              Acumula puntos ✨
+            </h2>
+
+
+            <p>
+
+              Por tus compras acumulas puntos que
+              podrás consultar desde tu cuenta y
+              utilizar para disfrutar de beneficios
+              en nuestros servicios.
+
+            </p>
+
+
+            <!-- =================================================
+                 CONSULTAR MIS PUNTOS → CONSULTA.HTML
+                 ================================================= -->
+
+            <a
+              href="consulta.html"
+              class="btn btn-primary"
+            >
+
+              🔐 Consultar mis puntos
+
+            </a>
+
+          </div>
+
+
+          <div class="steps">
+
+
+            <div class="step">
+
+              <div class="num">
+                1
+              </div>
+
+
+              <div>
+
+                <strong>
+                  Compra
+                </strong>
+
+
+                <span>
+                  Adquiere tus productos de belleza favoritos.
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="step">
+
+              <div class="num">
+                2
+              </div>
+
+
+              <div>
+
+                <strong>
+                  Acumula
+                </strong>
+
+
+                <span>
+                  Registra tus compras y suma puntos.
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="step">
+
+              <div class="num">
+                3
+              </div>
+
+
+              <div>
+
+                <strong>
+                  Consulta
+                </strong>
+
+
+                <span>
+                  Ingresa tu código y PIN para consultar
+                  tus puntos e historial.
+                </span>
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         SERVICIOS VISUALES
+         =================================================== -->
+
+    <section class="section">
+
+      <div class="container">
+
+
+        <div class="section-head">
+
+          <div class="eyebrow">
+            Nuestra especialidad
+          </div>
+
+
+          <h2>
+            Belleza que inspira
+          </h2>
+
+
+          <p>
+
+            Descubre algunos de nuestros servicios
+            y transforma tu estilo.
+
+          </p>
+
+        </div>
+
+
+        <div class="gallery">
+
+
+          <figure>
+
+            <img
+              src="images/laceado.png"
+              alt="Laceado"
+            >
+
+          </figure>
+
+
+          <figure>
+
+            <img
+              src="images/unas.png"
+              alt="Uñas"
+            >
+
+          </figure>
+
+
+          <figure>
+
+            <img
+              src="images/pestanas.png"
+              alt="Pestañas"
+            >
+
+          </figure>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         GALERÍA
+         =================================================== -->
+
+    <section
+      class="section"
+      id="galeria"
+    >
+
+      <div class="container">
+
+
+        <div class="section-head">
+
+          <div class="eyebrow">
+            Inspírate
+          </div>
+
+
+          <h2>
+            Galería
+          </h2>
+
+
+          <p>
+
+            Muy pronto encontrarás nuestros trabajos
+            y novedades aquí.
+
+          </p>
+
+        </div>
+
+
+        <div class="gallery">
+
+
+          <figure>
+
+            <img
+              src="images/laceado.png"
+              alt="Laceado"
+            >
+
+          </figure>
+
+
+          <figure>
+
+            <img
+              src="images/unas.png"
+              alt="Uñas"
+            >
+
+          </figure>
+
+
+          <figure>
+
+            <img
+              src="images/pestanas.png"
+              alt="Pestañas"
+            >
+
+          </figure>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         CONTACTO
+         =================================================== -->
+
+    <section
+      class="section"
+      id="contacto"
+    >
+
+      <div class="container">
+
+
+        <div class="cta">
+
+
+          <div>
+
+            <h2>
+              ¿Lista para consentirte?
+            </h2>
+
+
+            <p>
+
+              Descubre nuestros productos y servicios
+              de belleza en Juanita Pacasmayo.
+
+            </p>
+
+          </div>
+
+
+          <a
+            href="#servicios"
+            class="btn"
+          >
+
+            Ver servicios ✨
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+
+  <footer>
+
+    <div class="container">
+
+
+      <strong>
+        Juanita Pacasmayo
+      </strong>
+
+
+      <div>
+        Cosméticos · Uñas · Laceado · Pestañas
+      </div>
+
+
+      <div style="margin-top:8px">
+        Belleza que inspira
+      </div>
+
+
+      <div
+        style="
+          margin-top:15px;
+          font-size:12px;
+        "
+      >
+
+        © 2026 Juanita Pacasmayo ·
+        Todos los derechos reservados
+
+      </div>
+
     </div>
 
-    <div style="margin-top:8px">
-      Belleza que inspira
-    </div>
-
-    <div style="margin-top:15px;font-size:12px;">
-      © 2026 Juanita Pacasmayo · Todos los derechos reservados
-    </div>
-
-  </div>
-
-</footer>
+  </footer>
 
 
-<script>
+  <!-- =====================================================
+       MENÚ MÓVIL
+       ===================================================== -->
 
-  const mobileMenuButton =
-    document.getElementById("mobileMenuButton");
+  <script>
 
-  const mainNav =
-    document.querySelector(".main-nav");
-
-
-  if (mobileMenuButton && mainNav) {
-
-    mobileMenuButton.addEventListener(
-      "click",
-      function() {
-
-        const visible =
-          mainNav.style.display === "flex";
+    const mobileMenuButton =
+      document.getElementById(
+        "mobileMenuButton"
+      );
 
 
-        if (visible) {
-
-          mainNav.style.display = "none";
-
-        } else {
-
-          mainNav.style.display = "flex";
-          mainNav.style.position = "absolute";
-          mainNav.style.top = "80px";
-          mainNav.style.left = "0";
-          mainNav.style.right = "0";
-          mainNav.style.background = "#fff";
-          mainNav.style.padding = "22px";
-          mainNav.style.flexDirection = "column";
-          mainNav.style.alignItems = "center";
-          mainNav.style.gap = "20px";
-          mainNav.style.borderBottom =
-            "1px solid #f2dce4";
-          mainNav.style.boxShadow =
-            "0 10px 25px rgba(0,0,0,.08)";
-        }
-
-      }
-    );
-
-  }
+    const mainNav =
+      document.querySelector(
+        ".main-nav"
+      );
 
 
-  document
-    .querySelectorAll(".main-nav a")
-    .forEach(function(enlace) {
+    if (
+      mobileMenuButton &&
+      mainNav
+    ) {
 
-      enlace.addEventListener(
+      mobileMenuButton.addEventListener(
         "click",
         function() {
 
-          if (window.innerWidth <= 950) {
-            mainNav.style.display = "none";
+          const visible =
+            mainNav.style.display === "flex";
+
+
+          if (visible) {
+
+            mainNav.style.display =
+              "none";
+
+          } else {
+
+            mainNav.style.display =
+              "flex";
+
+            mainNav.style.position =
+              "absolute";
+
+            mainNav.style.top =
+              "80px";
+
+            mainNav.style.left =
+              "0";
+
+            mainNav.style.right =
+              "0";
+
+            mainNav.style.background =
+              "#fff";
+
+            mainNav.style.padding =
+              "22px";
+
+            mainNav.style.flexDirection =
+              "column";
+
+            mainNav.style.alignItems =
+              "center";
+
+            mainNav.style.gap =
+              "20px";
+
+            mainNav.style.borderBottom =
+              "1px solid #f2dce4";
+
+            mainNav.style.boxShadow =
+              "0 10px 25px rgba(0,0,0,.08)";
+
           }
 
         }
       );
 
-    });
+    }
 
-</script>
+
+    /* =====================================================
+       CERRAR MENÚ AL HACER CLICK
+       ===================================================== */
+
+    document
+      .querySelectorAll(".main-nav a")
+      .forEach(
+        function(enlace) {
+
+          enlace.addEventListener(
+            "click",
+            function() {
+
+              if (
+                window.innerWidth <= 950
+              ) {
+
+                mainNav.style.display =
+                  "none";
+
+              }
+
+            }
+          );
+
+        }
+      );
+
+  </script>
+
 
 </body>
+
 </html>
