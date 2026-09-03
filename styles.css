@@ -1705,3 +1705,33 @@ footer strong {
   }
 
 }
+
+/* =========================
+   BOTÓN ADMINISTRACIÓN
+========================= */
+
+.boton-administracion {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 13px 22px;
+
+    background-color: #4d3440;
+    color: white;
+
+    text-decoration: none;
+    border-radius: 30px;
+
+    font-weight: 600;
+    font-size: 15px;
+
+    white-space: nowrap;
+
+    transition: 0.3s;
+}
+
+.boton-administracion:hover {
+    background-color: #7a5063;
+    transform: translateY(-2px);
+}
