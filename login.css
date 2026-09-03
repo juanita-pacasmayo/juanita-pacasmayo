@@ -11,55 +11,39 @@
 :root {
 
   --pink: #c83d68;
-  --pink-dark: #b7325b;
+  --pink-dark: #b8325c;
   --pink-light: #fff1f5;
-  --pink-soft: #fff8fa;
 
   --gold: #d39424;
-  --gold-light: #f3d58d;
+  --gold-light: #edcf91;
 
   --ink: #30262b;
   --text: #665861;
-  --muted: #8b7b82;
+  --muted: #8a7a82;
 
   --white: #ffffff;
 
   --border: #efdce3;
 
-  --shadow:
-    0 25px 70px
-    rgba(120, 40, 70, .12);
-
-  --shadow-button:
-    0 12px 25px
-    rgba(200, 61, 104, .22);
-
 }
 
 
 /* =========================================================
-   CONFIGURACIÓN GENERAL
+   RESET
    ========================================================= */
 
 * {
-
   box-sizing: border-box;
-
 }
 
 
 html {
-
   scroll-behavior: smooth;
-
 }
 
 
 body {
-
   margin: 0;
-
-  min-height: 100vh;
 
   font-family:
     "DM Sans",
@@ -70,36 +54,33 @@ body {
 
   background:
     radial-gradient(
-      circle at 10% 20%,
-      rgba(245, 190, 207, .28),
+      circle at 8% 20%,
+      rgba(246, 202, 216, .45),
       transparent 30%
     ),
 
     radial-gradient(
-      circle at 90% 80%,
-      rgba(243, 213, 141, .12),
-      transparent 28%
+      circle at 92% 78%,
+      rgba(244, 220, 169, .18),
+      transparent 30%
     ),
 
     linear-gradient(
       135deg,
-      #fff8fa 0%,
-      #ffffff 50%,
-      #fffafb 100%
+      #fff7fa 0%,
+      #ffffff 48%,
+      #fffafa 100%
     );
-
 }
 
 
 /* =========================================================
-   LOGIN PAGE
+   PÁGINA LOGIN
    ========================================================= */
 
 .login-page {
 
   min-height: 100vh;
-
-  margin: 0;
 
   overflow-x: hidden;
 
@@ -109,7 +90,61 @@ body {
 
 
 /* =========================================================
-   CONTENEDOR PRINCIPAL
+   DECORACIÓN DEL FONDO
+   ========================================================= */
+
+.login-page::before {
+
+  content: "";
+
+  position: fixed;
+
+  width: 380px;
+
+  height: 380px;
+
+  top: -160px;
+
+  left: -160px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(200, 61, 104, .08);
+
+  pointer-events: none;
+
+}
+
+
+.login-page::after {
+
+  content: "";
+
+  position: fixed;
+
+  width: 300px;
+
+  height: 300px;
+
+  bottom: -150px;
+
+  right: -130px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(211, 148, 36, .08);
+
+  pointer-events: none;
+
+}
+
+
+/* =========================================================
+   CONTENEDOR
    ========================================================= */
 
 .login-container {
@@ -120,18 +155,18 @@ body {
 
   display: flex;
 
-  align-items: center;
-
   justify-content: center;
 
+  align-items: center;
+
   padding:
-    45px 20px 65px;
+    45px 20px 60px;
 
 }
 
 
 /* =========================================================
-   TARJETA DE LOGIN
+   TARJETA
    ========================================================= */
 
 .login-card {
@@ -145,19 +180,21 @@ body {
     20px auto;
 
   padding:
-    45px 55px 42px;
+    45px 55px 40px;
 
   background:
-    rgba(255,255,255,.98);
+    rgba(255, 255, 255, .98);
 
   border:
-    1px solid var(--border);
+    1px solid
+    rgba(239, 220, 227, .95);
 
   border-radius:
     34px;
 
   box-shadow:
-    var(--shadow);
+    0 25px 70px
+    rgba(120, 40, 70, .12);
 
   text-align:
     center;
@@ -166,7 +203,7 @@ body {
 
 
 /* =========================================================
-   DECORACIÓN SUPERIOR
+   LÍNEA DECORATIVA SUPERIOR
    ========================================================= */
 
 .login-card::before {
@@ -182,7 +219,7 @@ body {
   transform:
     translateX(-50%);
 
-  width: 150px;
+  width: 148px;
 
   height: 5px;
 
@@ -201,7 +238,7 @@ body {
 
 
 /* =========================================================
-   DECORACIÓN LATERAL
+   DECORACIÓN
    ========================================================= */
 
 .login-card::after {
@@ -215,10 +252,9 @@ body {
   right: 30px;
 
   color:
-    rgba(211,148,36,.30);
+    rgba(211, 148, 36, .25);
 
-  font-size:
-    22px;
+  font-size: 22px;
 
 }
 
@@ -232,66 +268,34 @@ body {
   display: block;
 
   width:
-    min(325px, 80%);
+    min(325px, 82%);
 
-  height:
-    auto;
+  height: auto;
 
   margin:
-    0 auto 10px;
+    0 auto 8px;
 
-  object-fit:
-    contain;
-
-}
-
-
-/* =========================================================
-   PEQUEÑA DECORACIÓN BAJO EL LOGO
-   ========================================================= */
-
-.login-logo + .section-kicker::before {
-
-  content:
-    "━━";
-
-  color:
-    var(--gold);
-
-  letter-spacing:
-    5px;
-
-  margin-right:
-    12px;
-
-}
-
-
-.login-logo + .section-kicker::after {
-
-  content:
-    "━━";
-
-  color:
-    var(--gold);
-
-  letter-spacing:
-    5px;
-
-  margin-left:
-    12px;
+  object-fit: contain;
 
 }
 
 
 /* =========================================================
-   TEXTO ADMINISTRACIÓN
+   ADMINISTRACIÓN
    ========================================================= */
 
 .section-kicker {
 
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 13px;
+
   margin:
-    8px 0 15px;
+    8px 0 17px;
 
   color:
     var(--gold);
@@ -310,8 +314,36 @@ body {
   letter-spacing:
     5px;
 
-  line-height:
-    1.4;
+}
+
+
+.section-kicker::before,
+.section-kicker::after {
+
+  content: "";
+
+  width: 42px;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--gold)
+    );
+
+}
+
+
+.section-kicker::after {
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--gold),
+      transparent
+    );
 
 }
 
@@ -323,10 +355,10 @@ body {
 .login-card h1 {
 
   margin:
-    0 auto 17px;
+    0 auto 18px;
 
   max-width:
-    500px;
+    510px;
 
   color:
     var(--pink);
@@ -337,13 +369,16 @@ body {
     sans-serif;
 
   font-size:
-    clamp(38px, 6vw, 52px);
+    clamp(40px, 6vw, 54px);
 
   font-weight:
     800;
 
   line-height:
     1.08;
+
+  letter-spacing:
+    -1.5px;
 
 }
 
@@ -355,13 +390,13 @@ body {
 .login-description {
 
   max-width:
-    450px;
+    440px;
 
   margin:
     0 auto 35px;
 
   color:
-    var(--muted);
+    #81737a;
 
   font-size:
     17px;
@@ -378,11 +413,9 @@ body {
 
 #loginForm {
 
-  width:
-    100%;
+  width: 100%;
 
-  text-align:
-    left;
+  text-align: left;
 
 }
 
@@ -394,25 +427,20 @@ body {
 .login-field {
 
   margin-bottom:
-    22px;
+    21px;
 
 }
 
 
-/* =========================================================
-   LABEL
-   ========================================================= */
-
 .login-field label {
 
-  display:
-    block;
+  display: block;
 
   margin:
-    0 0 9px;
+    0 0 8px;
 
   color:
-    var(--ink);
+    #30262b;
 
   font-family:
     "Montserrat",
@@ -429,28 +457,26 @@ body {
 
 
 /* =========================================================
-   INPUTS
+   INPUT
    ========================================================= */
 
 .login-field input {
 
-  width:
-    100%;
+  width: 100%;
 
-  min-height:
-    62px;
+  height: 62px;
 
   padding:
-    15px 18px;
+    0 18px;
 
   border:
-    1.5px solid #e9ccd6;
+    1.5px solid
+    #ead0d9;
 
   border-radius:
     17px;
 
-  outline:
-    none;
+  outline: none;
 
   background:
     #fffafb;
@@ -467,9 +493,7 @@ body {
     16px;
 
   transition:
-    border-color .25s ease,
-    box-shadow .25s ease,
-    background .25s ease;
+    .25s ease;
 
 }
 
@@ -477,7 +501,7 @@ body {
 .login-field input::placeholder {
 
   color:
-    #b5a5ac;
+    #b7a9af;
 
 }
 
@@ -485,22 +509,22 @@ body {
 .login-field input:hover {
 
   border-color:
-    #dda8ba;
+    #dfaabc;
 
 }
 
 
 .login-field input:focus {
 
-  border-color:
-    var(--pink);
-
   background:
     #ffffff;
 
+  border-color:
+    var(--pink);
+
   box-shadow:
     0 0 0 4px
-    rgba(200,61,104,.10);
+    rgba(200, 61, 104, .09);
 
 }
 
@@ -511,22 +535,20 @@ body {
 
 .button {
 
-  border:
-    0;
-
-  cursor:
-    pointer;
-
   font-family:
     "Montserrat",
     Arial,
     sans-serif;
 
+  border: none;
+
+  cursor: pointer;
+
 }
 
 
 /* =========================================================
-   BOTÓN PRINCIPAL
+   BOTÓN PRIMARIO
    ========================================================= */
 
 .button.primary {
@@ -534,7 +556,7 @@ body {
   background:
     linear-gradient(
       135deg,
-      var(--pink),
+      #c83d68,
       #d13f6b
     );
 
@@ -545,48 +567,27 @@ body {
 
 
 /* =========================================================
-   BOTÓN LOGIN
+   BOTÓN INGRESAR
    ========================================================= */
 
 .login-button {
 
-  width:
-    100%;
+  width: 100%;
 
-  min-height:
-    62px;
+  height: 63px;
 
-  margin-top:
-    5px;
-
-  padding:
-    15px 25px;
-
-  border:
-    none;
+  margin-top: 5px;
 
   border-radius:
     17px;
 
-  display:
-    flex;
+  display: flex;
 
-  align-items:
-    center;
+  align-items: center;
 
-  justify-content:
-    center;
+  justify-content: center;
 
-  gap:
-    10px;
-
-  color:
-    #ffffff;
-
-  font-family:
-    "Montserrat",
-    Arial,
-    sans-serif;
+  gap: 9px;
 
   font-size:
     17px;
@@ -594,11 +595,9 @@ body {
   font-weight:
     800;
 
-  cursor:
-    pointer;
-
   box-shadow:
-    var(--shadow-button);
+    0 12px 25px
+    rgba(200, 61, 104, .22);
 
   transition:
     transform .25s ease,
@@ -616,13 +615,13 @@ body {
   background:
     linear-gradient(
       135deg,
-      var(--pink-dark),
-      #c23862
+      #b8325c,
+      #c83d68
     );
 
   box-shadow:
     0 16px 30px
-    rgba(200,61,104,.28);
+    rgba(200, 61, 104, .28);
 
 }
 
@@ -636,16 +635,17 @@ body {
 
 
 /* =========================================================
-   MENSAJE DE LOGIN
+   MENSAJE
    ========================================================= */
 
 #mensajeLogin {
 
-  width:
-    100%;
+  width: 100%;
+
+  min-height: 20px;
 
   margin:
-    18px 0 0;
+    17px 0 0;
 
   text-align:
     center;
@@ -659,14 +659,7 @@ body {
 }
 
 
-/* =========================================================
-   CLASE GENERAL DE MENSAJE
-   ========================================================= */
-
 .mensaje-registro {
-
-  min-height:
-    20px;
 
   color:
     var(--muted);
@@ -675,38 +668,13 @@ body {
 
 
 /* =========================================================
-   MENSAJES DE ÉXITO
-   ========================================================= */
-
-.mensaje-registro.exito,
-.mensaje-registro.success {
-
-  padding:
-    12px 15px;
-
-  border-radius:
-    12px;
-
-  background:
-    #eefaf2;
-
-  border:
-    1px solid #bde5c8;
-
-  color:
-    #28753c;
-
-}
-
-
-/* =========================================================
-   MENSAJES DE ERROR
+   MENSAJE ERROR
    ========================================================= */
 
 .mensaje-registro.error {
 
   padding:
-    12px 15px;
+    11px 14px;
 
   border-radius:
     12px;
@@ -715,7 +683,8 @@ body {
     #fff1f3;
 
   border:
-    1px solid #efc4ce;
+    1px solid
+    #efc4ce;
 
   color:
     #b52f50;
@@ -724,7 +693,33 @@ body {
 
 
 /* =========================================================
-   VOLVER A INICIO
+   MENSAJE ÉXITO
+   ========================================================= */
+
+.mensaje-registro.exito,
+.mensaje-registro.success {
+
+  padding:
+    11px 14px;
+
+  border-radius:
+    12px;
+
+  background:
+    #eefaf2;
+
+  border:
+    1px solid
+    #bde5c8;
+
+  color:
+    #28753c;
+
+}
+
+
+/* =========================================================
+   VOLVER
    ========================================================= */
 
 .volver-inicio {
@@ -739,7 +734,7 @@ body {
     center;
 
   margin-top:
-    28px;
+    27px;
 
   color:
     var(--pink);
@@ -759,8 +754,7 @@ body {
     none;
 
   transition:
-    color .25s ease,
-    transform .25s ease;
+    .25s ease;
 
 }
 
@@ -772,21 +766,6 @@ body {
 
   transform:
     translateX(-3px);
-
-}
-
-
-/* =========================================================
-   DECORACIÓN INFERIOR
-   ========================================================= */
-
-.login-card .volver-inicio::after {
-
-  content:
-    " ✦";
-
-  color:
-    var(--gold);
 
 }
 
@@ -811,7 +790,7 @@ body {
       min(560px, 100%);
 
     padding:
-      40px 42px 38px;
+      42px 45px 38px;
 
   }
 
@@ -819,7 +798,7 @@ body {
   .login-logo {
 
     width:
-      min(310px, 80%);
+      min(315px, 82%);
 
   }
 
@@ -836,6 +815,9 @@ body {
 
     min-height:
       100vh;
+
+    overflow-x:
+      hidden;
 
     overflow-y:
       auto;
@@ -855,7 +837,7 @@ body {
       center;
 
     padding:
-      25px 14px 50px;
+      25px 13px 50px;
 
   }
 
@@ -866,10 +848,10 @@ body {
       100%;
 
     margin:
-      10px auto;
+      8px auto;
 
     padding:
-      32px 22px 32px;
+      32px 22px 34px;
 
     border-radius:
       27px;
@@ -880,7 +862,7 @@ body {
   .login-card::before {
 
     width:
-      110px;
+      105px;
 
     height:
       4px;
@@ -891,7 +873,7 @@ body {
   .login-card::after {
 
     top:
-      20px;
+      19px;
 
     right:
       18px;
@@ -905,21 +887,24 @@ body {
   .login-logo {
 
     width:
-      92%;
+      94%;
 
     max-width:
       310px;
 
     margin-bottom:
-      8px;
+      7px;
 
   }
 
 
   .section-kicker {
 
+    gap:
+      8px;
+
     margin:
-      7px 0 13px;
+      7px 0 14px;
 
     font-size:
       12px;
@@ -930,11 +915,11 @@ body {
   }
 
 
-  .login-logo + .section-kicker::before,
-  .login-logo + .section-kicker::after {
+  .section-kicker::before,
+  .section-kicker::after {
 
-    letter-spacing:
-      2px;
+    width:
+      28px;
 
   }
 
@@ -942,10 +927,13 @@ body {
   .login-card h1 {
 
     font-size:
-      34px;
+      35px;
 
     line-height:
       1.12;
+
+    letter-spacing:
+      -.8px;
 
     margin-bottom:
       15px;
@@ -977,22 +965,22 @@ body {
 
   .login-field label {
 
-    font-size:
-      14px;
-
     margin-bottom:
       8px;
+
+    font-size:
+      14px;
 
   }
 
 
   .login-field input {
 
-    min-height:
+    height:
       57px;
 
     padding:
-      14px 15px;
+      0 15px;
 
     border-radius:
       15px;
@@ -1005,7 +993,7 @@ body {
 
   .login-button {
 
-    min-height:
+    height:
       58px;
 
     border-radius:
@@ -1020,7 +1008,7 @@ body {
   .volver-inicio {
 
     margin-top:
-      24px;
+      23px;
 
     font-size:
       13px;
@@ -1039,7 +1027,7 @@ body {
   .login-container {
 
     padding:
-      18px 10px 40px;
+      18px 9px 40px;
 
   }
 
@@ -1047,7 +1035,7 @@ body {
   .login-card {
 
     padding:
-      27px 17px 28px;
+      28px 17px 30px;
 
     border-radius:
       23px;
@@ -1058,7 +1046,7 @@ body {
   .login-logo {
 
     width:
-      95%;
+      96%;
 
   }
 
@@ -1066,10 +1054,19 @@ body {
   .section-kicker {
 
     font-size:
-      11px;
+      10.5px;
 
     letter-spacing:
-      2.8px;
+      2.7px;
+
+  }
+
+
+  .section-kicker::before,
+  .section-kicker::after {
+
+    width:
+      22px;
 
   }
 
@@ -1092,7 +1089,7 @@ body {
 
   .login-field input {
 
-    min-height:
+    height:
       54px;
 
   }
@@ -1100,8 +1097,8 @@ body {
 
   .login-button {
 
-    min-height:
-      56px;
+    height:
+      55px;
 
   }
 
@@ -1110,7 +1107,6 @@ body {
 
 /* =========================================================
    PANTALLAS CON POCA ALTURA
-   IMPORTANTE PARA EVITAR QUE SE CORTE EL LOGIN
    ========================================================= */
 
 @media (max-height: 750px) {
@@ -1121,7 +1117,7 @@ body {
       flex-start;
 
     padding-top:
-      20px;
+      18px;
 
     padding-bottom:
       40px;
@@ -1132,7 +1128,7 @@ body {
   .login-card {
 
     margin-top:
-      10px;
+      8px;
 
   }
 
@@ -1149,7 +1145,7 @@ body {
 
   outline:
     3px solid
-    rgba(200,61,104,.25);
+    rgba(200, 61, 104, .22);
 
   outline-offset:
     3px;
@@ -1158,7 +1154,7 @@ body {
 
 
 /* =========================================================
-   EVITAR ANIMACIONES PARA USUARIOS QUE LAS DESACTIVAN
+   REDUCIR ANIMACIONES
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
