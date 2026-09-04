@@ -1683,10 +1683,30 @@ width: 23px;
 }
 
 /* =====================================================
-   AJUSTE FINAL DEL MENÚ MÓVIL
+   BOTÓN ADMINISTRACIÓN PARA PC
    ===================================================== */
 .boton-administracion {
-  display: none !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 22px;
+  background-color: #4d3440;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 15px;
+  white-space: nowrap;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.boton-administracion:hover {
+  background-color: #7a5063;
+  color: white;
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
