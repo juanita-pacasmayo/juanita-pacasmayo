@@ -1,29 +1,23 @@
 <!DOCTYPE html>
-
 <html lang="es">
 
 <head>
 
   <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
->
-
-<meta
-name="description"
-content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. Belleza que inspira."
-
->
+  <meta
+    name="description"
+    content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. Belleza que inspira."
+  >
 
   <title>Juanita Pacasmayo | Belleza que inspira</title>
 
-  <!-- =====================================================
-       GOOGLE FONTS
-  ====================================================== -->
-
+  <!-- GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
   <link
@@ -37,19 +31,13 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
     rel="stylesheet"
   >
 
-  <!-- =====================================================
-       FONT AWESOME
-  ====================================================== -->
-
+  <!-- FONT AWESOME -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
   >
 
-  <!-- =====================================================
-       ESTILOS
-  ====================================================== -->
-
+  <!-- CSS -->
   <link
     rel="stylesheet"
     href="styles.css"
@@ -57,230 +45,276 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
 
 </head>
 
+
 <body>
 
-  <!-- =====================================================
-       ENCABEZADO
-  ====================================================== -->
 
-  <header class="site-header">
+<!-- =====================================================
+     ENCABEZADO
+====================================================== -->
 
-<!-- LOGO -->
+<header class="site-header">
 
-<a
-  href="index.html"
-  class="brand"
-  aria-label="Juanita Pacasmayo - Inicio"
->
 
-  <img
-    src="images/Logo.png"
-    alt="Juanita Pacasmayo"
+  <!-- LOGO -->
+
+  <a
+    href="index.html"
+    class="brand"
+    aria-label="Juanita Pacasmayo - Inicio"
   >
 
-</a>
+    <img
+      src="images/Logo.png"
+      alt="Juanita Pacasmayo"
+    >
 
-
-<!-- =================================================
-     MENÚ PRINCIPAL
-     
-     En PC aparece horizontal.
-     En celular aparece dentro del menú ☰.
-================================================== -->
-
-<nav
-  class="main-nav"
-  id="mainNav"
->
-
-<div class="nav-dropdown">
-    <a href="#servicios" class="nav-dropdown-btn">Servicios</a>
-
-    <div class="nav-dropdown-menu">
-        <a href="#unas">💅 Uñas</a>
-        <a href="#laceado">💇 Laceado</a>
-        <a href="#pestanas">👁️ Pestañas</a>
-    </div>
-</div>
-
-<div class="nav-dropdown">
-    <a href="#productos" class="nav-dropdown-btn">Productos</a>
-
-    <div class="nav-dropdown-menu">
-        <a href="#maquillaje">💄 Maquillaje</a>
-        <a href="#cuidado-capilar">🧴 Cuidado capilar</a>
-        <a href="#perfumes">🌸 Perfumes</a>
-    </div>
-</div>
-  
-  <a href="consulta.html">
-    Puntos
-  </a>
-
-  <a href="#galeria">
-    Galería
   </a>
 
 
-  <!--
-    ADMINISTRACIÓN PARA CELULAR
-    Esta versión está dentro del menú.
-  -->
+  <!-- =================================================
+       MENÚ PRINCIPAL
+  ================================================== -->
+
+  <nav
+    class="main-nav"
+    id="mainNav"
+  >
+
+
+    <!-- ================================
+         SERVICIOS
+    ================================= -->
+
+    <div class="nav-dropdown">
+
+      <a
+        href="#servicios"
+        class="nav-dropdown-btn"
+      >
+        Servicios
+      </a>
+
+
+      <div class="nav-dropdown-menu">
+
+        <a href="#unas">
+          💅 Uñas
+        </a>
+
+        <a href="#laceado">
+          💇 Laceado
+        </a>
+
+        <a href="#pestanas">
+          👁️ Pestañas
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- ================================
+         PRODUCTOS
+    ================================= -->
+
+    <div class="nav-dropdown">
+
+      <a
+        href="#productos"
+        class="nav-dropdown-btn"
+      >
+        Productos
+      </a>
+
+
+      <div class="nav-dropdown-menu">
+
+        <a href="#maquillaje">
+          💄 Maquillaje
+        </a>
+
+        <a href="#cuidado-capilar">
+          🧴 Cuidado capilar
+        </a>
+
+        <a href="#perfumes">
+          🌸 Perfumes
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- PUNTOS -->
+
+    <a href="consulta.html">
+      Puntos
+    </a>
+
+
+    <!-- GALERÍA -->
+
+    <a href="#galeria">
+      Galería
+    </a>
+
+
+    <!-- ADMINISTRACIÓN PARA CELULAR -->
+
+    <a
+      href="login.html"
+      class="mobile-admin"
+    >
+      🔐 Administración
+    </a>
+
+
+  </nav>
+
+
+  <!-- =================================================
+       REDES SOCIALES
+  ================================================== -->
+
+  <div class="header-social">
+
+
+    <!-- FACEBOOK -->
+
+    <a
+      href="https://www.facebook.com/profile.php?id=61593488581069"
+      class="header-social-icon facebook"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Facebook Juanita Pacasmayo"
+      title="Facebook"
+    >
+
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+
+        <path
+          d="M14 8h3V4h-3c-3.31 0-5 1.69-5 5v3H6v4h3v8h4v-8h3.2l.8-4H13V9c0-.67.33-1 1-1z"
+        />
+
+      </svg>
+
+    </a>
+
+
+    <!-- INSTAGRAM -->
+
+    <a
+      href="#"
+      class="header-social-icon instagram"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Instagram Juanita Pacasmayo"
+      title="Instagram"
+    >
+
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+
+        <rect
+          x="3"
+          y="3"
+          width="18"
+          height="18"
+          rx="5"
+          ry="5"
+        />
+
+        <circle
+          cx="12"
+          cy="12"
+          r="4"
+        />
+
+        <circle
+          cx="17.5"
+          cy="6.5"
+          r="1.2"
+        />
+
+      </svg>
+
+    </a>
+
+
+  </div>
+
+
+  <!-- =================================================
+       WHATSAPP
+  ================================================== -->
+
+  <a
+    href="https://wa.me/51960684125?text=Hola%2C%20Juanita%20Pacasmayo.%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20sus%20productos%20y%20servicios.%20Agradecer%C3%ADa%20que%20pudieran%20brindarme%20informaci%C3%B3n%20sobre%20los%20servicios%20disponibles%2C%20precios%20y%20horarios%20de%20atenci%C3%B3n.%20Muchas%20gracias."
+    class="contact-button"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Contactar por WhatsApp"
+  >
+
+    <i class="fab fa-whatsapp"></i>
+
+    <span>
+      Contáctanos
+    </span>
+
+  </a>
+
+
+  <!-- =================================================
+       ADMINISTRACIÓN PARA PC
+  ================================================== -->
 
   <a
     href="login.html"
-    class="mobile-admin"
+    class="boton-administracion"
+    aria-label="Administración"
   >
-
-    🔐 Administración
-
-  </a>
-
-</nav>
-
-
-<!-- =================================================
-     REDES SOCIALES
-================================================== -->
-
-<div class="header-social">
-
-
-  <!-- FACEBOOK -->
-
-  <a
-    href="https://www.facebook.com/profile.php?id=61593488581069"
-    class="header-social-icon facebook"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Facebook Juanita Pacasmayo"
-    title="Facebook"
-  >
-
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-
-      <path
-        d="M14 8h3V4h-3c-3.31 0-5 1.69-5 5v3H6v4h3v8h4v-8h3.2l.8-4H13V9c0-.67.33-1 1-1z"
-      />
-
-    </svg>
-
+    🔒 Administración
   </a>
 
 
-  <!-- INSTAGRAM -->
+  <!-- =================================================
+       MENÚ CELULAR
+  ================================================== -->
 
-  <a
-    href="#"
-    class="header-social-icon instagram"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Instagram Juanita Pacasmayo"
-    title="Instagram"
+  <button
+    class="menu-toggle"
+    id="mobileMenuButton"
+    type="button"
+    aria-label="Abrir menú"
+    aria-expanded="false"
   >
 
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
+    <span></span>
+    <span></span>
+    <span></span>
 
-      <rect
-        x="3"
-        y="3"
-        width="18"
-        height="18"
-        rx="5"
-        ry="5"
-      />
-
-      <circle
-        cx="12"
-        cy="12"
-        r="4"
-      />
-
-      <circle
-        cx="17.5"
-        cy="6.5"
-        r="1.2"
-      />
-
-    </svg>
-
-  </a>
+  </button>
 
 
-</div>
+</header>
 
 
-<!-- =================================================
-     BOTÓN CONTÁCTANOS
-     
-     Este botón permanece fuera del menú.
-================================================== -->
 
-<a
-  href="https://wa.me/51960684125?text=Hola%2C%20Juanita%20Pacasmayo.%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20sus%20productos%20y%20servicios.%20Agradecer%C3%ADa%20que%20pudieran%20brindarme%20informaci%C3%B3n%20sobre%20los%20servicios%20disponibles%2C%20precios%20y%20horarios%20de%20atenci%C3%B3n.%20Muchas%20gracias."
-  class="contact-button"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Contactar por WhatsApp"
->
+<!-- =====================================================
+     CONTENIDO PRINCIPAL
+====================================================== -->
 
-  <i class="fab fa-whatsapp"></i>
+<main>
 
-  <span>
-    Contáctanos
-  </span>
-
-</a>
-
-
-<!-- =================================================
-     ADMINISTRACIÓN PARA PC
-
-     Esta versión está FUERA del menú.
-
-     En celular se oculta mediante CSS.
-================================================== -->
-
-<a
-  href="login.html"
-  class="boton-administracion"
-  aria-label="Administración"
->
-  🔒 Administración
-</a>
-
-
-<!-- =================================================
-     BOTÓN MENÚ CELULAR
-================================================== -->
-
-<button
-  class="menu-toggle"
-  id="mobileMenuButton"
-  type="button"
-  aria-label="Abrir menú"
-  aria-expanded="false"
->
-
-  <span></span>
-  <span></span>
-  <span></span>
-
-</button>
-
-  </header>
-
-  <!-- =====================================================
-       CONTENIDO PRINCIPAL
-  ====================================================== -->
-
-  <main>
 
 <!-- =================================================
      PORTADA
@@ -297,13 +331,16 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
       Belleza que inspira ✦
     </div>
 
+
     <h1>
       Juanita
     </h1>
 
+
     <div class="location">
       PACASMAYO
     </div>
+
 
     <p class="intro">
 
@@ -316,6 +353,7 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
 
     </p>
 
+
     <div class="hero-actions">
 
       <a
@@ -324,6 +362,7 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
       >
         Ver servicios
       </a>
+
 
       <a
         href="consulta.html"
@@ -337,7 +376,7 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
   </div>
 
 
-  <!-- IMAGEN DE PORTADA -->
+  <!-- IMAGEN PORTADA -->
 
   <div class="hero-art">
 
@@ -365,9 +404,11 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
     Todo en un solo lugar
   </div>
 
+
   <h2>
     Servicios de belleza
   </h2>
+
 
   <p class="section-lead">
 
@@ -381,9 +422,14 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
   <div class="beauty-grid">
 
 
-    <!-- UÑAS -->
+    <!-- =================================================
+         UÑAS
+    ================================================== -->
 
-    <article class="beauty-card">
+    <article
+      class="beauty-card"
+      id="unas"
+    >
 
       <div class="beauty-icon">
 
@@ -394,15 +440,22 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
 
       </div>
 
+
       <h3>
         Uñas
       </h3>
 
+
       <div class="card-decoration">
+
         <span></span>
-        ♥
+
+        ♥ 
+
         <span></span>
+
       </div>
+
 
       <p>
 
@@ -411,13 +464,17 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
 
       </p>
 
+
       <a
         href="#contacto"
         class="card-button"
       >
 
         Ver servicio
-        <span>›</span>
+
+        <span>
+          ›
+        </span>
 
       </a>
 
@@ -425,9 +482,14 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
 
 
 
-    <!-- LACEADO -->
+    <!-- =================================================
+         LACEADO
+    ================================================== -->
 
-    <article class="beauty-card">
+    <article
+      class="beauty-card"
+      id="laceado"
+    >
 
       <div class="beauty-icon">
 
@@ -438,15 +500,22 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
 
       </div>
 
+
       <h3>
         Laceado
       </h3>
 
+
       <div class="card-decoration">
+
         <span></span>
+
         ♥
+
         <span></span>
+
       </div>
+
 
       <p>
 
@@ -455,13 +524,17 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
 
       </p>
 
+
       <a
         href="#contacto"
         class="card-button"
       >
 
         Ver servicio
-        <span>›</span>
+
+        <span>
+          ›
+        </span>
 
       </a>
 
@@ -469,9 +542,14 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
 
 
 
-    <!-- PESTAÑAS -->
+    <!-- =================================================
+         PESTAÑAS
+    ================================================== -->
 
-    <article class="beauty-card">
+    <article
+      class="beauty-card"
+      id="pestanas"
+    >
 
       <div class="beauty-icon">
 
@@ -482,15 +560,22 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
 
       </div>
 
+
       <h3>
         Pestañas
       </h3>
 
+
       <div class="card-decoration">
+
         <span></span>
+
         ♥
+
         <span></span>
+
       </div>
+
 
       <p>
 
@@ -499,13 +584,17 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
 
       </p>
 
+
       <a
         href="#contacto"
         class="card-button"
       >
 
         Ver servicio
-        <span>›</span>
+
+        <span>
+          ›
+        </span>
 
       </a>
 
@@ -531,9 +620,11 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
     Compra y disfruta
   </div>
 
+
   <h2>
     Tus productos favoritos
   </h2>
+
 
   <p class="section-lead">
 
@@ -546,9 +637,14 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
   <div class="beauty-grid">
 
 
-    <!-- MAQUILLAJE -->
+    <!-- =================================================
+         MAQUILLAJE
+    ================================================== -->
 
-    <article class="beauty-card">
+    <article
+      class="beauty-card"
+      id="maquillaje"
+    >
 
       <div class="beauty-icon">
 
@@ -559,15 +655,22 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
 
       </div>
 
+
       <h3>
         Maquillaje
       </h3>
 
+
       <div class="card-decoration">
+
         <span></span>
+
         ♥
+
         <span></span>
+
       </div>
+
 
       <p>
 
@@ -576,13 +679,17 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
 
       </p>
 
+
       <a
         href="#contacto"
         class="card-button"
       >
 
         Ver productos
-        <span>›</span>
+
+        <span>
+          ›
+        </span>
 
       </a>
 
@@ -590,9 +697,14 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
 
 
 
-    <!-- CUIDADO CAPILAR -->
+    <!-- =================================================
+         CUIDADO CAPILAR
+    ================================================== -->
 
-    <article class="beauty-card">
+    <article
+      class="beauty-card"
+      id="cuidado-capilar"
+    >
 
       <div class="beauty-icon">
 
@@ -603,15 +715,22 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
 
       </div>
 
+
       <h3>
         Cuidado capilar
       </h3>
 
+
       <div class="card-decoration">
+
         <span></span>
+
         ♥
+
         <span></span>
+
       </div>
+
 
       <p>
 
@@ -620,13 +739,17 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
 
       </p>
 
+
       <a
         href="#contacto"
         class="card-button"
       >
 
         Ver productos
-        <span>›</span>
+
+        <span>
+          ›
+        </span>
 
       </a>
 
@@ -634,9 +757,14 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
 
 
 
-    <!-- PERFUMES -->
+    <!-- =================================================
+         PERFUMES
+    ================================================== -->
 
-    <article class="beauty-card">
+    <article
+      class="beauty-card"
+      id="perfumes"
+    >
 
       <div class="beauty-icon">
 
@@ -647,15 +775,22 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
 
       </div>
 
+
       <h3>
         Perfumes
       </h3>
 
+
       <div class="card-decoration">
+
         <span></span>
+
         ♥
+
         <span></span>
+
       </div>
+
 
       <p>
 
@@ -664,13 +799,17 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
 
       </p>
 
+
       <a
         href="#contacto"
         class="card-button"
       >
 
         Ver productos
-        <span>›</span>
+
+        <span>
+          ›
+        </span>
 
       </a>
 
@@ -693,9 +832,11 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
     Programa de beneficios
   </div>
 
+
   <h2>
     Acumula puntos ✨
   </h2>
+
 
   <p>
 
@@ -705,13 +846,12 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
 
   </p>
 
+
   <a
     href="consulta.html"
     class="button primary"
   >
-
     🔐 Consultar mis puntos
-
   </a>
 
 
@@ -738,7 +878,6 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
     </article>
 
 
-
     <article>
 
       <span>
@@ -756,7 +895,6 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
       </p>
 
     </article>
-
 
 
     <article>
@@ -798,9 +936,11 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
     Inspírate
   </div>
 
+
   <h2>
     Belleza que inspira
   </h2>
+
 
   <p>
 
@@ -831,7 +971,6 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
     </article>
 
 
-
     <article class="beauty-card">
 
       <div class="beauty-icon">
@@ -848,7 +987,6 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
       </h3>
 
     </article>
-
 
 
     <article class="beauty-card">
@@ -888,12 +1026,14 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
     ¿Lista para consentirte?
   </h2>
 
+
   <p>
 
     Descubre nuestros productos y servicios
     de belleza en Juanita Pacasmayo.
 
   </p>
+
 
   <a
     href="https://wa.me/51960684125?text=Hola%2C%20Juanita%20Pacasmayo.%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20sus%20productos%20y%20servicios."
@@ -910,77 +1050,156 @@ content="Juanita Pacasmayo - productos de belleza, uñas, laceado y pestañas. B
 
 </section>
 
-  </main>
 
-  <!-- =====================================================
-       PIE DE PÁGINA
-  ====================================================== -->
+</main>
 
-  <footer>
 
-<strong>
-  Juanita Pacasmayo
-</strong>
 
-<div>
-  Cosméticos · Uñas · Laceado · Pestañas
-</div>
+<!-- =====================================================
+     PIE DE PÁGINA
+====================================================== -->
 
-<div style="margin-top:8px">
-  Belleza que inspira
-</div>
+<footer>
 
-<div
-  style="
-    margin-top:15px;
-    font-size:12px;
-  "
->
+  <strong>
+    Juanita Pacasmayo
+  </strong>
 
-  © 2026 Juanita Pacasmayo
-  · Todos los derechos reservados
 
-</div>
+  <div>
+    Cosméticos · Uñas · Laceado · Pestañas
+  </div>
 
-  </footer>
 
-  <!-- =====================================================
-       JAVASCRIPT MENÚ CELULAR
-  ====================================================== -->
+  <div style="margin-top:8px">
+    Belleza que inspira
+  </div>
 
-  <script>
-    const mobileMenuButton = document.getElementById("mobileMenuButton");
-    const mainNav = document.getElementById("mainNav");
 
-    if (mobileMenuButton && mainNav) {
-      function closeMenu() {
-        mainNav.classList.remove("open");
-        mobileMenuButton.setAttribute("aria-expanded", "false");
-        mobileMenuButton.setAttribute("aria-label", "Abrir menú");
-      }
+  <div
+    style="
+      margin-top:15px;
+      font-size:12px;
+    "
+  >
 
-      mobileMenuButton.addEventListener("click", function (event) {
+    © 2026 Juanita Pacasmayo
+    · Todos los derechos reservados
+
+  </div>
+
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT MENÚ CELULAR
+====================================================== -->
+
+<script>
+
+  const mobileMenuButton =
+    document.getElementById("mobileMenuButton");
+
+  const mainNav =
+    document.getElementById("mainNav");
+
+
+  if (mobileMenuButton && mainNav) {
+
+
+    function closeMenu() {
+
+      mainNav.classList.remove("open");
+
+      mobileMenuButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      mobileMenuButton.setAttribute(
+        "aria-label",
+        "Abrir menú"
+      );
+
+    }
+
+
+    mobileMenuButton.addEventListener(
+      "click",
+      function(event) {
+
         event.stopPropagation();
-        const abierto = mainNav.classList.toggle("open");
-        mobileMenuButton.setAttribute("aria-expanded", abierto ? "true" : "false");
-        mobileMenuButton.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
-      });
 
-      mainNav.querySelectorAll("a").forEach(function (enlace) {
-        enlace.addEventListener("click", closeMenu);
-      });
+        const abierto =
+          mainNav.classList.toggle("open");
 
-      document.addEventListener("click", function (event) {
-        if (!mainNav.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+
+        mobileMenuButton.setAttribute(
+          "aria-expanded",
+          abierto ? "true" : "false"
+        );
+
+
+        mobileMenuButton.setAttribute(
+          "aria-label",
+          abierto
+            ? "Cerrar menú"
+            : "Abrir menú"
+        );
+
+      }
+    );
+
+
+    mainNav.querySelectorAll(
+      "a:not(.nav-dropdown-btn)"
+    ).forEach(
+      function(enlace) {
+
+        enlace.addEventListener(
+          "click",
+          closeMenu
+        );
+
+      }
+    );
+
+
+    document.addEventListener(
+      "click",
+      function(event) {
+
+        if (
+          !mainNav.contains(event.target) &&
+          !mobileMenuButton.contains(event.target)
+        ) {
+
+          closeMenu();
+
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Escape") {
           closeMenu();
         }
-      });
 
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") closeMenu();
-      });
-    }
-  </script>
+      }
+    );
+
+  }
+
+</script>
+
+
 </body>
 
 </html>
