@@ -1790,3 +1790,103 @@ width: 23px;
     width: 220px !important;
   }
 }
+
+
+/* =========================================
+   MENÚS DESPLEGABLES DEL NAV
+========================================= */
+
+.nav-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Botón principal */
+.nav-dropdown-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: #111;
+    font-weight: 700;
+    padding: 12px 4px;
+    transition: color 0.3s ease;
+}
+
+/* Flechita */
+.nav-dropdown-btn::after {
+    content: "⌄";
+    font-size: 15px;
+    color: #c93669;
+    transition: transform 0.3s ease;
+}
+
+/* Al pasar el mouse */
+.nav-dropdown:hover .nav-dropdown-btn {
+    color: #c93669;
+}
+
+.nav-dropdown:hover .nav-dropdown-btn::after {
+    transform: rotate(180deg);
+}
+
+/* Caja desplegable */
+.nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+
+    min-width: 210px;
+    padding: 10px;
+
+    background: #ffffff;
+    border-radius: 16px;
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(201, 54, 105, 0.12);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+
+    z-index: 9999;
+}
+
+/* Mostrar menú */
+.nav-dropdown:hover .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Opciones */
+.nav-dropdown-menu a {
+    display: flex;
+    align-items: center;
+
+    padding: 12px 15px;
+    border-radius: 10px;
+
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+/* Efecto al pasar el mouse */
+.nav-dropdown-menu a:hover {
+    background: #fff0f5;
+    color: #c93669;
+    transform: translateX(4px);
+}
