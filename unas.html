@@ -2,892 +2,1011 @@
 <html lang="es">
 
 <head>
+  <meta charset="UTF-8">
 
-    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+  <meta name="description"
+    content="Servicios de uñas en Juanita Pacasmayo. Manicure, uñas acrílicas, uñas en gel, esmaltado semipermanente, diseños y retiro de uñas.">
 
-    <meta
-        name="description"
-        content="Servicios de uñas - Juanita Pacasmayo"
-    >
+  <title>Servicios de Uñas | Juanita Pacasmayo</title>
 
-    <title>Servicios de Uñas | Juanita Pacasmayo</title>
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
 
-    <!-- =================================================
-         GOOGLE FONTS
-    ================================================== -->
+  <!-- FONT AWESOME -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Great+Vibes&family=Montserrat:wght@500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
-
-
-    <!-- =================================================
-         FONT AWESOME
-    ================================================== -->
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
-
-
-    <!-- =================================================
-         CSS EXCLUSIVO DE UÑAS
-    ================================================== -->
-
-    <link
-        rel="stylesheet"
-        href="unas.css"
-    >
-
+  <!-- CSS -->
+  <link rel="stylesheet" href="unas.css">
 </head>
-
 
 <body>
 
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
 
-<!-- =====================================================
-     HEADER
-====================================================== -->
+  <header class="site-header">
 
-<header class="site-header">
+    <div class="header-container">
 
-
-    <!-- LOGO -->
-
-    <a
-        href="index.html"
-        class="brand"
-    >
-
+      <!-- LOGO -->
+      <a href="index.html" class="brand">
         <img
-            src="images/Logo.png"
-            alt="Juanita Pacasmayo"
-        >
-
-    </a>
+          src="images/Logo.png"
+          alt="Juanita Pacasmayo - Belleza que inspira">
+      </a>
 
 
+      <!-- BOTÓN MENÚ MÓVIL -->
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Abrir menú"
+        aria-expanded="false">
 
-    <!-- =================================================
-         MENÚ PRINCIPAL
-    ================================================== -->
+        <i class="fa-solid fa-bars"></i>
 
-    <nav class="main-nav" id="mainNav">
+      </button>
 
 
-        <!-- INICIO -->
+      <!-- NAVEGACIÓN -->
+      <nav class="main-nav" id="mainNav">
 
         <a href="index.html">
-            Inicio
+          <i class="fa-solid fa-house"></i>
+          Inicio
         </a>
 
 
-
-        <!-- =================================================
-             SERVICIOS
-        ================================================== -->
-
+        <!-- SERVICIOS -->
         <div class="nav-dropdown">
 
-            <a
-                href="index.html#servicios"
-                class="nav-dropdown-btn"
-            >
-                Servicios
+          <button
+            class="dropdown-toggle"
+            type="button">
+
+            <i class="fa-solid fa-scissors"></i>
+            Servicios
+
+            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+
+          </button>
+
+
+          <div class="dropdown-menu">
+
+            <a href="unas.html">
+              <i class="fa-solid fa-hand-sparkles"></i>
+              Uñas
             </a>
 
+            <a href="laceado.html">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              Laceado
+            </a>
 
-            <div class="nav-dropdown-menu">
+            <a href="pestanas.html">
+              <i class="fa-solid fa-eye"></i>
+              Pestañas
+            </a>
 
-                <a href="unas.html">
-                    💅 Uñas
-                </a>
-
-                <a href="laceado.html">
-                    💇 Laceado
-                </a>
-
-                <a href="pestanas.html">
-                    👁️ Pestañas
-                </a>
-
-            </div>
+          </div>
 
         </div>
 
 
-
-        <!-- =================================================
-             PRODUCTOS
-        ================================================== -->
-
+        <!-- PRODUCTOS -->
         <div class="nav-dropdown">
 
-            <a
-                href="index.html#productos"
-                class="nav-dropdown-btn"
-            >
-                Productos
+          <button
+            class="dropdown-toggle"
+            type="button">
+
+            <i class="fa-solid fa-bag-shopping"></i>
+            Productos
+
+            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+
+          </button>
+
+
+          <div class="dropdown-menu">
+
+            <a href="index.html#productos">
+              <i class="fa-solid fa-palette"></i>
+              Maquillaje
             </a>
 
+            <a href="index.html#productos">
+              <i class="fa-solid fa-droplet"></i>
+              Cuidado capilar
+            </a>
 
-            <div class="nav-dropdown-menu">
+            <a href="index.html#productos">
+              <i class="fa-solid fa-spray-can-sparkles"></i>
+              Perfumes
+            </a>
 
-                <a href="index.html#maquillaje">
-                    💄 Maquillaje
-                </a>
-
-                <a href="index.html#cuidado-capilar">
-                    🧴 Cuidado capilar
-                </a>
-
-                <a href="index.html#perfumes">
-                    🌸 Perfumes
-                </a>
-
-            </div>
+          </div>
 
         </div>
-
 
 
         <!-- PUNTOS -->
-
         <a href="consulta.html">
-            Puntos
+          <i class="fa-solid fa-star"></i>
+          Puntos
         </a>
-
 
 
         <!-- GALERÍA -->
-
         <a href="index.html#galeria">
-            Galería
+          <i class="fa-solid fa-images"></i>
+          Galería
         </a>
 
 
-    </nav>
+        <!-- REDES SOCIALES -->
+        <div class="social-links">
 
-
-
-    <!-- =================================================
-         REDES SOCIALES
-    ================================================== -->
-
-    <div class="header-social">
-
-
-        <!-- FACEBOOK -->
-
-        <a
+          <a
             href="https://www.facebook.com/profile.php?id=61593488581069"
-            class="header-social-icon facebook"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Facebook"
-        >
+            aria-label="Facebook">
 
-            <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-            >
+            <i class="fa-brands fa-facebook-f"></i>
 
-                <path
-                    d="M14 8h3V4h-3c-3.31 0-5 1.69-5 5v3H6v4h3v8h4v-8h3.2l.8-4H13V9c0-.67.33-1 1-1z"
-                />
-
-            </svg>
-
-        </a>
+          </a>
 
 
-
-        <!-- INSTAGRAM -->
-
-        <a
+          <a
             href="#"
-            class="header-social-icon instagram"
-            aria-label="Instagram"
-        >
+            aria-label="Instagram">
 
-            <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-            >
+            <i class="fa-brands fa-instagram"></i>
 
-                <rect
-                    x="3"
-                    y="3"
-                    width="18"
-                    height="18"
-                    rx="5"
-                    ry="5"
-                />
+          </a>
 
-                <circle
-                    cx="12"
-                    cy="12"
-                    r="4"
-                />
+        </div>
 
-                <circle
-                    cx="17.5"
-                    cy="6.5"
-                    r="1.2"
-                />
 
-            </svg>
+        <!-- WHATSAPP -->
+        <a
+          class="whatsapp-btn"
+          href="https://wa.me/51960684125?text=Hola%20Juanita%20Pacasmayo%2C%20quiero%20reservar%20un%20servicio%20de%20u%C3%B1as."
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <i class="fa-brands fa-whatsapp"></i>
+
+          <span>Reservar</span>
 
         </a>
 
+
+        <!-- ADMINISTRACIÓN -->
+        <a
+          href="login.html"
+          class="admin-btn">
+
+          <i class="fa-solid fa-user-gear"></i>
+
+          Administración
+
+        </a>
+
+      </nav>
 
     </div>
 
+  </header>
 
 
-    <!-- =================================================
-         WHATSAPP
-    ================================================== -->
 
-    <a
-        href="https://wa.me/51960684125?text=Hola%2C%20Juanita%20Pacasmayo.%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20u%C3%B1as."
-        class="contact-button"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
+  <!-- =====================================================
+       CONTENIDO PRINCIPAL
+  ====================================================== -->
 
-        <i class="fab fa-whatsapp"></i>
+  <main>
 
-        <span>
-            Contáctanos
+
+    <!-- ENCABEZADO DE LA PÁGINA -->
+    <section class="page-header">
+
+      <div class="page-header-content">
+
+        <span class="section-kicker">
+          Belleza para tus manos
         </span>
 
-    </a>
-
-
-
-    <!-- =================================================
-         ADMINISTRACIÓN
-    ================================================== -->
-
-    <a
-        href="login.html"
-        class="boton-administracion"
-    >
-
-        🔒 Administración
-
-    </a>
-
-
-
-    <!-- =================================================
-         BOTÓN MENÚ MÓVIL
-    ================================================== -->
-
-    <button
-        class="menu-toggle"
-        id="mobileMenuButton"
-        type="button"
-        aria-label="Abrir menú"
-        aria-expanded="false"
-    >
-
-        <span></span>
-        <span></span>
-        <span></span>
-
-    </button>
-
-
-</header>
-
-
-
-<!-- =====================================================
-     CONTENIDO PRINCIPAL
-====================================================== -->
-
-<main>
-
-
-
-    <!-- =================================================
-         PRESENTACIÓN
-    ================================================== -->
-
-    <section class="services-page-header">
-
-
-        <div class="section-kicker">
-            Juanita Pacasmayo
-        </div>
-
-
         <h1>
-            Servicios de Uñas
+          Servicios de
+          <span>Uñas</span>
         </h1>
 
-
         <p>
-
-            Realza la belleza de tus manos con nuestros
-            diseños, colores y acabados.
-
+          Realzamos la belleza de tus manos con diseños
+          elegantes, modernos y personalizados.
         </p>
 
+      </div>
 
     </section>
 
 
 
-    <!-- =================================================
-         SERVICIOS DE UÑAS
-    ================================================== -->
+    <!-- ===================================================
+         PRESENTACIÓN
+    ==================================================== -->
 
-    <section class="nail-services">
+    <section class="nails-intro">
 
+      <div class="nails-intro-content">
 
-        <div class="nail-services-grid">
+        <span class="intro-label">
+          Juanita Pacasmayo
+        </span>
 
+        <h2>
+          Manos que hablan de ti
+        </h2>
 
+        <p>
+          Descubre nuestros servicios de uñas y elige
+          el estilo que más te guste. Trabajamos cada
+          detalle para que luzcas unas manos hermosas
+          y cuidadas.
+        </p>
 
-            <!-- =================================================
-                 SERVICIO 1 - MANICURE
-            ================================================== -->
+      </div>
 
-            <article class="nail-service-card">
+    </section>
 
 
-                <div class="nail-service-image">
 
-                    <img
-                        src="images/manicure.jpg"
-                        alt="Manicure"
-                        loading="lazy"
-                    >
+    <!-- ===================================================
+         SERVICIOS
+    ==================================================== -->
 
-                </div>
+    <section class="services-section">
 
+      <div class="services-container">
 
-                <div class="nail-service-content">
 
+        <!-- TÍTULO -->
+        <div class="services-heading">
 
-                    <h2>
-                        Manicure
-                    </h2>
+          <span>
+            Nuestros servicios
+          </span>
 
+          <h2>
+            Elige tu estilo
+          </h2>
 
-                    <p>
-
-                        Cuidado y embellecimiento de tus manos
-                        con un acabado delicado y elegante.
-
-                    </p>
-
-
-                    <div class="nail-price">
-
-                        Precio: S/ XX
-
-                    </div>
-
-
-                    <a
-                        href="https://wa.me/51960684125?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20Manicure."
-                        class="nail-button"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-
-                        <i class="fab fa-whatsapp"></i>
-
-                        Reservar
-
-                    </a>
-
-
-                </div>
-
-
-            </article>
-
-
-
-            <!-- =================================================
-                 SERVICIO 2 - UÑAS ACRÍLICAS
-            ================================================== -->
-
-            <article class="nail-service-card">
-
-
-                <div class="nail-service-image">
-
-                    <img
-                        src="images/unas-acrilicas.jpg"
-                        alt="Uñas acrílicas"
-                        loading="lazy"
-                    >
-
-                </div>
-
-
-                <div class="nail-service-content">
-
-
-                    <h2>
-                        Uñas acrílicas
-                    </h2>
-
-
-                    <p>
-
-                        Dale longitud y estilo a tus uñas
-                        con diferentes formas y diseños.
-
-                    </p>
-
-
-                    <div class="nail-price">
-
-                        Precio: S/ XX
-
-                    </div>
-
-
-                    <a
-                        href="https://wa.me/51960684125?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20u%C3%B1as%20acr%C3%ADlicas."
-                        class="nail-button"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-
-                        <i class="fab fa-whatsapp"></i>
-
-                        Reservar
-
-                    </a>
-
-
-                </div>
-
-
-            </article>
-
-
-
-            <!-- =================================================
-                 SERVICIO 3 - UÑAS EN GEL
-            ================================================== -->
-
-            <article class="nail-service-card">
-
-
-                <div class="nail-service-image">
-
-                    <img
-                        src="images/unas-gel.jpg"
-                        alt="Uñas en gel"
-                        loading="lazy"
-                    >
-
-                </div>
-
-
-                <div class="nail-service-content">
-
-
-                    <h2>
-                        Uñas en gel
-                    </h2>
-
-
-                    <p>
-
-                        Un acabado elegante, brillante y
-                        duradero para lucir unas manos impecables.
-
-                    </p>
-
-
-                    <div class="nail-price">
-
-                        Precio: S/ XX
-
-                    </div>
-
-
-                    <a
-                        href="https://wa.me/51960684125?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20u%C3%B1as%20en%20gel."
-                        class="nail-button"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-
-                        <i class="fab fa-whatsapp"></i>
-
-                        Reservar
-
-                    </a>
-
-
-                </div>
-
-
-            </article>
-
-
-
-            <!-- =================================================
-                 SERVICIO 4 - SEMIPERMANENTE
-            ================================================== -->
-
-            <article class="nail-service-card">
-
-
-                <div class="nail-service-image">
-
-                    <img
-                        src="images/semipermanente.jpg"
-                        alt="Esmaltado semipermanente"
-                        loading="lazy"
-                    >
-
-                </div>
-
-
-                <div class="nail-service-content">
-
-
-                    <h2>
-                        Esmaltado semipermanente
-                    </h2>
-
-
-                    <p>
-
-                        Color intenso y acabado brillante
-                        para lucir unas manos impecables.
-
-                    </p>
-
-
-                    <div class="nail-price">
-
-                        Precio: S/ XX
-
-                    </div>
-
-
-                    <a
-                        href="https://wa.me/51960684125?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20esmaltado%20semipermanente."
-                        class="nail-button"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-
-                        <i class="fab fa-whatsapp"></i>
-
-                        Reservar
-
-                    </a>
-
-
-                </div>
-
-
-            </article>
-
-
-
-            <!-- =================================================
-                 SERVICIO 5 - DISEÑOS
-            ================================================== -->
-
-            <article class="nail-service-card">
-
-
-                <div class="nail-service-image">
-
-                    <img
-                        src="images/disenos-unas.jpg"
-                        alt="Diseños de uñas"
-                        loading="lazy"
-                    >
-
-                </div>
-
-
-                <div class="nail-service-content">
-
-
-                    <h2>
-                        Diseños de uñas
-                    </h2>
-
-
-                    <p>
-
-                        Diseños personalizados para expresar
-                        tu estilo y personalidad.
-
-                    </p>
-
-
-                    <div class="nail-price">
-
-                        Precio: Desde S/ XX
-
-                    </div>
-
-
-                    <a
-                        href="https://wa.me/51960684125?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20dise%C3%B1os%20de%20u%C3%B1as."
-                        class="nail-button"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-
-                        <i class="fab fa-whatsapp"></i>
-
-                        Reservar
-
-                    </a>
-
-
-                </div>
-
-
-            </article>
-
-
-
-            <!-- =================================================
-                 SERVICIO 6 - RETIRO
-            ================================================== -->
-
-            <article class="nail-service-card">
-
-
-                <div class="nail-service-image">
-
-                    <img
-                        src="images/retiro-unas.jpg"
-                        alt="Retiro de uñas"
-                        loading="lazy"
-                    >
-
-                </div>
-
-
-                <div class="nail-service-content">
-
-
-                    <h2>
-                        Retiro de uñas
-                    </h2>
-
-
-                    <p>
-
-                        Retiro cuidadoso del producto para
-                        mantener tus uñas en buen estado.
-
-                    </p>
-
-
-                    <div class="nail-price">
-
-                        Precio: S/ XX
-
-                    </div>
-
-
-                    <a
-                        href="https://wa.me/51960684125?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20retiro%20de%20u%C3%B1as."
-                        class="nail-button"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-
-                        <i class="fab fa-whatsapp"></i>
-
-                        Reservar
-
-                    </a>
-
-
-                </div>
-
-
-            </article>
-
+          <p>
+            Tenemos diferentes opciones para cuidar,
+            embellecer y personalizar tus uñas.
+          </p>
 
         </div>
 
 
+
+        <!-- GRID -->
+        <div class="services-grid">
+
+
+          <!-- =================================================
+               1. MANICURE
+          ================================================== -->
+
+          <article class="service-card">
+
+            <div class="service-image">
+
+              <img
+                src="images/uñas/manicure.png"
+                alt="Servicio de manicure"
+                loading="lazy">
+
+              <span class="service-number">
+                01
+              </span>
+
+            </div>
+
+
+            <div class="service-content">
+
+              <span class="service-category">
+                Cuidado de manos
+              </span>
+
+              <h3>
+                Manicure
+              </h3>
+
+              <p>
+                Cuidado completo de tus manos y uñas.
+                Incluye limpieza, limado, cuidado de
+                cutículas y acabado profesional.
+              </p>
+
+
+              <div class="service-footer">
+
+                <span class="service-price">
+                  S/ XX
+                </span>
+
+                <a
+                  href="https://wa.me/51960684125?text=Hola%20Juanita%20Pacasmayo%2C%20quiero%20reservar%20un%20Manicure."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="service-btn">
+
+                  Reservar
+
+                  <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- =================================================
+               2. UÑAS ACRÍLICAS
+          ================================================== -->
+
+          <article class="service-card">
+
+            <div class="service-image">
+
+              <img
+                src="images/uñas/unas-acrilicas.png"
+                alt="Uñas acrílicas"
+                loading="lazy">
+
+              <span class="service-number">
+                02
+              </span>
+
+            </div>
+
+
+            <div class="service-content">
+
+              <span class="service-category">
+                Extensión y diseño
+              </span>
+
+              <h3>
+                Uñas acrílicas
+              </h3>
+
+              <p>
+                Dale longitud y personalidad a tus uñas
+                con nuestro servicio de uñas acrílicas,
+                realizadas con acabado profesional.
+              </p>
+
+
+              <div class="service-footer">
+
+                <span class="service-price">
+                  S/ XX
+                </span>
+
+                <a
+                  href="https://wa.me/51960684125?text=Hola%20Juanita%20Pacasmayo%2C%20quiero%20reservar%20unas%20acrilicas."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="service-btn">
+
+                  Reservar
+
+                  <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- =================================================
+               3. UÑAS EN GEL
+          ================================================== -->
+
+          <article class="service-card">
+
+            <div class="service-image">
+
+              <img
+                src="images/uñas/unas-gel.png"
+                alt="Uñas en gel"
+                loading="lazy">
+
+              <span class="service-number">
+                03
+              </span>
+
+            </div>
+
+
+            <div class="service-content">
+
+              <span class="service-category">
+                Acabado brillante
+              </span>
+
+              <h3>
+                Uñas en gel
+              </h3>
+
+              <p>
+                Consigue un acabado elegante y brillante
+                con nuestro servicio de uñas en gel,
+                ideal para un look moderno.
+              </p>
+
+
+              <div class="service-footer">
+
+                <span class="service-price">
+                  S/ XX
+                </span>
+
+                <a
+                  href="https://wa.me/51960684125?text=Hola%20Juanita%20Pacasmayo%2C%20quiero%20reservar%20unas%20en%20gel."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="service-btn">
+
+                  Reservar
+
+                  <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- =================================================
+               4. SEMIPERMANENTE
+          ================================================== -->
+
+          <article class="service-card">
+
+            <div class="service-image">
+
+              <img
+                src="images/uñas/semipermanente.png"
+                alt="Esmaltado semipermanente"
+                loading="lazy">
+
+              <span class="service-number">
+                04
+              </span>
+
+            </div>
+
+
+            <div class="service-content">
+
+              <span class="service-category">
+                Esmaltado profesional
+              </span>
+
+              <h3>
+                Esmaltado semipermanente
+              </h3>
+
+              <p>
+                Color intenso y acabado brillante para
+                disfrutar de unas uñas impecables durante
+                más tiempo.
+              </p>
+
+
+              <div class="service-footer">
+
+                <span class="service-price">
+                  S/ XX
+                </span>
+
+                <a
+                  href="https://wa.me/51960684125?text=Hola%20Juanita%20Pacasmayo%2C%20quiero%20reservar%20un%20esmaltado%20semipermanente."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="service-btn">
+
+                  Reservar
+
+                  <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- =================================================
+               5. DISEÑOS
+          ================================================== -->
+
+          <article class="service-card">
+
+            <div class="service-image">
+
+              <img
+                src="images/uñas/disenos-unas.png"
+                alt="Diseños de uñas"
+                loading="lazy">
+
+              <span class="service-number">
+                05
+              </span>
+
+            </div>
+
+
+            <div class="service-content">
+
+              <span class="service-category">
+                Nail art
+              </span>
+
+              <h3>
+                Diseños de uñas
+              </h3>
+
+              <p>
+                Personaliza tus uñas con diseños delicados,
+                modernos y creativos según tu estilo
+                y ocasión.
+              </p>
+
+
+              <div class="service-footer">
+
+                <span class="service-price">
+                  Desde S/ XX
+                </span>
+
+                <a
+                  href="https://wa.me/51960684125?text=Hola%20Juanita%20Pacasmayo%2C%20quiero%20consultar%20por%20un%20dise%C3%B1o%20de%20u%C3%B1as."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="service-btn">
+
+                  Reservar
+
+                  <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- =================================================
+               6. RETIRO
+          ================================================== -->
+
+          <article class="service-card">
+
+            <div class="service-image">
+
+              <img
+                src="images/uñas/retiro-unas.png"
+                alt="Retiro de uñas"
+                loading="lazy">
+
+              <span class="service-number">
+                06
+              </span>
+
+            </div>
+
+
+            <div class="service-content">
+
+              <span class="service-category">
+                Cuidado de uñas
+              </span>
+
+              <h3>
+                Retiro de uñas
+              </h3>
+
+              <p>
+                Retiro cuidadoso del producto para ayudar
+                a mantener tus uñas naturales en buenas
+                condiciones.
+              </p>
+
+
+              <div class="service-footer">
+
+                <span class="service-price">
+                  S/ XX
+                </span>
+
+                <a
+                  href="https://wa.me/51960684125?text=Hola%20Juanita%20Pacasmayo%2C%20quiero%20consultar%20por%20el%20retiro%20de%20u%C3%B1as."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="service-btn">
+
+                  Reservar
+
+                  <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
     </section>
 
 
 
-    <!-- =================================================
+    <!-- ===================================================
          VOLVER A SERVICIOS
-    ================================================== -->
+    ==================================================== -->
 
     <section class="back-section">
 
+      <a
+        href="index.html#servicios"
+        class="back-btn">
 
-        <a
-            href="index.html#servicios"
-            class="button secondary"
-        >
+        <i class="fa-solid fa-arrow-left"></i>
 
-            ← Volver a servicios
+        Volver a servicios
 
-        </a>
-
+      </a>
 
     </section>
 
-
-</main>
-
+  </main>
 
 
-<!-- =====================================================
-     FOOTER
-====================================================== -->
 
-<footer>
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
 
+  <footer class="site-footer">
 
-    <strong>
-        Juanita Pacasmayo
-    </strong>
+    <div class="footer-container">
 
 
-    <div>
-        Cosméticos · Uñas · Laceado · Pestañas
+      <div class="footer-brand">
+
+        <img
+          src="images/Logo.png"
+          alt="Juanita Pacasmayo">
+
+        <p>
+          Belleza que inspira
+        </p>
+
+      </div>
+
+
+      <div class="footer-links">
+
+        <a href="index.html">
+          Inicio
+        </a>
+
+        <a href="unas.html">
+          Uñas
+        </a>
+
+        <a href="laceado.html">
+          Laceado
+        </a>
+
+        <a href="pestanas.html">
+          Pestañas
+        </a>
+
+        <a href="consulta.html">
+          Puntos
+        </a>
+
+      </div>
+
+
+      <div class="footer-social">
+
+        <a
+          href="https://www.facebook.com/profile.php?id=61593488581069"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook">
+
+          <i class="fa-brands fa-facebook-f"></i>
+
+        </a>
+
+        <a
+          href="#"
+          aria-label="Instagram">
+
+          <i class="fa-brands fa-instagram"></i>
+
+        </a>
+
+        <a
+          href="https://wa.me/51960684125"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="WhatsApp">
+
+          <i class="fa-brands fa-whatsapp"></i>
+
+        </a>
+
+      </div>
+
     </div>
 
 
-    <div style="margin-top: 8px;">
+    <div class="footer-bottom">
+
+      <p>
+        © 2026 Juanita Pacasmayo. Todos los derechos reservados.
+      </p>
+
+      <p>
         Belleza que inspira
-    </div>
-
-
-    <div
-        style="
-            margin-top: 15px;
-            font-size: 12px;
-        "
-    >
-
-        © 2026 Juanita Pacasmayo
-        · Todos los derechos reservados
+      </p>
 
     </div>
 
-
-</footer>
-
+  </footer>
 
 
-<!-- =====================================================
-     JAVASCRIPT
-====================================================== -->
 
-<script>
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
 
-document.addEventListener("DOMContentLoaded", function () {
+  <script>
 
+    document.addEventListener("DOMContentLoaded", function () {
 
-    const mobileMenuButton =
-        document.getElementById("mobileMenuButton");
+      const menuToggle = document.getElementById("menuToggle");
+      const mainNav = document.getElementById("mainNav");
 
+      /*
+       * MENÚ MÓVIL
+       */
 
-    const mainNav =
-        document.getElementById("mainNav");
+      if (menuToggle && mainNav) {
 
+        menuToggle.addEventListener("click", function () {
 
-    if (
-        mobileMenuButton &&
-        mainNav
-    ) {
+          const isOpen = mainNav.classList.toggle("active");
 
+          menuToggle.setAttribute(
+            "aria-expanded",
+            isOpen ? "true" : "false"
+          );
 
-        mobileMenuButton.addEventListener(
-            "click",
-            function () {
+          menuToggle.setAttribute(
+            "aria-label",
+            isOpen ? "Cerrar menú" : "Abrir menú"
+          );
 
+          const icon = menuToggle.querySelector("i");
 
-                const isOpen =
-                    mainNav.classList.toggle("open");
+          if (icon) {
 
-
-                mobileMenuButton.setAttribute(
-                    "aria-expanded",
-                    isOpen
-                );
-
-
-            }
-        );
-
-
-        /* Cerrar menú al seleccionar una opción */
-
-        const menuLinks =
-            mainNav.querySelectorAll("a");
-
-
-        menuLinks.forEach(function (link) {
-
-
-            link.addEventListener(
-                "click",
-                function () {
-
-
-                    mainNav.classList.remove("open");
-
-
-                    mobileMenuButton.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-
-                }
+            icon.classList.toggle(
+              "fa-bars",
+              !isOpen
             );
 
+            icon.classList.toggle(
+              "fa-xmark",
+              isOpen
+            );
+
+          }
 
         });
 
+      }
 
-    }
 
 
-});
+      /*
+       * DROPDOWNS EN MÓVIL
+       */
 
-</script>
+      const dropdowns =
+        document.querySelectorAll(".nav-dropdown");
 
+
+      dropdowns.forEach(function (dropdown) {
+
+        const button =
+          dropdown.querySelector(".dropdown-toggle");
+
+
+        if (!button) return;
+
+
+        button.addEventListener("click", function (event) {
+
+          if (window.innerWidth <= 900) {
+
+            event.preventDefault();
+
+            dropdown.classList.toggle("active");
+
+          }
+
+        });
+
+      });
+
+
+
+      /*
+       * CERRAR MENÚ AL HACER CLICK EN UN ENLACE
+       */
+
+      const navLinks =
+        document.querySelectorAll(
+          ".main-nav a:not(.dropdown-toggle)"
+        );
+
+
+      navLinks.forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+          if (window.innerWidth <= 900) {
+
+            mainNav.classList.remove("active");
+
+            menuToggle.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+            menuToggle.setAttribute(
+              "aria-label",
+              "Abrir menú"
+            );
+
+
+            const icon =
+              menuToggle.querySelector("i");
+
+
+            if (icon) {
+
+              icon.classList.remove(
+                "fa-xmark"
+              );
+
+              icon.classList.add(
+                "fa-bars"
+              );
+
+            }
+
+          }
+
+        });
+
+      });
+
+
+
+      /*
+       * REINICIAR ESTADO DEL MENÚ AL CAMBIAR
+       * ENTRE ESCRITORIO Y MÓVIL
+       */
+
+      window.addEventListener("resize", function () {
+
+        if (window.innerWidth > 900) {
+
+          mainNav.classList.remove("active");
+
+          dropdowns.forEach(function (dropdown) {
+
+            dropdown.classList.remove("active");
+
+          });
+
+          if (menuToggle) {
+
+            menuToggle.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+            menuToggle.setAttribute(
+              "aria-label",
+              "Abrir menú"
+            );
+
+            const icon =
+              menuToggle.querySelector("i");
+
+
+            if (icon) {
+
+              icon.classList.remove(
+                "fa-xmark"
+              );
+
+              icon.classList.add(
+                "fa-bars"
+              );
+
+            }
+
+          }
+
+        }
+
+      });
+
+    });
+
+  </script>
 
 </body>
 
