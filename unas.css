@@ -1,0 +1,1623 @@
+/* =====================================================
+   JUANITA PACASMAYO
+   PÁGINA DE SERVICIOS DE UÑAS
+   CSS INDEPENDIENTE
+===================================================== */
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+:root {
+
+    --pink: #c83b6a;
+    --pink-dark: #aa2f59;
+    --pink-light: #fff1f5;
+
+    --gold: #d99c2c;
+
+    --ink: #30272b;
+
+    --paper: #fffafa;
+
+    --line: #f0d5df;
+
+}
+
+
+/* =====================================================
+   GENERAL
+===================================================== */
+
+* {
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    margin: 0;
+
+    color: var(--ink);
+
+    background: var(--paper);
+
+    font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+}
+
+
+a {
+
+    text-decoration: none;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.site-header {
+
+    min-height: 100px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    padding: 15px 5%;
+
+    background: white;
+
+    border-bottom:
+        1px solid var(--line);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    width: 210px;
+
+    flex-shrink: 0;
+
+}
+
+
+.brand img {
+
+    display: block;
+
+    width: 195px;
+
+    max-height: 70px;
+
+    object-fit: contain;
+
+    object-position: left center;
+
+}
+
+
+/* =====================================================
+   MENÚ
+===================================================== */
+
+.main-nav {
+
+    flex: 1;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 38px;
+
+}
+
+
+.main-nav > a,
+.nav-dropdown-btn {
+
+    color: var(--ink);
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    transition:
+        color .2s ease;
+
+}
+
+
+.main-nav > a:hover,
+.nav-dropdown-btn:hover {
+
+    color: var(--pink);
+
+}
+
+
+/* =====================================================
+   MENÚ DESPLEGABLE
+===================================================== */
+
+.nav-dropdown {
+
+    position: relative;
+
+    display: inline-block;
+
+}
+
+
+.nav-dropdown-btn {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 12px 4px;
+
+    cursor: pointer;
+
+}
+
+
+.nav-dropdown-btn::after {
+
+    content: "⌄";
+
+    font-size: 15px;
+
+    color: var(--pink);
+
+    transition:
+        transform .25s ease;
+
+}
+
+
+.nav-dropdown:hover
+.nav-dropdown-btn::after {
+
+    transform:
+        rotate(180deg);
+
+}
+
+
+/* =====================================================
+   SUBMENÚ
+===================================================== */
+
+.nav-dropdown-menu {
+
+    position: absolute;
+
+    top: calc(100% + 0px);
+
+    left: 50%;
+
+    transform:
+        translateX(-50%)
+        translateY(10px);
+
+    min-width: 220px;
+
+    padding: 10px;
+
+    background: white;
+
+    border:
+        1px solid rgba(201,54,105,.14);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.14);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity .22s ease,
+        transform .22s ease,
+        visibility .22s ease;
+
+    z-index: 9999;
+
+}
+
+
+/* ZONA DE PASO DEL MOUSE */
+
+.nav-dropdown-menu::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -12px;
+
+    left: 0;
+
+    right: 0;
+
+    height: 12px;
+
+}
+
+
+/* MOSTRAR SUBMENÚ */
+
+.nav-dropdown:hover
+.nav-dropdown-menu {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+
+}
+
+
+/* OPCIONES */
+
+.nav-dropdown-menu a {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    width: 100%;
+
+    padding: 12px 15px;
+
+    border-radius: 10px;
+
+    color: #333;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
+
+}
+
+
+.nav-dropdown-menu a:hover {
+
+    background:
+        #fff0f5;
+
+    color:
+        var(--pink);
+
+    transform:
+        translateX(4px);
+
+}
+
+
+/* =====================================================
+   REDES SOCIALES
+===================================================== */
+
+.header-social {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+
+}
+
+
+.header-social-icon {
+
+    width: 40px;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 5px 14px
+        rgba(89,35,50,.14);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+}
+
+
+.header-social-icon svg {
+
+    width: 19px;
+
+    height: 19px;
+
+}
+
+
+/* FACEBOOK */
+
+.header-social-icon.facebook {
+
+    background: #1877f2;
+
+    color: white;
+
+}
+
+
+.header-social-icon.facebook svg {
+
+    fill: currentColor;
+
+}
+
+
+/* INSTAGRAM */
+
+.header-social-icon.instagram {
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #833ab4,
+            #e1306c 55%,
+            #f77737
+        );
+
+}
+
+
+.header-social-icon.instagram svg {
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.8;
+
+}
+
+
+.header-social-icon.instagram
+svg circle:last-child {
+
+    fill: currentColor;
+
+    stroke: none;
+
+}
+
+
+/* HOVER */
+
+.header-social-icon:hover {
+
+    transform:
+        translateY(-3px)
+        scale(1.08);
+
+    box-shadow:
+        0 9px 20px
+        rgba(89,35,50,.22);
+
+}
+
+
+/* =====================================================
+   WHATSAPP
+===================================================== */
+
+.contact-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    min-height: 52px;
+
+    padding: 0 25px;
+
+    border-radius: 999px;
+
+    background:
+        var(--pink);
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    transition:
+        background .25s ease,
+        transform .25s ease;
+
+}
+
+
+.contact-button:hover {
+
+    background:
+        var(--pink-dark);
+
+    color: white;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.contact-button i {
+
+    font-size: 18px;
+
+}
+
+
+/* =====================================================
+   ADMINISTRACIÓN
+===================================================== */
+
+.boton-administracion {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 13px 22px;
+
+    background:
+        #4d3440;
+
+    color: white;
+
+    border-radius: 30px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    transition:
+        background .3s ease,
+        transform .3s ease;
+
+}
+
+
+.boton-administracion:hover {
+
+    background:
+        #7a5063;
+
+    color: white;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =====================================================
+   BOTÓN MENÚ MÓVIL
+===================================================== */
+
+.menu-toggle {
+
+    display: none;
+
+    width: 42px;
+
+    height: 42px;
+
+    padding: 5px;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+}
+
+
+.menu-toggle span {
+
+    display: block;
+
+    width: 28px;
+
+    height: 3px;
+
+    border-radius: 10px;
+
+    background:
+        var(--pink);
+
+}
+
+
+/* =====================================================
+   CABECERA DE SERVICIOS
+===================================================== */
+
+.services-page-header {
+
+    padding:
+        75px 20px 50px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff1f5,
+            #fffafa
+        );
+
+}
+
+
+.services-page-header .section-kicker {
+
+    margin-bottom: 14px;
+
+    color:
+        var(--gold);
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 4px;
+
+}
+
+
+.services-page-header h1 {
+
+    margin: 0;
+
+    color:
+        var(--pink);
+
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+    font-size:
+        clamp(34px, 5vw, 55px);
+
+    font-weight:
+        800;
+
+}
+
+
+.services-page-header p {
+
+    max-width:
+        680px;
+
+    margin:
+        18px auto 0;
+
+    color:
+        #6b5960;
+
+    font-size:
+        18px;
+
+    line-height:
+        1.6;
+
+}
+
+
+/* =====================================================
+   CONTENEDOR SERVICIOS
+===================================================== */
+
+.nail-services {
+
+    padding:
+        65px 7% 80px;
+
+    background:
+        #fffafa;
+
+}
+
+
+.nail-services-grid {
+
+    max-width:
+        1200px;
+
+    margin:
+        0 auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        30px;
+
+}
+
+
+/* =====================================================
+   TARJETA
+===================================================== */
+
+.nail-service-card {
+
+    overflow:
+        hidden;
+
+    background:
+        white;
+
+    border:
+        1px solid #f0d5df;
+
+    border-radius:
+        24px;
+
+    box-shadow:
+        0 12px 30px
+        rgba(89,35,50,.08);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+
+}
+
+
+.nail-service-card:hover {
+
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+        0 20px 40px
+        rgba(89,35,50,.14);
+
+}
+
+
+/* =====================================================
+   IMAGEN DEL SERVICIO
+===================================================== */
+
+.nail-service-image {
+
+    width:
+        100%;
+
+    height:
+        250px;
+
+    overflow:
+        hidden;
+
+    background:
+        #fff1f5;
+
+}
+
+
+.nail-service-image img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    display:
+        block;
+
+    object-fit:
+        cover;
+
+    transition:
+        transform .4s ease;
+
+}
+
+
+.nail-service-card:hover
+.nail-service-image img {
+
+    transform:
+        scale(1.05);
+
+}
+
+
+/* =====================================================
+   CONTENIDO TARJETA
+===================================================== */
+
+.nail-service-content {
+
+    padding:
+        26px;
+
+    text-align:
+        center;
+
+}
+
+
+.nail-service-content h2 {
+
+    margin:
+        0 0 12px;
+
+    color:
+        var(--pink);
+
+    font-family:
+        "Montserrat",
+        Arial,
+        sans-serif;
+
+    font-size:
+        22px;
+
+}
+
+
+.nail-service-content p {
+
+    min-height:
+        78px;
+
+    margin:
+        0 0 18px;
+
+    color:
+        #6b5960;
+
+    line-height:
+        1.6;
+
+}
+
+
+/* =====================================================
+   PRECIO
+===================================================== */
+
+.nail-price {
+
+    margin:
+        0 0 20px;
+
+    color:
+        var(--gold);
+
+    font-size:
+        19px;
+
+    font-weight:
+        800;
+
+}
+
+
+/* =====================================================
+   BOTÓN RESERVAR
+===================================================== */
+
+.nail-button {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        8px;
+
+    padding:
+        12px 25px;
+
+    border-radius:
+        30px;
+
+    background:
+        var(--pink);
+
+    color:
+        white;
+
+    font-weight:
+        700;
+
+    transition:
+        .25s ease;
+
+}
+
+
+.nail-button:hover {
+
+    background:
+        var(--pink-dark);
+
+    color:
+        white;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.nail-button i {
+
+    font-size:
+        18px;
+
+}
+
+
+/* =====================================================
+   BOTÓN VOLVER
+===================================================== */
+
+.back-section {
+
+    padding:
+        0 20px 70px;
+
+    text-align:
+        center;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    padding:
+        35px 24px;
+
+    color:
+        white;
+
+    background:
+        #4d3440;
+
+    text-align:
+        center;
+
+    font-size:
+        14px;
+
+}
+
+
+footer strong {
+
+    display:
+        block;
+
+    margin-bottom:
+        8px;
+
+    color:
+        white;
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        36px;
+
+    font-weight:
+        400;
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .site-header {
+
+        gap: 15px;
+
+    }
+
+
+    .main-nav {
+
+        gap: 20px;
+
+    }
+
+
+    .contact-button {
+
+        padding:
+            0 17px;
+
+    }
+
+
+    .boton-administracion {
+
+        padding:
+            12px 15px;
+
+    }
+
+
+    .nail-services-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+/* =====================================================
+   MÓVIL
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .site-header {
+
+        min-height:
+            68px;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            space-between;
+
+        gap:
+            6px;
+
+        padding:
+            8px 10px;
+
+    }
+
+
+    /* LOGO */
+
+    .brand {
+
+        flex:
+            1 1 auto;
+
+        min-width:
+            0;
+
+        width:
+            auto;
+
+    }
+
+
+    .brand img {
+
+        width:
+            100%;
+
+        max-width:
+            130px;
+
+        max-height:
+            48px;
+
+    }
+
+
+    /* REDES */
+
+    .header-social {
+
+        gap:
+            5px;
+
+    }
+
+
+    .header-social-icon {
+
+        width:
+            33px;
+
+        height:
+            33px;
+
+    }
+
+
+    .header-social-icon svg {
+
+        width:
+            16px;
+
+        height:
+            16px;
+
+    }
+
+
+    /* WHATSAPP */
+
+    .contact-button {
+
+        min-height:
+            38px;
+
+        padding:
+            0 10px;
+
+        font-size:
+            11px;
+
+        gap:
+            5px;
+
+    }
+
+
+    .contact-button i {
+
+        font-size:
+            15px;
+
+    }
+
+
+    /* ADMINISTRACIÓN */
+
+    .boton-administracion {
+
+        display:
+            none;
+
+    }
+
+
+    /* BOTÓN ☰ */
+
+    .menu-toggle {
+
+        display:
+            flex;
+
+        flex:
+            0 0 39px;
+
+        width:
+            39px;
+
+        height:
+            39px;
+
+        position:
+            relative;
+
+        z-index:
+            10001;
+
+        background:
+            white;
+
+        border-radius:
+            10px;
+
+        box-shadow:
+            0 3px 10px
+            rgba(89,35,50,.10);
+
+    }
+
+
+    .menu-toggle span {
+
+        width:
+            26px;
+
+        height:
+            3px;
+
+    }
+
+
+    /* MENÚ */
+
+    .main-nav {
+
+        position:
+            absolute;
+
+        top:
+            calc(100% + 8px);
+
+        right:
+            10px;
+
+        left:
+            auto;
+
+        width:
+            245px;
+
+        max-width:
+            calc(100vw - 20px);
+
+        display:
+            none;
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+
+        justify-content:
+            flex-start;
+
+        gap:
+            4px;
+
+        padding:
+            10px;
+
+        background:
+            white;
+
+        border:
+            1px solid var(--line);
+
+        border-radius:
+            18px;
+
+        box-shadow:
+            0 15px 35px
+            rgba(89,35,50,.18);
+
+        z-index:
+            10000;
+
+    }
+
+
+    .main-nav.open {
+
+        display:
+            flex;
+
+    }
+
+
+    .main-nav > a {
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        width:
+            100%;
+
+        min-height:
+            44px;
+
+        padding:
+            11px 14px;
+
+        border-radius:
+            10px;
+
+        color:
+            var(--ink);
+
+        font-size:
+            15px;
+
+    }
+
+
+    .main-nav > a:hover {
+
+        background:
+            #fff1f5;
+
+        color:
+            var(--pink);
+
+    }
+
+
+    /* DROPDOWN MÓVIL */
+
+    .nav-dropdown {
+
+        width:
+            100%;
+
+    }
+
+
+    .nav-dropdown-btn {
+
+        width:
+            100%;
+
+        min-height:
+            44px;
+
+        padding:
+            11px 14px;
+
+        border-radius:
+            10px;
+
+    }
+
+
+    .nav-dropdown-menu {
+
+        position:
+            static;
+
+        width:
+            100%;
+
+        min-width:
+            0;
+
+        padding:
+            4px 0 4px 12px;
+
+        display:
+            block;
+
+        transform:
+            none;
+
+        opacity:
+            1;
+
+        visibility:
+            visible;
+
+        pointer-events:
+            auto;
+
+        background:
+            #fff8fa;
+
+        border:
+            none;
+
+        border-radius:
+            10px;
+
+        box-shadow:
+            none;
+
+    }
+
+
+    .nav-dropdown-menu::before {
+
+        display:
+            none;
+
+    }
+
+
+    .nav-dropdown-menu a {
+
+        min-height:
+            40px;
+
+        padding:
+            9px 12px;
+
+        font-size:
+            14px;
+
+    }
+
+
+    /* CABECERA */
+
+    .services-page-header {
+
+        padding:
+            55px 20px 40px;
+
+    }
+
+
+    .services-page-header h1 {
+
+        font-size:
+            35px;
+
+    }
+
+
+    .services-page-header p {
+
+        font-size:
+            16px;
+
+    }
+
+
+    /* SERVICIOS */
+
+    .nail-services {
+
+        padding:
+            45px 20px 60px;
+
+    }
+
+
+    .nail-services-grid {
+
+        grid-template-columns:
+            1fr;
+
+        max-width:
+            480px;
+
+    }
+
+
+    .nail-service-image {
+
+        height:
+            260px;
+
+    }
+
+}
+
+
+/* =====================================================
+   CELULAR PEQUEÑO
+===================================================== */
+
+@media (max-width: 430px) {
+
+    .site-header {
+
+        padding:
+            7px;
+
+        gap:
+            3px;
+
+    }
+
+
+    .brand img {
+
+        max-width:
+            105px;
+
+    }
+
+
+    .header-social {
+
+        gap:
+            3px;
+
+    }
+
+
+    .header-social-icon {
+
+        width:
+            30px;
+
+        height:
+            30px;
+
+    }
+
+
+    .header-social-icon svg {
+
+        width:
+            14px;
+
+        height:
+            14px;
+
+    }
+
+
+    .contact-button {
+
+        min-height:
+            35px;
+
+        padding:
+            0 8px;
+
+        font-size:
+            10px;
+
+    }
+
+
+    .contact-button i {
+
+        font-size:
+            14px;
+
+    }
+
+
+    .menu-toggle {
+
+        flex-basis:
+            37px;
+
+        width:
+            37px;
+
+        height:
+            37px;
+
+    }
+
+
+    .main-nav {
+
+        right:
+            7px;
+
+        width:
+            220px;
+
+    }
+
+
+    .nail-service-content {
+
+        padding:
+            22px 18px;
+
+    }
+
+
+    .nail-service-image {
+
+        height:
+            230px;
+
+    }
+
+}
