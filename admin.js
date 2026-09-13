@@ -1015,20 +1015,6 @@ function crearEnlaceWhatsAppMovimiento(
   );
 }
 
-  // ========================================================
-  // CREAR URL WHATSAPP
-  // ========================================================
-
-  return (
-    "https://wa.me/" +
-    numero +
-    "?text=" +
-    encodeURIComponent(
-      mensaje
-    )
-  );
-
-}
 
 
 // ==========================================================
