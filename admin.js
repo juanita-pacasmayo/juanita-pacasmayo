@@ -1333,14 +1333,7 @@ async function registrarCliente() {
 
           "</p>" +
 
-          "<p>" +
-
-            "<span>⭐ Puntos iniciales</span>" +
-
-            "<strong>0</strong>" +
-
-          "</p>" +
-
+      
         "</div>";
 
     }
