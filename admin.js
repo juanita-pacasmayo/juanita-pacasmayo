@@ -420,7 +420,7 @@ async function buscarCliente() {
 
     parametros.append(
       "accion",
-      "consultarPuntos"
+      "historialcliente"
     );
 
     parametros.append(
