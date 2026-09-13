@@ -739,6 +739,53 @@ async function registrarMovimiento() {
 
     }
 
+    // ======================================================
+// CREAR BOTÓN WHATSAPP DEL MOVIMIENTO
+// ======================================================
+
+if (btnWhatsAppMovimiento) {
+
+  const enlaceWhatsAppMovimiento =
+    crearEnlaceWhatsAppMovimiento(
+      telefonoMovimiento ||
+      datos.telefono ||
+      "",
+
+      datos.cliente ||
+      "",
+
+      datos.codigoCliente ||
+      codigo,
+
+      concepto,
+
+      datos.monto ||
+      monto,
+
+      datos.puntosGanados ||
+      0,
+
+      datos.puntosTotales ||
+      0
+    );
+
+
+  if (enlaceWhatsAppMovimiento) {
+
+    btnWhatsAppMovimiento.href =
+      enlaceWhatsAppMovimiento;
+
+    btnWhatsAppMovimiento.style.display =
+      "inline-flex";
+
+  } else {
+
+    btnWhatsAppMovimiento.style.display =
+      "none";
+
+  }
+
+}
 
     mostrarMensaje(
       "✅ Compra / servicio registrado correctamente.",
