@@ -10,7 +10,7 @@
 // ==========================================================
 
 const URL_APPS_SCRIPT =
-  "https://script.google.com/macros/s/AKfycbxZW06LP3ctRtIZXBBlo3paILCjcBjQVDMCuOLmNnqU4BuZpbMz3b8jh82V8ZNki1U/exec";
+  "https://script.google.com/macros/s/AKfycbxZW06LP3ctRtIZXBBlo3paILcJCbjQVDMCuOLmNnqU4BuZpbMz3b8jh82V8ZNki1U/exec";
 
 
 // ==========================================================
@@ -82,6 +82,7 @@ const detalleRegistro =
     "detalleRegistro"
   );
 
+
 // ==========================================================
 // WHATSAPP - MOVIMIENTO
 // ==========================================================
@@ -91,7 +92,11 @@ const btnWhatsAppMovimiento =
     "btnWhatsAppMovimiento"
   );
 
+
+// Teléfono del cliente actualmente seleccionado
+
 let telefonoMovimiento = "";
+
 
 // ==========================================================
 // ELEMENTOS - CLIENTE
@@ -181,10 +186,8 @@ function mostrarMensaje(
     return;
   }
 
-
   mensajeRegistro.textContent =
     mensaje;
-
 
   mensajeRegistro.className =
     "mensaje-registro " +
@@ -206,10 +209,8 @@ function mostrarMensajeCliente(
     return;
   }
 
-
   mensajeCliente.textContent =
     mensaje;
-
 
   mensajeCliente.className =
     "mensaje-registro " +
@@ -229,12 +230,10 @@ async function leerRespuestaJSON(
   const texto =
     await respuesta.text();
 
-
   console.log(
     "Respuesta del servidor:",
     texto
   );
-
 
   if (
     !texto ||
@@ -247,7 +246,6 @@ async function leerRespuestaJSON(
 
   }
 
-
   if (
     texto.trim().startsWith("<")
   ) {
@@ -257,7 +255,6 @@ async function leerRespuestaJSON(
     );
 
   }
-
 
   try {
 
@@ -271,7 +268,6 @@ async function leerRespuestaJSON(
       "JSON inválido:",
       texto
     );
-
 
     throw new Error(
       "La respuesta de Apps Script no es un JSON válido."
@@ -367,12 +363,10 @@ async function buscarCliente() {
     return;
   }
 
-
   const codigo =
     codigoRegistro.value
       .trim()
       .toUpperCase();
-
 
   if (!codigo) {
 
@@ -387,12 +381,10 @@ async function buscarCliente() {
 
   }
 
-
   mostrarMensaje(
     "🔎 Buscando cliente...",
     "info"
   );
-
 
   if (clienteRegistro) {
 
@@ -401,11 +393,22 @@ async function buscarCliente() {
 
   }
 
-
   if (resultadoRegistro) {
 
     resultadoRegistro.style.display =
       "none";
+
+  }
+
+  // Ocultar botón WhatsApp hasta encontrar cliente
+
+  if (btnWhatsAppMovimiento) {
+
+    btnWhatsAppMovimiento.style.display =
+      "none";
+
+    btnWhatsAppMovimiento.href =
+      "#";
 
   }
 
@@ -415,18 +418,15 @@ async function buscarCliente() {
     const parametros =
       new URLSearchParams();
 
-
     parametros.append(
       "accion",
       "consultarPuntos"
     );
 
-
     parametros.append(
       "codigo",
       codigo
     );
-
 
     const respuesta =
       await fetch(
@@ -439,12 +439,10 @@ async function buscarCliente() {
         }
       );
 
-
     const datos =
       await leerRespuestaJSON(
         respuesta
       );
-
 
     if (!datos.correcto) {
 
@@ -456,6 +454,10 @@ async function buscarCliente() {
     }
 
 
+    // ======================================================
+    // DATOS DEL CLIENTE
+    // ======================================================
+
     if (nombreRegistro) {
 
       nombreRegistro.textContent =
@@ -463,17 +465,7 @@ async function buscarCliente() {
 
     }
 
-// ==========================================================
-// WHATSAPP - MOVIMIENTO
-// ==========================================================
 
-const btnWhatsAppMovimiento =
-  document.getElementById(
-    "btnWhatsAppMovimiento"
-  );
-
-let telefonoMovimiento = "";
-    
     if (puntosRegistro) {
 
       puntosRegistro.textContent =
@@ -484,6 +476,16 @@ let telefonoMovimiento = "";
         " puntos";
 
     }
+
+
+    // ======================================================
+    // GUARDAR TELÉFONO
+    // ======================================================
+
+    telefonoMovimiento =
+      datos.telefono ||
+      datos.clienteTelefono ||
+      "";
 
 
     if (clienteRegistro) {
@@ -517,6 +519,8 @@ let telefonoMovimiento = "";
       error
     );
 
+    telefonoMovimiento =
+      "";
 
     if (clienteRegistro) {
 
@@ -524,7 +528,6 @@ let telefonoMovimiento = "";
         "none";
 
     }
-
 
     mostrarMensaje(
       "❌ " +
@@ -577,6 +580,10 @@ async function registrarMovimiento() {
       : "";
 
 
+  // ========================================================
+  // VALIDAR CÓDIGO
+  // ========================================================
+
   if (!codigo) {
 
     mostrarMensaje(
@@ -588,6 +595,10 @@ async function registrarMovimiento() {
 
   }
 
+
+  // ========================================================
+  // VALIDAR MONTO
+  // ========================================================
 
   if (
     isNaN(monto) ||
@@ -688,6 +699,10 @@ async function registrarMovimiento() {
     }
 
 
+    // ======================================================
+    // MOSTRAR RESULTADO
+    // ======================================================
+
     if (resultadoRegistro) {
 
       resultadoRegistro.style.display =
@@ -739,59 +754,84 @@ async function registrarMovimiento() {
 
     }
 
+
     // ======================================================
-// CREAR BOTÓN WHATSAPP DEL MOVIMIENTO
-// ======================================================
+    // CREAR BOTÓN WHATSAPP DEL MOVIMIENTO
+    // ======================================================
 
-if (btnWhatsAppMovimiento) {
+    if (btnWhatsAppMovimiento) {
 
-  const enlaceWhatsAppMovimiento =
-    crearEnlaceWhatsAppMovimiento(
-      telefonoMovimiento ||
-      datos.telefono ||
-      "",
+      const enlaceWhatsAppMovimiento =
+        crearEnlaceWhatsAppMovimiento(
 
-      datos.cliente ||
-      "",
+          telefonoMovimiento ||
+          datos.telefono ||
+          datos.clienteTelefono ||
+          "",
 
-      datos.codigoCliente ||
-      codigo,
+          datos.cliente ||
+          "",
 
-      concepto,
+          datos.codigoCliente ||
+          codigo,
 
-      datos.monto ||
-      monto,
+          concepto,
 
-      datos.puntosGanados ||
-      0,
+          datos.monto ||
+          monto,
 
-      datos.puntosTotales ||
-      0
-    );
+          datos.puntosGanados ||
+          0,
+
+          datos.puntosTotales ||
+          0
+
+        );
 
 
-  if (enlaceWhatsAppMovimiento) {
+      if (
+        enlaceWhatsAppMovimiento
+      ) {
 
-    btnWhatsAppMovimiento.href =
-      enlaceWhatsAppMovimiento;
+        btnWhatsAppMovimiento.href =
+          enlaceWhatsAppMovimiento;
 
-    btnWhatsAppMovimiento.style.display =
-      "inline-flex";
+        btnWhatsAppMovimiento.target =
+          "_blank";
 
-  } else {
+        btnWhatsAppMovimiento.rel =
+          "noopener noreferrer";
 
-    btnWhatsAppMovimiento.style.display =
-      "none";
+        btnWhatsAppMovimiento.style.display =
+          "inline-flex";
 
-  }
+      } else {
 
-}
+        btnWhatsAppMovimiento.style.display =
+          "none";
+
+        console.warn(
+          "No se pudo crear el enlace de WhatsApp porque no existe teléfono del cliente."
+        );
+
+      }
+
+    }
+
+
+    // ======================================================
+    // MENSAJE DE ÉXITO
+    // ======================================================
 
     mostrarMensaje(
       "✅ Compra / servicio registrado correctamente.",
       "exito"
     );
 
+
+    // ======================================================
+    // ACTUALIZAR CLIENTE
+    // ======================================================
 
     if (nombreRegistro) {
 
@@ -821,6 +861,10 @@ if (btnWhatsAppMovimiento) {
     }
 
 
+    // ======================================================
+    // LIMPIAR MONTO
+    // ======================================================
+
     if (montoRegistro) {
 
       montoRegistro.value =
@@ -828,6 +872,10 @@ if (btnWhatsAppMovimiento) {
 
     }
 
+
+    // ======================================================
+    // LIMPIAR OBSERVACIÓN
+    // ======================================================
 
     if (observacionRegistro) {
 
@@ -837,10 +885,18 @@ if (btnWhatsAppMovimiento) {
     }
 
 
+    // ======================================================
+    // RECARGAR HISTORIAL
+    // ======================================================
+
     await cargarHistorial(
       datos.codigoCliente
     );
 
+
+    // ======================================================
+    // BAJAR HASTA EL HISTORIAL
+    // ======================================================
 
     if (historialRegistro) {
 
@@ -857,7 +913,6 @@ if (btnWhatsAppMovimiento) {
     console.error(
       error
     );
-
 
     mostrarMensaje(
       "❌ " +
@@ -876,6 +931,124 @@ if (btnWhatsAppMovimiento) {
     }
 
   }
+
+}
+
+
+// ==========================================================
+// GENERAR ENLACE WHATSAPP - MOVIMIENTO
+// ==========================================================
+
+function crearEnlaceWhatsAppMovimiento(
+  telefono,
+  nombre,
+  codigo,
+  concepto,
+  monto,
+  puntosGanados,
+  puntosTotales
+) {
+
+
+  // ========================================================
+  // LIMPIAR TELÉFONO
+  // ========================================================
+
+  let numero =
+    String(
+      telefono || ""
+    )
+      .replace(
+        /\D/g,
+        ""
+      );
+
+
+  // ========================================================
+  // SI NO HAY TELÉFONO
+  // ========================================================
+
+  if (!numero) {
+
+    console.warn(
+      "No existe teléfono del cliente."
+    );
+
+    return "";
+
+  }
+
+
+  // ========================================================
+  // TELÉFONO PERUANO
+  // ========================================================
+
+  if (
+    numero.length === 9
+  ) {
+
+    numero =
+      "51" +
+      numero;
+
+  }
+
+
+  // ========================================================
+  // MENSAJE
+  // ========================================================
+
+  const mensaje =
+
+    "Hola " +
+    nombre +
+    " 👋\n\n" +
+
+    "Te informamos que se ha registrado correctamente tu compra o servicio en *Juanita Pacasmayo* 💖\n\n" +
+
+    "🆔 *Código de cliente:* " +
+    codigo +
+    "\n\n" +
+
+    "✨ *Concepto:* " +
+    concepto +
+    "\n" +
+
+    "💰 *Monto:* " +
+    formatearMonto(
+      monto
+    ) +
+    "\n" +
+
+    "⭐ *Puntos ganados:* " +
+    Number(
+      puntosGanados || 0
+    ) +
+    "\n" +
+
+    "🌟 *Puntos acumulados:* " +
+    Number(
+      puntosTotales || 0
+    ) +
+    "\n\n" +
+
+    "¡Gracias por tu preferencia! 🌸\n\n" +
+
+    "*Juanita Pacasmayo* 💗";
+
+
+  // ========================================================
+  // CREAR URL WHATSAPP
+  // ========================================================
+
+  return (
+    "https://wa.me/" +
+    numero +
+    "?text=" +
+    encodeURIComponent(
+      mensaje
+    )
+  );
 
 }
 
@@ -910,9 +1083,9 @@ async function registrarCliente() {
       : "Activo";
 
 
-  // --------------------------------------------------------
+  // ========================================================
   // VALIDACIONES
-  // --------------------------------------------------------
+  // ========================================================
 
   if (!nombre) {
 
@@ -921,7 +1094,9 @@ async function registrarCliente() {
       "error"
     );
 
-    nombreCliente.focus();
+    if (nombreCliente) {
+      nombreCliente.focus();
+    }
 
     return;
 
@@ -935,7 +1110,9 @@ async function registrarCliente() {
       "error"
     );
 
-    telefonoCliente.focus();
+    if (telefonoCliente) {
+      telefonoCliente.focus();
+    }
 
     return;
 
@@ -955,7 +1132,9 @@ async function registrarCliente() {
       "error"
     );
 
-    telefonoCliente.focus();
+    if (telefonoCliente) {
+      telefonoCliente.focus();
+    }
 
     return;
 
@@ -969,7 +1148,9 @@ async function registrarCliente() {
       "error"
     );
 
-    pinCliente.focus();
+    if (pinCliente) {
+      pinCliente.focus();
+    }
 
     return;
 
@@ -987,16 +1168,18 @@ async function registrarCliente() {
       "error"
     );
 
-    pinCliente.focus();
+    if (pinCliente) {
+      pinCliente.focus();
+    }
 
     return;
 
   }
 
 
-  // --------------------------------------------------------
+  // ========================================================
   // ESTADO
-  // --------------------------------------------------------
+  // ========================================================
 
   mostrarMensajeCliente(
     "⏳ Registrando cliente...",
@@ -1165,7 +1348,7 @@ async function registrarCliente() {
 
 
     // ======================================================
-    // CREAR BOTÓN WHATSAPP
+    // WHATSAPP CLIENTE
     // ======================================================
 
     if (
@@ -1174,14 +1357,19 @@ async function registrarCliente() {
 
       const enlaceWhatsApp =
         crearEnlaceWhatsApp(
+
           datos.telefono ||
           telefono,
+
           datos.nombre ||
           nombre,
+
           datos.codigoCliente ||
           "",
+
           datos.pin ||
           pin
+
         );
 
 
@@ -1191,6 +1379,12 @@ async function registrarCliente() {
 
         btnWhatsAppCliente.href =
           enlaceWhatsApp;
+
+        btnWhatsAppCliente.target =
+          "_blank";
+
+        btnWhatsAppCliente.rel =
+          "noopener noreferrer";
 
         btnWhatsAppCliente.style.display =
           "inline-flex";
@@ -1216,6 +1410,13 @@ async function registrarCliente() {
 
       codigoRegistro.value =
         datos.codigoCliente;
+
+
+      // Guardar teléfono para WhatsApp
+
+      telefonoMovimiento =
+        datos.telefono ||
+        telefono;
 
 
       if (nombreRegistro) {
@@ -1308,7 +1509,7 @@ async function registrarCliente() {
 
 
 // ==========================================================
-// GENERAR ENLACE WHATSAPP
+// GENERAR ENLACE WHATSAPP - CLIENTE
 // ==========================================================
 
 function crearEnlaceWhatsApp(
@@ -1335,13 +1536,9 @@ function crearEnlaceWhatsApp(
   }
 
 
-  // --------------------------------------------------------
-  // Perú
-  //
-  // 960684125
-  // ↓
-  // 51960684125
-  // --------------------------------------------------------
+  // ========================================================
+  // PERÚ
+  // ========================================================
 
   if (
     numero.length === 9
@@ -1590,6 +1787,7 @@ function mostrarHistorial(
 
   historial.forEach(
     function(movimiento) {
+
 
       const tipo =
         movimiento.tipo ||
@@ -1984,7 +2182,11 @@ console.log(
 );
 
 console.log(
-  "✅ WhatsApp: OK"
+  "✅ WhatsApp cliente: OK"
+);
+
+console.log(
+  "✅ WhatsApp movimiento: OK"
 );
 
 console.log(
