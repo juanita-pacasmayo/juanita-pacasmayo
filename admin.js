@@ -463,7 +463,17 @@ async function buscarCliente() {
 
     }
 
+// ==========================================================
+// WHATSAPP - MOVIMIENTO
+// ==========================================================
 
+const btnWhatsAppMovimiento =
+  document.getElementById(
+    "btnWhatsAppMovimiento"
+  );
+
+let telefonoMovimiento = "";
+    
     if (puntosRegistro) {
 
       puntosRegistro.textContent =
