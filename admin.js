@@ -1571,9 +1571,7 @@ function crearEnlaceWhatsApp(
 
     "🔐 PIN: " +
     pin +
-    "\n" +
-
-    "⭐ Puntos acumulados: 0\n\n" +
+    "\n\n" +
 
     "🌐 Consulta tus puntos y premios aquí:\n" +
 
@@ -1597,6 +1595,8 @@ function crearEnlaceWhatsApp(
   );
 
 }
+
+
 // ==========================================================
 // CARGAR HISTORIAL
 // ==========================================================
