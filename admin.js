@@ -82,6 +82,16 @@ const detalleRegistro =
     "detalleRegistro"
   );
 
+// ==========================================================
+// WHATSAPP - MOVIMIENTO
+// ==========================================================
+
+const btnWhatsAppMovimiento =
+  document.getElementById(
+    "btnWhatsAppMovimiento"
+  );
+
+let telefonoMovimiento = "";
 
 // ==========================================================
 // ELEMENTOS - CLIENTE
