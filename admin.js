@@ -1031,6 +1031,13 @@ function crearEnlaceWhatsAppMovimiento(
     ) +
     "\n\n" +
 
+    "🌐 Consulta tus puntos y premios aquí:\n" +
+
+    enlaceConsulta +
+    "\n\n" +
+
+    "Ingresa tu código de cliente y PIN para consultar toda tu información.\n\n" +
+    
     "¡Gracias por tu preferencia! 🌸\n\n" +
 
     "*Juanita Pacasmayo* 💗";
