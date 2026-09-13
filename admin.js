@@ -1543,6 +1543,18 @@ function crearEnlaceWhatsApp(
   }
 
 
+  // ========================================================
+  // ENLACE PARA CONSULTAR PUNTOS
+  // ========================================================
+
+  const enlaceConsulta =
+    "https://juanita-pacasmayo.github.io/juanita-pacasmayo/consulta.html";
+
+
+  // ========================================================
+  // MENSAJE DE WHATSAPP
+  // ========================================================
+
   const mensaje =
 
     "Hola " +
@@ -1563,7 +1575,14 @@ function crearEnlaceWhatsApp(
 
     "⭐ Puntos acumulados: 0\n\n" +
 
-    "Guarda tu código y PIN para consultar tus puntos y premios.\n\n" +
+    "🌐 Consulta tus puntos y premios aquí:\n" +
+
+    enlaceConsulta +
+    "\n\n" +
+
+    "Ingresa tu código de cliente y PIN para consultar tus puntos y premios.\n\n" +
+
+    "Guarda tu código y PIN para futuras consultas.\n\n" +
 
     "¡Gracias por elegir Juanita Pacasmayo! 🌸";
 
@@ -1578,8 +1597,6 @@ function crearEnlaceWhatsApp(
   );
 
 }
-
-
 // ==========================================================
 // CARGAR HISTORIAL
 // ==========================================================
