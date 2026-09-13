@@ -428,16 +428,15 @@ async function buscarCliente() {
       codigo
     );
 
-    const respuesta =
-      await fetch(
-        crearURL(
-          parametros
-        ),
-        {
-          method: "GET",
-          cache: "no-cache"
-        }
-      );
+    const urlPrueba = crearURL(parametros);
+
+console.log("URL que se está consultando:");
+console.log(urlPrueba);
+
+const respuesta = await fetch(urlPrueba);
+
+console.log("Estado HTTP:", respuesta.status);
+console.log("Respuesta OK:", respuesta.ok);
 
     const datos =
       await leerRespuestaJSON(
