@@ -942,106 +942,78 @@ function crearEnlaceWhatsAppMovimiento(
   telefono,
   nombre,
   codigo,
+  tipo,
   concepto,
   monto,
   puntosGanados,
   puntosTotales
 ) {
 
-
-  // ========================================================
-  // LIMPIAR TELÉFONO
-  // ========================================================
-
-  let numero =
-    String(
-      telefono || ""
-    )
-      .replace(
-        /\D/g,
-        ""
-      );
-
-
-  // ========================================================
-  // SI NO HAY TELÉFONO
-  // ========================================================
+  let numero = String(telefono || "").replace(/\D/g, "");
 
   if (!numero) {
-
-    console.warn(
-      "No existe teléfono del cliente."
-    );
-
     return "";
-
   }
 
-
   // ========================================================
-  // TELÉFONO PERUANO
+  // PERÚ
   // ========================================================
 
-  if (
-    numero.length === 9
-  ) {
-
-    numero =
-      "51" +
-      numero;
-
+  if (numero.length === 9) {
+    numero = "51" + numero;
   }
 
+  // ========================================================
+  // ENLACE DE CONSULTA
+  // ========================================================
+
+  const enlaceConsulta =
+    "https://juanita-pacasmayo.github.io/juanita-pacasmayo/consulta.html";
 
   // ========================================================
   // MENSAJE
   // ========================================================
 
   const mensaje =
-
     "Hola " +
     nombre +
     " 👋\n\n" +
 
-    "Te informamos que se ha registrado correctamente tu compra o servicio en *Juanita Pacasmayo* 💖\n\n" +
+    "✨ Se ha registrado un nuevo movimiento en tu cuenta de puntos de Juanita Pacasmayo.\n\n" +
 
-    "🆔 *Código de cliente:* " +
-    codigo +
-    "\n\n" +
+    "📋 Detalle del movimiento:\n\n" +
 
-    "✨ *Concepto:* " +
+    "📝 Concepto: " +
     concepto +
     "\n" +
 
-    "💰 *Monto:* " +
-    formatearMonto(
-      monto
-    ) +
+    "💰 Monto: S/ " +
+    Number(monto || 0).toFixed(2) +
     "\n" +
 
-    "⭐ *Puntos ganados:* " +
-    Number(
-      puntosGanados || 0
-    ) +
-    "\n" +
+    "⭐ Puntos ganados: " +
+    puntosGanados +
+    "\n\n" +
 
-    "🌟 *Puntos acumulados:* " +
-    Number(
-      puntosTotales || 0
-    ) +
+    "🌟 Puntos acumulados: " +
+    puntosTotales +
     "\n\n" +
 
     "🌐 Consulta tus puntos y premios aquí:\n" +
-
     enlaceConsulta +
     "\n\n" +
 
     "Ingresa tu código de cliente y PIN para consultar toda tu información.\n\n" +
-    
-    "¡Gracias por tu preferencia! 🌸\n\n" +
 
-    "*Juanita Pacasmayo* 💗";
+    "¡Gracias por elegir Juanita Pacasmayo! 💕";
 
+  return (
+    "https://wa.me/" +
+    numero +
+    "?text=" +
+    encodeURIComponent(mensaje)
+  );
+}
 
   // ========================================================
   // CREAR URL WHATSAPP
