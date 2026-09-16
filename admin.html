@@ -667,6 +667,199 @@
 
 
 
+
+        <!-- =================================================
+             CANJEAR PREMIO
+             ================================================= -->
+
+        <div class="admin-separador"></div>
+
+        <div class="admin-form">
+
+          <div class="admin-form-header">
+            <div class="admin-form-icono">
+              🎁
+            </div>
+
+            <div>
+              <p class="section-kicker">
+                PREMIOS
+              </p>
+
+              <h3>
+                Canjear premio
+              </h3>
+
+              <p>
+                Selecciona un premio y descuenta automáticamente
+                los puntos del cliente.
+              </p>
+            </div>
+          </div>
+
+          <!-- =================================================
+               CÓDIGO
+               ================================================= -->
+
+          <div class="form-group">
+            <label for="codigoCanje">
+              Código del cliente
+            </label>
+
+            <div class="campo-con-boton">
+              <input
+                type="text"
+                id="codigoCanje"
+                placeholder="Ejemplo: MARIAJOSE001"
+                autocomplete="off"
+              >
+
+              <button
+                type="button"
+                id="btnBuscarCanje"
+                class="button secondary"
+              >
+                🔎 Buscar
+              </button>
+            </div>
+          </div>
+
+          <!-- =================================================
+               CLIENTE
+               ================================================= -->
+
+          <div
+            id="clienteCanje"
+            class="cliente-registro"
+            style="display:none;"
+          >
+            <div class="cliente-icono">
+              👤
+            </div>
+
+            <div>
+              <span>
+                Cliente encontrado
+              </span>
+
+              <strong id="nombreCanje">
+                -
+              </strong>
+
+              <small id="puntosCanje">
+                ⭐ 0 puntos
+              </small>
+            </div>
+          </div>
+
+          <!-- =================================================
+               PREMIO
+               ================================================= -->
+
+          <div class="form-group">
+            <label for="premioCanje">
+              Premio a canjear
+            </label>
+
+            <select
+              id="premioCanje"
+              disabled
+            >
+              <option value="">
+                Primero busca un cliente
+              </option>
+            </select>
+
+            <small
+              id="detallePremioCanje"
+              class="campo-ayuda"
+            >
+              Los premios se cargan desde la hoja Premios.
+            </small>
+          </div>
+
+          <!-- =================================================
+               CONFIRMACIÓN
+               ================================================= -->
+
+          <div
+            id="resumenCanje"
+            style="
+              display:none;
+              margin:16px 0;
+              padding:16px;
+              border-radius:14px;
+              background:#fff7fb;
+              border:1px solid rgba(200,59,106,.18);
+            "
+          >
+            <strong>
+              🎁 Resumen del canje
+            </strong>
+
+            <div
+              id="detalleResumenCanje"
+              style="margin-top:8px;"
+            ></div>
+          </div>
+
+          <!-- =================================================
+               BOTÓN CANJEAR
+               ================================================= -->
+
+          <button
+            type="button"
+            id="btnCanjearPremio"
+            class="button primary"
+            disabled
+          >
+            🎁 Canjear premio
+          </button>
+
+          <!-- =================================================
+               MENSAJE
+               ================================================= -->
+
+          <div
+            id="mensajeCanje"
+            class="mensaje-registro"
+          ></div>
+
+          <!-- =================================================
+               RESULTADO
+               ================================================= -->
+
+          <div
+            id="resultadoCanje"
+            class="resultado-registro"
+            style="display:none;"
+          >
+            <div class="resultado-icono">
+              🎉
+            </div>
+
+            <h3>
+              Premio canjeado correctamente
+            </h3>
+
+            <p id="detalleResultadoCanje">
+              -
+            </p>
+
+            <a
+              id="btnWhatsAppCanje"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="button whatsapp-button"
+              style="display:none;"
+            >
+              📱 Enviar por WhatsApp
+            </a>
+          </div>
+
+        </div>
+
         <!-- =================================================
              HISTORIAL
              ================================================= -->
