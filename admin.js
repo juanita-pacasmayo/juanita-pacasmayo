@@ -174,6 +174,84 @@ const totalMovimientos =
 
 
 // ==========================================================
+// ELEMENTOS - CANJE DE PREMIOS
+// ==========================================================
+
+const codigoCanje =
+  document.getElementById(
+    "codigoCanje"
+  );
+
+const btnBuscarCanje =
+  document.getElementById(
+    "btnBuscarCanje"
+  );
+
+const clienteCanje =
+  document.getElementById(
+    "clienteCanje"
+  );
+
+const nombreCanje =
+  document.getElementById(
+    "nombreCanje"
+  );
+
+const puntosCanje =
+  document.getElementById(
+    "puntosCanje"
+  );
+
+const premioCanje =
+  document.getElementById(
+    "premioCanje"
+  );
+
+const detallePremioCanje =
+  document.getElementById(
+    "detallePremioCanje"
+  );
+
+const resumenCanje =
+  document.getElementById(
+    "resumenCanje"
+  );
+
+const detalleResumenCanje =
+  document.getElementById(
+    "detalleResumenCanje"
+  );
+
+const btnCanjearPremio =
+  document.getElementById(
+    "btnCanjearPremio"
+  );
+
+const mensajeCanje =
+  document.getElementById(
+    "mensajeCanje"
+  );
+
+const resultadoCanje =
+  document.getElementById(
+    "resultadoCanje"
+  );
+
+const detalleResultadoCanje =
+  document.getElementById(
+    "detalleResultadoCanje"
+  );
+
+const btnWhatsAppCanje =
+  document.getElementById(
+    "btnWhatsAppCanje"
+  );
+
+let telefonoCanje = "";
+let puntosActualesCanje = 0;
+let premiosCanje = [];
+
+// ==========================================================
 // MOSTRAR MENSAJE DE MOVIMIENTO
 // ==========================================================
 
@@ -1995,6 +2073,836 @@ function actualizarTotalMovimientos(
 
 
 // ==========================================================
+// MENSAJE DE CANJE
+// ==========================================================
+
+function mostrarMensajeCanje(
+  mensaje,
+  tipo = "info"
+) {
+
+  if (!mensajeCanje) {
+    return;
+  }
+
+  mensajeCanje.textContent =
+    mensaje;
+
+  mensajeCanje.className =
+    "mensaje-registro " +
+    tipo;
+}
+
+
+// ==========================================================
+// CARGAR PREMIOS PARA ADMINISTRACIÓN
+// ==========================================================
+
+async function cargarPremiosCanje() {
+
+  if (!premioCanje) {
+    return;
+  }
+
+  premioCanje.innerHTML =
+    "<option value=''>⏳ Cargando premios...</option>";
+
+  premioCanje.disabled = true;
+
+  try {
+
+    const parametros =
+      new URLSearchParams();
+
+    parametros.append(
+      "accion",
+      "obtenerPremios"
+    );
+
+    const respuesta =
+      await fetch(
+        crearURL(parametros),
+        {
+          method: "GET",
+          cache: "no-cache"
+        }
+      );
+
+    const datos =
+      await leerRespuestaJSON(
+        respuesta
+      );
+
+    if (!datos.correcto) {
+      throw new Error(
+        datos.mensaje ||
+        "No se pudieron cargar los premios."
+      );
+    }
+
+    premiosCanje =
+      Array.isArray(
+        datos.premios
+      )
+        ? datos.premios.filter(
+            function(premio) {
+
+              return String(
+                premio.estado || ""
+              )
+                .trim()
+                .toLowerCase() ===
+                "activo";
+
+            }
+          )
+        : [];
+
+    premioCanje.innerHTML =
+      "<option value=''>" +
+      "Selecciona un premio" +
+      "</option>";
+
+    premiosCanje.forEach(
+      function(premio) {
+
+        const option =
+          document.createElement(
+            "option"
+          );
+
+        option.value =
+          String(
+            premio.id
+          );
+
+        option.textContent =
+          "🎁 " +
+          premio.nombre +
+          " — " +
+          Number(
+            premio.puntos || 0
+          ) +
+          " puntos";
+
+        premioCanje.appendChild(
+          option
+        );
+
+      }
+    );
+
+    premioCanje.disabled =
+      false;
+
+    actualizarDetallePremioCanje();
+
+  } catch (error) {
+
+    console.error(
+      "Error cargando premios:",
+      error
+    );
+
+    premioCanje.innerHTML =
+      "<option value=''>" +
+      "❌ No se pudieron cargar los premios" +
+      "</option>";
+
+    premioCanje.disabled =
+      true;
+
+    if (detallePremioCanje) {
+
+      detallePremioCanje.textContent =
+        error.message;
+
+    }
+
+  }
+
+}
+
+
+// ==========================================================
+// ACTUALIZAR DETALLE DEL PREMIO
+// ==========================================================
+
+function actualizarDetallePremioCanje() {
+
+  if (
+    !premioCanje
+  ) {
+    return;
+  }
+
+  const premio =
+    premiosCanje.find(
+      function(item) {
+
+        return String(
+          item.id
+        ) ===
+        String(
+          premioCanje.value
+        );
+
+      }
+    );
+
+  if (!premio) {
+
+    if (detallePremioCanje) {
+
+      detallePremioCanje.textContent =
+        "Selecciona un premio para ver su costo.";
+
+    }
+
+    if (resumenCanje) {
+      resumenCanje.style.display =
+        "none";
+    }
+
+    if (btnCanjearPremio) {
+      btnCanjearPremio.disabled =
+        true;
+    }
+
+    return;
+  }
+
+  const puntosPremio =
+    Number(
+      premio.puntos || 0
+    );
+
+  const puedeCanjear =
+    puntosActualesCanje >=
+    puntosPremio;
+
+  if (detallePremioCanje) {
+
+    if (premio.descripcion) {
+
+      detallePremioCanje.textContent =
+        premio.descripcion +
+        " • Costo: " +
+        puntosPremio +
+        " puntos.";
+
+    } else {
+
+      detallePremioCanje.textContent =
+        "Costo: " +
+        puntosPremio +
+        " puntos.";
+
+    }
+
+  }
+
+  if (resumenCanje) {
+
+    resumenCanje.style.display =
+      "block";
+
+  }
+
+  if (detalleResumenCanje) {
+
+    if (puedeCanjear) {
+
+      detalleResumenCanje.innerHTML =
+        "Premio: <strong>" +
+        escaparHTML(
+          premio.nombre
+        ) +
+        "</strong><br>" +
+        "Costo: <strong>" +
+        puntosPremio +
+        " puntos</strong><br>" +
+        "Puntos actuales: <strong>" +
+        puntosActualesCanje +
+        "</strong><br>" +
+        "Puntos después del canje: <strong>" +
+        (puntosActualesCanje -
+          puntosPremio) +
+        "</strong>";
+
+    } else {
+
+      detalleResumenCanje.innerHTML =
+        "Premio: <strong>" +
+        escaparHTML(
+          premio.nombre
+        ) +
+        "</strong><br>" +
+        "Costo: <strong>" +
+        puntosPremio +
+        " puntos</strong><br>" +
+        "Puntos actuales: <strong>" +
+        puntosActualesCanje +
+        "</strong><br>" +
+        "❌ Le faltan <strong>" +
+        (puntosPremio -
+          puntosActualesCanje) +
+        " puntos</strong>.";
+
+    }
+
+  }
+
+  if (btnCanjearPremio) {
+
+    btnCanjearPremio.disabled =
+      !puedeCanjear;
+
+  }
+
+}
+
+
+// ==========================================================
+// BUSCAR CLIENTE PARA CANJE
+// ==========================================================
+
+async function buscarClienteCanje() {
+
+  if (!codigoCanje) {
+    return;
+  }
+
+  const codigo =
+    codigoCanje.value
+      .trim()
+      .toUpperCase();
+
+  if (!codigo) {
+
+    mostrarMensajeCanje(
+      "❌ Escribe el código del cliente.",
+      "error"
+    );
+
+    codigoCanje.focus();
+
+    return;
+
+  }
+
+  mostrarMensajeCanje(
+    "🔎 Buscando cliente...",
+    "info"
+  );
+
+  if (clienteCanje) {
+    clienteCanje.style.display =
+      "none";
+  }
+
+  if (resultadoCanje) {
+    resultadoCanje.style.display =
+      "none";
+  }
+
+  puntosActualesCanje =
+    0;
+
+  telefonoCanje =
+    "";
+
+  if (btnCanjearPremio) {
+    btnCanjearPremio.disabled =
+      true;
+  }
+
+  try {
+
+    const parametros =
+      new URLSearchParams();
+
+    parametros.append(
+      "accion",
+      "historialCliente"
+    );
+
+    parametros.append(
+      "codigo",
+      codigo
+    );
+
+    const respuesta =
+      await fetch(
+        crearURL(parametros),
+        {
+          method: "GET",
+          cache: "no-cache"
+        }
+      );
+
+    const datos =
+      await leerRespuestaJSON(
+        respuesta
+      );
+
+    if (!datos.correcto) {
+
+      throw new Error(
+        datos.mensaje ||
+        "No se encontró el cliente."
+      );
+
+    }
+
+    puntosActualesCanje =
+      Number(
+        datos.puntos || 0
+      );
+
+    telefonoCanje =
+      datos.telefono ||
+      "";
+
+    if (nombreCanje) {
+
+      nombreCanje.textContent =
+        datos.cliente ||
+        "-";
+
+    }
+
+    if (puntosCanje) {
+
+      puntosCanje.textContent =
+        "⭐ " +
+        puntosActualesCanje +
+        " puntos";
+
+    }
+
+    if (clienteCanje) {
+
+      clienteCanje.style.display =
+        "flex";
+
+    }
+
+    codigoCanje.value =
+      datos.codigoCliente ||
+      codigo;
+
+    mostrarMensajeCanje(
+      "✅ Cliente encontrado correctamente.",
+      "exito"
+    );
+
+    if (
+      premiosCanje.length === 0
+    ) {
+
+      await cargarPremiosCanje();
+
+    }
+
+    actualizarDetallePremioCanje();
+
+  } catch (error) {
+
+    console.error(
+      "Error buscando cliente para canje:",
+      error
+    );
+
+    mostrarMensajeCanje(
+      "❌ " +
+      error.message,
+      "error"
+    );
+
+  }
+
+}
+
+
+// ==========================================================
+// CANJEAR PREMIO
+// ==========================================================
+
+async function canjearPremio() {
+
+  const codigo =
+    codigoCanje
+      ? codigoCanje.value
+          .trim()
+          .toUpperCase()
+      : "";
+
+  const premio =
+    premiosCanje.find(
+      function(item) {
+
+        return String(
+          item.id
+        ) ===
+        String(
+          premioCanje
+            ? premioCanje.value
+            : ""
+        );
+
+      }
+    );
+
+  if (!codigo) {
+
+    mostrarMensajeCanje(
+      "❌ Primero busca el cliente.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  if (!premio) {
+
+    mostrarMensajeCanje(
+      "❌ Selecciona un premio.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  const costo =
+    Number(
+      premio.puntos || 0
+    );
+
+  if (
+    puntosActualesCanje <
+    costo
+  ) {
+
+    mostrarMensajeCanje(
+      "❌ El cliente no tiene suficientes puntos.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  const confirmar =
+    window.confirm(
+      "¿Confirmas el canje de '" +
+      premio.nombre +
+      "' por " +
+      costo +
+      " puntos?"
+    );
+
+  if (!confirmar) {
+    return;
+  }
+
+  mostrarMensajeCanje(
+    "⏳ Registrando canje...",
+    "info"
+  );
+
+  if (btnCanjearPremio) {
+
+    btnCanjearPremio.disabled =
+      true;
+
+  }
+
+  try {
+
+    const parametros =
+      new URLSearchParams();
+
+    parametros.append(
+      "accion",
+      "canjearPremio"
+    );
+
+    parametros.append(
+      "codigo",
+      codigo
+    );
+
+    parametros.append(
+      "premioId",
+      premio.id
+    );
+
+    const respuesta =
+      await fetch(
+        crearURL(parametros),
+        {
+          method: "GET",
+          cache: "no-cache"
+        }
+      );
+
+    const datos =
+      await leerRespuestaJSON(
+        respuesta
+      );
+
+    if (!datos.correcto) {
+
+      throw new Error(
+        datos.mensaje ||
+        "No se pudo realizar el canje."
+      );
+
+    }
+
+    puntosActualesCanje =
+      Number(
+        datos.puntosTotales || 0
+      );
+
+    telefonoCanje =
+      datos.telefono ||
+      telefonoCanje ||
+      "";
+
+    if (puntosCanje) {
+
+      puntosCanje.textContent =
+        "⭐ " +
+        puntosActualesCanje +
+        " puntos";
+
+    }
+
+    if (nombreCanje) {
+
+      nombreCanje.textContent =
+        datos.cliente ||
+        nombreCanje.textContent ||
+        "-";
+
+    }
+
+    if (resultadoCanje) {
+
+      resultadoCanje.style.display =
+        "block";
+
+    }
+
+    if (detalleResultadoCanje) {
+
+      detalleResultadoCanje.innerHTML =
+        "<strong>" +
+        escaparHTML(
+          datos.cliente ||
+          ""
+        ) +
+        "</strong>" +
+        "<br><br>" +
+        "Código: " +
+        escaparHTML(
+          datos.codigoCliente ||
+          codigo
+        ) +
+        "<br>" +
+        "🎁 Premio: <strong>" +
+        escaparHTML(
+          datos.premio ||
+          premio.nombre
+        ) +
+        "</strong>" +
+        "<br>" +
+        "⭐ Puntos utilizados: <strong>" +
+        Number(
+          datos.puntosCanjeados ||
+          costo
+        ) +
+        "</strong>" +
+        "<br>" +
+        "🌟 Puntos restantes: <strong>" +
+        Number(
+          datos.puntosTotales || 0
+        ) +
+        "</strong>";
+
+    }
+
+    if (btnWhatsAppCanje) {
+
+      const enlace =
+        crearEnlaceWhatsAppCanje(
+          datos.telefono ||
+          telefonoCanje ||
+          "",
+          datos.cliente ||
+          nombreCanje.textContent ||
+          "",
+          datos.codigoCliente ||
+          codigo,
+          datos.premio ||
+          premio.nombre,
+          datos.puntosCanjeados ||
+          costo,
+          datos.puntosTotales ||
+          0
+        );
+
+      if (enlace) {
+
+        btnWhatsAppCanje.href =
+          enlace;
+
+        btnWhatsAppCanje.target =
+          "_blank";
+
+        btnWhatsAppCanje.rel =
+          "noopener noreferrer";
+
+        btnWhatsAppCanje.style.display =
+          "inline-flex";
+
+      } else {
+
+        btnWhatsAppCanje.style.display =
+          "none";
+
+      }
+
+    }
+
+    mostrarMensajeCanje(
+      "✅ Premio canjeado correctamente.",
+      "exito"
+    );
+
+    if (premioCanje) {
+
+      premioCanje.value =
+        "";
+
+    }
+
+    actualizarDetallePremioCanje();
+
+    await cargarHistorial(
+      datos.codigoCliente ||
+      codigo
+    );
+
+    if (historialRegistro) {
+
+      historialRegistro.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    }
+
+  } catch (error) {
+
+    console.error(
+      "Error canjeando premio:",
+      error
+    );
+
+    mostrarMensajeCanje(
+      "❌ " +
+      error.message,
+      "error"
+    );
+
+    actualizarDetallePremioCanje();
+
+  }
+
+}
+
+
+// ==========================================================
+// WHATSAPP - CANJE
+// ==========================================================
+
+function crearEnlaceWhatsAppCanje(
+  telefono,
+  nombre,
+  codigo,
+  premio,
+  puntosCanjeados,
+  puntosTotales
+) {
+
+  let numero =
+    String(
+      telefono || ""
+    ).replace(
+      /\D/g,
+      ""
+    );
+
+  if (!numero) {
+    return "";
+  }
+
+  if (
+    numero.length === 9
+  ) {
+
+    numero =
+      "51" +
+      numero;
+
+  }
+
+  const enlaceConsulta =
+    "https://juanita-pacasmayo.github.io/juanita-pacasmayo/consulta.html";
+
+  const mensaje =
+    "Hola " +
+    nombre +
+    " 👋\n\n" +
+    "🎁 ¡Tu canje en Juanita Pacasmayo fue registrado correctamente!\n\n" +
+    "📋 Detalle del canje:\n\n" +
+    "🎁 Premio: " +
+    premio +
+    "\n" +
+    "⭐ Puntos utilizados: " +
+    Number(
+      puntosCanjeados || 0
+    ) +
+    "\n" +
+    "🌟 Puntos restantes: " +
+    Number(
+      puntosTotales || 0
+    ) +
+    "\n\n" +
+    "🌐 Consulta tus puntos y premios aquí:\n" +
+    enlaceConsulta +
+    "\n\n" +
+    "Ingresa tu código de cliente y PIN para consultar toda tu información.\n\n" +
+    "¡Gracias por elegir Juanita Pacasmayo! 💕";
+
+  return (
+    "https://wa.me/" +
+    numero +
+    "?text=" +
+    encodeURIComponent(
+      mensaje
+    )
+  );
+
+}
+
+
+// ==========================================================
 // BOTÓN BUSCAR
 // ==========================================================
 
@@ -2024,6 +2932,71 @@ if (
   );
 
 }
+
+
+// ==========================================================
+// BOTONES - CANJE
+// ==========================================================
+
+if (btnBuscarCanje) {
+
+  btnBuscarCanje.addEventListener(
+    "click",
+    buscarClienteCanje
+  );
+
+}
+
+if (btnCanjearPremio) {
+
+  btnCanjearPremio.addEventListener(
+    "click",
+    canjearPremio
+  );
+
+}
+
+if (premioCanje) {
+
+  premioCanje.addEventListener(
+    "change",
+    actualizarDetallePremioCanje
+  );
+
+}
+
+if (codigoCanje) {
+
+  codigoCanje.addEventListener(
+    "keydown",
+    function(evento) {
+
+      if (
+        evento.key === "Enter"
+      ) {
+
+        evento.preventDefault();
+
+        buscarClienteCanje();
+
+      }
+
+    }
+  );
+
+  codigoCanje.addEventListener(
+    "input",
+    function() {
+
+      this.value =
+        this.value.toUpperCase();
+
+    }
+  );
+
+}
+
+cargarPremiosCanje();
 
 
 // ==========================================================
